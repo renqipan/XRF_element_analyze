@@ -1,0 +1,30 @@
+{
+  "energy_range": [
+    1.0,
+    40.0
+  ],
+  "tube_voltage_kv": 50.0,
+  "save_intermediate": true,
+  "complete_atomic_lines": true,
+  "infer_low_energy_cutoff": true,
+  "estimate_resolution_from_peaks": true,
+  "fit_energy_gain": true,
+  "energy_gain_bound": 0.01,
+  "alignment_max_shift_kev": 0.25,
+  "max_deviance_per_dof": 5.0,
+  "find_peaks": [
+    3.69,
+    3.688,
+    6.4,
+    7.06,
+    10.5,
+    12.6,
+    14.7,
+    9.98,
+    11.9
+  ],
+  "find_peaks_axis": "reference",
+  "element_prior": "general",
+  "prior_tie_margin": 0.5,
+  "branch_evidence": true
+}

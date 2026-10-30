@@ -1,0 +1,2147 @@
+{
+  "schema_version": "2.0",
+  "fit_status": "success",
+  "analysis_status": "model_mismatch",
+  "quantitative_interpretation_valid": false,
+  "input_files": {
+    "sample_spectrum": {
+      "path": "/home/renqi/Documents/ChatGPT/XRF_element_analyze/SDD_Spectrum/shafa_50kv_20uA.mca",
+      "sha256": "93343b763b918656fe1d4e0ef1002a9a9b9c7a77b3f8956142f436622f0e9253"
+    },
+    "calibration": {
+      "path": "/home/renqi/Documents/ChatGPT/XRF_element_analyze/data/calibration.csv",
+      "sha256": "ba1d44ecd5b11771021c8801b2f99a21ab6c4a8e02ed0235055d640e5981cddd"
+    },
+    "sensitivity": {
+      "path": "/home/renqi/Documents/ChatGPT/XRF_element_analyze/data/xrf_relative_sensitivity.csv",
+      "sha256": "221998779caa79b798ef0cc8d133c832966b43d386aaedbe6b6c0aceddf80c90"
+    }
+  },
+  "dependency_versions": {
+    "numpy": "1.24.3",
+    "scipy": "1.10.1",
+    "pandas": "2.0.3",
+    "matplotlib": "3.5.1",
+    "xraylib": "4.2.0"
+  },
+  "parameters": {
+    "energy_range": [
+      1.0,
+      40.0
+    ],
+    "complete_atomic_lines": false,
+    "shell_consistency_tolerance": 0.05,
+    "minimum_radiative_rate": 0.001,
+    "infer_low_energy_cutoff": true,
+    "alignment_max_shift_kev": 0.25,
+    "centroid_tolerance_kev": 0.015,
+    "pattern_element_penalty": 4.0,
+    "channel_start": 0,
+    "fill_missing_channels": false,
+    "strict_calibration": false,
+    "fwhm_ref_energy_kev": 5.9,
+    "fwhm_ref_kev": 0.135,
+    "fano": 0.115,
+    "pair_energy_kev": 0.0036,
+    "fit_response": true,
+    "estimate_resolution_from_peaks": true,
+    "fit_energy_gain": true,
+    "energy_gain_bound": 0.01,
+    "resolution_scale_bounds": [
+      0.75,
+      1.5
+    ],
+    "delta_max_kev": null,
+    "snip_iterations": null,
+    "background_degree": 3,
+    "background_regularization": 0.1,
+    "candidate_threshold_sigma": 3.5,
+    "max_deviance_per_dof": 5.0,
+    "support_delta_deviance": 25.0,
+    "tentative_delta_deviance": 6.0,
+    "match_sigma": 2.5,
+    "correlation_threshold": 0.995,
+    "elements": null,
+    "exclude_elements": [],
+    "element_selection": "model-comparison",
+    "max_selection_iterations": 3,
+    "reference_element": null,
+    "tube_target": null,
+    "tube_voltage_kv": 50.0,
+    "scatter_angle_deg": null,
+    "detector_efficiency": 1.0,
+    "bootstrap": 0,
+    "seed": 42,
+    "max_iterations": 1800,
+    "save_intermediate": true
+  },
+  "effective_parameters": {
+    "background_method": "snip",
+    "snip_iterations": 13,
+    "delta_E_bound_keV": 0.25,
+    "effective_fwhm_ref_kev": 0.24607620833268296,
+    "energy_edges_keV": [
+      2.990769230769231,
+      39.98769230769231
+    ]
+  },
+  "calibration_quality": "ok",
+  "sensitivity": {
+    "sensitivity_provenance": "unverified",
+    "metadata_file": null
+  },
+  "line_energy": {
+    "source": "xraylib",
+    "api": "xraylib.LineEnergy",
+    "units": "keV"
+  },
+  "acquisition_cutoff": {
+    "energy_keV": 2.990769230769231,
+    "first_retained_channel": 41,
+    "zero_prefix_channels": 41,
+    "first_counts": 142.0,
+    "inferred": true,
+    "reason": "long_exact_zero_prefix_followed_by_abrupt_high_counts",
+    "limitation": "Acquisition threshold inferred from data; instrument confirmation required",
+    "background_edge_initialization": "lower_quartile_of_adjacent_SNIP_background"
+  },
+  "response_initialization": {
+    "used": true,
+    "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+    "configured_reference_FWHM_keV": 0.135,
+    "effective_reference_FWHM_keV": 0.24607620833268296,
+    "peak_ids": [
+      1,
+      3,
+      4,
+      6,
+      7,
+      8,
+      16,
+      18
+    ],
+    "is_instrument_calibration": false
+  },
+  "centroid_alignment": {
+    "method": "global_centroid_branch_graph_weighted_sparse_peak_cover",
+    "delta_E_keV": 0.08500000000000002,
+    "search_bound_keV": 0.25,
+    "score": 19.52761188362988,
+    "is_calibration_replacement": false,
+    "grid_solutions": [
+      {
+        "delta": -0.25,
+        "score": 1.5077205015414172
+      },
+      {
+        "delta": -0.245,
+        "score": 1.8456314889907404
+      },
+      {
+        "delta": -0.24,
+        "score": 2.249619344603267
+      },
+      {
+        "delta": -0.235,
+        "score": 2.6920766829532337
+      },
+      {
+        "delta": -0.23,
+        "score": 3.142590973670856
+      },
+      {
+        "delta": -0.225,
+        "score": 3.265199825907934
+      },
+      {
+        "delta": -0.22,
+        "score": 3.728762155941874
+      },
+      {
+        "delta": -0.215,
+        "score": 4.08842423439312
+      },
+      {
+        "delta": -0.21,
+        "score": 5.970787422398061
+      },
+      {
+        "delta": -0.20500000000000002,
+        "score": 5.766104402109537
+      },
+      {
+        "delta": -0.2,
+        "score": 5.50012063831055
+      },
+      {
+        "delta": -0.195,
+        "score": 4.2375078784833455
+      },
+      {
+        "delta": -0.19,
+        "score": 3.943425457758133
+      },
+      {
+        "delta": -0.185,
+        "score": 4.155875469983009
+      },
+      {
+        "delta": -0.18,
+        "score": 3.5408952118113888
+      },
+      {
+        "delta": -0.175,
+        "score": 2.7693167582559006
+      },
+      {
+        "delta": -0.16999999999999998,
+        "score": 1.876191386303958
+      },
+      {
+        "delta": -0.16499999999999998,
+        "score": 1.18133578656911
+      },
+      {
+        "delta": -0.16,
+        "score": 0.5290104493042884
+      },
+      {
+        "delta": -0.155,
+        "score": 0.0
+      },
+      {
+        "delta": -0.15,
+        "score": 0.0
+      },
+      {
+        "delta": -0.14500000000000002,
+        "score": 0.0
+      },
+      {
+        "delta": -0.14,
+        "score": 0.013758372982782596
+      },
+      {
+        "delta": -0.135,
+        "score": 0.7670919093838275
+      },
+      {
+        "delta": -0.13,
+        "score": 1.4228486823816064
+      },
+      {
+        "delta": -0.125,
+        "score": 2.113232931108227
+      },
+      {
+        "delta": -0.12,
+        "score": 2.824483574868772
+      },
+      {
+        "delta": -0.11499999999999999,
+        "score": 3.538700826834405
+      },
+      {
+        "delta": -0.10999999999999999,
+        "score": 4.4245218106796695
+      },
+      {
+        "delta": -0.10500000000000001,
+        "score": 5.484861963841093
+      },
+      {
+        "delta": -0.1,
+        "score": 6.451425459359676
+      },
+      {
+        "delta": -0.095,
+        "score": 7.487110995032458
+      },
+      {
+        "delta": -0.09,
+        "score": 8.436035301814238
+      },
+      {
+        "delta": -0.08499999999999999,
+        "score": 9.021398825982976
+      },
+      {
+        "delta": -0.07999999999999999,
+        "score": 9.210942259004865
+      },
+      {
+        "delta": -0.07499999999999998,
+        "score": 4.037182652506864
+      },
+      {
+        "delta": -0.07,
+        "score": 3.418696711794773
+      },
+      {
+        "delta": -0.065,
+        "score": 2.8906455838720824
+      },
+      {
+        "delta": -0.06,
+        "score": 2.16896807864803
+      },
+      {
+        "delta": -0.05499999999999999,
+        "score": 0.07063323256624798
+      },
+      {
+        "delta": -0.04999999999999999,
+        "score": 0.0
+      },
+      {
+        "delta": -0.044999999999999984,
+        "score": 0.0
+      },
+      {
+        "delta": -0.04000000000000001,
+        "score": 0.0
+      },
+      {
+        "delta": -0.035,
+        "score": 0.0
+      },
+      {
+        "delta": -0.03,
+        "score": 0.0
+      },
+      {
+        "delta": -0.024999999999999994,
+        "score": 0.0
+      },
+      {
+        "delta": -0.01999999999999999,
+        "score": 0.0
+      },
+      {
+        "delta": -0.014999999999999986,
+        "score": 0.0
+      },
+      {
+        "delta": -0.010000000000000009,
+        "score": 0.0
+      },
+      {
+        "delta": -0.0050000000000000044,
+        "score": 0.0
+      },
+      {
+        "delta": 0.0,
+        "score": 0.3043823787241893
+      },
+      {
+        "delta": 0.0050000000000000044,
+        "score": 0.0
+      },
+      {
+        "delta": 0.010000000000000009,
+        "score": 0.1483667711707639
+      },
+      {
+        "delta": 0.015000000000000013,
+        "score": 0.7949506837575315
+      },
+      {
+        "delta": 0.020000000000000018,
+        "score": 1.659795707670023
+      },
+      {
+        "delta": 0.025000000000000022,
+        "score": 2.7879929628401285
+      },
+      {
+        "delta": 0.030000000000000027,
+        "score": 4.304492276474628
+      },
+      {
+        "delta": 0.03500000000000003,
+        "score": 5.710738545772031
+      },
+      {
+        "delta": 0.03999999999999998,
+        "score": 7.07694846833396
+      },
+      {
+        "delta": 0.044999999999999984,
+        "score": 8.787687831489329
+      },
+      {
+        "delta": 0.04999999999999999,
+        "score": 10.716139446953079
+      },
+      {
+        "delta": 0.05499999999999999,
+        "score": 12.508665403166898
+      },
+      {
+        "delta": 0.06,
+        "score": 14.407579244237319
+      },
+      {
+        "delta": 0.065,
+        "score": 16.11582524022068
+      },
+      {
+        "delta": 0.07,
+        "score": 17.535655408192934
+      },
+      {
+        "delta": 0.07500000000000001,
+        "score": 18.605861702211687
+      },
+      {
+        "delta": 0.08000000000000002,
+        "score": 19.27957105718892
+      },
+      {
+        "delta": 0.08500000000000002,
+        "score": 19.52761188362988
+      },
+      {
+        "delta": 0.09000000000000002,
+        "score": 19.340582142849343
+      },
+      {
+        "delta": 0.09500000000000003,
+        "score": 18.94372876337721
+      },
+      {
+        "delta": 0.10000000000000003,
+        "score": 18.160675202700407
+      },
+      {
+        "delta": 0.10499999999999998,
+        "score": 16.95714390662848
+      },
+      {
+        "delta": 0.10999999999999999,
+        "score": 15.38585358434646
+      },
+      {
+        "delta": 0.11499999999999999,
+        "score": 13.512893126196118
+      },
+      {
+        "delta": 0.12,
+        "score": 11.413254845674487
+      },
+      {
+        "delta": 0.125,
+        "score": 9.536838730123755
+      },
+      {
+        "delta": 0.13,
+        "score": 8.386165973413647
+      },
+      {
+        "delta": 0.135,
+        "score": 7.211554328361764
+      },
+      {
+        "delta": 0.14,
+        "score": 6.0555009858550335
+      },
+      {
+        "delta": 0.14500000000000002,
+        "score": 3.9215672559050336
+      },
+      {
+        "delta": 0.15000000000000002,
+        "score": 3.5468270372830286
+      },
+      {
+        "delta": 0.15500000000000003,
+        "score": 1.2002288287755185
+      },
+      {
+        "delta": 0.16000000000000003,
+        "score": 2.1428907979575964
+      },
+      {
+        "delta": 0.16500000000000004,
+        "score": 3.0056623769622792
+      },
+      {
+        "delta": 0.16999999999999998,
+        "score": 3.769534179576084
+      },
+      {
+        "delta": 0.175,
+        "score": 4.418989874860424
+      },
+      {
+        "delta": 0.18,
+        "score": 4.945453518947209
+      },
+      {
+        "delta": 0.185,
+        "score": 5.60687369230588
+      },
+      {
+        "delta": 0.19,
+        "score": 6.059934875650624
+      },
+      {
+        "delta": 0.195,
+        "score": 5.481901890196621
+      },
+      {
+        "delta": 0.2,
+        "score": 5.5524995619290145
+      },
+      {
+        "delta": 0.20500000000000002,
+        "score": 5.350502948249195
+      },
+      {
+        "delta": 0.21000000000000002,
+        "score": 4.91560657939254
+      },
+      {
+        "delta": 0.21500000000000002,
+        "score": 4.27027069177438
+      },
+      {
+        "delta": 0.22000000000000003,
+        "score": 3.4681947634454
+      },
+      {
+        "delta": 0.22500000000000003,
+        "score": 2.7957890465647015
+      },
+      {
+        "delta": 0.22999999999999998,
+        "score": 2.0205250719344665
+      },
+      {
+        "delta": 0.235,
+        "score": 1.1588872883811216
+      },
+      {
+        "delta": 0.24,
+        "score": 0.37816469749992976
+      },
+      {
+        "delta": 0.245,
+        "score": 0.0
+      },
+      {
+        "delta": 0.25,
+        "score": 0.0
+      }
+    ],
+    "effective_fit_delta_bound_keV": 0.25
+  },
+  "atomic_completion": [],
+  "identification_method": "fitted_centroids_then_global_branch_pattern_then_joint_Poisson_fit",
+  "unidentified_shell_amplitudes": {},
+  "sensitivity_states": {
+    "missing": 219,
+    "positive": 522,
+    "zero": 87
+  },
+  "pruned_lines": [
+    {
+      "Element": "B",
+      "Branch": "Kalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "B",
+      "Branch": "Kalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "C",
+      "Branch": "Kalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "C",
+      "Branch": "Kalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "N",
+      "Branch": "Kalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "N",
+      "Branch": "Kalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "O",
+      "Branch": "Kalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "O",
+      "Branch": "Kalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "F",
+      "Branch": "Kalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "F",
+      "Branch": "Kalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ne",
+      "Branch": "Kalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ne",
+      "Branch": "Kalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Na",
+      "Branch": "Kalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Na",
+      "Branch": "Kalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Mg",
+      "Branch": "Kalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Mg",
+      "Branch": "Kalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Al",
+      "Branch": "Kalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Al",
+      "Branch": "Kalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Al",
+      "Branch": "Kbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Si",
+      "Branch": "Kalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Si",
+      "Branch": "Kalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Si",
+      "Branch": "Kbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "P",
+      "Branch": "Kalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "P",
+      "Branch": "Kalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "P",
+      "Branch": "Kbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "S",
+      "Branch": "Kalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "S",
+      "Branch": "Kalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "S",
+      "Branch": "Kbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Cl",
+      "Branch": "Kalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Cl",
+      "Branch": "Kalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Sc",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Sc",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Sc",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ti",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ti",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ti",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "V",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "V",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "V",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Cr",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Cr",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Cr",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Mn",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Mn",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Mn",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Fe",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Fe",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Fe",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Co",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Co",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Co",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ni",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ni",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ni",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Cu",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Cu",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Cu",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Zn",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Zn",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Zn",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ga",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ga",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ga",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ge",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ge",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ge",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "As",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "As",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "As",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Se",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Se",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Se",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Br",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Br",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Br",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Kr",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Kr",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Kr",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Rb",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Rb",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Rb",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Sr",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Sr",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Sr",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Y",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Y",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Y",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Y",
+      "Branch": "Lbeta2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Y",
+      "Branch": "Lgamma1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Zr",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Zr",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Zr",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Zr",
+      "Branch": "Lbeta2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Zr",
+      "Branch": "Lgamma1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Nb",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Nb",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Nb",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Nb",
+      "Branch": "Lbeta2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Nb",
+      "Branch": "Lgamma1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Mo",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Mo",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Mo",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Mo",
+      "Branch": "Lbeta2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Mo",
+      "Branch": "Lgamma1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Tc",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Tc",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Tc",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Tc",
+      "Branch": "Lbeta2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ru",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ru",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ru",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Rh",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Rh",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Pr",
+      "Branch": "Kbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Nd",
+      "Branch": "Kbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Pm",
+      "Branch": "Kbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Sm",
+      "Branch": "Kbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Eu",
+      "Branch": "Kalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Eu",
+      "Branch": "Kalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Eu",
+      "Branch": "Kbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Gd",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Tb",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Dy",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ho",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Er",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Tm",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Yb",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Lu",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Hf",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ta",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "W",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Re",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Os",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ir",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Pt",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Au",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Hg",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Tl",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Pb",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Bi",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Po",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "At",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Rn",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Fr",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    }
+  ],
+  "sample_metadata": {
+    "format": "Amptek_PMCA_ASCII",
+    "encoding": "latin-1",
+    "channel_origin": 0,
+    "warnings": [
+      "Non-UTF8 MCA headers decoded using latin-1; DATA remains strict ASCII numeric"
+    ],
+    "header_lines": [
+      "<<PMCA SPECTRUM>>",
+      "TAG - live_data",
+      "DESCRIPTION -",
+      "GAIN - 2",
+      "THRESHOLD - 0",
+      "LIVE_MODE - 0",
+      "PRESET_TIME - 0",
+      "LIVE_TIME - 30.000000",
+      "REAL_TIME - 30.000000",
+      "START_TIME - 09/30/2026 18:40:56",
+      "SERIAL_NUMBER - 0",
+      "<<CALIBRATION>>",
+      "LABEL - Channel",
+      "0 0",
+      "299 22.08"
+    ],
+    "declared_channels": [
+      "1024"
+    ],
+    "status_lines": [
+      "<<DP5 CONFIGURATION>>",
+      "RESC=?;    Reset Configuration",
+      "CLCK=80;    20MHz/80MHz",
+      "TPEA=0.100;    Peaking Time",
+      "GAIF=1.0520;    Fine Gain",
+      "GAIN=3.999;    Total Gain (Analog * Fine)",
+      "RESL=100;    Detector Reset Lockout",
+      "TFLA=0.200;    Flat Top",
+      "TPFA=100;    Fast Channel Peaking Time",
+      "PURE=ON;    PUR Interval On/Off",
+      "RTDE=OFF;    RTD On/Off",
+      "MCAS=NORM;    MCA Source",
+      "MCAC=1024;    MCA/MCS Channels",
+      "SOFF=OFF;    Set Spectrum Offset",
+      "AINP=POS;    Analog Input Pos/Neg",
+      "INOF=DEF;    Input Offset",
+      "GAIA=7;    Analog Gain Index",
+      "CUSP=0;    Non-Trapezoidal Shaping",
+      "PURS=0;    Secondary PUR",
+      "PDMD=NORM;    Peak Detect Mode (Min/Max)",
+      "THSL=1.501;    Slow Threshold",
+      "TLLD=40;    LLD Threshold",
+      "THFA=332.18;    Fast Threshold",
+      "DACO=FAST;    DAC Output",
+      "DACF=50;    DAC Offset",
+      "RTDS=0.0;    RTD Sensitivity",
+      "RTDT=0.00;    RTD Threshold",
+      "BLRM=1;    BLR Mode",
+      "BLRD=3;    BLR Down Correction",
+      "BLRU=1;    BLR Up Correction",
+      "GATE=OFF;    Gate Control",
+      "AUO1=PILEUP;    AUX_OUT Selection",
+      "PRET=30.0;    Preset Time",
+      "PRER=OFF;    Preset Real Time",
+      "PREC=OFF;    Preset Counts",
+      "PRCL=1;    Preset Counts Low Threshold",
+      "PRCH=8191;    Preset Counts High Threshold",
+      "HVSE=-130;    HV Set",
+      "TECS=230;    TEC Set",
+      "PAPS=ON;    Preamp 8.5/5 (N/A)",
+      "SCOE=FA;    Scope Trigger Edge",
+      "SCOT=12;    Scope Trigger Position",
+      "SCOG=1;    Digital Scope Gain",
+      "MCSL=1;    MCS Low Threshold",
+      "MCSH=8191;    MCS High Threshold",
+      "MCST=0.01;    MCS Timebase",
+      "AUO2=ICR;    AUX_OUT2 Selection",
+      "TPMO=OFF;    Test Pulser On/Off",
+      "GPED=RI;    G.P. Counter Edge",
+      "GPIN=AUX1;    G.P. Counter Input",
+      "GPME=ON;    G.P. Counter Uses MCA_EN?",
+      "GPGA=ON;    G.P. Counter Uses GATE?",
+      "GPMC=ON;    G.P. Counter Cleared With MCA Counters?",
+      "MCAE=OFF;    MCA/MCS Enable",
+      "BOOT=ON;    Turn Supplies On/Off At Power Up",
+      "<<DP5 CONFIGURATION END>>",
+      "<<DPP STATUS>>",
+      "Device Type: DP5",
+      "Serial Number: 36175",
+      "Firmware: 6.10  Build:  4",
+      "FPGA: 7.07",
+      "Fast Count: 46",
+      "Slow Count: 150013",
+      "GP Count: 0",
+      "Accumulation Time: 30.000000",
+      "Real Time: 124.871000",
+      "Dead Time:",
+      "HV Volt: -130V",
+      "TEC Temp: 270K",
+      "Board Temp: 41°C",
+      "<<DPP STATUS END>>"
+    ],
+    "live_time_s": 30.0,
+    "real_time_s": 30.0,
+    "embedded_calibration_points": [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        299.0,
+        22.08
+      ]
+    ]
+  },
+  "branch_ratios": "fixed_by_sensitivity_plus_same_shell_completion; unknown_shells_separate_nuisances",
+  "model": "raw_counts_poisson; centroid_pattern_selected; integrated_gaussian; q_i*S_i_line; unscaled_shell_nuisances; SNIP*exp(Legendre)",
+  "objective": 6280.234354530554,
+  "negative_log_likelihood_without_factorial": -1027873.9445323804,
+  "poisson_deviance": 12560.313111153575,
+  "degrees_of_freedom": 482,
+  "deviance_per_dof": 26.05874089450949,
+  "model_comparisons": [
+    {
+      "Element": "Ca",
+      "reduced_fit_success": true,
+      "DeltaDeviance": 376.8616525204852,
+      "reduced_deviance": 12937.174763674107,
+      "full_deviance": 12560.313111153575,
+      "removed_parameters": 1,
+      "Score_definition": "DeltaDeviance - removed_parameters*log(number_of_channels); ranking, not probability"
+    },
+    {
+      "Element": "Cr",
+      "reduced_fit_success": true,
+      "DeltaDeviance": 10.27992481761612,
+      "reduced_deviance": 12570.59303597153,
+      "full_deviance": 12560.313111153575,
+      "removed_parameters": 1,
+      "Score_definition": "DeltaDeviance - removed_parameters*log(number_of_channels); ranking, not probability"
+    },
+    {
+      "Element": "Fe",
+      "reduced_fit_success": true,
+      "DeltaDeviance": 5165.8475637556985,
+      "reduced_deviance": 17726.16067490938,
+      "full_deviance": 12560.313111153575,
+      "removed_parameters": 1,
+      "Score_definition": "DeltaDeviance - removed_parameters*log(number_of_channels); ranking, not probability"
+    },
+    {
+      "Element": "Se",
+      "reduced_fit_success": true,
+      "DeltaDeviance": 0.0,
+      "reduced_deviance": 12560.313111153575,
+      "full_deviance": 12560.313111153575,
+      "removed_parameters": 1,
+      "Score_definition": "DeltaDeviance - removed_parameters*log(number_of_channels); ranking, not probability"
+    },
+    {
+      "Element": "Sr",
+      "reduced_fit_success": true,
+      "DeltaDeviance": 0.0,
+      "reduced_deviance": 12560.313111153575,
+      "full_deviance": 12560.313111153575,
+      "removed_parameters": 1,
+      "Score_definition": "DeltaDeviance - removed_parameters*log(number_of_channels); ranking, not probability"
+    },
+    {
+      "Element": "Ag",
+      "reduced_fit_success": true,
+      "DeltaDeviance": 1467.1923837671056,
+      "reduced_deviance": 14027.50549492086,
+      "full_deviance": 12560.313111153575,
+      "removed_parameters": 1,
+      "Score_definition": "DeltaDeviance - removed_parameters*log(number_of_channels); ranking, not probability"
+    },
+    {
+      "Element": "Sn",
+      "reduced_fit_success": true,
+      "DeltaDeviance": 65.80582346371375,
+      "reduced_deviance": 12626.118934617085,
+      "full_deviance": 12560.313111153575,
+      "removed_parameters": 1,
+      "Score_definition": "DeltaDeviance - removed_parameters*log(number_of_channels); ranking, not probability"
+    },
+    {
+      "Element": "La",
+      "reduced_fit_success": true,
+      "DeltaDeviance": 111.00969125353731,
+      "reduced_deviance": 12671.32280240686,
+      "full_deviance": 12560.313111153575,
+      "removed_parameters": 1,
+      "Score_definition": "DeltaDeviance - removed_parameters*log(number_of_channels); ranking, not probability"
+    },
+    {
+      "Element": "Pm",
+      "reduced_fit_success": true,
+      "DeltaDeviance": 2.843693283619359,
+      "reduced_deviance": 12563.156804437132,
+      "full_deviance": 12560.313111153575,
+      "removed_parameters": 1,
+      "Score_definition": "DeltaDeviance - removed_parameters*log(number_of_channels); ranking, not probability"
+    },
+    {
+      "Element": "Tb",
+      "reduced_fit_success": true,
+      "DeltaDeviance": 103.47132813953795,
+      "reduced_deviance": 12663.78443929334,
+      "full_deviance": 12560.313111153575,
+      "removed_parameters": 1,
+      "Score_definition": "DeltaDeviance - removed_parameters*log(number_of_channels); ranking, not probability"
+    },
+    {
+      "Element": "Ir",
+      "reduced_fit_success": true,
+      "DeltaDeviance": 648.9275961541571,
+      "reduced_deviance": 13209.240707307741,
+      "full_deviance": 12560.313111153575,
+      "removed_parameters": 1,
+      "Score_definition": "DeltaDeviance - removed_parameters*log(number_of_channels); ranking, not probability"
+    },
+    {
+      "Element": "Pb",
+      "reduced_fit_success": true,
+      "DeltaDeviance": 220880.38365018088,
+      "reduced_deviance": 233440.6967613345,
+      "full_deviance": 12560.313111153575,
+      "removed_parameters": 1,
+      "Score_definition": "DeltaDeviance - removed_parameters*log(number_of_channels); ranking, not probability"
+    }
+  ],
+  "overlap_pairs": [],
+  "branch_diagnostics": [
+    {
+      "Element": "Ca",
+      "Branches": "Kalpha2+Kalpha1+Kbeta1",
+      "Family": "K",
+      "ExpectedCounts": 508.2197052103961,
+      "InformationScore": 18.369111200449723,
+      "RegionResidualZ": -0.02498056707583517,
+      "branch_ratio_mismatch": false
+    },
+    {
+      "Element": "Cr",
+      "Branches": "Kalpha2+Kalpha1+Kbeta1",
+      "Family": "K",
+      "ExpectedCounts": 198.00879573677648,
+      "InformationScore": 7.959813115434552,
+      "RegionResidualZ": -3.8867173514543047,
+      "branch_ratio_mismatch": false
+    },
+    {
+      "Element": "Fe",
+      "Branches": "Kalpha2+Kalpha1",
+      "Family": "K",
+      "ExpectedCounts": 6291.147490694826,
+      "InformationScore": 73.19697542112458,
+      "RegionResidualZ": -2.6489717743049663,
+      "branch_ratio_mismatch": false
+    },
+    {
+      "Element": "Fe",
+      "Branches": "Kbeta1",
+      "Family": "K",
+      "ExpectedCounts": 576.3097899803644,
+      "InformationScore": 14.486550374350712,
+      "RegionResidualZ": 9.024615483228304,
+      "branch_ratio_mismatch": true
+    },
+    {
+      "Element": "Se",
+      "Branches": "Kalpha2+Kalpha1",
+      "Family": "K",
+      "ExpectedCounts": 0.0,
+      "InformationScore": 0.0,
+      "RegionResidualZ": -20.194173226558,
+      "branch_ratio_mismatch": false
+    },
+    {
+      "Element": "Se",
+      "Branches": "Kbeta1",
+      "Family": "K",
+      "ExpectedCounts": 0.0,
+      "InformationScore": 0.0,
+      "RegionResidualZ": 52.65070690496365,
+      "branch_ratio_mismatch": false
+    },
+    {
+      "Element": "Sr",
+      "Branches": "Kalpha2+Kalpha1",
+      "Family": "K",
+      "ExpectedCounts": 0.0,
+      "InformationScore": 0.0,
+      "RegionResidualZ": -14.669620213424608,
+      "branch_ratio_mismatch": false
+    },
+    {
+      "Element": "Sr",
+      "Branches": "Kbeta1",
+      "Family": "K",
+      "ExpectedCounts": 0.0,
+      "InformationScore": 0.0,
+      "RegionResidualZ": -6.811257311404534,
+      "branch_ratio_mismatch": false
+    },
+    {
+      "Element": "Ag",
+      "Branches": "Lalpha2+Lalpha1+Lbeta1+Lbeta2+Lgamma1",
+      "Family": "L",
+      "ExpectedCounts": 593.1835804028212,
+      "InformationScore": 21.919640328053195,
+      "RegionResidualZ": 0.3527820072580788,
+      "branch_ratio_mismatch": false
+    },
+    {
+      "Element": "Ag",
+      "Branches": "Kalpha2+Kalpha1",
+      "Family": "K",
+      "ExpectedCounts": 455.8645332835527,
+      "InformationScore": 16.765375553187813,
+      "RegionResidualZ": -5.479650240175312,
+      "branch_ratio_mismatch": true
+    },
+    {
+      "Element": "Ag",
+      "Branches": "Kbeta1",
+      "Family": "K",
+      "ExpectedCounts": 53.108036326727486,
+      "InformationScore": 3.8199830416564864,
+      "RegionResidualZ": 4.1765407270103285,
+      "branch_ratio_mismatch": false
+    },
+    {
+      "Element": "Sn",
+      "Branches": "Lalpha2+Lalpha1+Lbeta1+Lbeta2+Lgamma1",
+      "Family": "L",
+      "ExpectedCounts": 184.76412403238467,
+      "InformationScore": 6.906178532741377,
+      "RegionResidualZ": -0.7680576431629967,
+      "branch_ratio_mismatch": false
+    },
+    {
+      "Element": "Sn",
+      "Branches": "Kalpha2+Kalpha1",
+      "Family": "K",
+      "ExpectedCounts": 71.20186483625274,
+      "InformationScore": 4.722804709316438,
+      "RegionResidualZ": 4.859976667112009,
+      "branch_ratio_mismatch": false
+    },
+    {
+      "Element": "Sn",
+      "Branches": "Kbeta1",
+      "Family": "K",
+      "ExpectedCounts": 8.510751626159186,
+      "InformationScore": 1.118065021978302,
+      "RegionResidualZ": 3.6470647829973375,
+      "branch_ratio_mismatch": false
+    },
+    {
+      "Element": "La",
+      "Branches": "Lalpha2+Lalpha1+Lbeta1+Lbeta2+Lgamma1",
+      "Family": "L",
+      "ExpectedCounts": 265.01705909789007,
+      "InformationScore": 10.423124363894264,
+      "RegionResidualZ": 1.2522527670085761,
+      "branch_ratio_mismatch": false
+    },
+    {
+      "Element": "La",
+      "Branches": "Kalpha2+Kalpha1",
+      "Family": "K",
+      "ExpectedCounts": 14.296773765896571,
+      "InformationScore": 2.1324946017611888,
+      "RegionResidualZ": 5.6515483857879225,
+      "branch_ratio_mismatch": false
+    },
+    {
+      "Element": "La",
+      "Branches": "Kbeta1",
+      "Family": "K",
+      "ExpectedCounts": 1.796711854802883,
+      "InformationScore": 0.2934732503418714,
+      "RegionResidualZ": -2.415335848773015,
+      "branch_ratio_mismatch": false
+    },
+    {
+      "Element": "Pm",
+      "Branches": "Lalpha2+Lalpha1+Lbeta1+Lbeta2+Lgamma1",
+      "Family": "L",
+      "ExpectedCounts": 143.909751435424,
+      "InformationScore": 4.080038359767538,
+      "RegionResidualZ": 1.0126428099724685,
+      "branch_ratio_mismatch": false
+    },
+    {
+      "Element": "Pm",
+      "Branches": "Kalpha2+Kalpha1",
+      "Family": "K",
+      "ExpectedCounts": 1.0654331772162624,
+      "InformationScore": 0.14044725048182027,
+      "RegionResidualZ": -2.9759084438778483,
+      "branch_ratio_mismatch": false
+    },
+    {
+      "Element": "Tb",
+      "Branches": "Lalpha2+Lalpha1",
+      "Family": "L",
+      "ExpectedCounts": 678.1754916914839,
+      "InformationScore": 10.40436551812432,
+      "RegionResidualZ": -2.476622682055171,
+      "branch_ratio_mismatch": false
+    },
+    {
+      "Element": "Tb",
+      "Branches": "Lbeta1+Lbeta2",
+      "Family": "L",
+      "ExpectedCounts": 448.5641869700587,
+      "InformationScore": 9.875348473500624,
+      "RegionResidualZ": 9.953783390647914,
+      "branch_ratio_mismatch": true
+    },
+    {
+      "Element": "Tb",
+      "Branches": "Lgamma1",
+      "Family": "L",
+      "ExpectedCounts": 60.15005682515531,
+      "InformationScore": 1.9111815464119914,
+      "RegionResidualZ": -10.915173230010689,
+      "branch_ratio_mismatch": false
+    },
+    {
+      "Element": "Ir",
+      "Branches": "Lalpha2+Lalpha1",
+      "Family": "L",
+      "ExpectedCounts": 1056.5189379751466,
+      "InformationScore": 20.7541129384995,
+      "RegionResidualZ": 2.2611266934313607,
+      "branch_ratio_mismatch": false
+    },
+    {
+      "Element": "Ir",
+      "Branches": "Lbeta1+Lbeta2",
+      "Family": "L",
+      "ExpectedCounts": 650.6223585329325,
+      "InformationScore": 5.244131716364336,
+      "RegionResidualZ": -38.97851154153257,
+      "branch_ratio_mismatch": true
+    },
+    {
+      "Element": "Ir",
+      "Branches": "Lgamma1",
+      "Family": "L",
+      "ExpectedCounts": 90.0401754748703,
+      "InformationScore": 0.5710513577318925,
+      "RegionResidualZ": 50.47471550377036,
+      "branch_ratio_mismatch": false
+    },
+    {
+      "Element": "Pb",
+      "Branches": "Lalpha2+Lalpha1",
+      "Family": "L",
+      "ExpectedCounts": 61027.45026526961,
+      "InformationScore": 240.28856572880596,
+      "RegionResidualZ": -40.123073576795086,
+      "branch_ratio_mismatch": true
+    },
+    {
+      "Element": "Pb",
+      "Branches": "Lbeta1+Lbeta2",
+      "Family": "L",
+      "ExpectedCounts": 36264.485122415615,
+      "InformationScore": 184.49163189855204,
+      "RegionResidualZ": 51.800779060244835,
+      "branch_ratio_mismatch": true
+    },
+    {
+      "Element": "Pb",
+      "Branches": "Lgamma1",
+      "Family": "L",
+      "ExpectedCounts": 5250.045484165089,
+      "InformationScore": 66.21252380268744,
+      "RegionResidualZ": -4.5233818863080915,
+      "branch_ratio_mismatch": false
+    }
+  ],
+  "delta_E_keV": 0.13936021612318084,
+  "resolution_scale": 1.106441947184599,
+  "energy_gain_correction": -0.005409671342157664,
+  "gain_fitted": true,
+  "background_parameters": [
+    0.4454531145345675,
+    0.2886961893308727,
+    -0.1117072219374306,
+    1.1232660436942399
+  ],
+  "optimizer": {
+    "message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH",
+    "attempts": [
+      {
+        "success": true,
+        "message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH",
+        "iterations": 1116,
+        "objective": 6280.234354530554
+      }
+    ]
+  },
+  "nuisance_peaks": [],
+  "uncertainty": {
+    "method": "expected_poisson_information_nuisance_adjusted",
+    "scaled_jacobian_condition": 16.40199227027802,
+    "singular_directions": 0
+  },
+  "q_covariance": [
+    [
+      21.904581677129865,
+      -0.22228188556942102,
+      0.8669341103717855,
+      null,
+      null,
+      2.7160808307304105,
+      -16.75158252034589,
+      0.8799687877774859,
+      null,
+      -0.3383933503390754,
+      1.2564697763080597,
+      -0.3753762546199459
+    ],
+    [
+      -0.2222818855694209,
+      29.44859057793914,
+      -1.4522833368730088,
+      null,
+      null,
+      -0.500716722884388,
+      -0.7482158509493253,
+      -2.506100909115266,
+      null,
+      15.779705345565953,
+      -1.1933245139040205,
+      1.6435507138576055
+    ],
+    [
+      0.8669341103717862,
+      -1.4522833368730093,
+      78.43667702008052,
+      null,
+      null,
+      -0.1404665636550319,
+      -3.26675090442159,
+      -2.2090492924901284,
+      null,
+      -93.10516161782304,
+      -1.184960515757022,
+      1.1109389390043358
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      2.7160808307304105,
+      -0.5007167228843884,
+      -0.14046656365503174,
+      null,
+      null,
+      72.529207674266,
+      -8.783773270410693,
+      2.3482393302435844,
+      null,
+      4.091295398663001,
+      1.2722109690749166,
+      -1.0899821426904095
+    ],
+    [
+      -16.75158252034589,
+      -0.7482158509493257,
+      -3.2667509044215897,
+      null,
+      null,
+      -8.783773270410693,
+      63.9383062856288,
+      3.0887490391189276,
+      null,
+      12.642485997603998,
+      1.2766905919971794,
+      -3.5710179454813162
+    ],
+    [
+      0.8799687877774854,
+      -2.506100909115266,
+      -2.2090492924901284,
+      null,
+      null,
+      2.348239330243584,
+      3.0887490391189276,
+      29.785815664314537,
+      null,
+      13.422533971852017,
+      4.073958117132641,
+      -2.7814493995550347
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      -0.3383933503390749,
+      15.779705345565953,
+      -93.10516161782306,
+      null,
+      null,
+      4.091295398663001,
+      12.642485997603996,
+      13.422533971852017,
+      null,
+      297.7206648240987,
+      12.590160477708661,
+      0.776275169553385
+    ],
+    [
+      1.25646977630806,
+      -1.1933245139040207,
+      -1.184960515757021,
+      null,
+      null,
+      1.2722109690749173,
+      1.2766905919971803,
+      4.073958117132638,
+      null,
+      12.590160477708661,
+      108.93640745558803,
+      -22.54689576131052
+    ],
+    [
+      -0.37537625461994517,
+      1.6435507138576053,
+      1.1109389390043367,
+      null,
+      null,
+      -1.0899821426904124,
+      -3.5710179454813162,
+      -2.7814493995550342,
+      null,
+      0.776275169553387,
+      -22.54689576131052,
+      1564.8959924661026
+    ]
+  ],
+  "covariance_element_order": [
+    "Ca",
+    "Cr",
+    "Fe",
+    "Se",
+    "Sr",
+    "Ag",
+    "Sn",
+    "La",
+    "Pm",
+    "Tb",
+    "Ir",
+    "Pb"
+  ],
+  "bootstrap": {
+    "requested": 0,
+    "successful": 0,
+    "method": null
+  },
+  "reference": {
+    "Element": null,
+    "selection_rule": "No reliable supported reference; requested reference is not silently replaced",
+    "fraction_denominator_elements": []
+  },
+  "apparent_relative_areal_density": true,
+  "assumptions": {
+    "thin_sample": true,
+    "self_absorption": false,
+    "full_energy_efficiency": 1.0,
+    "absolute_areal_density_available": false
+  },
+  "systematics_included": false,
+  "excitation_match_verified": false,
+  "target_scattering_review": "Tube target unspecified; candidate target fluorescence may be instrument scattering",
+  "residual_anomalies": {
+    "abs_pearson_gt5": 73,
+    "unassigned_peaks": [
+      {
+        "peak_id": 7,
+        "channel": 136.43924658390517,
+        "energy_keV": 10.075513593888493,
+        "local_prominence": 86.68575538863632,
+        "estimated_fwhm_keV": 0.2700130754045169,
+        "approx_significance": 35.46082041785244,
+        "roi_start_keV": 9.73152160693269,
+        "roi_end_keV": 10.419505580844296,
+        "quality_flags": "poisson_fitted_centroid;local_score_not_global_p_value",
+        "maximum_channel": 136,
+        "maximum_energy_keV": 10.043076923076924,
+        "centroid_std_keV": 0.004467217065474846,
+        "net_area_counts": 1942.6291857701087,
+        "area_std_counts": 95.91398318006718,
+        "local_fit_status": "success",
+        "local_deviance_per_dof": 3.4154848162337528
+      },
+      {
+        "peak_id": 9,
+        "channel": 156.04784560579657,
+        "energy_keV": 11.52353321396665,
+        "local_prominence": 69.35557856467153,
+        "estimated_fwhm_keV": 0.5278408105379175,
+        "approx_significance": 10.566030856716354,
+        "roi_start_keV": 10.851073152759323,
+        "roi_end_keV": 12.195993275173976,
+        "quality_flags": "poisson_fitted_centroid;local_score_not_global_p_value;broad_structure",
+        "maximum_channel": 155,
+        "maximum_energy_keV": 11.446153846153846,
+        "centroid_std_keV": 0.01449554963545548,
+        "net_area_counts": 1483.3062512069098,
+        "area_std_counts": 291.2347180392297,
+        "local_fit_status": "success",
+        "local_deviance_per_dof": 3.4154848162337528
+      },
+      {
+        "peak_id": 11,
+        "channel": 187.3393824858794,
+        "energy_keV": 13.83429286049588,
+        "local_prominence": 13.641068653042804,
+        "estimated_fwhm_keV": 0.5735555735659139,
+        "approx_significance": 5.952315765472525,
+        "roi_start_keV": 13.103592982036536,
+        "roi_end_keV": 14.564992738955224,
+        "quality_flags": "poisson_fitted_centroid;local_score_not_global_p_value;broad_structure;local_shape_mismatch_or_unresolved_multiplet",
+        "maximum_channel": 188,
+        "maximum_energy_keV": 13.883076923076924,
+        "centroid_std_keV": 0.022584557342075262,
+        "net_area_counts": 728.9371879910533,
+        "area_std_counts": 635.4802991765067,
+        "local_fit_status": "success",
+        "local_deviance_per_dof": 31.409532567422797
+      },
+      {
+        "peak_id": 12,
+        "channel": 192.98026365532442,
+        "energy_keV": 14.250850239162594,
+        "local_prominence": 10.49271706210643,
+        "estimated_fwhm_keV": 0.1597877101122567,
+        "approx_significance": 6.871121897209747,
+        "roi_start_keV": 14.04728346073793,
+        "roi_end_keV": 14.454417017587257,
+        "quality_flags": "poisson_fitted_centroid;local_score_not_global_p_value;local_shape_mismatch_or_unresolved_multiplet",
+        "maximum_channel": 193,
+        "maximum_energy_keV": 14.252307692307694,
+        "centroid_std_keV": 0.012736271977051789,
+        "net_area_counts": 207.6251139322543,
+        "area_std_counts": 68.28117833563192,
+        "local_fit_status": "success",
+        "local_deviance_per_dof": 31.409532567422797
+      },
+      {
+        "peak_id": 14,
+        "channel": 211.29446263088235,
+        "energy_keV": 15.60328339428074,
+        "local_prominence": 8.993221419291203,
+        "estimated_fwhm_keV": 0.6058960240443622,
+        "approx_significance": 6.012642938513003,
+        "roi_start_keV": 14.831382341387675,
+        "roi_end_keV": 16.375184447173808,
+        "quality_flags": "poisson_fitted_centroid;local_score_not_global_p_value;broad_structure;local_shape_mismatch_or_unresolved_multiplet",
+        "maximum_channel": 213,
+        "maximum_energy_keV": 15.729230769230771,
+        "centroid_std_keV": 0.05359270750059844,
+        "net_area_counts": 546.6340774867143,
+        "area_std_counts": 409.9980718234835,
+        "local_fit_status": "success",
+        "local_deviance_per_dof": 31.409532567422797
+      },
+      {
+        "peak_id": 15,
+        "channel": 281.1839010603858,
+        "energy_keV": 20.76434961676723,
+        "local_prominence": 41.66819424124734,
+        "estimated_fwhm_keV": 0.7747789611968946,
+        "approx_significance": 14.236598384383367,
+        "roi_start_keV": 19.77729462354369,
+        "roi_end_keV": 21.75140460999077,
+        "quality_flags": "poisson_fitted_centroid;local_score_not_global_p_value;broad_structure",
+        "maximum_channel": 281,
+        "maximum_energy_keV": 20.750769230769233,
+        "centroid_std_keV": 0.02883543024381469,
+        "net_area_counts": 438.96055900671445,
+        "area_std_counts": 44.90513989158385,
+        "local_fit_status": "success",
+        "local_deviance_per_dof": 0.903382333471213
+      },
+      {
+        "peak_id": 17,
+        "channel": 314.1219203927412,
+        "energy_keV": 23.196695659771976,
+        "local_prominence": 14.641928348938626,
+        "estimated_fwhm_keV": 0.5959199187120905,
+        "approx_significance": 4.3132768987924175,
+        "roi_start_keV": 22.437503992489912,
+        "roi_end_keV": 23.95588732705404,
+        "quality_flags": "poisson_fitted_centroid;local_score_not_global_p_value",
+        "maximum_channel": 314,
+        "maximum_energy_keV": 23.18769230769231,
+        "centroid_std_keV": 0.06333761344608782,
+        "net_area_counts": 94.5513691483434,
+        "area_std_counts": 32.35310320000462,
+        "local_fit_status": "success",
+        "local_deviance_per_dof": 0.903382333471213
+      },
+      {
+        "peak_id": 19,
+        "channel": 398.6238025506577,
+        "energy_keV": 29.436834649895136,
+        "local_prominence": 8.636897099984836,
+        "estimated_fwhm_keV": 0.17921360900223582,
+        "approx_significance": 3.7799080891400987,
+        "roi_start_keV": 29.208519612344297,
+        "roi_end_keV": 29.665149687445975,
+        "quality_flags": "poisson_fitted_centroid;local_score_not_global_p_value",
+        "maximum_channel": 399,
+        "maximum_energy_keV": 29.46461538461539,
+        "centroid_std_keV": 0.027583332484244383,
+        "net_area_counts": 25.993223923983155,
+        "area_std_counts": 9.314177606951102,
+        "local_fit_status": "success",
+        "local_deviance_per_dof": 0.702067412756713
+      }
+    ]
+  },
+  "warnings": [
+    "Non-UTF8 MCA headers decoded using latin-1; DATA remains strict ASCII numeric",
+    "Accepted instrument origin (0,0); zero energy is allowed only at channel zero",
+    "Two-point residuals do not estimate calibration statistical uncertainty",
+    "Sensitivity provenance unverified: missing .metadata.json; source matching is not established",
+    "Inferred acquisition lower cutoff 2.99077 keV: zero-prefix channels excluded, not treated as measured absence",
+    "Severe global model mismatch: all quantitative ratios withheld; candidate q values are diagnostic only",
+    "Structured residual / overdispersion: matrix_effect_or_model_mismatch or unmodelled scattering/artifacts",
+    "branch_ratio_mismatch: regional observed residuals disagree with the fixed branch model",
+    "8 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary",
+    "No quantitatively valid elements; fraction denominator is empty; see separate identification statuses"
+  ],
+  "elapsed_seconds": 10.513648008000018
+}

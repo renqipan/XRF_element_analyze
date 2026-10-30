@@ -1,0 +1,18 @@
+{
+  "synthetic": true,
+  "generator_version": "0.2.0",
+  "seed": 20261031,
+  "q_truth": {
+    "Pb": 1600.0,
+    "As": 400.0
+  },
+  "delta_E_keV": 0.006,
+  "resolution_scale": 1.08,
+  "sensitivity_sha256": "221998779caa79b798ef0cc8d133c832966b43d386aaedbe6b6c0aceddf80c90",
+  "branch_ratios": "fixed_by_sensitivity_plus_same_shell_completion",
+  "auxiliary_shell_areas_counts": {
+    "Pb_L1_unscaled": 1600.0,
+    "As_L1_unscaled": 400.0
+  },
+  "note": "Known common-scale q values; not absolute g/cm2; sensitivity provenance still unverified"
+}

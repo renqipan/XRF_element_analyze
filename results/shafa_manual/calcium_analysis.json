@@ -1,0 +1,90 @@
+{
+  "candidate": [
+    {
+      "Z": 20,
+      "Element": "Ca",
+      "Status": "tentative",
+      "Score": 105.93191025003941,
+      "DeltaDeviance": 112.14851635112427,
+      "NumObservableLines": 4,
+      "NumIndependentEvidenceRegions": 1,
+      "ExpectedMissingStrongLines": "",
+      "OverlapFlag": false,
+      "ConfidenceNotes": "Fewer than two independent observed centroid regions; Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities",
+      "MatchedPeakIDs": "1",
+      "OverlapElements": "",
+      "q_Fit": 36.5058131080302,
+      "q_Std": 4.135897125506718,
+      "Upper95_q": null,
+      "Uncertainty_Status": "fisher_interior",
+      "Quantification_Status": "not_estimable",
+      "PatternScore": -0.4238969020594774,
+      "PatternMissingLinePenalty": 0.0,
+      "Element_Class": "common",
+      "Preferred_By_Prior": false,
+      "Prior_Alternatives": ""
+    }
+  ],
+  "branch_evidence": [
+    {
+      "Element": "Ca",
+      "Family": "K",
+      "Branches": "Kalpha2+Kalpha1",
+      "Background_Window_Sigmas": 4.0,
+      "ROI_Start_keV": 3.433846153846154,
+      "ROI_End_keV": 4.615384615384616,
+      "Local_Free_Area_Counts": 437.28749093858255,
+      "Expected_Area_From_Tied_Counts": 432.3728272276614,
+      "Branch_DeltaDeviance": 276.4079308256023,
+      "Observed_Ratio_to_Strongest_Group": 1.0,
+      "Expected_Ratio_to_Strongest_Group": 1.0,
+      "Tied_vs_Free_DeltaDeviance": 5.6557986974539745,
+      "Group_Observed": true,
+      "Method": "local_Poisson_background_refit_other_elements_fixed; conditional_not_global_p_value",
+      "Wide_Window_Branch_DeltaDeviance": 258.84428001425294,
+      "Robust_Group_Observed": true,
+      "Ratio_Compatible": false
+    },
+    {
+      "Element": "Ca",
+      "Family": "K",
+      "Branches": "Kbeta1+KM2",
+      "Background_Window_Sigmas": 4.0,
+      "ROI_Start_keV": 3.433846153846154,
+      "ROI_End_keV": 4.615384615384616,
+      "Local_Free_Area_Counts": 10.258071898244632,
+      "Expected_Area_From_Tied_Counts": 54.33072973710907,
+      "Branch_DeltaDeviance": 0.31913164153411344,
+      "Observed_Ratio_to_Strongest_Group": 0.023458416055366624,
+      "Expected_Ratio_to_Strongest_Group": 0.12565713272379578,
+      "Tied_vs_Free_DeltaDeviance": 5.6557986974539745,
+      "Group_Observed": false,
+      "Method": "local_Poisson_background_refit_other_elements_fixed; conditional_not_global_p_value",
+      "Wide_Window_Branch_DeltaDeviance": 0.0,
+      "Robust_Group_Observed": false,
+      "Ratio_Compatible": false
+    }
+  ],
+  "interpretation": "Identity and quantitative quality are separate; weak Kbeta evidence requires confirmation near thresholds",
+  "manual_peaks": {
+    "mode": "user_specified",
+    "axis": "reference",
+    "requested_energies_keV": [
+      3.69,
+      3.688,
+      6.4,
+      7.06,
+      10.5,
+      12.6,
+      14.7,
+      9.98,
+      11.9
+    ],
+    "independent_resolution_groups": 8,
+    "delta_E_keV": 0.14029277933479944,
+    "energy_gain": -0.00288751005166422,
+    "resolution_scale": 1.7590373269063413,
+    "automatic_discovery_used": false,
+    "information_scores_are_global_p_values": false
+  }
+}

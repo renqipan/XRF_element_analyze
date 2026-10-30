@@ -1,0 +1,20 @@
+{
+  "synthetic": true,
+  "generator_version": "0.2.0",
+  "seed": 20261030,
+  "q_truth": {
+    "Fe": 1500.0,
+    "Cu": 750.0,
+    "Pb": 3000.0
+  },
+  "delta_E_keV": 0.006,
+  "resolution_scale": 1.08,
+  "sensitivity_sha256": "221998779caa79b798ef0cc8d133c832966b43d386aaedbe6b6c0aceddf80c90",
+  "branch_ratios": "fixed_by_sensitivity_plus_same_shell_completion",
+  "auxiliary_shell_areas_counts": {
+    "Fe_L1_unscaled": 1500.0,
+    "Cu_L1_unscaled": 750.0,
+    "Pb_L1_unscaled": 3000.0
+  },
+  "note": "Known common-scale q values; not absolute g/cm2; sensitivity provenance still unverified"
+}

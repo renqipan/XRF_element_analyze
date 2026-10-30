@@ -1,0 +1,4 @@
+Z,Element,Element_Status,q_Fit,Relative_to_Reference,Fraction_among_Reported_Elements,Uncertainty_percent,CI95_Low,CI95_High,Reference_Element,Apparent_Only,Quality_Flags,q_Std,Upper95_q,Quantification_Status
+26,Fe,supported,1496.465024670465,0.49802659876495003,0.2851867779822056,0.8235305402729581,0.48998785253150645,0.5060653449983936,Pb,True,apparent_relative_areal_density; statistical_only; fixed_branch_ratios; reported_elements_only,10.49400191731993,,supported
+29,Cu,supported,746.0612006720647,0.24829068245215,0.14217959423679483,1.0616550537370648,0.24312414091885545,0.2534572239854445,Pb,True,apparent_relative_areal_density; statistical_only; fixed_branch_ratios; reported_elements_only,7.242111750701175,,supported
+82,Pb,supported,3004.789359406767,1.0,0.5726336277809996,0.0,1.0,1.0,Pb,True,apparent_relative_areal_density; statistical_only; fixed_branch_ratios; reported_elements_only,13.099408860494776,,supported

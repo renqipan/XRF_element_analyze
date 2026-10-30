@@ -1,0 +1,33 @@
+{
+  "a_keV": -3.7707694338868224e-16,
+  "b_keV_per_channel": 0.019999999999999997,
+  "rms_keV": 5.046326990660216e-15,
+  "covariance": null,
+  "points": [
+    {
+      "channel": 100,
+      "energy_keV": 2
+    },
+    {
+      "channel": 1900,
+      "energy_keV": 38
+    }
+  ],
+  "residuals_keV": [
+    6.661338147750939e-16,
+    7.105427357601002e-15
+  ],
+  "max_abs_residual_keV": 7.105427357601002e-15,
+  "two_point": true,
+  "weighted": false,
+  "calibration_quality": "ok",
+  "warnings": [
+    "Two-point residuals do not estimate calibration statistical uncertainty"
+  ],
+  "acquisition_cutoff": null,
+  "channel_origin": 0,
+  "effective_energy_range_keV": [
+    1.0099999999999993,
+    35.01
+  ]
+}

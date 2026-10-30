@@ -1,0 +1,248 @@
+from __future__ import annotations
+from pathlib import Path
+from dataclasses import replace
+from collections import Counter
+import importlib.metadata
+import logging
+import time
+import numpy as np
+import pandas as pd
+from .config import AnalysisConfig
+from .calibration import fit_linear_calibration
+from .io_spectrum import load_spectrum
+from .atomic_lines import load_sensitivity, validate_symbol
+from .atomic_completion import complete_transitions
+from .measurement import infer_hard_lower_cutoff, initialize_resolution
+from .response import sigma_kev, gaussian_response, FWHM_FACTOR
+from .baseline import snip_background
+from .peak_detection import detect_peaks
+from .manual_peaks import fit_requested_peaks
+from .element_prior import classification_table, element_class
+from .element_identification import identify_elements
+from .fit_model import fit_spectrum
+from .quantification import compute_relative_areal_density
+from .reporting import sha256, export_analysis
+
+
+def analyze(spectrum, calibration, sensitivity, output_dir=None, config=None):
+    start = time.monotonic()
+    config = (config or AnalysisConfig()).validate()
+    for symbol in (list(config.elements or ()) + list(config.exclude_elements)
+                   + [s for s in (config.reference_element, config.tube_target) if s]):
+        validate_symbol(symbol)
+    spec = load_spectrum(spectrum, config.channel_start, config.fill_missing_channels)
+    cal = fit_linear_calibration(calibration, FWHM_FACTOR*float(sigma_kev(6., config)), config.strict_calibration)
+    table = load_sensitivity(sensitivity)
+    atomic_lines, auxiliary_lines, completion_audit = complete_transitions(table.lines, config)
+    cutoff = infer_hard_lower_cutoff(spec, cal, config)
+    warnings = list(spec.metadata.get('warnings', [])) + cal.warnings + table.warnings
+    energy_all = cal.energy(spec.channel)
+    if not np.isfinite(energy_all).all() or energy_all[-1] <= 0 or energy_all[-1] > 1000:
+        raise ValueError('Abnormal calibrated spectrum energy range')
+    supplied = spec.metadata.get('supplied_energy_keV')
+    if supplied is not None and np.max(np.abs(np.array(supplied)-energy_all)) > max(1e-6, cal.b_keV_per_channel*.1):
+        warnings.append('CSV energy conflicts with explicit calibration; explicit calibration used')
+    embedded = spec.metadata.get('embedded_calibration_points', [])
+    if embedded and any(abs(cal.energy(p[0])-p[1]) > max(.001, .1*cal.b_keV_per_channel) for p in embedded):
+        warnings.append('MCA embedded calibration conflicts with explicit calibration; explicit calibration used')
+    mask = energy_all > 0
+    if config.energy_range:
+        mask &= (energy_all >= config.energy_range[0]) & (energy_all <= config.energy_range[1])
+    if cutoff is not None:
+        mask &= energy_all >= cutoff['energy_keV']
+        warnings.append('Inferred acquisition lower cutoff %.5f keV: zero-prefix channels excluded, not treated as measured absence' % cutoff['energy_keV'])
+    if mask.sum() < max(config.background_degree+5, 8):
+        raise ValueError('Fewer than required channels in requested energy range')
+    channel, counts, energy = spec.channel[mask], spec.counts[mask], energy_all[mask]
+    edges = cal.energy(np.r_[channel-.5, channel[-1]+.5])
+    logging.info('Loaded %s: %d/%d channels, %.4g counts, energy %.4g..%.4g keV', spectrum, len(counts), len(spec.counts), counts.sum(), edges[0], edges[-1])
+    iterations = config.snip_iterations or max(5, int(np.ceil(4*float(sigma_kev(np.median(energy), config))*FWHM_FACTOR/cal.b_keV_per_channel)))
+    iterations = min(iterations, (len(counts)-1)//2)
+    b0 = snip_background(counts, iterations)
+    if cutoff is not None:
+        # SNIP has no samples below an acquisition boundary: extrapolate a low
+        # interior background level instead of anchoring it to a truncated peak.
+        k = min(iterations, len(b0)//4)
+        edge_level = float(np.percentile(b0[k:3*k], 25))
+        b0[:k] = np.minimum(b0[:k], edge_level)
+        cutoff['background_edge_initialization'] = 'lower_quartile_of_adjacent_SNIP_background'
+    manual_response=None
+    if config.find_peaks is None:
+        peaks = detect_peaks(channel, energy, edges, counts, b0, config)
+    else:
+        peaks,manual_response=fit_requested_peaks(channel,energy,edges,counts,b0,config)
+    logging.info('SNIP iterations=%d; observed candidate features=%d', iterations, len(peaks))
+    fit_config, response_initialization = initialize_resolution(peaks, config)
+    if manual_response is not None:
+        limit=FWHM_FACTOR*np.sqrt(config.fano*config.pair_energy_kev*config.fwhm_ref_energy_kev)*1.001
+        fit_config=replace(config,fwhm_ref_kev=max(limit,config.fwhm_ref_kev*manual_response['resolution_scale']),
+                           centroid_tolerance_kev=max(config.centroid_tolerance_kev,config.manual_match_tolerance_kev/config.match_sigma))
+        response_initialization={'used':True,'method':'user_centers_shared_response_fit','effective_reference_FWHM_keV':fit_config.fwhm_ref_kev}
+    lines, exclusions = [], []
+    for line in atomic_lines:
+        reason = None
+        if config.elements and line.symbol not in config.elements:
+            reason = 'not_whitelisted'
+        elif line.symbol in config.exclude_elements:
+            reason = 'blacklisted'
+        elif config.tube_voltage_kv is not None and line.energy_keV >= config.tube_voltage_kv:
+            reason = 'above_tube_voltage'
+        elif gaussian_response(edges, line.energy_keV, float(sigma_kev(line.energy_keV, config))).sum() < 1e-6:
+            reason = 'outside_measurable_energy_range'
+        if reason:
+            exclusions.append({'Element': line.symbol, 'Branch': line.branch, 'reason': reason})
+        else:
+            lines.append(line)
+    delta_bound = config.delta_max_kev or max(.5*cal.b_keV_per_channel, cal.rms_keV, .02)
+    auxiliary_lines = [l for l in auxiliary_lines if gaussian_response(edges, l.energy_keV, float(sigma_kev(l.energy_keV, fit_config))).sum() >= 1e-6]
+    identification = identify_elements(counts, energy, edges, b0, lines, peaks, fit_config, delta_bound, cal.rms_keV, auxiliary_lines=auxiliary_lines, manual_response=manual_response)
+    fit = identification.fit
+    # Keep all rows in the sensitivity table, even when there are no usable branches.
+    for symbol in sorted({s['Element'] for s in table.states} - set(identification.candidates.Element)):
+        if config.elements and symbol not in config.elements or symbol in config.exclude_elements:
+            continue
+        z = validate_symbol(symbol)
+        row = {'Z': z, 'Element': symbol, 'Status': 'unidentifiable', 'NumObservableLines': 0,
+               'NumIndependentEvidenceRegions': 0, 'OverlapFlag': False,
+               'ConfidenceNotes': 'No positive measurable branches in analysis range; not evidence of absence',
+               'Uncertainty_Status': 'not_estimable', 'Quantification_Status': 'not_estimable',
+               'Element_Class':element_class(symbol,config.element_prior),'Preferred_By_Prior':False}
+        identification.candidates = pd.concat([identification.candidates, pd.DataFrame([row])], ignore_index=True)
+    identification.candidates = identification.candidates.sort_values('Z').reset_index(drop=True)
+    bootstrap_info = {'requested': config.bootstrap, 'successful': 0, 'method': None}
+    if config.bootstrap and fit.success and fit.symbols:
+        rng = np.random.default_rng(config.seed)
+        samples = []
+        for i in range(config.bootstrap):
+            simulated = rng.poisson(fit.model)
+            boot = fit_spectrum(simulated, energy, edges, b0, identification.fit_lines, fit_config,
+                                identification.alignment['effective_fit_delta_bound_keV'],
+                                auxiliary_lines=fit.auxiliary_lines, initial_delta=fit.delta,line_centers=fit.line_centers,center_axis=fit.center_axis)
+            if boot.success:
+                samples.append(boot.q)
+            if (i+1) % 10 == 0:
+                logging.info('Bootstrap %d/%d (%d successful)', i+1, config.bootstrap, len(samples))
+        bootstrap_info.update(successful=len(samples), method='parametric_poisson_refit_all_parameters_conditional_candidate_set_and_snip',
+                              selection_uncertainty_included=False, background_initialization_fixed=True)
+        if len(samples) >= max(20, int(.8*config.bootstrap)):
+            samples = np.array(samples)
+            identification.uncertainty_info['bootstrap_covariance'] = np.cov(samples, rowvar=False).reshape(len(fit.symbols), len(fit.symbols)).tolist()
+            for i, symbol in enumerate(fit.symbols):
+                idx = identification.candidates.Element == symbol
+                identification.candidates.loc[idx, 'Upper95_q'] = np.quantile(samples[:, i], .95)
+            # Fisher remains authoritative for interior estimates; boundary bootstrap quantiles are conditional diagnostics.
+            bootstrap_info['q_samples'] = samples.tolist()
+        else:
+            warnings.append('Insufficient successful bootstrap replicates; no bootstrap intervals reported (need >=20 and 80% success)')
+    dof = max(0, len(counts)-fit.n_parameters)
+    severe_mismatch = bool(dof and fit.deviance/dof > config.max_deviance_per_dof)
+    if severe_mismatch:
+        idx = identification.candidates.Status == 'supported'
+        identification.candidates.loc[idx, 'Quantification_Status'] = 'global_model_mismatch'
+        identification.candidates.loc[idx, 'ConfidenceNotes'] += '; severe_global_model_mismatch: quantitative interpretation withheld'
+        warnings.append('Severe global model mismatch: all quantitative ratios withheld; candidate q values are diagnostic only')
+    density, reference_info = compute_relative_areal_density(identification, config.reference_element)
+    if severe_mismatch:
+        density['Quality_Flags'] += '; severe_global_model_mismatch; diagnostic_q_only'
+    declared = table.metadata.get('declared', {})
+    source_mismatch = False
+    for key, actual in [('tube_target', config.tube_target), ('tube_voltage_kV', config.tube_voltage_kv)]:
+        if key in declared and actual is not None and declared[key] != actual:
+            source_mismatch = True
+            warnings.append('Sensitivity excitation metadata mismatch: ' + key + '; quantitative ratios withheld')
+    if 'tube_voltage_kV' in spec.metadata and config.tube_voltage_kv is not None and not np.isclose(spec.metadata['tube_voltage_kV'], config.tube_voltage_kv):
+        source_mismatch = True
+        warnings.append('Sample tube voltage conflicts with configured excitation; quantitative ratios withheld')
+    if source_mismatch:
+        for col in ['Relative_to_Reference', 'Fraction_among_Reported_Elements', 'Uncertainty_percent', 'CI95_Low', 'CI95_High']:
+            density[col] = np.nan
+        density['Quality_Flags'] += '; excitation_mismatch_ratios_withheld'
+        density['Quantification_Status']='excitation_mismatch'
+        identification.candidates.loc[identification.candidates.Status=='supported','Quantification_Status']='excitation_mismatch'
+        reference_info = {'Element': None, 'selection_rule': 'excitation_mismatch_ratios_withheld', 'fraction_denominator_elements': []}
+    accepted_symbols = set(identification.candidates.loc[identification.candidates.Status.isin(['supported', 'tentative']), 'Element'])
+    selected_pairs = identification.pairings.loc[identification.pairings.Element.isin(accepted_symbols)]
+    assigned = set(selected_pairs.peak_id.astype(int))
+    unassigned = peaks.loc[~peaks.peak_id.isin(assigned)].copy()
+    dof = max(0, len(counts)-fit.n_parameters)
+    residual = (counts-fit.model)/np.sqrt(fit.model)
+    if not fit.success:
+        warnings.append('Joint optimization failed: quantities and symmetric uncertainties must not be interpreted')
+    if fit.response_at_boundary:
+        warnings.append('Global response parameter at bound: review calibration/resolution; no symmetric quantitative uncertainty')
+    if dof and fit.deviance/dof > 2:
+        warnings.append('Structured residual / overdispersion: matrix_effect_or_model_mismatch or unmodelled scattering/artifacts')
+    if any(d['branch_ratio_mismatch'] for d in identification.diagnostics):
+        warnings.append('branch_ratio_mismatch: regional observed residuals disagree with the fixed branch model')
+    if config.tube_target:
+        warnings.append('Target %s fluorescence and Rayleigh scattering cannot establish sample %s; sample target ratios withheld' % (config.tube_target, config.tube_target))
+    if len(unassigned):
+        warnings.append('%d observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary' % len(unassigned))
+    if counts.sum() == 0:
+        warnings.append('Zero-count spectrum: no elemental detections or quantitative ratios')
+    if not (identification.candidates.Quantification_Status == 'supported').any():
+        warnings.append('No quantitatively valid elements; fraction denominator is empty; see separate identification statuses')
+    needs_confirmation=identification.candidates.loc[identification.candidates.Status.isin(['tentative','ambiguous','unidentifiable']) & identification.candidates.q_Fit.notna(),'Element'].tolist()
+    if needs_confirmation:
+        warnings.append('需要进一步确定（待定）的元素: '+', '.join(needs_confirmation)+'；不参与相对面密度计算')
+    versions = {}
+    for package in ('numpy', 'scipy', 'pandas', 'matplotlib', 'xraylib', 'xrf-spectrum-analyzer'):
+        try:
+            versions[package] = importlib.metadata.version(package)
+        except importlib.metadata.PackageNotFoundError:
+            versions[package] = 'unknown'
+    files = {name: {'path': str(Path(p).resolve()), 'sha256': sha256(p)} for name, p in
+             [('sample_spectrum', spectrum), ('calibration', calibration), ('sensitivity', sensitivity)]}
+    if table.metadata.get('metadata_file'):
+        files['sensitivity_metadata'] = {'path': table.metadata['metadata_file'], 'sha256': sha256(table.metadata['metadata_file'])}
+    summary = dict(schema_version='3.0', fit_status='success' if fit.success else 'failed',
+                   analysis_status='fit_failed' if not fit.success else ('model_mismatch' if severe_mismatch else 'completed'),
+                   quantitative_interpretation_valid=bool(fit.success and not severe_mismatch and not source_mismatch and reference_info['fraction_denominator_elements']),
+                   input_files=files, dependency_versions=versions, parameters=config.to_dict(),
+                   effective_parameters={'background_method': 'snip', 'snip_iterations': iterations, 'delta_E_bound_keV': identification.alignment['effective_fit_delta_bound_keV'],
+                                         'effective_fwhm_ref_kev': fit_config.fwhm_ref_kev,
+                                         'energy_edges_keV': [float(edges[0]), float(edges[-1])]},
+                   calibration_quality=cal.calibration_quality, sensitivity=table.metadata,
+                   line_energy={'source': 'xraylib', 'api': 'xraylib.LineEnergy', 'units': 'keV'},
+                   manual_peaks=manual_response, element_prior={'profile':config.element_prior,'tie_margin':config.prior_tie_margin,'policy':'tie_break_only; data_ambiguity_is_not_confirmation'},
+                   elements_need_confirmation=needs_confirmation,
+                   excluded_from_density=identification.candidates.loc[identification.candidates.Status!='supported','Element'].tolist(),
+                   local_branch_evidence=identification.branch_evidence,
+                   acquisition_cutoff=cutoff, response_initialization=response_initialization,
+                   centroid_alignment=identification.alignment, atomic_completion=completion_audit,
+                   identification_method='fitted_centroids_then_global_branch_pattern_then_joint_Poisson_fit',
+                   unidentified_shell_amplitudes=fit.auxiliary_areas,
+                   sensitivity_states=dict(Counter(s['State'] for s in table.states)),
+                   pruned_lines=exclusions, sample_metadata=spec.metadata, branch_ratios='fixed_by_sensitivity_plus_same_shell_completion; unknown_shells_separate_nuisances',
+                   model='raw_counts_poisson; centroid_pattern_selected; integrated_gaussian; q_i*S_i_line; unscaled_shell_nuisances; SNIP*exp(Legendre)',
+                   objective=fit.objective, negative_log_likelihood_without_factorial=fit.nll,
+                   poisson_deviance=fit.deviance, degrees_of_freedom=dof,
+                   deviance_per_dof=fit.deviance/dof if dof else None,
+                   model_comparisons=identification.comparisons, overlap_pairs=identification.overlap_pairs,
+                   branch_diagnostics=identification.diagnostics, delta_E_keV=fit.delta,
+                   resolution_scale=fit.resolution_scale, energy_gain_correction=fit.energy_gain,
+                   gain_fitted=fit.gain_fitted, background_parameters=fit.parameters[
+                       len(fit.symbols)+len(fit.nuisance_names):len(fit.symbols)+len(fit.nuisance_names)+config.background_degree+1].tolist(),
+                   optimizer={'message': fit.message, 'attempts': fit.attempts}, nuisance_peaks=fit.nuisance_names,
+                   uncertainty=identification.uncertainty_info, q_covariance=identification.qcov.tolist(),
+                   covariance_element_order=fit.symbols, bootstrap=bootstrap_info,
+                   reference=reference_info, apparent_relative_areal_density=True,
+                   assumptions={'thin_sample': True, 'self_absorption': False, 'full_energy_efficiency': 1.0,
+                                'absolute_areal_density_available': False},
+                   systematics_included=False, excitation_match_verified=False,
+                   target_scattering_review='target specified' if config.tube_target else 'Tube target unspecified; candidate target fluorescence may be instrument scattering',
+                   residual_anomalies={'abs_pearson_gt5': int(np.sum(abs(residual)>5)),
+                                       'unassigned_peaks': unassigned.to_dict('records')},
+                   warnings=warnings, elapsed_seconds=time.monotonic()-start)
+    calibration_result = cal.to_dict()
+    calibration_result.update(acquisition_cutoff=cutoff, channel_origin=int(spec.channel[0]), effective_energy_range_keV=[float(edges[0]), float(edges[-1])])
+    result = dict(calibration=cal, calibration_result=calibration_result, sensitivity=table,
+                  config=fit_config, requested_config=config, channel=channel, counts=counts, energy=energy, edges=edges,
+                  background0=b0, peaks=peaks, identification=identification, density=density,
+                  summary=summary, unassigned_peaks=unassigned, element_classes=classification_table(config.element_prior))
+    if output_dir:
+        export_analysis(result, output_dir)
+    for warning in warnings:
+        logging.warning(warning)
+    logging.info('Completed %s in %.2fs: %s', spectrum, time.monotonic()-start, summary['fit_status'])
+    return result

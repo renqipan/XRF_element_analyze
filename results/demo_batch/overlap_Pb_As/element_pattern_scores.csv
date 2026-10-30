@@ -1,0 +1,6 @@
+Z,Element,PatternScore,IndependentPeakRegions,MatchedPeakIDs,MissingLinePenalty,Selected,Element_Class,Fitted
+26,Fe,-4.0,0,,0.0,False,common,False
+27,Co,-4.0,0,,0.0,False,common,False
+29,Cu,-4.0,0,,0.0,False,common,False
+33,As,11.095047519664552,3,"1,4,5",0.0,True,common,True
+82,Pb,12.682024666635325,6,"2,3,4,6,7,8",10.378784195547457,True,common,True

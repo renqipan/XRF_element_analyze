@@ -1,0 +1,9 @@
+{
+  "description": "EXAMPLE ONLY: replace all placeholders with the original sensitivity calculation provenance",
+  "excitation_spectrum_sha256": "REPLACE_WITH_ACTUAL_SHA256",
+  "normalization": "common incident spectrum normalization across all elements and branches; cm2/g",
+  "xraylib_version": "REPLACE_WITH_GENERATING_VERSION",
+  "detector_efficiency_model": "full-energy efficiency 1.0",
+  "tube_target": "Ag",
+  "tube_voltage_kV": 50
+}

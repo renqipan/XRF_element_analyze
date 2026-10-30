@@ -1,0 +1,8141 @@
+{
+  "schema_version": "3.0",
+  "fit_status": "success",
+  "analysis_status": "completed",
+  "quantitative_interpretation_valid": true,
+  "input_files": {
+    "sample_spectrum": {
+      "path": "/home/renqi/Documents/ChatGPT/XRF_element_analyze/examples/mixture_Fe_Cu_Pb.csv",
+      "sha256": "83e4d2c908c6ab45f61ee37d97744f920b46192c061c9e8219ece12768c5a44f"
+    },
+    "calibration": {
+      "path": "/home/renqi/Documents/ChatGPT/XRF_element_analyze/examples/calibration.csv",
+      "sha256": "b5030087820013c7dc6b35d162e276fedff8c7ef7fa7c2b07609d41c455ccd83"
+    },
+    "sensitivity": {
+      "path": "/home/renqi/Documents/ChatGPT/XRF_element_analyze/data/xrf_relative_sensitivity.csv",
+      "sha256": "221998779caa79b798ef0cc8d133c832966b43d386aaedbe6b6c0aceddf80c90"
+    }
+  },
+  "dependency_versions": {
+    "numpy": "1.24.3",
+    "scipy": "1.10.1",
+    "pandas": "2.0.3",
+    "matplotlib": "3.5.1",
+    "xraylib": "4.2.0",
+    "xrf-spectrum-analyzer": "0.2.0"
+  },
+  "parameters": {
+    "energy_range": [
+      1.0,
+      35.0
+    ],
+    "find_peaks": null,
+    "find_peaks_axis": "reference",
+    "manual_match_tolerance_kev": 0.08,
+    "element_prior": "general",
+    "prior_tie_margin": 0.5,
+    "branch_evidence": true,
+    "complete_atomic_lines": true,
+    "shell_consistency_tolerance": 0.05,
+    "minimum_radiative_rate": 0.001,
+    "infer_low_energy_cutoff": true,
+    "alignment_max_shift_kev": 0.25,
+    "centroid_tolerance_kev": 0.015,
+    "pattern_element_penalty": 4.0,
+    "channel_start": 0,
+    "fill_missing_channels": false,
+    "strict_calibration": false,
+    "fwhm_ref_energy_kev": 5.9,
+    "fwhm_ref_kev": 0.135,
+    "fano": 0.115,
+    "pair_energy_kev": 0.0036,
+    "fit_response": true,
+    "estimate_resolution_from_peaks": true,
+    "fit_energy_gain": true,
+    "energy_gain_bound": 0.01,
+    "resolution_scale_bounds": [
+      0.75,
+      1.5
+    ],
+    "delta_max_kev": null,
+    "snip_iterations": null,
+    "background_degree": 3,
+    "background_regularization": 0.1,
+    "candidate_threshold_sigma": 3.5,
+    "max_deviance_per_dof": 5.0,
+    "support_delta_deviance": 25.0,
+    "tentative_delta_deviance": 6.0,
+    "match_sigma": 2.5,
+    "correlation_threshold": 0.995,
+    "elements": [
+      "Fe",
+      "Cu",
+      "Pb",
+      "As",
+      "Co"
+    ],
+    "exclude_elements": [],
+    "element_selection": "model-comparison",
+    "max_selection_iterations": 3,
+    "reference_element": null,
+    "tube_target": null,
+    "tube_voltage_kv": null,
+    "scatter_angle_deg": null,
+    "detector_efficiency": 1.0,
+    "bootstrap": 0,
+    "seed": 42,
+    "max_iterations": 1800,
+    "save_intermediate": true
+  },
+  "effective_parameters": {
+    "background_method": "snip",
+    "snip_iterations": 43,
+    "delta_E_bound_keV": 0.14372445189372682,
+    "effective_fwhm_ref_kev": 0.14641425954917078,
+    "energy_edges_keV": [
+      1.0099999999999993,
+      35.01
+    ]
+  },
+  "calibration_quality": "ok",
+  "sensitivity": {
+    "sensitivity_provenance": "unverified",
+    "metadata_file": null
+  },
+  "line_energy": {
+    "source": "xraylib",
+    "api": "xraylib.LineEnergy",
+    "units": "keV"
+  },
+  "manual_peaks": null,
+  "element_prior": {
+    "profile": "general",
+    "tie_margin": 0.5,
+    "policy": "tie_break_only; data_ambiguity_is_not_confirmation"
+  },
+  "elements_need_confirmation": [],
+  "excluded_from_density": [
+    "Co",
+    "As"
+  ],
+  "local_branch_evidence": [
+    {
+      "Element": "Fe",
+      "Family": "K",
+      "Branches": "Kalpha2+Kalpha1",
+      "Background_Window_Sigmas": 4.0,
+      "ROI_Start_keV": 6.1499999999999995,
+      "ROI_End_keV": 7.329999999999999,
+      "Local_Free_Area_Counts": 18738.592540417027,
+      "Expected_Area_From_Tied_Counts": 18640.288819828736,
+      "Branch_DeltaDeviance": 30580.51428716717,
+      "Observed_Ratio_to_Strongest_Group": 1.0,
+      "Expected_Ratio_to_Strongest_Group": 1.0,
+      "Tied_vs_Free_DeltaDeviance": 4.839400635741185,
+      "Group_Observed": true,
+      "Method": "local_Poisson_background_refit_other_elements_fixed; conditional_not_global_p_value",
+      "Wide_Window_Branch_DeltaDeviance": 43334.28551696311,
+      "Robust_Group_Observed": true,
+      "Ratio_Compatible": true
+    },
+    {
+      "Element": "Fe",
+      "Family": "K",
+      "Branches": "Kbeta1+KM2",
+      "Background_Window_Sigmas": 4.0,
+      "ROI_Start_keV": 6.1499999999999995,
+      "ROI_End_keV": 7.329999999999999,
+      "Local_Free_Area_Counts": 2387.103494865414,
+      "Expected_Area_From_Tied_Counts": 2504.376595460272,
+      "Branch_DeltaDeviance": 2875.8873001968605,
+      "Observed_Ratio_to_Strongest_Group": 0.1273896900056235,
+      "Expected_Ratio_to_Strongest_Group": 0.13435288581989266,
+      "Tied_vs_Free_DeltaDeviance": 4.839400635741185,
+      "Group_Observed": true,
+      "Method": "local_Poisson_background_refit_other_elements_fixed; conditional_not_global_p_value",
+      "Wide_Window_Branch_DeltaDeviance": 3775.7188104355882,
+      "Robust_Group_Observed": true,
+      "Ratio_Compatible": true
+    },
+    {
+      "Element": "Cu",
+      "Family": "K",
+      "Branches": "Kalpha2+Kalpha1",
+      "Background_Window_Sigmas": 4.0,
+      "ROI_Start_keV": 7.769999999999999,
+      "ROI_End_keV": 9.189999999999998,
+      "Local_Free_Area_Counts": 10052.507626662236,
+      "Expected_Area_From_Tied_Counts": 10011.689946777944,
+      "Branch_DeltaDeviance": 15706.670710983264,
+      "Observed_Ratio_to_Strongest_Group": 1.0,
+      "Expected_Ratio_to_Strongest_Group": 1.0,
+      "Tied_vs_Free_DeltaDeviance": 1.4215713915473316,
+      "Group_Observed": true,
+      "Method": "local_Poisson_background_refit_other_elements_fixed; conditional_not_global_p_value",
+      "Wide_Window_Branch_DeltaDeviance": 21444.176484112788,
+      "Robust_Group_Observed": true,
+      "Ratio_Compatible": true
+    },
+    {
+      "Element": "Cu",
+      "Family": "K",
+      "Branches": "Kbeta1+KM2",
+      "Background_Window_Sigmas": 4.0,
+      "ROI_Start_keV": 7.769999999999999,
+      "ROI_End_keV": 9.189999999999998,
+      "Local_Free_Area_Counts": 1288.1134285035814,
+      "Expected_Area_From_Tied_Counts": 1340.0598113477456,
+      "Branch_DeltaDeviance": 1051.6321724823501,
+      "Observed_Ratio_to_Strongest_Group": 0.12813851790444028,
+      "Expected_Ratio_to_Strongest_Group": 0.1338495117678925,
+      "Tied_vs_Free_DeltaDeviance": 1.4215713915473316,
+      "Group_Observed": true,
+      "Method": "local_Poisson_background_refit_other_elements_fixed; conditional_not_global_p_value",
+      "Wide_Window_Branch_DeltaDeviance": 1346.8533294233494,
+      "Robust_Group_Observed": true,
+      "Ratio_Compatible": true
+    },
+    {
+      "Element": "Pb",
+      "Family": "M",
+      "Branches": "M5N3",
+      "Background_Window_Sigmas": 4.0,
+      "ROI_Start_keV": 1.6699999999999993,
+      "ROI_End_keV": 2.609999999999999,
+      "Local_Free_Area_Counts": 1833.3295807096538,
+      "Expected_Area_From_Tied_Counts": 1791.8666908344383,
+      "Branch_DeltaDeviance": 2136.035085031297,
+      "Observed_Ratio_to_Strongest_Group": 0.0681408447417296,
+      "Expected_Ratio_to_Strongest_Group": 0.06652062149937096,
+      "Tied_vs_Free_DeltaDeviance": 0.7669026387156919,
+      "Group_Observed": true,
+      "Method": "local_Poisson_background_refit_other_elements_fixed; conditional_not_global_p_value",
+      "Wide_Window_Branch_DeltaDeviance": 2891.2245527133346,
+      "Robust_Group_Observed": true,
+      "Ratio_Compatible": true
+    },
+    {
+      "Element": "Pb",
+      "Family": "M",
+      "Branches": "M5N6+Malpha1+M5O3",
+      "Background_Window_Sigmas": 4.0,
+      "ROI_Start_keV": 1.6699999999999993,
+      "ROI_End_keV": 2.609999999999999,
+      "Local_Free_Area_Counts": 26905.00224437222,
+      "Expected_Area_From_Tied_Counts": 26937.010665953905,
+      "Branch_DeltaDeviance": 59402.752073555836,
+      "Observed_Ratio_to_Strongest_Group": 1.0,
+      "Expected_Ratio_to_Strongest_Group": 1.0,
+      "Tied_vs_Free_DeltaDeviance": 0.7669026387156919,
+      "Group_Observed": true,
+      "Method": "local_Poisson_background_refit_other_elements_fixed; conditional_not_global_p_value",
+      "Wide_Window_Branch_DeltaDeviance": 70917.57526280737,
+      "Robust_Group_Observed": true,
+      "Ratio_Compatible": true
+    }
+  ],
+  "acquisition_cutoff": null,
+  "response_initialization": {
+    "used": true,
+    "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+    "configured_reference_FWHM_keV": 0.135,
+    "effective_reference_FWHM_keV": 0.14641425954917078,
+    "peak_ids": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      11,
+      13,
+      14
+    ],
+    "is_instrument_calibration": false
+  },
+  "centroid_alignment": {
+    "method": "global_centroid_branch_graph_weighted_sparse_peak_cover",
+    "delta_E_keV": 0.005708524078549851,
+    "search_bound_keV": 0.25,
+    "score": 53.78628145948755,
+    "is_calibration_replacement": false,
+    "gain_for_matching": 0.00012110774015971964,
+    "element_prior": "general",
+    "prior_tie_margin": 0.5,
+    "grid_solutions": [],
+    "effective_fit_delta_bound_keV": 0.14372445189372682,
+    "initial_alignment": {
+      "method": "global_centroid_branch_graph_weighted_sparse_peak_cover",
+      "delta_E_keV": 0.0050000000000000044,
+      "search_bound_keV": 0.25,
+      "score": 53.466611171399556,
+      "is_calibration_replacement": false,
+      "gain_for_matching": 0.0,
+      "element_prior": "general",
+      "prior_tie_margin": 0.5,
+      "grid_solutions": [
+        {
+          "delta": -0.25,
+          "score": 0.0
+        },
+        {
+          "delta": -0.245,
+          "score": 0.0
+        },
+        {
+          "delta": -0.24,
+          "score": 0.0
+        },
+        {
+          "delta": -0.235,
+          "score": 0.0
+        },
+        {
+          "delta": -0.23,
+          "score": 0.0
+        },
+        {
+          "delta": -0.225,
+          "score": 0.0
+        },
+        {
+          "delta": -0.22,
+          "score": 0.0
+        },
+        {
+          "delta": -0.215,
+          "score": 0.0
+        },
+        {
+          "delta": -0.21,
+          "score": 0.0
+        },
+        {
+          "delta": -0.20500000000000002,
+          "score": 0.0
+        },
+        {
+          "delta": -0.2,
+          "score": 0.0
+        },
+        {
+          "delta": -0.195,
+          "score": 0.0
+        },
+        {
+          "delta": -0.19,
+          "score": 0.0
+        },
+        {
+          "delta": -0.185,
+          "score": 0.0
+        },
+        {
+          "delta": -0.18,
+          "score": 0.0
+        },
+        {
+          "delta": -0.175,
+          "score": 0.0
+        },
+        {
+          "delta": -0.16999999999999998,
+          "score": 0.0
+        },
+        {
+          "delta": -0.16499999999999998,
+          "score": 0.0
+        },
+        {
+          "delta": -0.16,
+          "score": 0.0
+        },
+        {
+          "delta": -0.155,
+          "score": 0.0
+        },
+        {
+          "delta": -0.15,
+          "score": 0.0
+        },
+        {
+          "delta": -0.14500000000000002,
+          "score": 0.0
+        },
+        {
+          "delta": -0.14,
+          "score": 0.0
+        },
+        {
+          "delta": -0.135,
+          "score": 0.0
+        },
+        {
+          "delta": -0.13,
+          "score": 0.0
+        },
+        {
+          "delta": -0.125,
+          "score": 0.0
+        },
+        {
+          "delta": -0.12,
+          "score": 0.0
+        },
+        {
+          "delta": -0.11499999999999999,
+          "score": 0.0
+        },
+        {
+          "delta": -0.10999999999999999,
+          "score": 0.0
+        },
+        {
+          "delta": -0.10500000000000001,
+          "score": 0.0
+        },
+        {
+          "delta": -0.1,
+          "score": 0.0
+        },
+        {
+          "delta": -0.095,
+          "score": 0.0
+        },
+        {
+          "delta": -0.09,
+          "score": 0.0
+        },
+        {
+          "delta": -0.08499999999999999,
+          "score": 0.0
+        },
+        {
+          "delta": -0.07999999999999999,
+          "score": 0.0
+        },
+        {
+          "delta": -0.07499999999999998,
+          "score": 0.0
+        },
+        {
+          "delta": -0.07,
+          "score": 0.0
+        },
+        {
+          "delta": -0.065,
+          "score": 0.0
+        },
+        {
+          "delta": -0.06,
+          "score": 0.0
+        },
+        {
+          "delta": -0.05499999999999999,
+          "score": 0.0
+        },
+        {
+          "delta": -0.04999999999999999,
+          "score": 0.0
+        },
+        {
+          "delta": -0.044999999999999984,
+          "score": 0.0
+        },
+        {
+          "delta": -0.04000000000000001,
+          "score": 0.5272921291132278
+        },
+        {
+          "delta": -0.035,
+          "score": 3.412678268601775
+        },
+        {
+          "delta": -0.03,
+          "score": 9.51028789715312
+        },
+        {
+          "delta": -0.024999999999999994,
+          "score": 16.274415639590615
+        },
+        {
+          "delta": -0.01999999999999999,
+          "score": 23.877015081310148
+        },
+        {
+          "delta": -0.014999999999999986,
+          "score": 31.84886063726727
+        },
+        {
+          "delta": -0.010000000000000009,
+          "score": 39.50643459320506
+        },
+        {
+          "delta": -0.0050000000000000044,
+          "score": 46.14905262933995
+        },
+        {
+          "delta": 0.0,
+          "score": 50.934999869276496
+        },
+        {
+          "delta": 0.0050000000000000044,
+          "score": 53.466611171399556
+        },
+        {
+          "delta": 0.010000000000000009,
+          "score": 53.388351850799204
+        },
+        {
+          "delta": 0.015000000000000013,
+          "score": 50.87744806926719
+        },
+        {
+          "delta": 0.020000000000000018,
+          "score": 46.0602489870828
+        },
+        {
+          "delta": 0.025000000000000022,
+          "score": 39.636056180747694
+        },
+        {
+          "delta": 0.030000000000000027,
+          "score": 32.23937899555065
+        },
+        {
+          "delta": 0.03500000000000003,
+          "score": 24.566127348373563
+        },
+        {
+          "delta": 0.03999999999999998,
+          "score": 17.073751150468755
+        },
+        {
+          "delta": 0.044999999999999984,
+          "score": 11.254601733803206
+        },
+        {
+          "delta": 0.04999999999999999,
+          "score": 5.699881411871764
+        },
+        {
+          "delta": 0.05499999999999999,
+          "score": 6.18673293082257
+        },
+        {
+          "delta": 0.06,
+          "score": 3.405666311738446
+        },
+        {
+          "delta": 0.065,
+          "score": 1.5016348052049855
+        },
+        {
+          "delta": 0.07,
+          "score": 0.0
+        },
+        {
+          "delta": 0.07500000000000001,
+          "score": 0.0
+        },
+        {
+          "delta": 0.08000000000000002,
+          "score": 0.0
+        },
+        {
+          "delta": 0.08500000000000002,
+          "score": 0.0
+        },
+        {
+          "delta": 0.09000000000000002,
+          "score": 0.0
+        },
+        {
+          "delta": 0.09500000000000003,
+          "score": 0.0
+        },
+        {
+          "delta": 0.10000000000000003,
+          "score": 0.0
+        },
+        {
+          "delta": 0.10499999999999998,
+          "score": 0.0
+        },
+        {
+          "delta": 0.10999999999999999,
+          "score": 0.0
+        },
+        {
+          "delta": 0.11499999999999999,
+          "score": 0.0
+        },
+        {
+          "delta": 0.12,
+          "score": 0.0
+        },
+        {
+          "delta": 0.125,
+          "score": 0.0
+        },
+        {
+          "delta": 0.13,
+          "score": 0.0
+        },
+        {
+          "delta": 0.135,
+          "score": 0.0
+        },
+        {
+          "delta": 0.14,
+          "score": 0.0
+        },
+        {
+          "delta": 0.14500000000000002,
+          "score": 0.0
+        },
+        {
+          "delta": 0.15000000000000002,
+          "score": 0.0
+        },
+        {
+          "delta": 0.15500000000000003,
+          "score": 0.0
+        },
+        {
+          "delta": 0.16000000000000003,
+          "score": 0.0
+        },
+        {
+          "delta": 0.16500000000000004,
+          "score": 0.0
+        },
+        {
+          "delta": 0.16999999999999998,
+          "score": 0.0
+        },
+        {
+          "delta": 0.175,
+          "score": 0.0
+        },
+        {
+          "delta": 0.18,
+          "score": 0.0
+        },
+        {
+          "delta": 0.185,
+          "score": 0.0
+        },
+        {
+          "delta": 0.19,
+          "score": 0.0
+        },
+        {
+          "delta": 0.195,
+          "score": 0.0
+        },
+        {
+          "delta": 0.2,
+          "score": 0.0
+        },
+        {
+          "delta": 0.20500000000000002,
+          "score": 0.0
+        },
+        {
+          "delta": 0.21000000000000002,
+          "score": 0.0
+        },
+        {
+          "delta": 0.21500000000000002,
+          "score": 0.0
+        },
+        {
+          "delta": 0.22000000000000003,
+          "score": 0.0
+        },
+        {
+          "delta": 0.22500000000000003,
+          "score": 0.0
+        },
+        {
+          "delta": 0.22999999999999998,
+          "score": 0.0
+        },
+        {
+          "delta": 0.235,
+          "score": 0.0
+        },
+        {
+          "delta": 0.24,
+          "score": 0.0
+        },
+        {
+          "delta": 0.245,
+          "score": 0.0
+        },
+        {
+          "delta": 0.25,
+          "score": 0.0
+        }
+      ]
+    }
+  },
+  "atomic_completion": [
+    {
+      "Element": "Ac",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 3.7590941237564124e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ac",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 6.711222098054748e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ac",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ag",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.2658249018970835e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ag",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 1.2743849140406383e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ag",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 1.763557073708455e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Al",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 6.832747956320162e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ar",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 4.6602268788387136e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "As",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 3.1506399924552397e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "As",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 5.762286408028672e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "As",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "At",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 5.126250456344295e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "At",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 1.454686787694115e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "At",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Au",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 6.932301168660615e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Au",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 9.365664437321897e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Au",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "B",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.8439923654689494e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ba",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.4050788854635954e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ba",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 9.474027207190261e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ba",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 8.343577317937445e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Bi",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 4.382194280783125e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Bi",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 8.997198326365918e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Bi",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Br",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.3278613106848525e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Br",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 9.183794340561491e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Br",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "C",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 2.840545829663199e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ca",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.2530780197916869e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Cd",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.7945391661555732e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Cd",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 1.0434145516491355e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Cd",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 4.802730468878025e-08,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ce",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 8.142957353962643e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ce",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 1.9813183582684246e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ce",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 5.931563782368698e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Cl",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 5.980207296030216e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Co",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 2.182291823027427e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Co",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 1.5888938220687265e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Co",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Cr",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 2.3759223755082104e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Cr",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 6.082598077439272e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Cr",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Cs",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 2.065904000758678e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Cs",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 1.6829638189719276e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Cs",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 1.3215228271690194e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Cu",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 7.950391431865711e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Cu",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 1.3307911195248323e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Cu",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Dy",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 7.552977951963413e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Dy",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 7.889575863728737e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Dy",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Er",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 6.803512742070694e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Er",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 8.660932691029188e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Er",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Eu",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 2.208373577561318e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Eu",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 3.393437071341765e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Eu",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 1.884699690091196e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "F",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 2.0111774001740912e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Fe",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.1469822384091444e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Fe",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 2.2686292977525113e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Fe",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Fr",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 2.609407602216507e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Fr",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 3.757038413709779e-08,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Fr",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ga",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 3.782491706405544e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ga",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 2.3068809218429465e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ga",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Gd",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 1.3020209250758086e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Gd",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 1.1289513102141768e-08,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Gd",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ge",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 2.928701798854405e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ge",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 9.789581629782163e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ge",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Hf",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 4.0183629423928835e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Hf",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 6.358172137677087e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Hf",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Hg",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 5.038794239631272e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Hg",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 2.827520395598526e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Hg",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ho",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 1.0727095920426422e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ho",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 2.0032205094722144e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ho",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "I",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 3.066850543520516e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "I",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 2.202561638187106e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "I",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 3.2634864088887383e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "In",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.6366575199544542e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "In",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 2.412253874650716e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "In",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 2.0387230192930872e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ir",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 9.610992348640934e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ir",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 1.578570295590609e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ir",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "K",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 4.551310234246486e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Kr",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 3.078334865680432e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Kr",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 6.306365294417304e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Kr",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "La",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 2.0581878950043375e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "La",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 6.076469819538133e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "La",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 9.086458030438394e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Lu",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 1.1322684658754412e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Lu",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 2.8857162792661484e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Lu",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Mg",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 4.751736785157945e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Mn",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 4.320152699688329e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Mn",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 4.768366390628387e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Mn",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Mo",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.218178309114748e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Mo",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 3.529411663483195e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Mo",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 1.4429055528175638e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "N",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 2.0985482230839736e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Na",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 2.0219432124157777e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Nb",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 2.6020682108995885e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Nb",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 1.4492651051467575e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Nb",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 8.633878418873309e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Nd",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 2.9458745995913915e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Nd",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 3.8979373617742397e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Nd",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 5.2819738471932e-08,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ne",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.0751618040316657e-08,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ni",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 3.2572108379369524e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ni",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 6.897873816580358e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ni",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "O",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 8.111503926322428e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Os",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 2.6563369615040244e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Os",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 2.6236726347050876e-08,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Os",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "P",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 9.260743460970389e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Pa",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 6.522138580322689e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Pa",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 6.724553414105827e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Pa",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Pb",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 6.293978604965389e-08,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Pb",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 9.65055128032688e-08,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Pb",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Pd",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.7247537291709136e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Pd",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 1.113754303339043e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Pd",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 1.93700318462664e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Pm",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.2774067258414235e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Pm",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 1.5283314869218856e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Pm",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 2.0075854212375788e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Po",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 4.818290528785241e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Po",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 3.589798414083134e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Po",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Pr",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 9.67178607758079e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Pr",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 9.81680643441507e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Pr",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 4.886290111416614e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Pt",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 4.617167830289759e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Pt",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 4.6685473498175867e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Pt",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ra",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 7.12335032071465e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ra",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 8.66240498220705e-08,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ra",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Rb",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 3.1071876388510944e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Rb",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 5.197850483362743e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Rb",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Re",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 2.9596429274025837e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Re",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 1.573522909747993e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Re",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Rh",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.703312930478873e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Rh",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 9.485959222566009e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Rh",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 2.5727600094782588e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Rn",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 7.266961956631235e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Rn",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 6.739010515177668e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Rn",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ru",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.3929538731360935e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ru",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 4.7362507293868816e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ru",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 1.9376784763380783e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "S",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 3.446188641453851e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Sb",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 3.4685858665284286e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Sb",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 1.1850531904666894e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Sb",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 1.2169222891600384e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Sc",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 8.165025218165312e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Sc",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 1.2282375438932291e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Sc",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Se",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 2.6869215782321376e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Se",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 4.086303257988533e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Se",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Si",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.3654743442614858e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Sm",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.3888548073826001e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Sm",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 4.19187945688293e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Sm",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 9.850995501547999e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Sn",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.877725335885927e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Sn",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 2.3432551690127923e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Sn",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 1.8134909161027224e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Sr",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.3616498324431348e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Sr",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 3.1367417330230296e-08,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Sr",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ta",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 6.854448578730299e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ta",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 1.0676901588402288e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ta",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Tb",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 3.7469270197654225e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Tb",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 2.2302530844342527e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Tb",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Tc",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 6.482955225983744e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Tc",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 3.3506731074162133e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Tc",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 8.232804367125368e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Te",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.5610629280349286e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Te",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 1.0129116903012658e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Te",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 2.9772588638898867e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Th",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 9.275905135108786e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Th",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 1.6290569558874424e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Th",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ti",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 2.707026542925206e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ti",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 1.7011129831434602e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ti",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Tl",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 3.7205752079216836e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Tl",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 3.0900159897484514e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Tl",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Tm",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 6.588819081443376e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Tm",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 1.0884389897158897e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Tm",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "U",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 7.649873583481792e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "U",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 1.1139382460889635e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "U",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "V",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 9.404016927394565e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "V",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 3.957440126711731e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "V",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "W",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 7.721189456688649e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "W",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 4.762929786128467e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "W",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Xe",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.1248559848020534e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Xe",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 1.431892669989665e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Xe",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 8.391358092829648e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Y",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 6.061672144230812e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Y",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 6.077624765676859e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Y",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 1.0242885712941074e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Yb",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 1.1643661668170324e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Yb",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 3.5546070087377757e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Yb",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Zn",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 8.340436923326422e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Zn",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 7.155295156380248e-08,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Zn",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Zr",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.7003970298468118e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Zr",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 9.733842754044986e-08,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Zr",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 1.2425301121332666e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    }
+  ],
+  "identification_method": "fitted_centroids_then_global_branch_pattern_then_joint_Poisson_fit",
+  "unidentified_shell_amplitudes": {
+    "Cu_L1_unscaled": 0.0,
+    "Pb_L1_unscaled": 2955.2092183101845
+  },
+  "sensitivity_states": {
+    "missing": 219,
+    "positive": 522,
+    "zero": 87
+  },
+  "pruned_lines": [
+    {
+      "Element": "B",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "B",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "C",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "C",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "N",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "N",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "O",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "O",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "F",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "F",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ne",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ne",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Na",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Na",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Mg",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Mg",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Al",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Al",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Al",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Si",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Si",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Si",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "P",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "P",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "P",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "S",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "S",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "S",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cl",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cl",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cl",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ar",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ar",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ar",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "K",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "K",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "K",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ca",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ca",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ca",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sc",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sc",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sc",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sc",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sc",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sc",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ti",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ti",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ti",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ti",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ti",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ti",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "V",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "V",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "V",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "V",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "V",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "V",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cr",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cr",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cr",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cr",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cr",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cr",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Mn",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Mn",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Mn",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Mn",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Mn",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Mn",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Fe",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Fe",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Fe",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Co",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Co",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Co",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ni",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ni",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ni",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ni",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ni",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ni",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Zn",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Zn",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Zn",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Zn",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Zn",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Zn",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ga",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ga",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ga",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ga",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ga",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ga",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ge",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ge",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ge",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ge",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ge",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ge",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Se",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Se",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Se",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Se",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Se",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Se",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Br",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Br",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Br",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Br",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Br",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Br",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Kr",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Kr",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Kr",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Kr",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Kr",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Kr",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rb",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rb",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rb",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rb",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rb",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rb",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sr",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sr",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sr",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sr",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sr",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sr",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Y",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Y",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Y",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Y",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Y",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Y",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Y",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Y",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Zr",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Zr",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Zr",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Zr",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Zr",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Zr",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Zr",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Zr",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Nb",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Nb",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Nb",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Nb",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Nb",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Nb",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Nb",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Nb",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Mo",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Mo",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Mo",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Mo",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Mo",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Mo",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Mo",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Mo",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tc",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tc",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tc",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tc",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tc",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tc",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tc",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tc",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ru",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ru",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ru",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ru",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ru",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ru",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ru",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ru",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rh",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rh",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rh",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rh",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rh",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rh",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rh",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rh",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pd",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pd",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pd",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pd",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pd",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pd",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pd",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pd",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ag",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ag",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ag",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ag",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ag",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ag",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ag",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ag",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cd",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cd",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cd",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cd",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cd",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cd",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cd",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cd",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "In",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "In",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "In",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "In",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "In",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "In",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "In",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "In",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sn",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sn",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sn",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sn",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sn",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sn",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sn",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sn",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sb",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sb",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sb",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sb",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sb",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sb",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sb",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sb",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Te",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Te",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Te",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Te",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Te",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Te",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Te",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Te",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "I",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "I",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "I",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "I",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "I",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "I",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "I",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "I",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Xe",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Xe",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Xe",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Xe",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Xe",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Xe",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Xe",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Xe",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cs",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cs",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cs",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cs",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cs",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cs",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cs",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cs",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ba",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ba",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ba",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ba",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ba",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ba",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ba",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ba",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "La",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "La",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "La",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "La",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "La",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "La",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "La",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "La",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ce",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ce",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ce",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ce",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ce",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ce",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ce",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ce",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pr",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pr",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pr",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pr",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pr",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pr",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pr",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pr",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Nd",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Nd",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Nd",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Nd",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Nd",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Nd",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Nd",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Nd",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pm",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pm",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pm",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pm",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pm",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pm",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pm",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pm",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sm",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sm",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sm",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sm",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sm",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sm",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sm",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sm",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Eu",
+      "Branch": "Kalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Eu",
+      "Branch": "Kalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Eu",
+      "Branch": "Kbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Eu",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Eu",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Eu",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Eu",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Eu",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Gd",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Gd",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Gd",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Gd",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Gd",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Gd",
+      "Branch": "Malpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tb",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tb",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tb",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tb",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tb",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tb",
+      "Branch": "Malpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Dy",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Dy",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Dy",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Dy",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Dy",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Dy",
+      "Branch": "Malpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ho",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ho",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ho",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ho",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ho",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ho",
+      "Branch": "Malpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Er",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Er",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Er",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Er",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Er",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Er",
+      "Branch": "Malpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tm",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tm",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tm",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tm",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tm",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tm",
+      "Branch": "Malpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Yb",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Yb",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Yb",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Yb",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Yb",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Yb",
+      "Branch": "Malpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Lu",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Lu",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Lu",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Lu",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Lu",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Lu",
+      "Branch": "Malpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Hf",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Hf",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Hf",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Hf",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Hf",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Hf",
+      "Branch": "Malpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ta",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ta",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ta",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ta",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ta",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ta",
+      "Branch": "Malpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "W",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "W",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "W",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "W",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "W",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "W",
+      "Branch": "Malpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Re",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Re",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Re",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Re",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Re",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Re",
+      "Branch": "Malpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Os",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Os",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Os",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Os",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Os",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Os",
+      "Branch": "Malpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ir",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ir",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ir",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ir",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ir",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ir",
+      "Branch": "Malpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pt",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pt",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pt",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pt",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pt",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pt",
+      "Branch": "Malpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Au",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Au",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Au",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Au",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Au",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Au",
+      "Branch": "Malpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Hg",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Hg",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Hg",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Hg",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Hg",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Hg",
+      "Branch": "Malpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tl",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tl",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tl",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tl",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tl",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tl",
+      "Branch": "Malpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Bi",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Bi",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Bi",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Bi",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Bi",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Bi",
+      "Branch": "Malpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Po",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Po",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Po",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Po",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Po",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Po",
+      "Branch": "Malpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "At",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "At",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "At",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "At",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "At",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "At",
+      "Branch": "Malpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rn",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rn",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rn",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rn",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rn",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rn",
+      "Branch": "Malpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Fr",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Fr",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Fr",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Fr",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Fr",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Fr",
+      "Branch": "Malpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ra",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ra",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ra",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ra",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ra",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ra",
+      "Branch": "Malpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ac",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ac",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ac",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ac",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ac",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ac",
+      "Branch": "Malpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Th",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Th",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Th",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Th",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Th",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Th",
+      "Branch": "Malpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pa",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pa",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pa",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pa",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pa",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pa",
+      "Branch": "Malpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "U",
+      "Branch": "Lalpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "U",
+      "Branch": "Lalpha2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "U",
+      "Branch": "Lbeta1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "U",
+      "Branch": "Lbeta2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "U",
+      "Branch": "Lgamma1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "U",
+      "Branch": "Malpha1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ac",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ac",
+      "Branch": "L2M3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ac",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ac",
+      "Branch": "L2O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ac",
+      "Branch": "L2O4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ac",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ac",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ac",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ac",
+      "Branch": "L3O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ac",
+      "Branch": "L3O45",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ac",
+      "Branch": "M5N3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ac",
+      "Branch": "M5N6",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ac",
+      "Branch": "M5O3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ag",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ag",
+      "Branch": "KN2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ag",
+      "Branch": "KN3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ag",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ag",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ag",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ag",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ag",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Al",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ar",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "At",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "At",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "At",
+      "Branch": "L2O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "At",
+      "Branch": "L2O4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "At",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "At",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "At",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "At",
+      "Branch": "L3O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "At",
+      "Branch": "L3O45",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "At",
+      "Branch": "M5N3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "At",
+      "Branch": "M5N6",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "At",
+      "Branch": "M5O3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Au",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Au",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Au",
+      "Branch": "L2O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Au",
+      "Branch": "L2O4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Au",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Au",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Au",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Au",
+      "Branch": "L3O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Au",
+      "Branch": "L3O45",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Au",
+      "Branch": "M5N3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Au",
+      "Branch": "M5N6",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Au",
+      "Branch": "M5O3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ba",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ba",
+      "Branch": "KN2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ba",
+      "Branch": "KN3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ba",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ba",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ba",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ba",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ba",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ba",
+      "Branch": "L3O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Bi",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Bi",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Bi",
+      "Branch": "L2O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Bi",
+      "Branch": "L2O4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Bi",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Bi",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Bi",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Bi",
+      "Branch": "L3O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Bi",
+      "Branch": "L3O45",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Bi",
+      "Branch": "M5N3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Bi",
+      "Branch": "M5N6",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Bi",
+      "Branch": "M5O3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Br",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Br",
+      "Branch": "KN2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Br",
+      "Branch": "KN3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Br",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Br",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Br",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Br",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ca",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cd",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cd",
+      "Branch": "KN2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cd",
+      "Branch": "KN3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cd",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cd",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cd",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cd",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cd",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ce",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ce",
+      "Branch": "KN2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ce",
+      "Branch": "KN3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ce",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ce",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ce",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ce",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ce",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ce",
+      "Branch": "L3O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cl",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Co",
+      "Branch": "L2M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Co",
+      "Branch": "L3M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Cr",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cr",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cr",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cs",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cs",
+      "Branch": "KN2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cs",
+      "Branch": "KN3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cs",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cs",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cs",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cs",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cs",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cs",
+      "Branch": "L3O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Cu",
+      "Branch": "L2M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Cu",
+      "Branch": "L3M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Dy",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Dy",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Dy",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Dy",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Dy",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Dy",
+      "Branch": "L3O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Dy",
+      "Branch": "M5N3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Dy",
+      "Branch": "M5N6",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Dy",
+      "Branch": "M5O3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Er",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Er",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Er",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Er",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Er",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Er",
+      "Branch": "L3O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Er",
+      "Branch": "M5N3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Er",
+      "Branch": "M5N6",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Er",
+      "Branch": "M5O3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Eu",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Eu",
+      "Branch": "KN2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Eu",
+      "Branch": "KN3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Eu",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Eu",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Eu",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Eu",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Eu",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Eu",
+      "Branch": "L3O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Fe",
+      "Branch": "L2M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Fe",
+      "Branch": "L3M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Fr",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Fr",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Fr",
+      "Branch": "L2O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Fr",
+      "Branch": "L2O4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Fr",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Fr",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Fr",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Fr",
+      "Branch": "L3O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Fr",
+      "Branch": "L3O45",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Fr",
+      "Branch": "M5N3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Fr",
+      "Branch": "M5N6",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Fr",
+      "Branch": "M5O3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ga",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ga",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ga",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ga",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ga",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Gd",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Gd",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Gd",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Gd",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Gd",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Gd",
+      "Branch": "L3O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Gd",
+      "Branch": "M5N3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Gd",
+      "Branch": "M5N6",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Gd",
+      "Branch": "M5O3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ge",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ge",
+      "Branch": "KN3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ge",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ge",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ge",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ge",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Hf",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Hf",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Hf",
+      "Branch": "L2O4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Hf",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Hf",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Hf",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Hf",
+      "Branch": "L3O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Hf",
+      "Branch": "L3O45",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Hf",
+      "Branch": "M5N3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Hf",
+      "Branch": "M5N6",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Hf",
+      "Branch": "M5O3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Hg",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Hg",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Hg",
+      "Branch": "L2O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Hg",
+      "Branch": "L2O4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Hg",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Hg",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Hg",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Hg",
+      "Branch": "L3O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Hg",
+      "Branch": "L3O45",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Hg",
+      "Branch": "M5N3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Hg",
+      "Branch": "M5N6",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Hg",
+      "Branch": "M5O3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ho",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ho",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ho",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ho",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ho",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ho",
+      "Branch": "L3O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ho",
+      "Branch": "M5N3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ho",
+      "Branch": "M5N6",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ho",
+      "Branch": "M5O3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "I",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "I",
+      "Branch": "KN2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "I",
+      "Branch": "KN3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "I",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "I",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "I",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "I",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "I",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "In",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "In",
+      "Branch": "KN2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "In",
+      "Branch": "KN3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "In",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "In",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "In",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "In",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "In",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ir",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ir",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ir",
+      "Branch": "L2O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ir",
+      "Branch": "L2O4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ir",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ir",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ir",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ir",
+      "Branch": "L3O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ir",
+      "Branch": "L3O45",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ir",
+      "Branch": "M5N3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ir",
+      "Branch": "M5N6",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ir",
+      "Branch": "M5O3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "K",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Kr",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Kr",
+      "Branch": "KN2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Kr",
+      "Branch": "KN3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Kr",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Kr",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Kr",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Kr",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "La",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "La",
+      "Branch": "KN2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "La",
+      "Branch": "KN3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "La",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "La",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "La",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "La",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "La",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "La",
+      "Branch": "L3O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Lu",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Lu",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Lu",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Lu",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Lu",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Lu",
+      "Branch": "L3O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Lu",
+      "Branch": "M5N3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Lu",
+      "Branch": "M5N6",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Lu",
+      "Branch": "M5O3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Mn",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Mn",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Mn",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Mo",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Mo",
+      "Branch": "KN2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Mo",
+      "Branch": "KN3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Mo",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Mo",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Mo",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Mo",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Mo",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Nb",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Nb",
+      "Branch": "KN2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Nb",
+      "Branch": "KN3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Nb",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Nb",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Nb",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Nb",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Nb",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Nd",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Nd",
+      "Branch": "KN2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Nd",
+      "Branch": "KN3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Nd",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Nd",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Nd",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Nd",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Nd",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Nd",
+      "Branch": "L3O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ni",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ni",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ni",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Os",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Os",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Os",
+      "Branch": "L2O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Os",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Os",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Os",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Os",
+      "Branch": "L3O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Os",
+      "Branch": "M5N3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Os",
+      "Branch": "M5N6",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Os",
+      "Branch": "M5O3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "P",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pa",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pa",
+      "Branch": "L2M3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pa",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pa",
+      "Branch": "L2N6",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pa",
+      "Branch": "L2O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pa",
+      "Branch": "L2O4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pa",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pa",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pa",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pa",
+      "Branch": "L3N7",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pa",
+      "Branch": "L3O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pa",
+      "Branch": "L3O45",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pa",
+      "Branch": "M5N3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pa",
+      "Branch": "M5N6",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pa",
+      "Branch": "M5O3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pd",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pd",
+      "Branch": "KN2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pd",
+      "Branch": "KN3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pd",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pd",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pd",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pd",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pd",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pm",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pm",
+      "Branch": "KN2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pm",
+      "Branch": "KN3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pm",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pm",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pm",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pm",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pm",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pm",
+      "Branch": "L3O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Po",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Po",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Po",
+      "Branch": "L2O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Po",
+      "Branch": "L2O4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Po",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Po",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Po",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Po",
+      "Branch": "L3O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Po",
+      "Branch": "L3O45",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Po",
+      "Branch": "M5N3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Po",
+      "Branch": "M5N6",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Po",
+      "Branch": "M5O3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pr",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pr",
+      "Branch": "KN2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pr",
+      "Branch": "KN3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pr",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pr",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pr",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pr",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pr",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pr",
+      "Branch": "L3O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pt",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pt",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pt",
+      "Branch": "L2O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pt",
+      "Branch": "L2O4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pt",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pt",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pt",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pt",
+      "Branch": "L3O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pt",
+      "Branch": "L3O45",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pt",
+      "Branch": "M5N3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pt",
+      "Branch": "M5N6",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Pt",
+      "Branch": "M5O3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ra",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ra",
+      "Branch": "L2M3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ra",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ra",
+      "Branch": "L2O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ra",
+      "Branch": "L2O4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ra",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ra",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ra",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ra",
+      "Branch": "L3O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ra",
+      "Branch": "L3O45",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ra",
+      "Branch": "M5N3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ra",
+      "Branch": "M5N6",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ra",
+      "Branch": "M5O3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rb",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rb",
+      "Branch": "KN2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rb",
+      "Branch": "KN3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rb",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rb",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rb",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rb",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Re",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Re",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Re",
+      "Branch": "L2O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Re",
+      "Branch": "L2O4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Re",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Re",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Re",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Re",
+      "Branch": "L3O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Re",
+      "Branch": "L3O45",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Re",
+      "Branch": "M5N3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Re",
+      "Branch": "M5N6",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Re",
+      "Branch": "M5O3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rh",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rh",
+      "Branch": "KN2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rh",
+      "Branch": "KN3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rh",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rh",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rh",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rh",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rh",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rn",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rn",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rn",
+      "Branch": "L2O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rn",
+      "Branch": "L2O4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rn",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rn",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rn",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rn",
+      "Branch": "L3O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rn",
+      "Branch": "L3O45",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rn",
+      "Branch": "M5N3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rn",
+      "Branch": "M5N6",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Rn",
+      "Branch": "M5O3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ru",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ru",
+      "Branch": "KN2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ru",
+      "Branch": "KN3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ru",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ru",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ru",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ru",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ru",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "S",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sb",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sb",
+      "Branch": "KN2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sb",
+      "Branch": "KN3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sb",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sb",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sb",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sb",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sb",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sc",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sc",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sc",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Se",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Se",
+      "Branch": "KN2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Se",
+      "Branch": "KN3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Se",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Se",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Se",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Se",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Si",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sm",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sm",
+      "Branch": "KN2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sm",
+      "Branch": "KN3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sm",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sm",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sm",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sm",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sm",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sm",
+      "Branch": "L3O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sn",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sn",
+      "Branch": "KN2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sn",
+      "Branch": "KN3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sn",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sn",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sn",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sn",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sn",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sr",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sr",
+      "Branch": "KN2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sr",
+      "Branch": "KN3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sr",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sr",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sr",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Sr",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ta",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ta",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ta",
+      "Branch": "L2O4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ta",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ta",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ta",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ta",
+      "Branch": "L3O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ta",
+      "Branch": "L3O45",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ta",
+      "Branch": "M5N3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ta",
+      "Branch": "M5N6",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ta",
+      "Branch": "M5O3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tb",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tb",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tb",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tb",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tb",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tb",
+      "Branch": "L3O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tb",
+      "Branch": "M5N3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tb",
+      "Branch": "M5N6",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tb",
+      "Branch": "M5O3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tc",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tc",
+      "Branch": "KN2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tc",
+      "Branch": "KN3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tc",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tc",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tc",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tc",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tc",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Te",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Te",
+      "Branch": "KN2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Te",
+      "Branch": "KN3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Te",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Te",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Te",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Te",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Te",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Th",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Th",
+      "Branch": "L2M3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Th",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Th",
+      "Branch": "L2O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Th",
+      "Branch": "L2O4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Th",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Th",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Th",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Th",
+      "Branch": "L3O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Th",
+      "Branch": "L3O45",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Th",
+      "Branch": "M5N3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Th",
+      "Branch": "M5N6",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Th",
+      "Branch": "M5O3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ti",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ti",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Ti",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tl",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tl",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tl",
+      "Branch": "L2O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tl",
+      "Branch": "L2O4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tl",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tl",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tl",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tl",
+      "Branch": "L3O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tl",
+      "Branch": "L3O45",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tl",
+      "Branch": "M5N3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tl",
+      "Branch": "M5N6",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tl",
+      "Branch": "M5O3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tm",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tm",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tm",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tm",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tm",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tm",
+      "Branch": "L3O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tm",
+      "Branch": "M5N3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tm",
+      "Branch": "M5N6",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Tm",
+      "Branch": "M5O3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "U",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "U",
+      "Branch": "L2M3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "U",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "U",
+      "Branch": "L2N6",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "U",
+      "Branch": "L2O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "U",
+      "Branch": "L2O4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "U",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "U",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "U",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "U",
+      "Branch": "L3N7",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "U",
+      "Branch": "L3O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "U",
+      "Branch": "L3O45",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "U",
+      "Branch": "M5N3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "U",
+      "Branch": "M5N6",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "U",
+      "Branch": "M5O3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "V",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "V",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "V",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "W",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "W",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "W",
+      "Branch": "L2O4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "W",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "W",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "W",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "W",
+      "Branch": "L3O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "W",
+      "Branch": "L3O45",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "W",
+      "Branch": "M5N3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "W",
+      "Branch": "M5N6",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "W",
+      "Branch": "M5O3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Xe",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Xe",
+      "Branch": "KN2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Xe",
+      "Branch": "KN3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Xe",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Xe",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Xe",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Xe",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Xe",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Xe",
+      "Branch": "L3O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Y",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Y",
+      "Branch": "KN2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Y",
+      "Branch": "KN3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Y",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Y",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Y",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Y",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Yb",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Yb",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Yb",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Yb",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Yb",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Yb",
+      "Branch": "L3O1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Yb",
+      "Branch": "M5N3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Yb",
+      "Branch": "M5N6",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Yb",
+      "Branch": "M5O3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Zn",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Zn",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Zn",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Zr",
+      "Branch": "KM2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Zr",
+      "Branch": "KN2",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Zr",
+      "Branch": "KN3",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Zr",
+      "Branch": "L2M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Zr",
+      "Branch": "L2N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Zr",
+      "Branch": "L3M1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Zr",
+      "Branch": "L3N1",
+      "reason": "not_whitelisted"
+    },
+    {
+      "Element": "Zr",
+      "Branch": "L3N4",
+      "reason": "not_whitelisted"
+    }
+  ],
+  "sample_metadata": {
+    "format": "counts_csv",
+    "channel_origin": 0,
+    "explicit_channels": true,
+    "filled_channels": [],
+    "warnings": [],
+    "live_time_s": 30.0
+  },
+  "branch_ratios": "fixed_by_sensitivity_plus_same_shell_completion; unknown_shells_separate_nuisances",
+  "model": "raw_counts_poisson; centroid_pattern_selected; integrated_gaussian; q_i*S_i_line; unscaled_shell_nuisances; SNIP*exp(Legendre)",
+  "objective": 1033.9650810425662,
+  "negative_log_likelihood_without_factorial": -606453.6761767233,
+  "poisson_deviance": 2067.907121297525,
+  "degrees_of_freedom": 1688,
+  "deviance_per_dof": 1.2250634604843158,
+  "model_comparisons": [
+    {
+      "Element": "Fe",
+      "reduced_fit_success": true,
+      "DeltaDeviance": 98390.38639515801,
+      "reduced_deviance": 100458.2935164553,
+      "full_deviance": 2067.907121297525,
+      "removed_parameters": 1,
+      "Score_definition": "DeltaDeviance - removed_parameters*log(number_of_channels); ranking, not probability"
+    },
+    {
+      "Element": "Cu",
+      "reduced_fit_success": true,
+      "DeltaDeviance": 44866.798168069916,
+      "reduced_deviance": 46934.70528936729,
+      "full_deviance": 2067.907121297525,
+      "removed_parameters": 2,
+      "Score_definition": "DeltaDeviance - removed_parameters*log(number_of_channels); ranking, not probability"
+    },
+    {
+      "Element": "Pb",
+      "reduced_fit_success": true,
+      "DeltaDeviance": 249291.02786623198,
+      "reduced_deviance": 251358.93498752927,
+      "full_deviance": 2067.907121297525,
+      "removed_parameters": 2,
+      "Score_definition": "DeltaDeviance - removed_parameters*log(number_of_channels); ranking, not probability"
+    }
+  ],
+  "overlap_pairs": [],
+  "branch_diagnostics": [
+    {
+      "Element": "Fe",
+      "Branches": "Kalpha2+Kalpha1",
+      "Family": "K",
+      "ExpectedCounts": 18474.92073046891,
+      "InformationScore": 134.6708977720264,
+      "RegionResidualZ": 0.9050988252865252,
+      "branch_ratio_mismatch": false
+    },
+    {
+      "Element": "Fe",
+      "Branches": "Kbeta1+KM2",
+      "Family": "K",
+      "ExpectedCounts": 2465.08098927889,
+      "InformationScore": 46.85143668108312,
+      "RegionResidualZ": -2.2366159594599377,
+      "branch_ratio_mismatch": false
+    },
+    {
+      "Element": "Cu",
+      "Branches": "Lalpha1+Lalpha2+Lbeta1",
+      "Family": "L",
+      "ExpectedCounts": 75.2019405002996,
+      "InformationScore": 3.05601146453351,
+      "RegionResidualZ": -5.489999259161216,
+      "branch_ratio_mismatch": false
+    },
+    {
+      "Element": "Cu",
+      "Branches": "Kalpha2+Kalpha1",
+      "Family": "K",
+      "ExpectedCounts": 9897.064302782312,
+      "InformationScore": 97.7859663205573,
+      "RegionResidualZ": 0.8949894689724202,
+      "branch_ratio_mismatch": false
+    },
+    {
+      "Element": "Cu",
+      "Branches": "Kbeta1+KM2",
+      "Family": "K",
+      "ExpectedCounts": 1322.077031325549,
+      "InformationScore": 32.693581826124316,
+      "RegionResidualZ": -1.4874762911424746,
+      "branch_ratio_mismatch": false
+    },
+    {
+      "Element": "Pb",
+      "Branches": "M5N3",
+      "Family": "M",
+      "ExpectedCounts": 1773.8255742030708,
+      "InformationScore": 39.322104211068726,
+      "RegionResidualZ": 0.2153123923996135,
+      "branch_ratio_mismatch": false
+    },
+    {
+      "Element": "Pb",
+      "Branches": "M5N6+Malpha1+M5O3",
+      "Family": "M",
+      "ExpectedCounts": 26779.422664400332,
+      "InformationScore": 162.679468955953,
+      "RegionResidualZ": -0.19397947030193982,
+      "branch_ratio_mismatch": false
+    },
+    {
+      "Element": "Pb",
+      "Branches": "L3M1",
+      "Family": "L",
+      "ExpectedCounts": 798.9258080472189,
+      "InformationScore": 24.10118678773523,
+      "RegionResidualZ": 0.15191803322688135,
+      "branch_ratio_mismatch": false
+    },
+    {
+      "Element": "Pb",
+      "Branches": "Lalpha2+Lalpha1",
+      "Family": "L",
+      "ExpectedCounts": 15253.26806038374,
+      "InformationScore": 121.89867777032543,
+      "RegionResidualZ": 0.3458341481516354,
+      "branch_ratio_mismatch": false
+    },
+    {
+      "Element": "Pb",
+      "Branches": "L2M1",
+      "Family": "L",
+      "ExpectedCounts": 174.78080755243403,
+      "InformationScore": 8.29697440921992,
+      "RegionResidualZ": -2.272722653985433,
+      "branch_ratio_mismatch": false
+    },
+    {
+      "Element": "Pb",
+      "Branches": "L3N1",
+      "Family": "L",
+      "ExpectedCounts": 895.7212813872927,
+      "InformationScore": 26.156349043121967,
+      "RegionResidualZ": -0.2645852414332169,
+      "branch_ratio_mismatch": false
+    },
+    {
+      "Element": "Pb",
+      "Branches": "L3N4+Lbeta1+Lbeta2+L3O1+L3O45",
+      "Family": "L",
+      "ExpectedCounts": 11069.923898504345,
+      "InformationScore": 102.36010197361126,
+      "RegionResidualZ": 0.23689811466119665,
+      "branch_ratio_mismatch": false
+    },
+    {
+      "Element": "Pb",
+      "Branches": "L2N1",
+      "Family": "L",
+      "ExpectedCounts": 48.326223565910524,
+      "InformationScore": 2.6657469501575486,
+      "RegionResidualZ": -2.022546872856857,
+      "branch_ratio_mismatch": false
+    },
+    {
+      "Element": "Pb",
+      "Branches": "Lgamma1+L2O1+L2O4",
+      "Family": "L",
+      "ExpectedCounts": 2058.630881192035,
+      "InformationScore": 39.88987347438531,
+      "RegionResidualZ": 0.11445942730965303,
+      "branch_ratio_mismatch": false
+    }
+  ],
+  "delta_E_keV": 0.005708524078549851,
+  "resolution_scale": 0.9884412815064579,
+  "energy_gain_correction": 0.00012110774015971964,
+  "gain_fitted": true,
+  "background_parameters": [
+    0.4376877619342853,
+    0.13006435254330487,
+    -0.12018386340434727,
+    -0.08646619168048707
+  ],
+  "optimizer": {
+    "message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH",
+    "attempts": [
+      {
+        "success": true,
+        "message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH",
+        "iterations": 388,
+        "objective": 1033.9650810425662
+      }
+    ]
+  },
+  "nuisance_peaks": [
+    "Cu_L1_unscaled",
+    "Pb_L1_unscaled"
+  ],
+  "uncertainty": {
+    "method": "expected_poisson_information_nuisance_adjusted",
+    "scaled_jacobian_condition": 3.368889018046796,
+    "singular_directions": 0
+  },
+  "q_covariance": [
+    [
+      110.12407624071436,
+      0.3898577967975001,
+      0.8107550528844966
+    ],
+    [
+      0.3898577967975014,
+      52.44818260964404,
+      0.5856809877178304
+    ],
+    [
+      0.8107550528844915,
+      0.5856809877178292,
+      171.59451249440906
+    ]
+  ],
+  "covariance_element_order": [
+    "Fe",
+    "Cu",
+    "Pb"
+  ],
+  "bootstrap": {
+    "requested": 0,
+    "successful": 0,
+    "method": null
+  },
+  "reference": {
+    "Element": "Pb",
+    "selection_rule": "minimum relative q standard error among supported identifiable elements",
+    "fraction_denominator_elements": [
+      "Fe",
+      "Cu",
+      "Pb"
+    ]
+  },
+  "apparent_relative_areal_density": true,
+  "assumptions": {
+    "thin_sample": true,
+    "self_absorption": false,
+    "full_energy_efficiency": 1.0,
+    "absolute_areal_density_available": false
+  },
+  "systematics_included": false,
+  "excitation_match_verified": false,
+  "target_scattering_review": "Tube target unspecified; candidate target fluorescence may be instrument scattering",
+  "residual_anomalies": {
+    "abs_pearson_gt5": 1,
+    "unassigned_peaks": [
+      {
+        "peak_id": 3,
+        "channel": 163.4445890899396,
+        "energy_keV": 3.268891781798744,
+        "local_prominence": 8.416084123833258,
+        "estimated_fwhm_keV": 0.5556689175909362,
+        "approx_significance": 4.222400918924134,
+        "roi_start_keV": 2.560979193620101,
+        "roi_end_keV": 3.976804369977387,
+        "quality_flags": "poisson_fitted_centroid;local_score_not_global_p_value;broad_structure",
+        "maximum_channel": 167,
+        "maximum_energy_keV": 3.339999999999999,
+        "centroid_std_keV": 0.05627691428372002,
+        "net_area_counts": 273.7769035482791,
+        "area_std_counts": 201.2260067568149,
+        "local_fit_status": "success",
+        "local_deviance_per_dof": 1.0325313651124302
+      },
+      {
+        "peak_id": 16,
+        "channel": 1685.766153497555,
+        "energy_keV": 33.7153230699504,
+        "local_prominence": 6.260731954004635,
+        "estimated_fwhm_keV": 0.10028063179583804,
+        "approx_significance": 3.9841664097823557,
+        "roi_start_keV": 33.587567279854106,
+        "roi_end_keV": 33.843078860046695,
+        "quality_flags": "poisson_fitted_centroid;local_score_not_global_p_value",
+        "maximum_channel": 1686,
+        "maximum_energy_keV": 33.71999999999999,
+        "centroid_std_keV": 0.015732384012436807,
+        "net_area_counts": 40.374864438036155,
+        "area_std_counts": 13.543731393901558,
+        "local_fit_status": "success",
+        "local_deviance_per_dof": 0.8705322907852794
+      }
+    ]
+  },
+  "warnings": [
+    "Two-point residuals do not estimate calibration statistical uncertainty",
+    "Sensitivity provenance unverified: missing .metadata.json; source matching is not established",
+    "2 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary"
+  ],
+  "elapsed_seconds": 3.407315856002242
+}
