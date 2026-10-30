@@ -164,3 +164,5 @@ PYTHON_BIN=.venv/bin/python scripts/verify.sh
 同层补线使用xraylib公开的`CS_FluorLine=CS_FluorShell*RadRate`关系：[xraylib API](https://github.com/tschoonj/xraylib/wiki/The-xraylib-API-list-of-all-functions#x-ray-fluorescence-cross-sections)。校准、重叠和实验条件对谱线比的影响参见[PyMca教程](https://www.silx.org/pub/doc/PyMca/latest/training/quantification/index.html)。场景分类是工程启发式，参考[Getty文化遗产XRF材料](https://www.getty.edu/conservation/publications_resources/pdf_publications/pdf/handheld-xrf-cultural-heritage.pdf)和[Texas A&M岩矿pXRF说明](https://gcr.tamu.edu/instruments/pXRF.html)，不声称这些机构发布过本项目的51/67分类。
 
 上传包含代码、配置、原始数据、示例、测试、文档及结果；`.venv`、Python缓存、构建产物和环境密钥不上传。原始MCA/CSV通过Git属性保留字节，方便SHA256审计。
+
+补充原始资料位于`XRF_SDD/`（20份MCA，发布期间加入），均保留原始字节。当前验证范围为`SDD_Spectrum/shafa_50kv_20uA.mca`和合成示例；新增资料需逐采集条件匹配标定与灵敏度，见该目录说明。
