@@ -187,6 +187,6 @@ A为该组完整净面积，rho为质量面密度，C包含公共入射通量、
 
 ## 简洁交付格式
 
-批量`relative_areal_density_all.txt`每个输入严格三行，顺序为文件名、支持元素及相对面密度（注明参考）、待定元素。未确证者不进入分母；无法估计及失败明确文字标记，不能用0补缺。完整数值和误差另存`density_details.json`。
+批量`relative_areal_density_all.txt`每个输入严格四行，顺序为文件名、支持元素及相对面密度（注明参考）、待定元素、空白行。未确证者不进入分母；无法估计及失败明确文字标记，不能用0补缺。完整数值和误差另存`density_details.json`。
 
 单谱新增`name_elements.png`，仅绘制Observed raw count与由实测峰匹配和拟合贡献共同支持的元素标签。批量根目录复制该图，不再复制带MCA扩展名的spectrum_fit图；完整诊断图留在逐谱子目录。若同stem的MCA/CSV并存，分别用elements_mca/、elements_csv/子目录，保持图片名仍为name_elements.png。

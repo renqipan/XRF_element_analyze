@@ -82,7 +82,7 @@
   "physical_conditions_policy": "No tube voltage, target, or sensitivity matching inferred from filenames",
   "aggregate_density_txt": "relative_areal_density_all.txt",
   "sample_summary_txt": "batch_summary.txt",
-  "text_format": "UTF-8 BOM; exactly three lines per spectrum",
+  "text_format": "UTF-8 BOM; three content lines and one blank line per spectrum",
   "density_details_json": "density_details.json",
   "samples": [
     {

@@ -51,7 +51,7 @@ def _atomic_txt(path, rows, columns):
 
 
 def format_density_summary(samples,records):
-    """Exactly three lines per input, including failed or unquantifiable inputs."""
+    """Three content lines and one blank line per input, including failed inputs."""
     lines=[]
     clean=lambda value:' '.join(str(value).splitlines())
     for sample in samples:
@@ -69,7 +69,7 @@ def format_density_summary(samples,records):
         prefix='确定元素及相对面密度'+('（%s=1）'%next(iter(references)) if len(references)==1 else '')+'：'
         lines.extend(['文件名：'+clean(sample['Spectrum_File']),
                       prefix+('；'.join(entries) or ('无法判定（分析失败）' if failed else '无')),
-                      '可能存在的元素：'+(clean(sample.get('Possible_Elements','')).replace(',',', ') or ('无法判定' if failed else '无'))])
+                      '可能存在的元素：'+(clean(sample.get('Possible_Elements','')).replace(',',', ') or ('无法判定' if failed else '无')), ''])
     return '\n'.join(lines)+'\n' if lines else ''
 
 
@@ -117,7 +117,7 @@ def run_batch(input_dir, output_dir, calibration, sensitivity, config=None):
         'failures': 0, 'completed': False,
         'physical_conditions_policy': 'No tube voltage, target, or sensitivity matching inferred from filenames',
         'aggregate_density_txt': 'relative_areal_density_all.txt', 'sample_summary_txt': 'batch_summary.txt',
-        'text_format': 'UTF-8 BOM; exactly three lines per spectrum',
+        'text_format': 'UTF-8 BOM; three content lines and one blank line per spectrum',
         'density_details_json': 'density_details.json',
         'samples': sample_rows,
     }

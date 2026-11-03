@@ -98,7 +98,7 @@ PYTHON_BIN=.venv/bin/python scripts/verify.sh
 
 - `<无后缀文件名>_elements.png`：仅原始计数曲线（Observed raw count）和支持元素名称的谱图。
 - `spectra/<完整文件名>/`：完整的单样品报告，包括原有逐样品CSV。
-- **`relative_areal_density_all.txt`**：UTF-8 BOM文本，每份谱严格三行：文件名；确定元素及相对面密度（注明参考元素）；可能存在的元素。待定元素不参与比值，无法估计显示“暂不可估计”，失败输入也占三行。
+- **`relative_areal_density_all.txt`**：UTF-8 BOM文本，每份谱严格四行（最后一行空白）：文件名；确定元素及相对面密度（注明参考元素）；可能存在的元素。待定元素不参与比值，无法估计显示“暂不可估计”，失败输入也占四行。
 - `batch_summary.txt`：每样品一行的支持/可能元素、拟合状态和图片路径。
 - `batch_manifest.json`：输入哈希、参数和逐文件处理进度。
 
@@ -239,12 +239,13 @@ C在同一谱内比值中抵消；S不再重复乘荧光产额或分支率。面
 补充原始资料位于`XRF_SDD/`。批处理按运行时目录中实际存在的MCA/CSV逐一分析，不按历史文件清单恢复或补造样品；各采集条件需分别匹配标定与灵敏度。实际运行统计以 `VALIDATION.md`和批处理清单为准。
 
 
-三行汇总示例：
+四行汇总示例（第三行后留空白行）：
 
 ```text
 文件名：sample.mca
 确定元素及相对面密度（Fe=1）：Ca=0.154585；Fe=1；Pb=20.2006
 可能存在的元素：Cr, Pm
+
 ```
 
 `density_details.json`保存机器可读数值、误差和质量标记；`batch_summary.txt`保留逐样品状态。单谱分析同样在输出目录新增`name_elements.png`，详细拟合图仍保留在逐谱报告目录中。批量根目录不再复制`name.mca.spectrum_fit.png`。

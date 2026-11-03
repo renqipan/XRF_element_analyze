@@ -1,4 +1,5 @@
 *.png binary
+/XRF_Analyze_results/relative_areal_density_all.txt whitespace=-blank-at-eof
 SDD_Spectrum/* -text whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
 /data/*.csv -text whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
 /data/*.mca -text whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol

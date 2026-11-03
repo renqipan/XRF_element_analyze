@@ -5,14 +5,15 @@ from xrf_analyzer.pipeline import analyze
 from xrf_analyzer.visualization import make_elements_plot
 
 
-def test_compact_summary_excludes_pending_density_and_has_exactly_three_lines():
+def test_compact_summary_excludes_pending_density_and_has_four_lines_with_blank_separator():
     samples=[{'Spectrum_File':'sample.mca','Fit_Status':'success','Possible_Elements':'Cr,Pm'}]
     records=[{'Spectrum_File':'sample.mca','Element':'Fe','Element_Status':'supported',
               'Relative_to_Reference':1.,'Reference_Element':'Fe'},
              {'Spectrum_File':'sample.mca','Element':'Cr','Element_Status':'tentative',
               'Relative_to_Reference':999.,'Reference_Element':'Fe'}]
     lines=format_density_summary(samples,records).splitlines()
-    assert len(lines)==3
+    assert len(lines)==4
+    assert lines[3]==''
     assert lines[0]=='文件名：sample.mca'
     assert 'Fe=1' in lines[1] and 'Cr' not in lines[1] and 'Pm' not in lines[1]
     assert lines[2]=='可能存在的元素：Cr, Pm'

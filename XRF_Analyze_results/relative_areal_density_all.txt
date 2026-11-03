@@ -1,51 +1,68 @@
 ﻿文件名：Pb_50keV_20uA_back3mm.mca
 确定元素及相对面密度（Pb=1）：Ni=0.0110782；Ag=0.0213635；Pb=1
 可能存在的元素：Fe, Sn, Pm, Eu
+
 文件名：pos1_40keV_80uA.mca
 确定元素及相对面密度（Pb=1）：Fe=0.00349893；Ag=0.0137725；Pb=1
 可能存在的元素：Ni, Sm
+
 文件名：pos2_40keV_80uA.mca
 确定元素及相对面密度（Pb=1）：Pb=1
 可能存在的元素：Fe, Cd, Eu
+
 文件名：pos3_40keV_80uA.mca
 确定元素及相对面密度（Pb=1）：Fe=0.00374683；Ni=0.00330184；Pb=1
 可能存在的元素：Ag
+
 文件名：pos4_40keV_80uA.mca
 确定元素及相对面密度（Pb=1）：Ca=0.000644998；Fe=0.0375805；Pb=1
 可能存在的元素：Ni, Ag, Tb, Tm
+
 文件名：pos5_40keV_5uA.mca
 确定元素及相对面密度（Pb=1）：Fe=0.0392176；Pb=1
 可能存在的元素：Ni, Ag
+
 文件名：shafa1_50kv_20uA.mca
 确定元素及相对面密度（Pb=1）：Fe=0.0660308；Sb=0.0117729；Pb=1
 可能存在的元素：Ag, Pm, Hg
+
 文件名：shafa_50kv_20uA.mca
 确定元素及相对面密度（Pb=1）：Ca=0.00765249；Fe=0.0495036；Hg=0.0363485；Pb=1
 可能存在的元素：Cr, Ag, Pm
+
 文件名：shou_50keV_20uA_back3mm.mca
 确定元素及相对面密度（Pb=1）：Fe=0.0135102；Ag=0.0167385；Pb=1
 可能存在的元素：无
+
 文件名：shu_50keV_20uA_back3mm.mca
 确定元素及相对面密度（Pb=1）：Ag=0.0175813；Pb=1
 可能存在的元素：Fe, Eu
+
 文件名：toufa_50keV_20uA_back3mm.mca
 确定元素及相对面密度（Pb=1）：Fe=0.0128292；Pb=1
 可能存在的元素：Ni, Sn
+
 文件名：xiongzhen1.mca
 确定元素及相对面密度（Pb=1）：Fe=0.0351404；Pb=1
 可能存在的元素：Ag
+
 文件名：xiongzhen_50keV_20uA_back3mm.mca
 确定元素及相对面密度（Pb=1）：Fe=0.0386405；Ag=0.0186448；Pb=1
 可能存在的元素：Ni, Sn
+
 文件名：yifu1_tou_50keV_20uA_back3mm.mca
 确定元素及相对面密度（Pb=1）：Pb=1
 可能存在的元素：无
+
 文件名：yifu2_50kv_20uA.mca
 确定元素及相对面密度（Pb=1）：Fe=0.0258753；Ag=0.0150105；Pb=1
 可能存在的元素：Ni, Pm
+
 文件名：yifu_50keV_20uA_back3mm.mca
 确定元素及相对面密度（Pb=1）：Ag=0.0178092；Pm=0.00413595；Pb=1
 可能存在的元素：无
+
 文件名：yinzhang_50kv_20uA.mca
 确定元素及相对面密度（Pb=1）：Fe=0.0353407；Pb=1
 可能存在的元素：Ag
+

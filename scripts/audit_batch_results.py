@@ -29,7 +29,8 @@ def main(root):
     from xrf_analyzer.batch import format_density_summary
     expected=format_density_summary(manifest['samples'],detail['records'])
     assert (out/'relative_areal_density_all.txt').read_text(encoding='utf-8-sig')==expected
-    assert len(expected.splitlines())==3*len(samples)
+    assert len(expected.splitlines())==4*len(samples)
+    assert all(line=='' for line in expected.splitlines()[3::4])
     errors, records = [], []
     for _, sample in samples.iterrows():
         name = sample.Spectrum_File

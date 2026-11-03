@@ -61,8 +61,9 @@ def test_directory_batch_spaces_case_collisions_and_failure_continuation(synthet
     assert set(valid.Ratio_Status) == {'available'}
     assert 'Possible_Elements' in aggregate.columns
     text=(output/'relative_areal_density_all.txt').read_text(encoding='utf-8-sig')
-    assert len(text.splitlines())==12
-    assert all(line.startswith('文件名：') for line in text.splitlines()[::3])
+    assert len(text.splitlines())==16
+    assert all(line.startswith('文件名：') for line in text.splitlines()[::4])
+    assert all(line=='' for line in text.splitlines()[3::4])
     assert not list(output.glob('*.spectrum_fit.png'))
 
 

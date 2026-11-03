@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Analyze top-level MCA/CSV spectra; save element-labelled raw spectra and a three-line-per-spectrum TXT.
+# Analyze top-level MCA/CSV spectra; save element plots and four-line TXT blocks (last line blank).
 set -euo pipefail
 XRF_PROJECT_DIR="$(CDPATH= cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 if [[ -z "${PYTHON_BIN:-}" ]]; then
