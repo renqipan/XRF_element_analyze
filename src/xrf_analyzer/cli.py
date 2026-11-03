@@ -18,6 +18,9 @@ def build_parser():
     p.add_argument('--sensitivity', required=True, help='Nine-branch common-scale S CSV, never row-normalized')
     p.add_argument('--output-dir', required=True)
     p.add_argument('--config', help='JSON overrides of AnalysisConfig; CLI overrides JSON')
+    p.add_argument('--background_spectrum','--backgroud_spectrum','--background-spectrum',
+                   '--backgroud-spectrum','--background',dest='background_spectrum',default=argparse.SUPPRESS,
+                   help='Measured background MCA/CSV; default None; use None to disable; global scale is fitted')
     p.add_argument('--find_peaks', '--find-peaks', nargs='+', default=argparse.SUPPRESS, help='User peak centers in keV; default None (automatic); quote bracket/comma lists')
     p.add_argument('--find-peaks-axis', choices=['reference','observed'], default=argparse.SUPPRESS)
     p.add_argument('--element-prior', choices=['general','heritage','archaeology','minerals','none'], default=argparse.SUPPRESS)

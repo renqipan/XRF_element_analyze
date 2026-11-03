@@ -6,6 +6,7 @@ from scipy.special import xlogy
 from numpy.polynomial.legendre import legvander
 import xraylib
 from .response import response_with_derivatives, sigma_kev
+from .measured_background import profile_background
 
 
 @dataclass
@@ -40,6 +41,19 @@ class FitResult:
     gain_fitted: bool
     line_centers: dict
     center_axis: str
+    smooth_background: object = None
+    measured_background_counts: object = None
+    background_observed_counts: object = None
+    background_latent_counts: object = None
+    background_scale: object = None
+    background_scale_std: object = None
+    background_scale_index: object = None
+    joint_deviance: object = None
+    sample_deviance: object = None
+    information_weights: object = None
+    background_scale_influence_sample: object = None
+    background_scale_influence_reference: object = None
+    background_scale_uncertainty_status: object = None
 
 
 def poisson_deviance(y, mu):
@@ -67,9 +81,24 @@ def instrument_lines(config, edges):
 
 
 def fit_spectrum(counts, energy, edges, background0, lines, config, delta_bound=0.02,
-                 initial=None, fixed_areas=None, auxiliary_lines=(), initial_delta=0., line_centers=None, center_axis="reference"):
+                 initial=None, fixed_areas=None, auxiliary_lines=(), initial_delta=0., line_centers=None, center_axis="reference",
+                 background_counts=None, background_scale_initial=None, fixed_background_scale=None):
     line_centers = dict(line_centers or {})
     y = np.asarray(counts, float)
+    if background_counts is None:
+        background_counts = getattr(config, '_background_counts', None)
+    measured = background_counts is not None
+    reference = np.asarray(background_counts, dtype=float) if measured else None
+    if measured and (reference.shape != y.shape or not np.isfinite(reference).all() or (reference < 0).any()):
+        raise ValueError('Measured background must be aligned, finite and nonnegative')
+    alpha_initial = background_scale_initial
+    if alpha_initial is None:
+        alpha_initial = getattr(config, '_background_scale_initial', 1.)
+    alpha_initial = float(alpha_initial if alpha_initial is not None else 1.)
+    if not np.isfinite(alpha_initial) or alpha_initial < 0:
+        raise ValueError('Measured background scale initial value must be finite and nonnegative')
+    if fixed_background_scale is not None and (not np.isfinite(fixed_background_scale) or fixed_background_scale < 0):
+        raise ValueError('Fixed measured background scale must be finite and nonnegative')
     symbols = sorted({line.symbol for line in lines}, key=xraylib.SymbolToAtomicNumber)
     sums = np.array([sum(l.sensitivity_cm2_g for l in lines if l.symbol == s) for s in symbols])
     extras = instrument_lines(config, edges)
@@ -101,6 +130,8 @@ def fit_spectrum(counts, energy, edges, background0, lines, config, delta_bound=
     beta_slice = slice(n_amp, n_amp+h.shape[1])
     gain_fitted = bool(config.fit_response and config.fit_energy_gain and np.sum(~fixed_centers) >= 2 and np.ptp(centers[~fixed_centers]) > 1.)
     npar = n_amp+h.shape[1]+(2+int(gain_fitted) if config.fit_response else 0)
+    alpha_index = npar if measured else None
+    npar += int(measured)
 
     def matrices(delta, scale, gain=0.):
         if not len(centers):
@@ -118,15 +149,22 @@ def fit_spectrum(counts, energy, edges, background0, lines, config, delta_bound=
         gain = x[response_start+2] if gain_fitted else 0.
         matrix, dm, wm, gm = matrices(delta, scale, gain)
         amplitudes = x[:n_amp]*amp_scale
-        bg = b0*np.exp(h @ x[beta_slice])
-        mu = np.maximum(bg + matrix @ amplitudes, 1e-12)
+        smooth_bg = b0*np.exp(h @ x[beta_slice])
+        signal = np.maximum(smooth_bg + matrix @ amplitudes, 1e-12)
+        profile = profile_background(y, signal, x[alpha_index], reference) if measured else None
+        mu = profile['model'] if measured else signal
+        bg = smooth_bg+x[alpha_index]*profile['latent_background'] if measured else smooth_bg
         if not want_jac:
             return mu, bg, matrix
-        parts = [matrix*amp_scale, bg[:, None]*h]
+        parts = [matrix*amp_scale, smooth_bg[:, None]*h]
         if config.fit_response:
             parts += [(dm @ amplitudes)[:, None], (wm @ amplitudes)[:, None]]
             if gain_fitted:
                 parts += [(gm @ amplitudes)[:, None]]
+        if measured:
+            # Envelope gradient holds latent b fixed. Its uncertainty enters
+            # the profiled information weights, not an exact-template error.
+            parts += [profile['latent_background'][:, None]]
         return mu, bg, matrix, np.column_stack(parts)
 
     def objective(x):
@@ -134,7 +172,12 @@ def fit_spectrum(counts, energy, edges, background0, lines, config, delta_bound=
         beta = x[beta_slice]
         reg = config.background_regularization
         # Deviance/2 is the original-count Poisson NLL up to a constant and is numerically stable.
-        value = poisson_deviance(y, mu)/2 + 0.5*reg*(beta @ beta)
+        if measured:
+            smooth_bg = b0*np.exp(h @ x[beta_slice])
+            profile = profile_background(y, smooth_bg+evaluate(x)[2]@(x[:n_amp]*amp_scale), x[alpha_index], reference)
+            value = profile['deviance']/2 + 0.5*reg*(beta @ beta)
+        else:
+            value = poisson_deviance(y, mu)/2 + 0.5*reg*(beta @ beta)
         grad = jac.T @ (1-y/mu)
         grad[beta_slice] += reg*beta
         return value, grad
@@ -144,6 +187,8 @@ def fit_spectrum(counts, energy, edges, background0, lines, config, delta_bound=
         bounds += [(-delta_bound, delta_bound), config.resolution_scale_bounds]
         if gain_fitted:
             bounds += [(-config.energy_gain_bound, config.energy_gain_bound)]
+    if measured:
+        bounds += [(0., None) if fixed_background_scale is None else (float(fixed_background_scale), float(fixed_background_scale))]
     if fixed_areas:
         for symbol, value in fixed_areas.items():
             if symbol in symbols:
@@ -151,13 +196,15 @@ def fit_spectrum(counts, energy, edges, background0, lines, config, delta_bound=
     mat, _, _, _ = matrices(initial_delta, 1.)
     if n_amp:
         try:
-            area0 = nnls(mat / np.sqrt(b0+1)[:, None], np.maximum(y-b0, 0)/np.sqrt(b0+1))[0]
+            initial_bg = b0+(alpha_initial*reference if measured else 0.)
+            area0 = nnls(mat / np.sqrt(initial_bg+1)[:, None], np.maximum(y-initial_bg, 0)/np.sqrt(initial_bg+1))[0]
         except (RuntimeError, np.linalg.LinAlgError):
             area0 = np.full(n_amp, max(y.sum()/max(n_amp, 1), 1))
     else:
         area0 = np.empty(0)
     x0 = np.r_[area0/amp_scale, np.zeros(h.shape[1]),
-               ([initial_delta, 1.]+([0.] if gain_fitted else [])) if config.fit_response else []]
+               ([initial_delta, 1.]+([0.] if gain_fitted else [])) if config.fit_response else [],
+               [alpha_initial] if measured else []]
     if initial is not None and len(initial) == len(x0):
         x0 = np.array(initial, copy=True)
     attempts, solutions = [], []
@@ -193,8 +240,29 @@ def fit_spectrum(counts, energy, edges, background0, lines, config, delta_bound=
     response_boundary = config.fit_response and ((np.any(~fixed_centers) and abs(delta) > .99*delta_bound) or
                             scale < config.resolution_scale_bounds[0]*1.01 or scale > config.resolution_scale_bounds[1]*.99)
     response_boundary |= gain_fitted and abs(gain) >= .99*config.energy_gain_bound
-    return FitResult(bool(opt.success and np.isfinite(opt.fun)), str(opt.message), float(opt.fun),
+    result = FitResult(bool(opt.success and np.isfinite(opt.fun)), str(opt.message), float(opt.fun),
                      float(np.sum(mu-xlogy(y, mu))), poisson_deviance(y, mu), symbols,
                      np.divide(t, sums), t, sums, bg, scatter, components, mu, mat, jac,
                      opt.x, bounds, amp_scale, [s[0] for s in extras]+aux_names, float(delta), float(scale),
                      attempts, npar, bool(response_boundary), auxiliary_areas, auxiliary_lines, gain, gain_fitted, line_centers, center_axis)
+    result.smooth_background = b0*np.exp(h@opt.x[beta_slice])
+    result.sample_deviance = poisson_deviance(y, mu)
+    if measured:
+        alpha = float(opt.x[alpha_index])
+        profile = profile_background(y, result.smooth_background+mat@(opt.x[:n_amp]*amp_scale), alpha, reference)
+        result.background_scale = alpha
+        result.background_scale_index = alpha_index
+        result.background_observed_counts = reference.copy()
+        result.background_latent_counts = profile['latent_background']
+        result.measured_background_counts = alpha*profile['latent_background']
+        result.information_weights = profile['information_weight']
+        result.nll = profile['nll']
+        result.deviance = result.joint_deviance = profile['deviance']
+        result.n_parameters -= int(fixed_background_scale is not None)
+        from .uncertainty import estimate_covariance
+        estimate_covariance(result)
+    else:
+        result.measured_background_counts = np.zeros_like(y)
+        result.information_weights = 1/np.maximum(mu, 1e-12)
+        result.joint_deviance = result.deviance
+    return result

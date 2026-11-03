@@ -46,6 +46,9 @@ def evaluate_branch_evidence(symbol, lines, energy, edges, counts, fit, config, 
             basis.append(p/max(strength,1e-20));strengths.append(strength)
         matrix=np.column_stack(basis); strengths=np.array(strengths)
         other=np.maximum(fit.model[a:b]-fit.background[a:b]-fit.components[a:b,fit.symbols.index(symbol)],0)
+        reference=getattr(fit,'background_observed_counts',None)
+        reference=reference[a:b] if reference is not None else None
+        alpha=getattr(fit,'background_scale',0.) or 0.
         ng=len(groups); scale=max(y.sum()/ng,10.)
         def solve(tied=False, missing=None):
             design=(matrix@strengths)[:,None] if tied else matrix
@@ -54,7 +57,12 @@ def evaluate_branch_evidence(symbol, lines, energy, edges, counts, fit, config, 
             def obj(v):
                 bg=np.exp(h@v[-2:]);mu=np.maximum(other+bg+design@(v[:na]*scale),1e-12)
                 r=1-y/mu
-                return float(np.sum(mu-xlogy(y,mu))),np.r_[scale*design.T@r,(bg[:,None]*h).T@r]
+                loss=float(np.sum(mu-xlogy(y,mu)))
+                if reference is not None:
+                    from .measured_background import profile_background
+                    prof=profile_background(y,mu,alpha,reference)
+                    loss=prof['nll'];r=prof['signal_gradient']
+                return loss,np.r_[scale*design.T@r,(bg[:,None]*h).T@r]
             start=np.r_[np.full(na,.5),np.log(max(np.percentile(y,30),.2)),0.]
             bounds=[(0,None)]*na+[(-8,15),(-4,4)]
             if missing is not None:bounds[missing]=(0.,0.);start[missing]=0

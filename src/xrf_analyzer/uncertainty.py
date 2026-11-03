@@ -12,7 +12,9 @@ def estimate_covariance(fit):
     n_amp = n + len(fit.nuisance_names)
     active[:n_amp] = fit.parameters[:n_amp]*fit.amplitude_scale > 1e-5
     idx = np.flatnonzero(active)
-    j = fit.jacobian[:, idx] / np.sqrt(fit.model[:, None])
+    weights=getattr(fit,'information_weights',None)
+    weights=1/fit.model if weights is None else weights
+    j = fit.jacobian[:, idx] * np.sqrt(weights[:,None])
     norms = np.linalg.norm(j, axis=0)
     safe_norms = np.maximum(norms, 1e-30)
     scaled = j / safe_norms
@@ -22,6 +24,12 @@ def estimate_covariance(fit):
     cov_active = cov_scaled / safe_norms[:, None] / safe_norms[None, :]
     cov = np.full((len(fit.parameters), len(fit.parameters)), np.nan)
     cov[np.ix_(idx, idx)] = cov_active
+    alpha_index=getattr(fit,'background_scale_index',None)
+    if alpha_index is not None and np.isfinite(cov[alpha_index,alpha_index]):
+        fit.background_scale_std=float(np.sqrt(max(0.,cov[alpha_index,alpha_index])))
+        influence=cov[alpha_index,idx]@fit.jacobian[:,idx].T*weights
+        fit.background_scale_influence_sample=influence
+        fit.background_scale_influence_reference=-fit.background_scale*influence
     null_part = np.sum(vt[~good]**2, axis=0) if (~good).any() else np.zeros(len(idx))
     bad = set(idx[(null_part > 1e-5) | (norms <= 1e-15)].tolist())
     if len(singular) < len(idx):

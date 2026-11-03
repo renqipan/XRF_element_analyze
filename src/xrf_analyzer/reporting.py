@@ -200,6 +200,8 @@ def export_analysis(result, output_dir):
                             'scatter_or_artifact_counts': fit.scatter, 'element_total_counts': fit.components.sum(axis=1),
                             'pearson_residual': (y-mu)/np.sqrt(mu),
                             'deviance_residual': np.sign(y-mu)*np.sqrt(np.maximum(dev, 0))})
+    spectrum['measured_background_counts']=getattr(fit,'measured_background_counts',np.zeros_like(y))
+    spectrum['continuum_background_counts']=getattr(fit,'smooth_background',fit.background)
     spectrum.to_csv(out/'fit_spectrum.csv', index=False)
     components = pd.DataFrame(fit.components, columns=fit.symbols)
     components.insert(0, 'energy_keV', result['energy'])

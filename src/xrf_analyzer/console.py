@@ -12,6 +12,9 @@ def print_run_summary(result, stream=None):
     print('\n样品：' + filename, file=stream, flush=True)
     print('确定存在（证据支持）：' + (', '.join(supported) or '无'), file=stream)
     print('相对面密度比值（表观值）：', file=stream)
+    measured=summary.get('measured_background',{})
+    if measured.get('enabled'):
+        print('  实测背景全谱scale：%.6g' % measured['scale'],file=stream)
     if summary.get('quantification_method')=='local-peaks':
         print('  定量依据：局部净峰面积 / 相对灵敏度',file=stream)
     if not supported:

@@ -25,9 +25,15 @@ from .reporting import sha256, export_analysis
 from .console import print_run_summary
 
 
-def analyze(spectrum, calibration, sensitivity, output_dir=None, config=None):
+_USE_CONFIG_BACKGROUND=object()
+
+
+def analyze(spectrum, calibration, sensitivity, output_dir=None, config=None, background_spectrum=_USE_CONFIG_BACKGROUND):
     start = time.monotonic()
-    config = (config or AnalysisConfig()).validate()
+    config = config or AnalysisConfig()
+    if background_spectrum is not _USE_CONFIG_BACKGROUND:
+        config=replace(config,background_spectrum=background_spectrum)
+    config=config.validate()
     for symbol in (list(config.elements or ()) + list(config.exclude_elements)
                    + [s for s in (config.reference_element, config.tube_target) if s]):
         validate_symbol(symbol)
@@ -60,6 +66,14 @@ def analyze(spectrum, calibration, sensitivity, output_dir=None, config=None):
     iterations = config.snip_iterations or max(5, int(np.ceil(4*float(sigma_kev(np.median(energy), config))*FWHM_FACTOR/cal.b_keV_per_channel)))
     iterations = min(iterations, (len(counts)-1)//2)
     b0 = snip_background(counts, iterations)
+    measured_counts=None
+    background_info={'enabled':False,'path':None}
+    if config.background_spectrum is not None:
+        from .background_input import load_background
+        measured_counts,background_info=load_background(config.background_spectrum,channel,cal,spec,config)
+        b0=np.maximum(b0-background_info['scale_initial']*snip_background(measured_counts,iterations),.1)
+        warnings.extend(background_info['warnings'])
+        warnings.append('Measured background enabled with fitted global scale; acquisition/shape matching is not verified')
     if cutoff is not None:
         # SNIP has no samples below an acquisition boundary: extrapolate a low
         # interior background level instead of anchoring it to a truncated peak.
@@ -68,10 +82,14 @@ def analyze(spectrum, calibration, sensitivity, output_dir=None, config=None):
         b0[:k] = np.minimum(b0[:k], edge_level)
         cutoff['background_edge_initialization'] = 'lower_quartile_of_adjacent_SNIP_background'
     manual_response=None
+    config._background_counts=measured_counts
+    config._background_scale_initial=background_info.get('scale_initial',1.)
+    config._background_scale=config._background_scale_initial
+    detection_background=b0+(config._background_scale_initial*measured_counts if measured_counts is not None else 0.)
     if config.find_peaks is None:
-        peaks = detect_peaks(channel, energy, edges, counts, b0, config)
+        peaks = detect_peaks(channel, energy, edges, counts, detection_background, config)
     else:
-        peaks,manual_response=fit_requested_peaks(channel,energy,edges,counts,b0,config)
+        peaks,manual_response=fit_requested_peaks(channel,energy,edges,counts,detection_background,config)
     logging.info('SNIP iterations=%d; observed candidate features=%d', iterations, len(peaks))
     fit_config, response_initialization = initialize_resolution(peaks, config)
     if manual_response is not None:
@@ -80,6 +98,8 @@ def analyze(spectrum, calibration, sensitivity, output_dir=None, config=None):
                            centroid_tolerance_kev=max(config.centroid_tolerance_kev,config.manual_match_tolerance_kev/config.match_sigma))
         response_initialization={'used':True,'method':'user_centers_shared_response_fit','effective_reference_FWHM_keV':fit_config.fwhm_ref_kev}
     lines, exclusions = [], []
+    fit_config._background_counts=measured_counts
+    fit_config._background_scale_initial=config._background_scale_initial
     for line in atomic_lines:
         reason = None
         if config.elements and line.symbol not in config.elements:
@@ -98,6 +118,11 @@ def analyze(spectrum, calibration, sensitivity, output_dir=None, config=None):
     auxiliary_lines = [l for l in auxiliary_lines if gaussian_response(edges, l.energy_keV, float(sigma_kev(l.energy_keV, fit_config))).sum() >= 1e-6]
     identification = identify_elements(counts, energy, edges, b0, lines, peaks, fit_config, delta_bound, cal.rms_keV, auxiliary_lines=auxiliary_lines, manual_response=manual_response)
     fit = identification.fit
+    fit_config._background_scale=getattr(fit,'background_scale',None) or 0.
+    fit_config._background_scale_std=getattr(fit,'background_scale_std',None)
+    if measured_counts is not None:
+        background_info.update(scale=fit.background_scale,scale_std=fit.background_scale_std,
+                               sample_deviance=fit.sample_deviance,joint_deviance=fit.joint_deviance)
     # Keep all rows in the sensitivity table, even when there are no usable branches.
     for symbol in sorted({s['Element'] for s in table.states} - set(identification.candidates.Element)):
         if config.elements and symbol not in config.elements or symbol in config.exclude_elements:
@@ -118,7 +143,8 @@ def analyze(spectrum, calibration, sensitivity, output_dir=None, config=None):
             simulated = rng.poisson(fit.model)
             boot = fit_spectrum(simulated, energy, edges, b0, identification.fit_lines, fit_config,
                                 identification.alignment['effective_fit_delta_bound_keV'],
-                                auxiliary_lines=fit.auxiliary_lines, initial_delta=fit.delta,line_centers=fit.line_centers,center_axis=fit.center_axis)
+                                auxiliary_lines=fit.auxiliary_lines, initial_delta=fit.delta,line_centers=fit.line_centers,center_axis=fit.center_axis,
+                                background_counts=rng.poisson(fit.background_latent_counts) if measured_counts is not None else None)
             if boot.success:
                 samples.append(boot.q)
             if (i+1) % 10 == 0:
@@ -210,7 +236,9 @@ def analyze(spectrum, calibration, sensitivity, output_dir=None, config=None):
              [('sample_spectrum', spectrum), ('calibration', calibration), ('sensitivity', sensitivity)]}
     if table.metadata.get('metadata_file'):
         files['sensitivity_metadata'] = {'path': table.metadata['metadata_file'], 'sha256': sha256(table.metadata['metadata_file'])}
-    summary = dict(schema_version='3.0', fit_status='success' if fit.success else 'failed',
+    if config.background_spectrum is not None:
+        files['background_spectrum']={'path':background_info['path'],'sha256':sha256(config.background_spectrum)}
+    summary = dict(schema_version='3.0', measured_background=background_info, fit_status='success' if fit.success else 'failed',
                    analysis_status='fit_failed' if not fit.success else ('model_mismatch' if severe_mismatch else 'completed'),
                    quantitative_interpretation_valid=bool(fit.success and not source_mismatch and density.Relative_to_Reference.notna().any()),
                    global_model_valid=bool(fit.success and not severe_mismatch),

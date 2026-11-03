@@ -12,6 +12,9 @@ def make_plots(result, out):
     ax.plot(e, fit.model, color='black', lw=1.2, label='Total Poisson model')
     ax.plot(e, result['background0'], '--', color='tab:orange', lw=.9, label='SNIP initial background')
     ax.plot(e, fit.background, ':', color='tab:brown', lw=1.3, label='Fitted continuous background')
+    if getattr(fit,'background_scale',None) is not None:
+        ax.plot(e,fit.measured_background_counts,'--',color='tab:purple',lw=.9,
+                label='Measured background (scale=%.4g)' % fit.background_scale)
     if np.any(fit.scatter > 0):
         ax.plot(e, fit.scatter, '-.', color='tab:gray', lw=1., label='Instrument / scattering')
     candidates = result['identification'].candidates

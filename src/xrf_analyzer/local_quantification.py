@@ -138,7 +138,7 @@ def _groups(identification, config):
     return merged
 
 
-def _profile(target, groups, counts, energy, edges, config, radius):
+def _profile(target, groups, counts, energy, edges, config, radius, background_scale=None):
     low = np.min(target['centers']-radius*target['sigmas'])
     high = np.max(target['centers']+radius*target['sigmas'])
     audit = {'Background_Window_Sigmas': radius, 'Success': False}
@@ -180,6 +180,13 @@ def _profile(target, groups, counts, energy, edges, config, radius):
         return audit
     a, b = int(ids[0]), int(ids[-1]+1)
     e, y, le = energy[a:b], counts[a:b], edges[a:b+1]
+    measured = getattr(config, '_background_counts', None)
+    measured = None if measured is None else np.asarray(measured, float)[a:b]
+    alpha = float(getattr(config, '_background_scale', 0.) if background_scale is None else background_scale)
+    if measured is not None:
+        from .measured_background import profile_background
+        audit.update(Measured_Background=True, Background_Scale=alpha,
+                     Background_Likelihood='joint_sample_reference_Poisson_profile_latent_channels')
     # Give every relevant neighbouring group its own amplitude. Global q values
     # are only used to exclude numerically negligible nuisance groups.
     nuisance = selected_nuisance(le[0], le[-1])
@@ -212,24 +219,37 @@ def _profile(target, groups, counts, energy, edges, config, radius):
                               (-shift_bound, shift_bound) if refine else (0., 0.),
                               (.65, 1.8) if refine else (1., 1.)]
 
-    def model(v, derivatives=False):
+    def signal_model(v, derivatives=False):
         response, ds, dw = response_with_derivatives(le, centers, widths, delta=v[-2], scale=v[-1])
         design = response@weights
         bg = np.exp(h@v[ng:ng+2])
-        mu = np.maximum(bg+design@(v[:ng]*area_scale), 1e-12)
+        signal = np.maximum(bg+design@(v[:ng]*area_scale), 1e-12)
         if not derivatives:
-            return mu
+            return signal
         jac = np.column_stack([design*area_scale, bg[:, None]*h,
                                (ds@weights)@(v[:ng]*area_scale),
                                (dw@weights)@(v[:ng]*area_scale)])
-        return mu, jac
+        return signal, jac
 
-    baseline = max(float(np.percentile(y, 25)), .2)
+    def likelihood(v, derivatives=False):
+        signal, jac = signal_model(v, True)
+        if measured is None:
+            mu=signal
+            result={'model':mu, 'latent_background':np.zeros(len(mu)),
+                    'nll':float(np.sum(mu-xlogy(y,mu))),
+                    'deviance':float(2*np.sum(xlogy(y,np.maximum(y,1e-300)/mu)-(y-mu))),
+                    'signal_gradient':1-y/mu, 'information_weight':1/mu}
+        else:
+            result=profile_background(y,signal,alpha,measured)
+        return (result,jac) if derivatives else result
+
+    net_initial = np.maximum(y-(alpha*measured if measured is not None else 0.),0.)
+    baseline = max(float(np.percentile(net_initial, 25)), .2)
     initial = np.r_[np.maximum([g['expected']/area_scale for g in nearby], 1e-5),
                     np.log(baseline), 0., 0., 1.]
     design = response_with_derivatives(le, centers, widths)[0]@weights
     try:
-        initial[:ng] = nnls(design*area_scale, np.maximum(y-baseline, 0.))[0]
+        initial[:ng] = nnls(design*area_scale, np.maximum(net_initial-baseline, 0.))[0]
     except (ValueError, RuntimeError):
         pass
 
@@ -240,8 +260,8 @@ def _profile(target, groups, counts, energy, edges, config, radius):
             actual_bounds[0] = (0., 0.)
             start[0] = 0.
         def objective(v):
-            mu, jac = model(v, True)
-            return float(np.sum(mu-xlogy(y, mu))), jac.T@(1-y/mu)
+            result,jac=likelihood(v,True)
+            return result['nll'],jac.T@result['signal_gradient']
         return minimize(objective, start, jac=True, bounds=actual_bounds, method='L-BFGS-B',
                         options={'maxiter': 1200, 'ftol': 1e-12, 'gtol': 1e-7, 'maxls': 50})
 
@@ -252,13 +272,15 @@ def _profile(target, groups, counts, energy, edges, config, radius):
     if not full.success or not null.success:
         audit['Failure'] = 'local_optimization_failed'
         return audit
-    mu, jac = model(full.x, True)
+    fitted, jac = likelihood(full.x, True)
+    mu=fitted['model'];latent_background=fitted['latent_background']
+    info_weight=fitted['information_weight']
     free = np.array([lo != hi for lo, hi in bounds])
     j = jac[:, free]
     # Column normalization prevents intensity/background/energy parameter units
     # from determining a numerical identifiability decision.
-    scales = np.linalg.norm(j/np.sqrt(mu[:, None]), axis=0)
-    normalized = (j/np.maximum(scales, 1e-30))/np.sqrt(mu[:, None])
+    scales = np.linalg.norm(j*np.sqrt(info_weight[:,None]), axis=0)
+    normalized = (j/np.maximum(scales, 1e-30))*np.sqrt(info_weight[:,None])
     _, singular, vh = np.linalg.svd(normalized, full_matrices=False)
     keep = singular > max(singular[0]*1e-7, 1e-12)
     null_weight = float(np.sum(vh[~keep, 0]**2)) if not keep.all() else 0.
@@ -267,10 +289,11 @@ def _profile(target, groups, counts, energy, edges, config, radius):
         return audit
     inverse = (vh[keep].T/(singular[keep]**2))@vh[keep]
     covariance = inverse/np.maximum(scales[:, None]*scales[None, :], 1e-30)
-    influence = (covariance[0]@j.T/mu)*area_scale/target['S']
+    influence = (covariance[0]@j.T*info_weight)*area_scale/target['S']
+    reference_influence = -alpha*influence if measured is not None else np.zeros(len(influence))
     q = float(full.x[0]*area_scale/target['S'])
     std = float(np.sqrt(max(covariance[0, 0], 0.))*area_scale/target['S'])
-    deviance = float(2*np.sum(xlogy(y, np.maximum(y, 1e-300)/mu)-(y-mu)))
+    deviance = float(fitted['deviance'])
     dof = max(len(y)-int(free.sum()), 1)
     gain = max(0., 2*(null.fun-full.fun))
     area = float(full.x[0]*area_scale)
@@ -283,10 +306,13 @@ def _profile(target, groups, counts, energy, edges, config, radius):
                  Deviance_per_dof=deviance/dof, Local_Shift_keV=float(full.x[-2]),
                  Local_Width_Scale=float(full.x[-1]), Response_At_Boundary=shape_boundary,
                  Local_Primary_Center_keV=float(target['weights']@target['centers']+full.x[-2]),
-                 _indices=ids, _influence=influence, _model=mu)
+                 _indices=ids, _influence=influence, _reference_influence=reference_influence,
+                 _model=mu, _latent_background=latent_background)
     final_design = response_with_derivatives(le, centers, widths, delta=full.x[-2], scale=full.x[-1])[0]@weights
     audit['_primary_counts'] = final_design[:, 0]*area
-    audit['_background'] = np.exp(h@full.x[ng:ng+2])
+    audit['_continuum'] = np.exp(h@full.x[ng:ng+2])
+    audit['_measured_background'] = alpha*latent_background
+    audit['_background'] = audit['_continuum']+audit['_measured_background']
     audit['_nuisance_counts'] = np.maximum(mu-audit['_primary_counts']-audit['_background'], 0.)
     return audit
 
@@ -300,6 +326,13 @@ def fit_local_quantification(identification, counts, energy, edges, config):
     ``audit`` contains only JSON-serializable local-fit evidence.
     """
     counts, energy, edges = map(lambda a: np.asarray(a, float), (counts, energy, edges))
+    measured=getattr(config,'_background_counts',None)
+    has_measured=measured is not None
+    alpha=float(getattr(config,'_background_scale',0.)) if has_measured else 0.
+    alpha_std=getattr(config,'_background_scale_std',None) if has_measured else None
+    if alpha_std is not None:
+        alpha_std=float(alpha_std)
+        if not np.isfinite(alpha_std) or alpha_std<0:alpha_std=None
     groups = _groups(identification, config)
     candidates = identification.candidates
     supported = candidates.loc[(candidates.Status == 'supported') &
@@ -337,12 +370,33 @@ def fit_local_quantification(identification, counts, energy, edges, config):
                 item['Accepted'] = False
                 continue
             phi = max(1., narrow['Deviance_per_dof'], wide['Deviance_per_dof'])
+            scale_sensitivity=0.
+            if has_measured and alpha_std is not None and alpha_std>0:
+                step=max(alpha_std,1e-4*max(alpha,1.))
+                low_scale=max(0.,alpha-step);high_scale=alpha+step
+                low_fit=_profile(group,groups,counts,energy,edges,config,6.,background_scale=low_scale)
+                high_fit=_profile(group,groups,counts,energy,edges,config,6.,background_scale=high_scale)
+                item['Scale_Sensitivity']={'Method':'refit_local_parameters_at_global_scale_plus_minus_sigma',
+                    'Low_Scale':low_scale,'High_Scale':high_scale,'Low_Fit_Success':low_fit['Success'],
+                    'High_Fit_Success':high_fit['Success']}
+                if not low_fit['Success'] or not high_fit['Success']:
+                    row['Failure_Reason']='background_scale_sensitivity_not_estimable'
+                    item['Accepted']=False
+                    continue
+                scale_sensitivity=(high_fit['q_Area']-low_fit['q_Area'])/(high_scale-low_scale)
+                item['Scale_Sensitivity'].update(q_At_Low_Scale=low_fit['q_Area'],q_At_High_Scale=high_fit['q_Area'],
+                                                dq_dScale=scale_sensitivity)
+            wide['_scale_sensitivity']=scale_sensitivity
             row.update(q_Area=wide['q_Area'], Quantification_Status='local_area_estimate', Failure_Reason='',
                        Selected_Branches=group['Branches'], Area_Counts=wide['Area_Counts'],
                        Sensitivity_Sum=group['S'], Background_Window_Relative_Difference=relative_difference,
                        Window_Systematic_q=difference, Local_Overdispersion=phi,
                        Local_Response_At_Boundary=wide['Response_At_Boundary'],
                        Method='local_primary_area_over_common_scale_sensitivity')
+            if has_measured:
+                row.update(Measured_Background_Scale=alpha,Measured_Background_Scale_Std=alpha_std,
+                           dq_dBackground_Scale=scale_sensitivity,
+                           Background_Scale_Uncertainty_Status='propagated' if alpha_std is not None else 'conditional_scale_uncertainty_unavailable')
             item['Accepted'] = True
             successful = (wide, phi, difference)
             break
@@ -353,16 +407,44 @@ def fit_local_quantification(identification, counts, energy, edges, config):
         'Failure_Reason', 'Notes', 'Selected_Branches', 'Area_Counts', 'Sensitivity_Sum'])
     n = len(records)
     influence = np.zeros((n, len(counts)))
+    reference_influence=np.zeros_like(influence)
+    scale_sensitivity=np.zeros(n)
     mean_sum, mean_n = np.zeros(len(counts)), np.zeros(len(counts))
+    latent_sum=np.zeros(len(counts))
     for i, selected in enumerate(chosen):
         if selected is None:
             continue
         fit, _, _ = selected
         influence[i, fit['_indices']] = fit['_influence']
+        reference_influence[i,fit['_indices']]=fit['_reference_influence']
+        scale_sensitivity[i]=fit.get('_scale_sensitivity',0.)
         mean_sum[fit['_indices']] += fit['_model']
+        latent_sum[fit['_indices']] += fit['_latent_background']
         mean_n[fit['_indices']] += 1
     mean = mean_sum/np.maximum(mean_n, 1.)
-    stat_covariance = (influence*mean)@influence.T
+    latent_mean=latent_sum/np.maximum(mean_n,1.)
+    covariance_method='shared_channel_influence_Poisson_covariance; local_overdispersion_plus_window_difference'
+    global_y=getattr(identification.fit,'background_scale_influence_sample',None)
+    global_b=getattr(identification.fit,'background_scale_influence_reference',None)
+    global_influence_available=(has_measured and global_y is not None and global_b is not None
+        and np.shape(global_y)==np.shape(counts) and np.shape(global_b)==np.shape(counts))
+    if global_influence_available:
+        # Alpha is estimated from these same sample/reference counts. Combining
+        # score influences retains that dependence instead of adding it again
+        # as if an independent calibration measurement had supplied the scale.
+        influence+=scale_sensitivity[:,None]*np.asarray(global_y)[None,:]
+        reference_influence+=scale_sensitivity[:,None]*np.asarray(global_b)[None,:]
+        global_mean=np.asarray(getattr(identification.fit,'model',counts),float)
+        global_latent=np.asarray(getattr(identification.fit,'background_latent_counts',measured),float)
+        mean=np.where(mean_n>0,mean,global_mean)
+        latent_mean=np.where(mean_n>0,latent_mean,global_latent)
+        covariance_method+='; finite_reference_counts; shared_global_scale_sample_reference_influence'
+    stat_covariance = (influence*mean)@influence.T+(reference_influence*latent_mean)@reference_influence.T
+    if has_measured and not global_influence_available:
+        covariance_method+='; finite_reference_counts'
+        if alpha_std is not None:
+            stat_covariance+=np.outer(scale_sensitivity,scale_sensitivity)*alpha_std**2
+            covariance_method+='; independent_scale_variance_approximation'
     inflation = np.array([np.sqrt(s[1]) if s is not None else 1. for s in chosen])
     covariance = stat_covariance*inflation[:, None]*inflation[None, :]
     for i, selected in enumerate(chosen):
@@ -381,8 +463,10 @@ def fit_local_quantification(identification, counts, energy, edges, config):
         fits.append({'Element': record['Element'], 'Branches': record['Selected_Branches'],
                      'indices': fit['_indices'], 'model': fit['_model'],
                      'primary_counts': fit['_primary_counts'], 'background': fit['_background'],
-                     'nuisance_counts': fit['_nuisance_counts'], 'center_keV': fit['Local_Primary_Center_keV']})
+                     'nuisance_counts': fit['_nuisance_counts'], 'center_keV': fit['Local_Primary_Center_keV'],
+                     'continuum_counts':fit['_continuum'],
+                     'measured_background_counts':fit['_measured_background']})
     return {'elements': frame, 'covariance': covariance, 'stat_covariance': stat_covariance, 'fits': fits,
             'audit': audit, 'method': 'local_primary_peak_area_over_sensitivity',
-            'covariance_method': 'shared_channel_influence_Poisson_covariance; local_overdispersion_plus_window_difference',
+            'covariance_method': covariance_method,
             'assumptions': 'common_scale_S_assumed_applicable; apparent_thin_sample; S_systematics_not_included'}

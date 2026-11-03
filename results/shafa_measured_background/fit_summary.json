@@ -1,0 +1,4587 @@
+{
+  "schema_version": "3.0",
+  "measured_background": {
+    "enabled": true,
+    "path": "/home/renqi/Documents/ChatGPT/XRF_element_analyze/data/backgroud_spectrum.mca",
+    "scale_initial": 1.0,
+    "sample_live_time_s": 30.0,
+    "reference_live_time_s": 30.0,
+    "alignment": "exact_channel_match_no_rebinning",
+    "conditions_verified": false,
+    "model": "sample~Poisson(signal+continuum+alpha*b); reference~Poisson(b); b profiled",
+    "limitations": "One global scale cannot correct background shape or geometry changes",
+    "warnings": [
+      "Non-UTF8 MCA headers decoded using latin-1; DATA remains strict ASCII numeric"
+    ],
+    "scale": 1.0365283948678696,
+    "scale_std": 0.004126842024386434,
+    "sample_deviance": 1075.4916736930397,
+    "joint_deviance": 1873.6889640413879
+  },
+  "fit_status": "success",
+  "analysis_status": "completed",
+  "quantitative_interpretation_valid": true,
+  "global_model_valid": true,
+  "local_quantification_valid": true,
+  "normalized_fractions_available": true,
+  "quantification_method": "local-peaks",
+  "input_files": {
+    "sample_spectrum": {
+      "path": "/home/renqi/Documents/ChatGPT/XRF_element_analyze/SDD_Spectrum/shafa_50kv_20uA.mca",
+      "sha256": "93343b763b918656fe1d4e0ef1002a9a9b9c7a77b3f8956142f436622f0e9253"
+    },
+    "calibration": {
+      "path": "/home/renqi/Documents/ChatGPT/XRF_element_analyze/data/calibration.csv",
+      "sha256": "ba1d44ecd5b11771021c8801b2f99a21ab6c4a8e02ed0235055d640e5981cddd"
+    },
+    "sensitivity": {
+      "path": "/home/renqi/Documents/ChatGPT/XRF_element_analyze/data/xrf_relative_sensitivity.csv",
+      "sha256": "221998779caa79b798ef0cc8d133c832966b43d386aaedbe6b6c0aceddf80c90"
+    },
+    "background_spectrum": {
+      "path": "/home/renqi/Documents/ChatGPT/XRF_element_analyze/data/backgroud_spectrum.mca",
+      "sha256": "82ed0e0cfcd047ac64d9ee5ae9ab7fb8e6fdb5f4df198ee86db3480dd96c1f64"
+    }
+  },
+  "dependency_versions": {
+    "numpy": "1.24.3",
+    "scipy": "1.10.1",
+    "pandas": "2.0.3",
+    "matplotlib": "3.5.1",
+    "xraylib": "4.2.0",
+    "xrf-spectrum-analyzer": "0.5.0"
+  },
+  "parameters": {
+    "energy_range": [
+      1.0,
+      40.0
+    ],
+    "find_peaks": null,
+    "find_peaks_axis": "reference",
+    "manual_match_tolerance_kev": 0.08,
+    "element_prior": "general",
+    "prior_tie_margin": 0.5,
+    "branch_evidence": true,
+    "quantification_method": "local-peaks",
+    "low_z_kalpha": true,
+    "low_z_max_z": 24,
+    "low_z_kalpha_min_delta": 25.0,
+    "low_z_beta_visibility_sigma": 5.0,
+    "low_z_min_kalpha_share": 0.7,
+    "prune_unanchored_auxiliary": true,
+    "complete_atomic_lines": true,
+    "shell_consistency_tolerance": 0.05,
+    "minimum_radiative_rate": 0.001,
+    "infer_low_energy_cutoff": true,
+    "alignment_max_shift_kev": 0.25,
+    "centroid_tolerance_kev": 0.015,
+    "pattern_element_penalty": 4.0,
+    "channel_start": 0,
+    "fill_missing_channels": false,
+    "strict_calibration": false,
+    "fwhm_ref_energy_kev": 5.9,
+    "fwhm_ref_kev": 0.135,
+    "fano": 0.115,
+    "pair_energy_kev": 0.0036,
+    "fit_response": true,
+    "estimate_resolution_from_peaks": true,
+    "fit_energy_gain": true,
+    "energy_gain_bound": 0.01,
+    "resolution_scale_bounds": [
+      0.75,
+      1.5
+    ],
+    "delta_max_kev": null,
+    "snip_iterations": null,
+    "background_degree": 3,
+    "background_regularization": 0.1,
+    "candidate_threshold_sigma": 3.5,
+    "max_deviance_per_dof": 5.0,
+    "support_delta_deviance": 25.0,
+    "tentative_delta_deviance": 6.0,
+    "match_sigma": 2.5,
+    "correlation_threshold": 0.995,
+    "elements": null,
+    "exclude_elements": [],
+    "element_selection": "model-comparison",
+    "max_selection_iterations": 3,
+    "reference_element": "Fe",
+    "tube_target": null,
+    "tube_voltage_kv": 50.0,
+    "scatter_angle_deg": null,
+    "detector_efficiency": 1.0,
+    "bootstrap": 0,
+    "seed": 42,
+    "max_iterations": 1800,
+    "save_intermediate": true,
+    "background_spectrum": "data/backgroud_spectrum.mca"
+  },
+  "effective_parameters": {
+    "background_method": "snip",
+    "snip_iterations": 13,
+    "delta_E_bound_keV": 0.24139808386882386,
+    "effective_fwhm_ref_kev": 0.135,
+    "energy_edges_keV": [
+      2.990769230769231,
+      39.98769230769231
+    ]
+  },
+  "calibration_quality": "ok",
+  "sensitivity": {
+    "sensitivity_provenance": "unverified",
+    "metadata_file": null
+  },
+  "line_energy": {
+    "source": "xraylib",
+    "api": "xraylib.LineEnergy",
+    "units": "keV"
+  },
+  "manual_peaks": null,
+  "element_prior": {
+    "profile": "general",
+    "tie_margin": 0.5,
+    "policy": "tie_break_only; data_ambiguity_is_not_confirmation"
+  },
+  "elements_need_confirmation": [],
+  "excluded_from_density": [
+    "H",
+    "He",
+    "Li",
+    "Be",
+    "B",
+    "C",
+    "N",
+    "O",
+    "F",
+    "Ne",
+    "Na",
+    "Mg",
+    "Al",
+    "Si",
+    "P",
+    "S",
+    "Cl",
+    "Ar",
+    "K",
+    "Ca",
+    "Sc",
+    "Ti",
+    "V",
+    "Cr",
+    "Mn",
+    "Co",
+    "Ni",
+    "Cu",
+    "Zn",
+    "Ga",
+    "Ge",
+    "As",
+    "Se",
+    "Br",
+    "Kr",
+    "Rb",
+    "Sr",
+    "Y",
+    "Zr",
+    "Nb",
+    "Mo",
+    "Tc",
+    "Ru",
+    "Rh",
+    "Pd",
+    "Ag",
+    "Cd",
+    "In",
+    "Sn",
+    "Sb",
+    "Te",
+    "I",
+    "Xe",
+    "Cs",
+    "Ba",
+    "La",
+    "Ce",
+    "Pr",
+    "Nd",
+    "Pm",
+    "Sm",
+    "Eu",
+    "Gd",
+    "Tb",
+    "Dy",
+    "Ho",
+    "Er",
+    "Tm",
+    "Yb",
+    "Lu",
+    "Hf",
+    "Ta",
+    "W",
+    "Re",
+    "Os",
+    "Ir",
+    "Pt",
+    "Au",
+    "Tl",
+    "Pb",
+    "Bi",
+    "Po",
+    "At",
+    "Rn",
+    "Fr",
+    "Ra",
+    "Ac",
+    "Th",
+    "Pa",
+    "U"
+  ],
+  "local_branch_evidence": [
+    {
+      "Element": "Fe",
+      "Family": "K",
+      "Branches": "Kalpha2+Kalpha1",
+      "Background_Window_Sigmas": 4.0,
+      "ROI_Start_keV": 6.166153846153847,
+      "ROI_End_keV": 7.495384615384616,
+      "Local_Free_Area_Counts": 5430.448782229036,
+      "Expected_Area_From_Tied_Counts": 5423.910059752643,
+      "Branch_DeltaDeviance": 3269.3835772418824,
+      "Observed_Ratio_to_Strongest_Group": 1.0,
+      "Expected_Ratio_to_Strongest_Group": 1.0,
+      "Tied_vs_Free_DeltaDeviance": 0.08887250159750693,
+      "Group_Observed": true,
+      "Method": "local_Poisson_background_refit_other_elements_fixed; conditional_not_global_p_value",
+      "Wide_Window_Branch_DeltaDeviance": 3943.4458686387807,
+      "Robust_Group_Observed": true,
+      "Ratio_Compatible": true
+    },
+    {
+      "Element": "Fe",
+      "Family": "K",
+      "Branches": "Kbeta1+KM2",
+      "Background_Window_Sigmas": 4.0,
+      "ROI_Start_keV": 6.166153846153847,
+      "ROI_End_keV": 7.495384615384616,
+      "Local_Free_Area_Counts": 714.2339132742269,
+      "Expected_Area_From_Tied_Counts": 728.7179689553141,
+      "Branch_DeltaDeviance": 188.0722105713212,
+      "Observed_Ratio_to_Strongest_Group": 0.13152392038233263,
+      "Expected_Ratio_to_Strongest_Group": 0.13435288581989266,
+      "Tied_vs_Free_DeltaDeviance": 0.08887250159750693,
+      "Group_Observed": true,
+      "Method": "local_Poisson_background_refit_other_elements_fixed; conditional_not_global_p_value",
+      "Wide_Window_Branch_DeltaDeviance": 208.00933317112504,
+      "Robust_Group_Observed": true,
+      "Ratio_Compatible": true
+    }
+  ],
+  "low_z_kalpha_evidence": [],
+  "acquisition_cutoff": {
+    "energy_keV": 2.990769230769231,
+    "first_retained_channel": 41,
+    "zero_prefix_channels": 41,
+    "first_counts": 142.0,
+    "inferred": true,
+    "reason": "long_exact_zero_prefix_followed_by_abrupt_high_counts",
+    "limitation": "Acquisition threshold inferred from data; instrument confirmation required",
+    "background_edge_initialization": "lower_quartile_of_adjacent_SNIP_background"
+  },
+  "response_initialization": {
+    "used": false,
+    "reason": "Fewer than two well-fitted isolated observed peaks"
+  },
+  "centroid_alignment": {
+    "method": "global_centroid_branch_graph_weighted_sparse_peak_cover",
+    "delta_E_keV": 0.12313070883778568,
+    "search_bound_keV": 0.25,
+    "score": 7.196026205089849,
+    "is_calibration_replacement": false,
+    "gain_for_matching": -0.003377774683364446,
+    "element_prior": "general",
+    "prior_tie_margin": 0.5,
+    "grid_solutions": [],
+    "effective_fit_delta_bound_keV": 0.24139808386882386,
+    "initial_alignment": {
+      "method": "global_centroid_branch_graph_weighted_sparse_peak_cover",
+      "delta_E_keV": 0.09000000000000002,
+      "search_bound_keV": 0.25,
+      "score": 6.477170174299175,
+      "is_calibration_replacement": false,
+      "gain_for_matching": 0.0,
+      "element_prior": "general",
+      "prior_tie_margin": 0.5,
+      "grid_solutions": [
+        {
+          "delta": -0.25,
+          "score": 0.0
+        },
+        {
+          "delta": -0.245,
+          "score": 0.02551684014027078
+        },
+        {
+          "delta": -0.24,
+          "score": 0.07584554650893427
+        },
+        {
+          "delta": -0.235,
+          "score": 0.10760044379708855
+        },
+        {
+          "delta": -0.23,
+          "score": 0.06939887961741231
+        },
+        {
+          "delta": -0.225,
+          "score": 0.06099060563616909
+        },
+        {
+          "delta": -0.22,
+          "score": 0.13600039672691455
+        },
+        {
+          "delta": -0.215,
+          "score": 0.19314485576916152
+        },
+        {
+          "delta": -0.21,
+          "score": 0.0
+        },
+        {
+          "delta": -0.20500000000000002,
+          "score": 0.0
+        },
+        {
+          "delta": -0.2,
+          "score": 0.0
+        },
+        {
+          "delta": -0.195,
+          "score": 0.0
+        },
+        {
+          "delta": -0.19,
+          "score": 0.0
+        },
+        {
+          "delta": -0.185,
+          "score": 0.0
+        },
+        {
+          "delta": -0.18,
+          "score": 0.0
+        },
+        {
+          "delta": -0.175,
+          "score": 0.0
+        },
+        {
+          "delta": -0.16999999999999998,
+          "score": 0.0
+        },
+        {
+          "delta": -0.16499999999999998,
+          "score": 0.0
+        },
+        {
+          "delta": -0.16,
+          "score": 0.0
+        },
+        {
+          "delta": -0.155,
+          "score": 0.0
+        },
+        {
+          "delta": -0.15,
+          "score": 0.0
+        },
+        {
+          "delta": -0.14500000000000002,
+          "score": 0.0
+        },
+        {
+          "delta": -0.14,
+          "score": 0.0
+        },
+        {
+          "delta": -0.135,
+          "score": 0.0
+        },
+        {
+          "delta": -0.13,
+          "score": 0.0
+        },
+        {
+          "delta": -0.125,
+          "score": 0.0
+        },
+        {
+          "delta": -0.12,
+          "score": 0.0
+        },
+        {
+          "delta": -0.11499999999999999,
+          "score": 0.0
+        },
+        {
+          "delta": -0.10999999999999999,
+          "score": 0.0
+        },
+        {
+          "delta": -0.10500000000000001,
+          "score": 0.0
+        },
+        {
+          "delta": -0.1,
+          "score": 0.0
+        },
+        {
+          "delta": -0.095,
+          "score": 0.0
+        },
+        {
+          "delta": -0.09,
+          "score": 0.0
+        },
+        {
+          "delta": -0.08499999999999999,
+          "score": 0.0
+        },
+        {
+          "delta": -0.07999999999999999,
+          "score": 0.0
+        },
+        {
+          "delta": -0.07499999999999998,
+          "score": 0.0
+        },
+        {
+          "delta": -0.07,
+          "score": 0.0
+        },
+        {
+          "delta": -0.065,
+          "score": 0.0
+        },
+        {
+          "delta": -0.06,
+          "score": 0.0
+        },
+        {
+          "delta": -0.05499999999999999,
+          "score": 0.0
+        },
+        {
+          "delta": -0.04999999999999999,
+          "score": 0.0
+        },
+        {
+          "delta": -0.044999999999999984,
+          "score": 0.0
+        },
+        {
+          "delta": -0.04000000000000001,
+          "score": 0.0
+        },
+        {
+          "delta": -0.035,
+          "score": 0.0
+        },
+        {
+          "delta": -0.03,
+          "score": 0.0
+        },
+        {
+          "delta": -0.024999999999999994,
+          "score": 0.0
+        },
+        {
+          "delta": -0.01999999999999999,
+          "score": 0.0
+        },
+        {
+          "delta": -0.014999999999999986,
+          "score": 0.0
+        },
+        {
+          "delta": -0.010000000000000009,
+          "score": 0.0
+        },
+        {
+          "delta": -0.0050000000000000044,
+          "score": 0.0
+        },
+        {
+          "delta": 0.0,
+          "score": 0.0
+        },
+        {
+          "delta": 0.0050000000000000044,
+          "score": 0.0
+        },
+        {
+          "delta": 0.010000000000000009,
+          "score": 0.0
+        },
+        {
+          "delta": 0.015000000000000013,
+          "score": 0.0
+        },
+        {
+          "delta": 0.020000000000000018,
+          "score": 0.0
+        },
+        {
+          "delta": 0.025000000000000022,
+          "score": 0.44391257597265366
+        },
+        {
+          "delta": 0.030000000000000027,
+          "score": 1.0451060465860627
+        },
+        {
+          "delta": 0.03500000000000003,
+          "score": 1.5691291508431693
+        },
+        {
+          "delta": 0.03999999999999998,
+          "score": 2.047899688881598
+        },
+        {
+          "delta": 0.044999999999999984,
+          "score": 2.4682111883181523
+        },
+        {
+          "delta": 0.04999999999999999,
+          "score": 2.819296452713262
+        },
+        {
+          "delta": 0.05499999999999999,
+          "score": 3.093514565106707
+        },
+        {
+          "delta": 0.06,
+          "score": 3.2867286756527623
+        },
+        {
+          "delta": 0.065,
+          "score": 3.9505947936696426
+        },
+        {
+          "delta": 0.07,
+          "score": 4.7726518261252995
+        },
+        {
+          "delta": 0.07500000000000001,
+          "score": 5.483571974809591
+        },
+        {
+          "delta": 0.08000000000000002,
+          "score": 5.998618510362952
+        },
+        {
+          "delta": 0.08500000000000002,
+          "score": 6.357863475403466
+        },
+        {
+          "delta": 0.09000000000000002,
+          "score": 6.477170174299175
+        },
+        {
+          "delta": 0.09500000000000003,
+          "score": 6.323606612736686
+        },
+        {
+          "delta": 0.10000000000000003,
+          "score": 5.880943137615212
+        },
+        {
+          "delta": 0.10499999999999998,
+          "score": 5.217799188732348
+        },
+        {
+          "delta": 0.10999999999999999,
+          "score": 4.245248389516954
+        },
+        {
+          "delta": 0.11499999999999999,
+          "score": 3.0830766219113066
+        },
+        {
+          "delta": 0.12,
+          "score": 1.8064635064518377
+        },
+        {
+          "delta": 0.125,
+          "score": 0.6060135595927942
+        },
+        {
+          "delta": 0.13,
+          "score": 0.2184404837633851
+        },
+        {
+          "delta": 0.135,
+          "score": 0.0
+        },
+        {
+          "delta": 0.14,
+          "score": 0.0
+        },
+        {
+          "delta": 0.14500000000000002,
+          "score": 0.0
+        },
+        {
+          "delta": 0.15000000000000002,
+          "score": 0.0
+        },
+        {
+          "delta": 0.15500000000000003,
+          "score": 0.0
+        },
+        {
+          "delta": 0.16000000000000003,
+          "score": 0.0
+        },
+        {
+          "delta": 0.16500000000000004,
+          "score": 0.0
+        },
+        {
+          "delta": 0.16999999999999998,
+          "score": 0.0
+        },
+        {
+          "delta": 0.175,
+          "score": 0.0
+        },
+        {
+          "delta": 0.18,
+          "score": 0.0
+        },
+        {
+          "delta": 0.185,
+          "score": 0.0
+        },
+        {
+          "delta": 0.19,
+          "score": 0.0
+        },
+        {
+          "delta": 0.195,
+          "score": 0.0
+        },
+        {
+          "delta": 0.2,
+          "score": 0.0
+        },
+        {
+          "delta": 0.20500000000000002,
+          "score": 0.0
+        },
+        {
+          "delta": 0.21000000000000002,
+          "score": 0.0
+        },
+        {
+          "delta": 0.21500000000000002,
+          "score": 0.0
+        },
+        {
+          "delta": 0.22000000000000003,
+          "score": 0.0
+        },
+        {
+          "delta": 0.22500000000000003,
+          "score": 0.0
+        },
+        {
+          "delta": 0.22999999999999998,
+          "score": 0.0
+        },
+        {
+          "delta": 0.235,
+          "score": 0.0
+        },
+        {
+          "delta": 0.24,
+          "score": 0.0
+        },
+        {
+          "delta": 0.245,
+          "score": 0.0
+        },
+        {
+          "delta": 0.25,
+          "score": 0.0
+        }
+      ]
+    }
+  },
+  "atomic_completion": [
+    {
+      "Element": "Ac",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 3.7590941237564124e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ac",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 6.711222098054748e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ac",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ag",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.2658249018970835e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ag",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 1.2743849140406383e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ag",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 1.763557073708455e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Al",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 6.832747956320162e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ar",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 4.6602268788387136e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "As",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 3.1506399924552397e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "As",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 5.762286408028672e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "As",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "At",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 5.126250456344295e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "At",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 1.454686787694115e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "At",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Au",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 6.932301168660615e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Au",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 9.365664437321897e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Au",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "B",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.8439923654689494e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ba",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.4050788854635954e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ba",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 9.474027207190261e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ba",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 8.343577317937445e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Bi",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 4.382194280783125e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Bi",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 8.997198326365918e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Bi",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Br",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.3278613106848525e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Br",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 9.183794340561491e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Br",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "C",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 2.840545829663199e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ca",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.2530780197916869e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Cd",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.7945391661555732e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Cd",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 1.0434145516491355e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Cd",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 4.802730468878025e-08,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ce",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 8.142957353962643e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ce",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 1.9813183582684246e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ce",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 5.931563782368698e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Cl",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 5.980207296030216e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Co",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 2.182291823027427e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Co",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 1.5888938220687265e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Co",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Cr",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 2.3759223755082104e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Cr",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 6.082598077439272e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Cr",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Cs",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 2.065904000758678e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Cs",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 1.6829638189719276e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Cs",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 1.3215228271690194e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Cu",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 7.950391431865711e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Cu",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 1.3307911195248323e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Cu",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Dy",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 7.552977951963413e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Dy",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 7.889575863728737e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Dy",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Er",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 6.803512742070694e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Er",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 8.660932691029188e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Er",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Eu",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 2.208373577561318e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Eu",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 3.393437071341765e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Eu",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 1.884699690091196e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "F",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 2.0111774001740912e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Fe",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.1469822384091444e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Fe",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 2.2686292977525113e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Fe",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Fr",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 2.609407602216507e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Fr",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 3.757038413709779e-08,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Fr",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ga",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 3.782491706405544e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ga",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 2.3068809218429465e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ga",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Gd",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 1.3020209250758086e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Gd",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 1.1289513102141768e-08,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Gd",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ge",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 2.928701798854405e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ge",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 9.789581629782163e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ge",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Hf",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 4.0183629423928835e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Hf",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 6.358172137677087e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Hf",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Hg",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 5.038794239631272e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Hg",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 2.827520395598526e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Hg",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ho",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 1.0727095920426422e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ho",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 2.0032205094722144e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ho",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "I",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 3.066850543520516e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "I",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 2.202561638187106e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "I",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 3.2634864088887383e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "In",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.6366575199544542e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "In",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 2.412253874650716e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "In",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 2.0387230192930872e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ir",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 9.610992348640934e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ir",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 1.578570295590609e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ir",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "K",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 4.551310234246486e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Kr",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 3.078334865680432e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Kr",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 6.306365294417304e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Kr",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "La",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 2.0581878950043375e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "La",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 6.076469819538133e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "La",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 9.086458030438394e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Lu",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 1.1322684658754412e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Lu",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 2.8857162792661484e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Lu",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Mg",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 4.751736785157945e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Mn",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 4.320152699688329e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Mn",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 4.768366390628387e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Mn",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Mo",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.218178309114748e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Mo",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 3.529411663483195e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Mo",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 1.4429055528175638e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "N",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 2.0985482230839736e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Na",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 2.0219432124157777e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Nb",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 2.6020682108995885e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Nb",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 1.4492651051467575e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Nb",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 8.633878418873309e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Nd",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 2.9458745995913915e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Nd",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 3.8979373617742397e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Nd",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 5.2819738471932e-08,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ne",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.0751618040316657e-08,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ni",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 3.2572108379369524e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ni",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 6.897873816580358e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ni",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "O",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 8.111503926322428e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Os",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 2.6563369615040244e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Os",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 2.6236726347050876e-08,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Os",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "P",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 9.260743460970389e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Pa",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 6.522138580322689e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Pa",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 6.724553414105827e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Pa",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Pb",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 6.293978604965389e-08,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Pb",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 9.65055128032688e-08,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Pb",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Pd",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.7247537291709136e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Pd",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 1.113754303339043e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Pd",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 1.93700318462664e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Pm",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.2774067258414235e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Pm",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 1.5283314869218856e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Pm",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 2.0075854212375788e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Po",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 4.818290528785241e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Po",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 3.589798414083134e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Po",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Pr",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 9.67178607758079e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Pr",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 9.81680643441507e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Pr",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 4.886290111416614e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Pt",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 4.617167830289759e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Pt",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 4.6685473498175867e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Pt",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ra",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 7.12335032071465e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ra",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 8.66240498220705e-08,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ra",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Rb",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 3.1071876388510944e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Rb",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 5.197850483362743e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Rb",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Re",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 2.9596429274025837e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Re",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 1.573522909747993e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Re",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Rh",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.703312930478873e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Rh",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 9.485959222566009e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Rh",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 2.5727600094782588e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Rn",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 7.266961956631235e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Rn",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 6.739010515177668e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Rn",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ru",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.3929538731360935e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ru",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 4.7362507293868816e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ru",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 1.9376784763380783e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "S",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 3.446188641453851e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Sb",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 3.4685858665284286e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Sb",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 1.1850531904666894e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Sb",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 1.2169222891600384e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Sc",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 8.165025218165312e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Sc",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 1.2282375438932291e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Sc",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Se",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 2.6869215782321376e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Se",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 4.086303257988533e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Se",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Si",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.3654743442614858e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Sm",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.3888548073826001e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Sm",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 4.19187945688293e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Sm",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 9.850995501547999e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Sn",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.877725335885927e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Sn",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 2.3432551690127923e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Sn",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 1.8134909161027224e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Sr",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.3616498324431348e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Sr",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 3.1367417330230296e-08,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Sr",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ta",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 6.854448578730299e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ta",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 1.0676901588402288e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ta",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Tb",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 3.7469270197654225e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Tb",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 2.2302530844342527e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Tb",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Tc",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 6.482955225983744e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Tc",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 3.3506731074162133e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Tc",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 8.232804367125368e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Te",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.5610629280349286e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Te",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 1.0129116903012658e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Te",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 2.9772588638898867e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Th",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 9.275905135108786e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Th",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 1.6290569558874424e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Th",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ti",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 2.707026542925206e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ti",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 1.7011129831434602e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Ti",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Tl",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 3.7205752079216836e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Tl",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 3.0900159897484514e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Tl",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Tm",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 6.588819081443376e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Tm",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 1.0884389897158897e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Tm",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "U",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 7.649873583481792e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "U",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 1.1139382460889635e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "U",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "V",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 9.404016927394565e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "V",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 3.957440126711731e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "V",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "W",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 7.721189456688649e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "W",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 4.762929786128467e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "W",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Xe",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.1248559848020534e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Xe",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 1.431892669989665e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Xe",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 8.391358092829648e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Y",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 6.061672144230812e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Y",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 6.077624765676859e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Y",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 1.0242885712941074e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Yb",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 1.1643661668170324e-06,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Yb",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 3.5546070087377757e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Yb",
+      "Shell": "M5",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Zn",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 8.340436923326422e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Zn",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 7.155295156380248e-08,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Zn",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 0.0,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Zr",
+      "Shell": "K",
+      "AnchorConsistencyRelative": 1.7003970298468118e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Zr",
+      "Shell": "L3",
+      "AnchorConsistencyRelative": 9.733842754044986e-08,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    },
+    {
+      "Element": "Zr",
+      "Shell": "L2",
+      "AnchorConsistencyRelative": 1.2425301121332666e-07,
+      "CompletionEnabled": true,
+      "Method": "same_initial_shell_S_over_RadRate; existing S unchanged"
+    }
+  ],
+  "identification_method": "fitted_centroids_then_global_branch_pattern_then_joint_Poisson_fit",
+  "unidentified_shell_amplitudes": {
+    "Hg_L1_unscaled": 437.2800528669274
+  },
+  "sensitivity_states": {
+    "missing": 219,
+    "positive": 522,
+    "zero": 87
+  },
+  "pruned_lines": [
+    {
+      "Element": "B",
+      "Branch": "Kalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "B",
+      "Branch": "Kalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "C",
+      "Branch": "Kalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "C",
+      "Branch": "Kalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "N",
+      "Branch": "Kalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "N",
+      "Branch": "Kalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "O",
+      "Branch": "Kalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "O",
+      "Branch": "Kalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "F",
+      "Branch": "Kalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "F",
+      "Branch": "Kalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ne",
+      "Branch": "Kalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ne",
+      "Branch": "Kalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Na",
+      "Branch": "Kalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Na",
+      "Branch": "Kalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Mg",
+      "Branch": "Kalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Mg",
+      "Branch": "Kalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Al",
+      "Branch": "Kalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Al",
+      "Branch": "Kalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Al",
+      "Branch": "Kbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Si",
+      "Branch": "Kalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Si",
+      "Branch": "Kalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Si",
+      "Branch": "Kbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "P",
+      "Branch": "Kalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "P",
+      "Branch": "Kalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "P",
+      "Branch": "Kbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "S",
+      "Branch": "Kalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "S",
+      "Branch": "Kalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "S",
+      "Branch": "Kbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Cl",
+      "Branch": "Kalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Cl",
+      "Branch": "Kalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Sc",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Sc",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Sc",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ti",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ti",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ti",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "V",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "V",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "V",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Cr",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Cr",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Cr",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Mn",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Mn",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Mn",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Fe",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Fe",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Fe",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Co",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Co",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Co",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ni",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ni",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ni",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Cu",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Cu",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Cu",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Zn",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Zn",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Zn",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ga",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ga",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ga",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ge",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ge",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ge",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "As",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "As",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "As",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Se",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Se",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Se",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Br",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Br",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Br",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Kr",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Kr",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Kr",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Rb",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Rb",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Rb",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Sr",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Sr",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Sr",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Y",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Y",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Y",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Y",
+      "Branch": "Lbeta2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Y",
+      "Branch": "Lgamma1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Zr",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Zr",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Zr",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Zr",
+      "Branch": "Lbeta2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Zr",
+      "Branch": "Lgamma1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Nb",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Nb",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Nb",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Nb",
+      "Branch": "Lbeta2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Nb",
+      "Branch": "Lgamma1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Mo",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Mo",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Mo",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Mo",
+      "Branch": "Lbeta2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Mo",
+      "Branch": "Lgamma1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Tc",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Tc",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Tc",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Tc",
+      "Branch": "Lbeta2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ru",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ru",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ru",
+      "Branch": "Lbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Rh",
+      "Branch": "Lalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Rh",
+      "Branch": "Lalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Pr",
+      "Branch": "Kbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Nd",
+      "Branch": "Kbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Pm",
+      "Branch": "Kbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Sm",
+      "Branch": "Kbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Eu",
+      "Branch": "Kalpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Eu",
+      "Branch": "Kalpha2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Eu",
+      "Branch": "Kbeta1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Gd",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Tb",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Dy",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ho",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Er",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Tm",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Yb",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Lu",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Hf",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ta",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "W",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Re",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Os",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ir",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Pt",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Au",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Hg",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Tl",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Pb",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Bi",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Po",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "At",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Rn",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Fr",
+      "Branch": "Malpha1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ac",
+      "Branch": "M5N3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ag",
+      "Branch": "L3M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Al",
+      "Branch": "KM2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "As",
+      "Branch": "L2M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "As",
+      "Branch": "L2N1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "As",
+      "Branch": "L3M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "As",
+      "Branch": "L3N1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "At",
+      "Branch": "M5N3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "At",
+      "Branch": "M5N6",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "At",
+      "Branch": "M5O3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Au",
+      "Branch": "M5N3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Au",
+      "Branch": "M5N6",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Au",
+      "Branch": "M5O3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Bi",
+      "Branch": "M5N3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Bi",
+      "Branch": "M5N6",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Bi",
+      "Branch": "M5O3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Br",
+      "Branch": "L2M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Br",
+      "Branch": "L2N1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Br",
+      "Branch": "L3M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Br",
+      "Branch": "L3N1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Cd",
+      "Branch": "L3M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Co",
+      "Branch": "L2M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Co",
+      "Branch": "L3M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Cr",
+      "Branch": "L2M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Cr",
+      "Branch": "L3M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Cu",
+      "Branch": "L2M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Cu",
+      "Branch": "L3M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Dy",
+      "Branch": "M5N3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Dy",
+      "Branch": "M5N6",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Dy",
+      "Branch": "M5O3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Er",
+      "Branch": "M5N3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Er",
+      "Branch": "M5N6",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Er",
+      "Branch": "M5O3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Eu",
+      "Branch": "KM2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Eu",
+      "Branch": "KN2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Eu",
+      "Branch": "KN3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Fe",
+      "Branch": "L2M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Fe",
+      "Branch": "L3M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Fr",
+      "Branch": "M5N3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Fr",
+      "Branch": "M5N6",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ga",
+      "Branch": "L2M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ga",
+      "Branch": "L2N1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ga",
+      "Branch": "L3M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ga",
+      "Branch": "L3N1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Gd",
+      "Branch": "M5N3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Gd",
+      "Branch": "M5N6",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Gd",
+      "Branch": "M5O3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ge",
+      "Branch": "L2M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ge",
+      "Branch": "L2N1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ge",
+      "Branch": "L3M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ge",
+      "Branch": "L3N1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Hf",
+      "Branch": "M5N3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Hf",
+      "Branch": "M5N6",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Hf",
+      "Branch": "M5O3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Hg",
+      "Branch": "M5N3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Hg",
+      "Branch": "M5N6",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Hg",
+      "Branch": "M5O3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ho",
+      "Branch": "M5N3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ho",
+      "Branch": "M5N6",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ho",
+      "Branch": "M5O3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ir",
+      "Branch": "M5N3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ir",
+      "Branch": "M5N6",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ir",
+      "Branch": "M5O3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Kr",
+      "Branch": "L2M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Kr",
+      "Branch": "L2N1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Kr",
+      "Branch": "L3M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Kr",
+      "Branch": "L3N1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Lu",
+      "Branch": "M5N3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Lu",
+      "Branch": "M5N6",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Lu",
+      "Branch": "M5O3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Mn",
+      "Branch": "L2M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Mn",
+      "Branch": "L3M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Mo",
+      "Branch": "L2M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Mo",
+      "Branch": "L2N1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Mo",
+      "Branch": "L3M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Mo",
+      "Branch": "L3N1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Mo",
+      "Branch": "L3N4",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Nb",
+      "Branch": "L2M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Nb",
+      "Branch": "L2N1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Nb",
+      "Branch": "L3M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Nb",
+      "Branch": "L3N1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Nb",
+      "Branch": "L3N4",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Nd",
+      "Branch": "KM2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Nd",
+      "Branch": "KN2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Nd",
+      "Branch": "KN3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ni",
+      "Branch": "L2M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ni",
+      "Branch": "L3M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Os",
+      "Branch": "M5N3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Os",
+      "Branch": "M5N6",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Os",
+      "Branch": "M5O3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "P",
+      "Branch": "KM2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Pa",
+      "Branch": "M5N3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Pb",
+      "Branch": "M5N3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Pb",
+      "Branch": "M5N6",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Pb",
+      "Branch": "M5O3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Pd",
+      "Branch": "L2M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Pd",
+      "Branch": "L3M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Pm",
+      "Branch": "KM2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Pm",
+      "Branch": "KN2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Pm",
+      "Branch": "KN3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Po",
+      "Branch": "M5N3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Po",
+      "Branch": "M5N6",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Po",
+      "Branch": "M5O3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Pr",
+      "Branch": "KM2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Pr",
+      "Branch": "KN2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Pr",
+      "Branch": "KN3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Pt",
+      "Branch": "M5N3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Pt",
+      "Branch": "M5N6",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Pt",
+      "Branch": "M5O3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ra",
+      "Branch": "M5N3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Rb",
+      "Branch": "L2M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Rb",
+      "Branch": "L2N1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Rb",
+      "Branch": "L3M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Rb",
+      "Branch": "L3N1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Re",
+      "Branch": "M5N3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Re",
+      "Branch": "M5N6",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Re",
+      "Branch": "M5O3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Rh",
+      "Branch": "L2M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Rh",
+      "Branch": "L3M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Rn",
+      "Branch": "M5N3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Rn",
+      "Branch": "M5N6",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Rn",
+      "Branch": "M5O3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ru",
+      "Branch": "L2M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ru",
+      "Branch": "L3M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ru",
+      "Branch": "L3N1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "S",
+      "Branch": "KM2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Sc",
+      "Branch": "L2M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Sc",
+      "Branch": "L3M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Se",
+      "Branch": "L2M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Se",
+      "Branch": "L2N1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Se",
+      "Branch": "L3M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Se",
+      "Branch": "L3N1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Si",
+      "Branch": "KM2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Sm",
+      "Branch": "KM2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Sm",
+      "Branch": "KN2",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Sm",
+      "Branch": "KN3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Sr",
+      "Branch": "L2M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Sr",
+      "Branch": "L2N1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Sr",
+      "Branch": "L3M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Sr",
+      "Branch": "L3N1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ta",
+      "Branch": "M5N3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ta",
+      "Branch": "M5N6",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ta",
+      "Branch": "M5O3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Tb",
+      "Branch": "M5N3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Tb",
+      "Branch": "M5N6",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Tb",
+      "Branch": "M5O3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Tc",
+      "Branch": "L2M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Tc",
+      "Branch": "L2N1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Tc",
+      "Branch": "L3M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Tc",
+      "Branch": "L3N1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Tc",
+      "Branch": "L3N4",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Th",
+      "Branch": "M5N3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ti",
+      "Branch": "L2M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Ti",
+      "Branch": "L3M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Tl",
+      "Branch": "M5N3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Tl",
+      "Branch": "M5N6",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Tl",
+      "Branch": "M5O3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Tm",
+      "Branch": "M5N3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Tm",
+      "Branch": "M5N6",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Tm",
+      "Branch": "M5O3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "U",
+      "Branch": "M5N3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "V",
+      "Branch": "L2M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "V",
+      "Branch": "L3M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "W",
+      "Branch": "M5N3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "W",
+      "Branch": "M5N6",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "W",
+      "Branch": "M5O3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Y",
+      "Branch": "L2M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Y",
+      "Branch": "L2N1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Y",
+      "Branch": "L3M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Y",
+      "Branch": "L3N1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Yb",
+      "Branch": "M5N3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Yb",
+      "Branch": "M5N6",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Yb",
+      "Branch": "M5O3",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Zn",
+      "Branch": "L2M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Zn",
+      "Branch": "L3M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Zr",
+      "Branch": "L2M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Zr",
+      "Branch": "L2N1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Zr",
+      "Branch": "L3M1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Zr",
+      "Branch": "L3N1",
+      "reason": "outside_measurable_energy_range"
+    },
+    {
+      "Element": "Zr",
+      "Branch": "L3N4",
+      "reason": "outside_measurable_energy_range"
+    }
+  ],
+  "sample_metadata": {
+    "format": "Amptek_PMCA_ASCII",
+    "encoding": "latin-1",
+    "channel_origin": 0,
+    "warnings": [
+      "Non-UTF8 MCA headers decoded using latin-1; DATA remains strict ASCII numeric"
+    ],
+    "header_lines": [
+      "<<PMCA SPECTRUM>>",
+      "TAG - live_data",
+      "DESCRIPTION -",
+      "GAIN - 2",
+      "THRESHOLD - 0",
+      "LIVE_MODE - 0",
+      "PRESET_TIME - 0",
+      "LIVE_TIME - 30.000000",
+      "REAL_TIME - 30.000000",
+      "START_TIME - 09/30/2026 18:40:56",
+      "SERIAL_NUMBER - 0",
+      "<<CALIBRATION>>",
+      "LABEL - Channel",
+      "0 0",
+      "299 22.08"
+    ],
+    "declared_channels": [
+      "1024"
+    ],
+    "status_lines": [
+      "<<DP5 CONFIGURATION>>",
+      "RESC=?;    Reset Configuration",
+      "CLCK=80;    20MHz/80MHz",
+      "TPEA=0.100;    Peaking Time",
+      "GAIF=1.0520;    Fine Gain",
+      "GAIN=3.999;    Total Gain (Analog * Fine)",
+      "RESL=100;    Detector Reset Lockout",
+      "TFLA=0.200;    Flat Top",
+      "TPFA=100;    Fast Channel Peaking Time",
+      "PURE=ON;    PUR Interval On/Off",
+      "RTDE=OFF;    RTD On/Off",
+      "MCAS=NORM;    MCA Source",
+      "MCAC=1024;    MCA/MCS Channels",
+      "SOFF=OFF;    Set Spectrum Offset",
+      "AINP=POS;    Analog Input Pos/Neg",
+      "INOF=DEF;    Input Offset",
+      "GAIA=7;    Analog Gain Index",
+      "CUSP=0;    Non-Trapezoidal Shaping",
+      "PURS=0;    Secondary PUR",
+      "PDMD=NORM;    Peak Detect Mode (Min/Max)",
+      "THSL=1.501;    Slow Threshold",
+      "TLLD=40;    LLD Threshold",
+      "THFA=332.18;    Fast Threshold",
+      "DACO=FAST;    DAC Output",
+      "DACF=50;    DAC Offset",
+      "RTDS=0.0;    RTD Sensitivity",
+      "RTDT=0.00;    RTD Threshold",
+      "BLRM=1;    BLR Mode",
+      "BLRD=3;    BLR Down Correction",
+      "BLRU=1;    BLR Up Correction",
+      "GATE=OFF;    Gate Control",
+      "AUO1=PILEUP;    AUX_OUT Selection",
+      "PRET=30.0;    Preset Time",
+      "PRER=OFF;    Preset Real Time",
+      "PREC=OFF;    Preset Counts",
+      "PRCL=1;    Preset Counts Low Threshold",
+      "PRCH=8191;    Preset Counts High Threshold",
+      "HVSE=-130;    HV Set",
+      "TECS=230;    TEC Set",
+      "PAPS=ON;    Preamp 8.5/5 (N/A)",
+      "SCOE=FA;    Scope Trigger Edge",
+      "SCOT=12;    Scope Trigger Position",
+      "SCOG=1;    Digital Scope Gain",
+      "MCSL=1;    MCS Low Threshold",
+      "MCSH=8191;    MCS High Threshold",
+      "MCST=0.01;    MCS Timebase",
+      "AUO2=ICR;    AUX_OUT2 Selection",
+      "TPMO=OFF;    Test Pulser On/Off",
+      "GPED=RI;    G.P. Counter Edge",
+      "GPIN=AUX1;    G.P. Counter Input",
+      "GPME=ON;    G.P. Counter Uses MCA_EN?",
+      "GPGA=ON;    G.P. Counter Uses GATE?",
+      "GPMC=ON;    G.P. Counter Cleared With MCA Counters?",
+      "MCAE=OFF;    MCA/MCS Enable",
+      "BOOT=ON;    Turn Supplies On/Off At Power Up",
+      "<<DP5 CONFIGURATION END>>",
+      "<<DPP STATUS>>",
+      "Device Type: DP5",
+      "Serial Number: 36175",
+      "Firmware: 6.10  Build:  4",
+      "FPGA: 7.07",
+      "Fast Count: 46",
+      "Slow Count: 150013",
+      "GP Count: 0",
+      "Accumulation Time: 30.000000",
+      "Real Time: 124.871000",
+      "Dead Time:",
+      "HV Volt: -130V",
+      "TEC Temp: 270K",
+      "Board Temp: 41°C",
+      "<<DPP STATUS END>>"
+    ],
+    "live_time_s": 30.0,
+    "real_time_s": 30.0,
+    "embedded_calibration_points": [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        299.0,
+        22.08
+      ]
+    ]
+  },
+  "branch_ratios": "fixed_by_sensitivity_plus_same_shell_completion; unknown_shells_separate_nuisances",
+  "model": "raw_counts_poisson; centroid_pattern_selected; integrated_gaussian; q_i*S_i_line; unscaled_shell_nuisances; SNIP*exp(Legendre)",
+  "objective": 937.7586157672124,
+  "negative_log_likelihood_without_factorial": -1954063.5826520876,
+  "poisson_deviance": 1873.6889640413879,
+  "degrees_of_freedom": 490,
+  "deviance_per_dof": 3.8238550286558937,
+  "model_comparisons": [
+    {
+      "Element": "Fe",
+      "reduced_fit_success": true,
+      "DeltaDeviance": 4133.970797447022,
+      "reduced_deviance": 6007.659761488409,
+      "full_deviance": 1873.6889640413879,
+      "removed_parameters": 1,
+      "Score_definition": "DeltaDeviance - removed_parameters*log(number_of_channels); ranking, not probability"
+    },
+    {
+      "Element": "Hg",
+      "reduced_fit_success": true,
+      "DeltaDeviance": 1264.1329754414037,
+      "reduced_deviance": 3137.821939482978,
+      "full_deviance": 1873.6889640413879,
+      "removed_parameters": 2,
+      "Score_definition": "DeltaDeviance - removed_parameters*log(number_of_channels); ranking, not probability"
+    }
+  ],
+  "overlap_pairs": [],
+  "branch_diagnostics": [
+    {
+      "Element": "Fe",
+      "Branches": "Kalpha2+Kalpha1",
+      "Family": "K",
+      "ExpectedCounts": 5456.763659628168,
+      "InformationScore": 60.90434350644815,
+      "RegionResidualZ": 0.866398061600595,
+      "branch_ratio_mismatch": false
+    },
+    {
+      "Element": "Fe",
+      "Branches": "Kbeta1+KM2",
+      "Family": "K",
+      "ExpectedCounts": 732.0962554034431,
+      "InformationScore": 14.674947025792605,
+      "RegionResidualZ": -1.4258876574523252,
+      "branch_ratio_mismatch": false
+    },
+    {
+      "Element": "Hg",
+      "Branches": "L3M1",
+      "Family": "L",
+      "ExpectedCounts": 91.4400949718591,
+      "InformationScore": 2.3828834928343823,
+      "RegionResidualZ": -0.7936406434840629,
+      "branch_ratio_mismatch": false
+    },
+    {
+      "Element": "Hg",
+      "Branches": "Lalpha2+Lalpha1",
+      "Family": "L",
+      "ExpectedCounts": 1807.8817486214175,
+      "InformationScore": 28.44885691808616,
+      "RegionResidualZ": -0.2620794103655385,
+      "branch_ratio_mismatch": false
+    },
+    {
+      "Element": "Hg",
+      "Branches": "L2M1",
+      "Family": "L",
+      "ExpectedCounts": 21.343680099203205,
+      "InformationScore": 0.08577989600791877,
+      "RegionResidualZ": 2.431999243192967,
+      "branch_ratio_mismatch": false
+    },
+    {
+      "Element": "Hg",
+      "Branches": "L3N1+Lbeta1+L3N4+Lbeta2+L3O1+L3O45",
+      "Family": "L",
+      "ExpectedCounts": 1512.2229146325035,
+      "InformationScore": 20.703223733151606,
+      "RegionResidualZ": 0.40344545568536516,
+      "branch_ratio_mismatch": false
+    },
+    {
+      "Element": "Hg",
+      "Branches": "L2N1+Lgamma1+L2O1+L2O4",
+      "Family": "L",
+      "ExpectedCounts": 263.7350304369505,
+      "InformationScore": 5.958422795308128,
+      "RegionResidualZ": -0.6432121731643704,
+      "branch_ratio_mismatch": false
+    }
+  ],
+  "delta_E_keV": 0.12313070883778568,
+  "resolution_scale": 1.5,
+  "energy_gain_correction": -0.003377774683364446,
+  "gain_fitted": true,
+  "background_parameters": [
+    -1.3702047843410097,
+    1.6649309906025636,
+    2.152491248732161,
+    -3.0
+  ],
+  "optimizer": {
+    "message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH",
+    "attempts": [
+      {
+        "success": true,
+        "message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH",
+        "iterations": 156,
+        "objective": 937.7586157672124
+      }
+    ]
+  },
+  "nuisance_peaks": [
+    "Hg_L1_unscaled"
+  ],
+  "uncertainty": {
+    "method": "expected_poisson_information_nuisance_adjusted",
+    "scaled_jacobian_condition": 15.577022916951957,
+    "singular_directions": 0,
+    "auxiliary_shell_pruning": [],
+    "low_z_counterfactual_reviews": []
+  },
+  "q_covariance": [
+    [
+      null,
+      null
+    ],
+    [
+      null,
+      null
+    ]
+  ],
+  "covariance_element_order": [
+    "Fe",
+    "Hg"
+  ],
+  "bootstrap": {
+    "requested": 0,
+    "successful": 0,
+    "method": null
+  },
+  "reference": {
+    "Element": "Fe",
+    "selection_rule": "requested reference",
+    "fraction_denominator_elements": [
+      "Fe",
+      "Hg"
+    ],
+    "formula": "(net_area_i / sensitivity_i) / (net_area_reference / sensitivity_reference)",
+    "scale_source": "local_primary_peak_area; joint_fit_q_is_diagnostic"
+  },
+  "apparent_relative_areal_density": true,
+  "primary_peak_quantification": {
+    "method": "local_primary_peak_area_over_sensitivity",
+    "covariance_method": "shared_channel_influence_Poisson_covariance; local_overdispersion_plus_window_difference; finite_reference_counts; shared_global_scale_sample_reference_influence",
+    "formula": "A_i = common_flux_geometry_time * areal_density_i * S_i; ratio=(A_i/S_i)/(A_ref/S_ref)",
+    "elements": [
+      {
+        "Element": "Fe",
+        "Z": 26,
+        "q_Area": 455.5368060129877,
+        "q_Std": 16.808780748254495,
+        "q_Stat_Std": 9.060724900319823,
+        "Quantification_Status": "local_area_estimate",
+        "Failure_Reason": "",
+        "Notes": "Conditional on supplied common-scale S; local Gaussian/background and candidate set; S/absorption systematics excluded",
+        "Selected_Branches": "Kalpha2+Kalpha1",
+        "Area_Counts": 5666.832313120965,
+        "Sensitivity_Sum": 12.4399,
+        "Background_Window_Relative_Difference": 0.0012408388810911306,
+        "Window_Systematic_q": 0.5652477806689831,
+        "Local_Overdispersion": 3.4375983736351867,
+        "Local_Response_At_Boundary": false,
+        "Method": "local_primary_area_over_common_scale_sensitivity",
+        "Measured_Background_Scale": 1.0365283948678696,
+        "Measured_Background_Scale_Std": 0.004126842024386434,
+        "dq_dBackground_Scale": -124.45176329791606,
+        "Background_Scale_Uncertainty_Status": "propagated"
+      },
+      {
+        "Element": "Hg",
+        "Z": 80,
+        "q_Area": 345.4238811706751,
+        "q_Std": 69.33968906188697,
+        "q_Stat_Std": 32.83926972619288,
+        "Quantification_Status": "local_area_estimate",
+        "Failure_Reason": "",
+        "Notes": "Conditional on supplied common-scale S; local Gaussian/background and candidate set; S/absorption systematics excluded",
+        "Selected_Branches": "Lalpha2+Lalpha1",
+        "Area_Counts": 1782.2646013628678,
+        "Sensitivity_Sum": 5.159644999999999,
+        "Background_Window_Relative_Difference": 0.0673036936092068,
+        "Window_Systematic_q": 23.248303063614173,
+        "Local_Overdispersion": 3.95719500572905,
+        "Local_Response_At_Boundary": false,
+        "Method": "local_primary_area_over_common_scale_sensitivity",
+        "Measured_Background_Scale": 1.0365283948678696,
+        "Measured_Background_Scale_Std": 0.004126842024386434,
+        "dq_dBackground_Scale": -561.3146495155528,
+        "Background_Scale_Uncertainty_Status": "propagated"
+      }
+    ],
+    "covariance_element_order": [
+      "Fe",
+      "Hg"
+    ],
+    "q_area_covariance": [
+      [
+        282.53511024289094,
+        19.9062957601032
+      ],
+      [
+        19.906295760103195,
+        4807.992479199168
+      ]
+    ],
+    "q_area_stat_covariance": [
+      [
+        82.09673571927566,
+        5.397208039647502
+      ],
+      [
+        5.397208039647501,
+        1078.4176361496484
+      ]
+    ],
+    "audit": [
+      {
+        "Element": "Fe",
+        "Branches": "Kalpha2+Kalpha1",
+        "Primary_Group_Policy": "unresolved_primary_group",
+        "Sensitivity_Sum": 12.4399,
+        "Narrow": {
+          "Background_Window_Sigmas": 4.0,
+          "Success": true,
+          "Interferent_Anchor_Extensions": [],
+          "Measured_Background": true,
+          "Background_Scale": 1.0365283948678696,
+          "Background_Likelihood": "joint_sample_reference_Poisson_profile_latent_channels",
+          "Optimizer_Message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH",
+          "ROI_Start_keV": 6.166153846153847,
+          "ROI_End_keV": 6.830769230769231,
+          "Nuisance_Groups": [],
+          "Nuisance_Policies": [],
+          "q_Area": 456.1020537936567,
+          "q_Fisher_Std": 10.985845759630145,
+          "Area_Counts": 5673.86393898771,
+          "Sensitivity_Sum": 12.4399,
+          "Area_Fraction_in_Window": 0.999140330673121,
+          "DeltaDeviance": 2750.3048117037106,
+          "Deviance": 3.3302975564553647,
+          "Degrees_of_Freedom": 4,
+          "Deviance_per_dof": 0.8325743891138412,
+          "Local_Shift_keV": 0.0014173522270471966,
+          "Local_Width_Scale": 1.1216219788575776,
+          "Response_At_Boundary": false,
+          "Local_Primary_Center_keV": 6.502437634476037
+        },
+        "Wide": {
+          "Background_Window_Sigmas": 6.0,
+          "Success": true,
+          "Interferent_Anchor_Extensions": [],
+          "Measured_Background": true,
+          "Background_Scale": 1.0365283948678696,
+          "Background_Likelihood": "joint_sample_reference_Poisson_profile_latent_channels",
+          "Optimizer_Message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH",
+          "ROI_Start_keV": 5.9446153846153855,
+          "ROI_End_keV": 7.052307692307693,
+          "Nuisance_Groups": [
+            "Fe:Kbeta1+KM2"
+          ],
+          "Nuisance_Policies": [
+            "supported_resolved_group_area_free"
+          ],
+          "q_Area": 455.5368060129877,
+          "q_Fisher_Std": 9.017629477636781,
+          "Area_Counts": 5666.832313120965,
+          "Sensitivity_Sum": 12.4399,
+          "Area_Fraction_in_Window": 0.9999999760733079,
+          "DeltaDeviance": 3690.5692679610074,
+          "Deviance": 30.93838536271668,
+          "Degrees_of_Freedom": 9,
+          "Deviance_per_dof": 3.4375983736351867,
+          "Local_Shift_keV": 0.0014557038611120179,
+          "Local_Width_Scale": 1.1163509742782254,
+          "Response_At_Boundary": false,
+          "Local_Primary_Center_keV": 6.502475986110101
+        },
+        "Scale_Sensitivity": {
+          "Method": "refit_local_parameters_at_global_scale_plus_minus_sigma",
+          "Low_Scale": 1.0324015528434831,
+          "High_Scale": 1.0406552368922561,
+          "Low_Fit_Success": true,
+          "High_Fit_Success": true,
+          "q_At_Low_Scale": 456.0510554666524,
+          "q_At_High_Scale": 455.0238699330787,
+          "dq_dScale": -124.45176329791606
+        },
+        "Accepted": true
+      },
+      {
+        "Element": "Hg",
+        "Branches": "Lalpha2+Lalpha1",
+        "Primary_Group_Policy": "unresolved_primary_group",
+        "Sensitivity_Sum": 5.159644999999999,
+        "Narrow": {
+          "Background_Window_Sigmas": 4.0,
+          "Success": true,
+          "Interferent_Anchor_Extensions": [],
+          "Measured_Background": true,
+          "Background_Scale": 1.0365283948678696,
+          "Background_Likelihood": "joint_sample_reference_Poisson_profile_latent_channels",
+          "Optimizer_Message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH",
+          "ROI_Start_keV": 9.563076923076924,
+          "ROI_End_keV": 10.523076923076925,
+          "Nuisance_Groups": [],
+          "Nuisance_Policies": [],
+          "q_Area": 322.1755781070609,
+          "q_Fisher_Std": 23.31081867524462,
+          "Area_Counts": 1662.311610702206,
+          "Sensitivity_Sum": 5.159644999999999,
+          "Area_Fraction_in_Window": 0.9999955656324121,
+          "DeltaDeviance": 365.9206686656107,
+          "Deviance": 9.436879665585145,
+          "Degrees_of_Freedom": 8,
+          "Deviance_per_dof": 1.1796099581981432,
+          "Local_Shift_keV": -0.0019699014293287753,
+          "Local_Width_Scale": 0.9413415408746327,
+          "Response_At_Boundary": false,
+          "Local_Primary_Center_keV": 10.067274506020054
+        },
+        "Wide": {
+          "Background_Window_Sigmas": 6.0,
+          "Success": true,
+          "Interferent_Anchor_Extensions": [],
+          "Measured_Background": true,
+          "Background_Scale": 1.0365283948678696,
+          "Background_Likelihood": "joint_sample_reference_Poisson_profile_latent_channels",
+          "Optimizer_Message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH",
+          "ROI_Start_keV": 9.341538461538462,
+          "ROI_End_keV": 10.744615384615386,
+          "Nuisance_Groups": [
+            "Hg:L2M1"
+          ],
+          "Nuisance_Policies": [
+            "supported_resolved_group_area_free"
+          ],
+          "q_Area": 345.4238811706751,
+          "q_Fisher_Std": 32.335437993691365,
+          "Area_Counts": 1782.2646013628678,
+          "Sensitivity_Sum": 5.159644999999999,
+          "Area_Fraction_in_Window": 0.9999999991727737,
+          "DeltaDeviance": 370.1931074303575,
+          "Deviance": 51.44353507447765,
+          "Degrees_of_Freedom": 13,
+          "Deviance_per_dof": 3.95719500572905,
+          "Local_Shift_keV": 0.002786307306178714,
+          "Local_Width_Scale": 1.0371108823104014,
+          "Response_At_Boundary": false,
+          "Local_Primary_Center_keV": 10.072030714755561
+        },
+        "Scale_Sensitivity": {
+          "Method": "refit_local_parameters_at_global_scale_plus_minus_sigma",
+          "Low_Scale": 1.0324015528434831,
+          "High_Scale": 1.0406552368922561,
+          "Low_Fit_Success": true,
+          "High_Fit_Success": true,
+          "q_At_Low_Scale": 347.78793524619084,
+          "q_At_High_Scale": 343.1550214771417,
+          "dq_dScale": -561.3146495155528
+        },
+        "Accepted": true
+      }
+    ],
+    "conditional_on": "supplied sensitivity; selected elements and local line shapes; thin-sample apparent density",
+    "global_template_q_unchanged": true
+  },
+  "assumptions": {
+    "thin_sample": true,
+    "self_absorption": false,
+    "full_energy_efficiency": 1.0,
+    "absolute_areal_density_available": false
+  },
+  "systematics_included": false,
+  "excitation_match_verified": false,
+  "target_scattering_review": "Tube target unspecified; candidate target fluorescence may be instrument scattering",
+  "residual_anomalies": {
+    "abs_pearson_gt5": 8,
+    "unassigned_peaks": [
+      {
+        "peak_id": 1,
+        "channel": 51.674056775042274,
+        "energy_keV": 3.815930346464673,
+        "local_prominence": 104.59857216842133,
+        "estimated_fwhm_keV": 0.20066110410748048,
+        "approx_significance": 16.418666782031536,
+        "roi_start_keV": 3.5602915711821526,
+        "roi_end_keV": 4.071569121747194,
+        "quality_flags": "poisson_fitted_centroid;local_score_not_global_p_value",
+        "maximum_channel": 52,
+        "maximum_energy_keV": 3.8400000000000003,
+        "centroid_std_keV": 0.006925986850899291,
+        "net_area_counts": 415.3715711214925,
+        "area_std_counts": 33.5798130605469,
+        "local_fit_status": "success",
+        "local_deviance_per_dof": 1.4069630335816248
+      },
+      {
+        "peak_id": 5,
+        "channel": 139.93839190639838,
+        "energy_keV": 10.33391201770338,
+        "local_prominence": 996.1009668914286,
+        "estimated_fwhm_keV": 0.5323965126526834,
+        "approx_significance": 18.362051428023822,
+        "roi_start_keV": 9.65564807081352,
+        "roi_end_keV": 11.01217596459324,
+        "quality_flags": "poisson_fitted_centroid;local_score_not_global_p_value;broad_structure;local_shape_mismatch_or_unresolved_multiplet",
+        "maximum_channel": 143,
+        "maximum_energy_keV": 10.56,
+        "centroid_std_keV": null,
+        "net_area_counts": 2510.956869564957,
+        "area_std_counts": null,
+        "local_fit_status": "success",
+        "local_deviance_per_dof": 9.105546682584473
+      },
+      {
+        "peak_id": 8,
+        "channel": 341.52189052838685,
+        "energy_keV": 25.22007806978892,
+        "local_prominence": 31.71747617753881,
+        "estimated_fwhm_keV": 0.4022712623083895,
+        "approx_significance": 7.030530294449888,
+        "roi_start_keV": 24.707591440727075,
+        "roi_end_keV": 25.732564698850762,
+        "quality_flags": "poisson_fitted_centroid;local_score_not_global_p_value",
+        "maximum_channel": 342,
+        "maximum_energy_keV": 25.255384615384617,
+        "centroid_std_keV": 0.03045384828325982,
+        "net_area_counts": 156.6192223070856,
+        "area_std_counts": 31.637325433800545,
+        "local_fit_status": "success",
+        "local_deviance_per_dof": 1.1136686359839256
+      },
+      {
+        "peak_id": 9,
+        "channel": 356.1733295917294,
+        "energy_keV": 26.302030492928075,
+        "local_prominence": 14.118132500922968,
+        "estimated_fwhm_keV": 0.24322124554654945,
+        "approx_significance": 3.8197611194718815,
+        "roi_start_keV": 25.99217083372424,
+        "roi_end_keV": 26.61189015213191,
+        "quality_flags": "poisson_fitted_centroid;local_score_not_global_p_value",
+        "maximum_channel": 357,
+        "maximum_energy_keV": 26.363076923076925,
+        "centroid_std_keV": 0.03524693030881383,
+        "net_area_counts": 46.05156471494034,
+        "area_std_counts": 17.500895246371904,
+        "local_fit_status": "success",
+        "local_deviance_per_dof": 1.1136686359839256
+      },
+      {
+        "peak_id": 10,
+        "channel": 451.2663392080962,
+        "energy_keV": 33.324283510752196,
+        "local_prominence": 8.897259977234206,
+        "estimated_fwhm_keV": 0.8156958338031204,
+        "approx_significance": 3.7884871000899896,
+        "roi_start_keV": 32.28510112967254,
+        "roi_end_keV": 34.36346589183185,
+        "quality_flags": "poisson_fitted_centroid;local_score_not_global_p_value;broad_structure",
+        "maximum_channel": 448,
+        "maximum_energy_keV": 33.08307692307692,
+        "centroid_std_keV": 0.09516817178678383,
+        "net_area_counts": 57.618460350586076,
+        "area_std_counts": 23.582892299145033,
+        "local_fit_status": "success",
+        "local_deviance_per_dof": 0.8094702769552905
+      }
+    ]
+  },
+  "warnings": [
+    "Non-UTF8 MCA headers decoded using latin-1; DATA remains strict ASCII numeric",
+    "Accepted instrument origin (0,0); zero energy is allowed only at channel zero",
+    "Two-point residuals do not estimate calibration statistical uncertainty",
+    "Sensitivity provenance unverified: missing .metadata.json; source matching is not established",
+    "Inferred acquisition lower cutoff 2.99077 keV: zero-prefix channels excluded, not treated as measured absence",
+    "Non-UTF8 MCA headers decoded using latin-1; DATA remains strict ASCII numeric",
+    "Measured background enabled with fitted global scale; acquisition/shape matching is not verified",
+    "Global response parameter at bound: review calibration/resolution; no symmetric quantitative uncertainty",
+    "Structured residual / overdispersion: matrix_effect_or_model_mismatch or unmodelled scattering/artifacts",
+    "5 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary"
+  ],
+  "elapsed_seconds": 2.853748793997511
+}

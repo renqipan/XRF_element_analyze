@@ -4,6 +4,8 @@
 
 ## 1. 目标与状态契约
 
+可选实测背景`background_spectrum=None`默认关闭，显式路径启用。`--background_spectrum`、`--backgroud_spectrum`、`--background`兼容；None可覆盖JSON配置。启用时采用ON/OFF联合Poisson：`Y_j~Pois(s_j+alpha*b_j)`，`B_j~Pois(b_j)`；全谱alpha自由非负，b逐道解析剖面消去。有效信息权重为`1/(mu_j+alpha²*b_j)`，全局scale作为共享干扰参数；局部主线固定全局scale并传播其共享样品/背景影响函数，参考谱计数噪声保留。背景未被当作精确模板，也不对扣背景差谱套Poisson。需精确匹配通道和标定，整体scale不能校正形状失配。启用后的元素和比值以扣除环境贡献后的条件证据为准。
+
 输入样品原始计数谱、线性标定点和共同尺度的九分支灵敏度表；输出观测峰、元素/分支配对、联合峰形、面积及不确定度、可审计质量判断和表观相对质量面密度。
 
 `Status`为身份状态：supported、tentative、not_supported、ambiguous、unidentifiable。`Quantification_Status`表示所选定量方法的峰面积/强度、响应和协方差是否允许计算比例；`Global_Quantification_Status`保留全谱模板诊断。分支比失配不能直接撤销明确的多能量身份，也不必否定另外一个已独立测量的主线面积；常见性不能把歧义变成确证。
@@ -30,7 +32,7 @@
 
 ### 2.3 独立背景测量
 
-`data/backgroud_spectrum.mca`采集条件与样品不同或不确定，当前仅作为参考文件。它不被直接减到样品上，也不按任意尺度替代样品背景。不同条件可能改变连续谱、散射及靶线；若未来启用独立背景，应建立已知曝光/几何比例及两个原始计数谱的联合统计模型。当前定量在样品原始计数上同时拟合正背景与峰，不对扣背景差谱使用Poisson似然。
+`data/backgroud_spectrum.mca`条件未验证，默认None关闭；用户显式启用后按上述联合统计模型定量考虑其影响。整体scale可以浮动，但不能修复几何或激发改变引起的谱形差异。
 
 ## 3. 先处理有效能区，再发现或约束峰
 

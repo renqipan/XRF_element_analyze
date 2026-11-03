@@ -62,8 +62,15 @@ class AnalysisConfig:
     seed: int = 42
     max_iterations: int = 1800
     save_intermediate: bool = False
+    background_spectrum: Optional[str] = None
 
     def validate(self):
+        if self.background_spectrum is not None:
+            self.background_spectrum=str(self.background_spectrum).strip()
+            if self.background_spectrum.lower() in ('none','null'):
+                self.background_spectrum=None
+            elif not self.background_spectrum:
+                raise ValueError('background_spectrum must be a path or None')
         from .element_prior import PROFILES
         if self.quantification_method not in ('local-peaks', 'global-template'):
             raise ValueError('quantification_method must be local-peaks or global-template')

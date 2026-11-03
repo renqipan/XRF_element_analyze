@@ -1,4 +1,4 @@
-# XRF Spectrum Analyzer 0.4
+# XRF Spectrum Analyzer 0.5
 
 对SDD测量的XRF原始计数谱执行：自动寻峰、亚道峰心拟合、全谱多分支元素识别、多元素泊松联合拟合，以及**仅对证据支持且通过定量质量检查的元素**计算表观相对质量面密度。
 
@@ -28,6 +28,20 @@ PYTHON_BIN=.venv/bin/python scripts/verify.sh
 回归测试包含真实谱、已知真值的泊松合成谱、手动峰心、元素先验和批处理失败隔离。当前测试与真实数据的复验结果见 `VALIDATION.md`。
 
 ## 自动分析真实谱
+
+可选实测背景谱默认 **None**，不指定时保持原流程。启用示例：
+
+```bash
+.venv/bin/python -m xrf_analyzer analyze --spectrum SDD_Spectrum/shafa_50kv_20uA.mca \
+  --calibration data/calibration.csv --sensitivity data/xrf_relative_sensitivity.csv \
+  --background_spectrum data/backgroud_spectrum.mca --output-dir results/shafa_measured_background
+```
+
+`--background_spectrum`、`--backgroud_spectrum`、两者的连字符拼写及`--background`均为同一个参数；`--background None`关闭。JSON使用`"background_spectrum": null`或路径。Python API支持`analyze(..., background_spectrum=path)`；显式`None`覆盖配置。批处理脚本可透传相同选项。
+
+模型为`Y~Poisson(sample+continuum+alpha*b)`、`B~Poisson(b)`，全谱共用一个自由非负scale `alpha`，以曝光时间比初始化；逐道未知背景均值使用联合Poisson解析剖面似然，不把扣背景差谱当Poisson数据。背景参考计数波动、共享scale误差进入局部面积及跨元素比值协方差。原始背景不随元素响应移动，只允许整体scale；需精确通道/能量匹配，不隐式插值。scale不能修复条件差异造成的形状变化，启用背景可能改变支持元素集合。
+
+拟合scale、误差、输入哈希及条件限制见`fit_summary.json`的`measured_background`；`fit_spectrum.csv`新增`measured_background_counts`及`continuum_background_counts`，主图显示缩放后的实测背景贡献。
 
 ```bash
 .venv/bin/python -m xrf_analyzer analyze \
@@ -212,7 +226,7 @@ C在同一谱内比值中抵消；S不再重复乘荧光产额或分支率。面
 - MCA：支持真实文件所用的Amptek PMCA ASCII标记、MCAC道数、时间和嵌入标定。Windows头部字符允许明确的latin-1回退，数据区严格数值校验。`.mac`按内容识别，未知/二进制明确报错。
 - 灵敏度CSV保留原九列契约；0、缺失、负数/无穷含义分别处理。新增线只从已有同层正S推导，补线不改写用户CSV。无锚点壳层不臆造S。
 - 能量只从`xraylib.LineEnergy`读取，单位keV；`data/characteristic_lines_energy.csv`保留为原始参考，不参与分析。
-- `data/backgroud_spectrum.mca`的采集条件与样品不同或不确定，当前仅作参考资料，不直接缩放扣除。连续背景由样品原始计数局部估计；需要未来建立匹配的背景测量、曝光归一及计数联合模型后才能作定量背景输入。
+- `data/backgroud_spectrum.mca`采集条件未验证，默认不启用；显式传入路径后按联合Poisson模型拟合整体scale并参与定量。scale不能校正条件差异造成的形状变化。
 
 当前默认薄样品、无自吸收、全能峰效率1.0。局部误差计入计数统计、拟合参数、过散度和窗口敏感性，仍不包含S、效率、自吸收/分层、截断推断、元素选择及所有背景形状的系统误差。原S缺少来源元数据，源条件匹配未经验证；文物与矿物的基体可能改变分支比。元素未支持不表示不存在，元素存在也不能单独确定化合物、年代或真伪。常见性不会弥补这些信息缺失。
 

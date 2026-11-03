@@ -52,10 +52,12 @@ def _regions(lines, fit, idx, energy, counts, config):
         if not mask.any():
             continue
         component = fit.components[mask, idx]
-        info = float(np.sum(component**2/fit.model[mask]))
-        expected = float(component.sum())
-        # Region residual uses the original-data residual, not hard-bound line ratios.
-        residual_z = float(np.sum(counts[mask]-fit.model[mask])/np.sqrt(fit.model[mask].sum()+1))
+        variance=fit.model[mask].copy()
+        if getattr(fit,'background_latent_counts',None) is not None:
+            variance+=(fit.background_scale or 0.)**2*fit.background_latent_counts[mask]
+        info=float(np.sum(component**2/variance))
+        expected=float(component.sum())
+        residual_z=float(np.sum(counts[mask]-fit.model[mask])/np.sqrt(variance.sum()+1))
         strength = np.sqrt(info)
         if strength >= 3:
             evidence += 1

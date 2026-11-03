@@ -44,6 +44,10 @@ def fit_requested_peaks(channel, energy, edges, counts, background, config):
         raise ValueError('A find_peaks center is outside the measured energy range')
     mask=np.any(abs(energy[:,None]-centers[None,:]) < (bound+4*sigmas)[None,:],axis=1)
     y=counts[mask]; b0=np.maximum(background[mask],.1)
+    reference=getattr(config,'_background_counts',None)
+    reference=reference[mask] if reference is not None else None
+    alpha=getattr(config,'_background_scale',1.)
+    if reference is not None:b0=np.maximum(b0-alpha*reference,.1)
     x=(energy[mask]-np.mean(energy[mask]))/max(np.ptp(energy[mask]),1e-9)
     h=np.column_stack([np.ones(len(y)),x]); n=len(centers); scale=max(y.sum()/10,10.)
     gain_free=reference and config.fit_energy_gain and np.ptp(centers)>1
@@ -56,7 +60,11 @@ def fit_requested_peaks(channel, energy, edges, counts, background, config):
         return mu,jac,p
     def obj(v):
         mu,jac,_=evaluate(v)
-        return float(np.sum(mu-xlogy(y,mu))+.05*np.sum(v[n:n+2]**2)),jac.T@(1-y/mu)+np.r_[np.zeros(n),.1*v[n:n+2],np.zeros(3)]
+        residual=1-y/mu;loss=float(np.sum(mu-xlogy(y,mu)))
+        if reference is not None:
+            from .measured_background import profile_background
+            prof=profile_background(y,mu,alpha,reference);loss=prof['nll'];residual=prof['signal_gradient']
+        return loss+.05*np.sum(v[n:n+2]**2),jac.T@residual+np.r_[np.zeros(n),.1*v[n:n+2],np.zeros(3)]
     bounds=[(0,None)]*n+[(-3,3),(-3,3),(-bound,bound),
             (-config.energy_gain_bound,config.energy_gain_bound) if gain_free else (0.,0.),(.5,3.)]
     starts=[]
@@ -75,10 +83,15 @@ def fit_requested_peaks(channel, energy, edges, counts, background, config):
         raise ValueError('Shared-response fitting of user-specified peaks did not converge')
     opt=min(solutions,key=lambda r:r.fun);mu,jac,p=evaluate(opt.x)
     delta,gain,width=opt.x[n+2:];area=opt.x[:n]*scale
+    variance=mu.copy()
+    if reference is not None:
+        from .measured_background import profile_background
+        prof=profile_background(y,mu,alpha,reference)
+        variance=prof['model']+alpha**2*prof['latent_background']
     rows=[]
     for i,(c,sig,requested) in enumerate(zip(centers,sigmas,groups)):
         observed=c*(1+gain)+delta
-        information=float(np.sqrt(np.sum((area[i]*p[:,i])**2/mu)))
+        information=float(np.sqrt(np.sum((area[i]*p[:,i])**2/variance)))
         raw_roi=abs(energy-observed)<3*sig*width
         maximum=int(np.flatnonzero(raw_roi)[np.argmax(counts[raw_roi])]) if raw_roi.any() else int(np.argmin(abs(energy-observed)))
         rows.append([i+1,float(channel[0]+(observed-energy[0])/np.median(np.diff(edges))),float(c),0.,

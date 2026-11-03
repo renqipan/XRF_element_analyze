@@ -1,0 +1,11 @@
+Z,Element,Branch,Reference_Energy_keV,Centroid_keV,Net_Area,Strength_Source,Quantitative_S_Available,Notes
+80,Hg,L1M2,11.5608,11.644880931278347,150.7474741177554,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+80,Hg,L1M3,11.9922,12.074823759279944,170.7712589904203,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+80,Hg,L1M4,12.4544,12.535462551821292,5.1609269840308265,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+80,Hg,L1M5,12.5444,12.625158552099789,7.7224958688871315,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+80,Hg,L1N2,14.1583,14.233607161538309,38.3475049726091,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+80,Hg,L1N3,14.2624,14.337355535193769,46.998085950287695,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+80,Hg,L1N4,14.4608,14.535085384696592,0.776388405599756,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+80,Hg,L1N5,14.48,14.55422053142267,1.224100620950826,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+80,Hg,L1O2,14.7553,14.82859063005234,7.080079225477436,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+80,Hg,L1O3,14.7743,14.847526452333355,8.451737730908922,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated

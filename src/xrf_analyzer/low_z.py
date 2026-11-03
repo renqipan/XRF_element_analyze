@@ -18,10 +18,18 @@ def _alpha_profile(lines, counts, energy, edges, fit, index, config, radius):
     other=np.maximum(fit.model[a:b]-fit.background[a:b]-fit.components[a:b,index],0.)
     h=np.column_stack([np.ones(len(e)),(e-e.mean())/max(np.ptp(e),1e-9)])
     scale=max(float(y.sum()),10.)
+    reference=getattr(fit,'background_observed_counts',None)
+    reference=reference[a:b] if reference is not None else None
+    alpha=getattr(fit,'background_scale',0.) or 0.
     def solve(null=False):
         def obj(v):
             bg=np.exp(h@v[1:]);mu=np.maximum(other+bg+v[0]*scale*p,1e-12);r=1-y/mu
-            return float(np.sum(mu-xlogy(y,mu))),np.r_[scale*(p@r),(bg[:,None]*h).T@r]
+            loss=float(np.sum(mu-xlogy(y,mu)))
+            if reference is not None:
+                from .measured_background import profile_background
+                prof=profile_background(y,mu,alpha,reference)
+                loss=prof['nll'];r=prof['signal_gradient']
+            return loss,np.r_[scale*(p@r),(bg[:,None]*h).T@r]
         bounds=[(0.,0.) if null else (0.,None),(-8.,15.),(-4.,4.)]
         return minimize(obj,[0. if null else .5,np.log(max(np.percentile(y,30),.2)),0.],jac=True,
                         bounds=bounds,method='L-BFGS-B',options={'maxiter':700,'ftol':1e-12,'maxls':40})

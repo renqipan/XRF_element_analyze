@@ -6,6 +6,7 @@ from scipy.signal import find_peaks, peak_widths
 from scipy.optimize import minimize
 from scipy.special import xlogy, ndtr
 from .response import sigma_kev, gaussian_response, FWHM_FACTOR
+from .measured_background import profile_background
 
 PEAK_COLUMNS = ['peak_id', 'channel', 'energy_keV', 'local_prominence', 'estimated_fwhm_keV',
                 'approx_significance', 'roi_start_keV', 'roi_end_keV', 'quality_flags',
@@ -13,7 +14,9 @@ PEAK_COLUMNS = ['peak_id', 'channel', 'energy_keV', 'local_prominence', 'estimat
                 'area_std_counts', 'local_fit_status', 'local_deviance_per_dof']
 
 
-def _local_fit(energy, edges, y, b0, centers0, sigmas0, nominal_sigmas, config):
+def _local_fit(energy, edges, y, b0, centers0, sigmas0, nominal_sigmas, config, reference=None):
+    alpha=getattr(config,'_background_scale',getattr(config,'_background_scale_initial',1.))
+    if reference is not None:b0=np.maximum(b0-alpha*reference,.1)
     n = len(centers0)
     area_scale = max(y.sum()/max(n, 1), 10.)
     b0 = np.maximum(b0, .1)
@@ -57,8 +60,13 @@ def _local_fit(energy, edges, y, b0, centers0, sigmas0, nominal_sigmas, config):
 
     def objective(x):
         mu, jac = evaluate(x)
+        residual=1-y/mu
         loss = np.sum(mu-xlogy(y, mu)) + .05*(x[-2:] @ x[-2:])
-        grad = jac.T @ (1-y/mu)
+        if reference is not None:
+            from .measured_background import profile_background
+            prof=profile_background(y,mu,alpha,reference)
+            loss=prof['nll']+.05*(x[-2:]@x[-2:]);residual=prof['signal_gradient']
+        grad = jac.T @ residual
         grad[-2:] += .1*x[-2:]
         return loss, grad
 
@@ -66,13 +74,18 @@ def _local_fit(energy, edges, y, b0, centers0, sigmas0, nominal_sigmas, config):
                    options={'maxiter': 600, 'ftol': 1e-12, 'gtol': 1e-5, 'maxls': 40})
     mu, jac = evaluate(opt.x)
     # Local information includes neighboring peaks and background. SVD detects rank loss.
-    j = jac/np.sqrt(mu[:, None])
+    if reference is not None:
+        prof=profile_background(y,mu,alpha,reference)
+        j=jac*np.sqrt(prof['information_weight'][:,None])
+    else:j = jac/np.sqrt(mu[:, None])
     norms = np.maximum(np.linalg.norm(j, axis=0), 1e-20)
     _, s, vt = np.linalg.svd(j/norms, full_matrices=False)
     good = s > max(s[0] if len(s) else 1, 1)*1e-7
     cov = ((vt[good].T/s[good]**2) @ vt[good])/norms[:, None]/norms[None, :]
     full_rank = good.all() and len(s) == len(opt.x)
     deviance = float(2*np.sum(xlogy(y, np.maximum(y, 1e-300)/mu)-(y-mu)))
+    if reference is not None:
+        deviance=prof['deviance']
     result = []
     for i in range(n):
         null_bounds = list(bounds)
@@ -123,7 +136,8 @@ def detect_peaks(channel, energy, edges, counts, background, config):
         proposals = group['peaks']
         fitted = _local_fit(energy[a:b], edges[a:b+1], counts[a:b], background[a:b],
                             [energy[p['idx']] for p in proposals], [p['sigma'] for p in proposals],
-                            [p['nominal'] for p in proposals], config)
+                            [p['nominal'] for p in proposals], config,
+                            None if getattr(config,'_background_counts',None) is None else config._background_counts[a:b])
         for proposal, f in zip(proposals, fitted):
             if not f['success'] or f['score'] < config.candidate_threshold_sigma:
                 continue
