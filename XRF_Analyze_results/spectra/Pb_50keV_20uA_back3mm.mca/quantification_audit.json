@@ -7,8 +7,8 @@
       "Element": "Ni",
       "Z": 28,
       "q_Area": 106.41552752731583,
-      "q_Std": 12.900139413337811,
-      "q_Stat_Std": 6.461526223825197,
+      "q_Std": 12.900139413337802,
+      "q_Stat_Std": 6.461526223825191,
       "Quantification_Status": "local_area_estimate",
       "Failure_Reason": "",
       "Notes": "Conditional on supplied common-scale S; local Gaussian/background and candidate set; S/absorption systematics excluded",
@@ -25,8 +25,8 @@
       "Element": "Ag",
       "Z": 47,
       "q_Area": 205.21407240137327,
-      "q_Std": 24.38842523012693,
-      "q_Stat_Std": 16.16199325219982,
+      "q_Std": 24.38842523012692,
+      "q_Stat_Std": 16.16199325219981,
       "Quantification_Status": "local_area_estimate",
       "Failure_Reason": "",
       "Notes": "Conditional on supplied common-scale S; local Gaussian/background and candidate set; S/absorption systematics excluded",
@@ -65,13 +65,13 @@
   ],
   "q_area_covariance": [
     [
-      166.4135968835516,
+      166.41359688355138,
       0.0,
       0.0
     ],
     [
       0.0,
-      594.7952852054918,
+      594.7952852054914,
       0.0
     ],
     [
@@ -82,13 +82,13 @@
   ],
   "q_area_stat_covariance": [
     [
-      41.7513211411807,
+      41.75132114118064,
       0.0,
       0.0
     ],
     [
       0.0,
-      261.21002588415257,
+      261.2100258841522,
       0.0
     ],
     [
@@ -129,7 +129,7 @@
           "unconfirmed_same_initial_shell_L2_ratios_retained"
         ],
         "q_Area": 103.86613677216141,
-        "q_Fisher_Std": 6.519061878779268,
+        "q_Fisher_Std": 6.5190618787792705,
         "Area_Counts": 1442.5001781213518,
         "Sensitivity_Sum": 13.88807,
         "Area_Fraction_in_Window": 0.9999194617773195,
@@ -146,7 +146,6 @@
         "Background_Window_Sigmas": 6.0,
         "Success": true,
         "Interferent_Anchor_Extensions": [
-          "Pm:L1:L1M3",
           "Eu:L2:Lalpha2+L2M1+Lalpha1"
         ],
         "Optimizer_Message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH",
@@ -171,7 +170,7 @@
           "unconfirmed_same_initial_shell_L2_ratios_retained"
         ],
         "q_Area": 106.41552752731583,
-        "q_Fisher_Std": 6.461526223825195,
+        "q_Fisher_Std": 6.461526223825192,
         "Area_Counts": 1477.9062953862892,
         "Sensitivity_Sum": 13.88807,
         "Area_Fraction_in_Window": 0.9999995514454559,
@@ -201,7 +200,7 @@
         "Nuisance_Groups": [],
         "Nuisance_Policies": [],
         "q_Area": 222.50114124158645,
-        "q_Fisher_Std": 23.1676113011896,
+        "q_Fisher_Std": 23.16761130118961,
         "Area_Counts": 443.59518526596105,
         "Sensitivity_Sum": 1.9936759999999998,
         "Area_Fraction_in_Window": 0.9991733891624524,
@@ -224,7 +223,7 @@
         "Nuisance_Groups": [],
         "Nuisance_Policies": [],
         "q_Area": 205.21407240137327,
-        "q_Fisher_Std": 16.161993252199824,
+        "q_Fisher_Std": 16.16199325219982,
         "Area_Counts": 409.1303710088802,
         "Sensitivity_Sum": 1.9936759999999998,
         "Area_Fraction_in_Window": 0.9999996243631795,
@@ -317,7 +316,7 @@
         "Nuisance_Groups": [],
         "Nuisance_Policies": [],
         "q_Area": 9593.77589094333,
-        "q_Fisher_Std": 49.952599246522965,
+        "q_Fisher_Std": 49.952599246522986,
         "Area_Counts": 48972.95444568689,
         "Sensitivity_Sum": 5.104659,
         "Area_Fraction_in_Window": 0.9996787402302045,

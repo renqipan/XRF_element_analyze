@@ -137,3 +137,34 @@ def make_quantification_plots(result,out):
     fig.suptitle('Primary peak area / sensitivity | apparent relative density',fontsize=13)
     fig.savefig(out/'quantification_regions.png',dpi=150)
     plt.close(fig)
+
+
+def make_elements_plot(result,out):
+    """Observed raw counts with supported elemental labels only."""
+    from pathlib import Path
+    e,y=result['energy'],result['counts']
+    ident=result['identification'];fit=ident.fit
+    supported=set(ident.candidates.loc[ident.candidates.Status=='supported','Element'])
+    fig,ax=plt.subplots(figsize=(13,6),constrained_layout=True)
+    ax.step(e,y,where='mid',color='.25',lw=.9,label='Observed raw count')
+    for _,peak in result['peaks'].iterrows():
+        pairs=ident.pairings
+        names=set(pairs.loc[(pairs.peak_id==peak.peak_id)&pairs.Element.isin(supported)
+                            &(pairs.Group_Affinity>0),'Element'])
+        center=peak.energy_keV
+        if result['requested_config'].find_peaks is not None and result['requested_config'].find_peaks_axis=='reference':
+            center=center*(1+fit.energy_gain)+fit.delta
+        pos=int(np.argmin(abs(e-center)))
+        contributions={s:float(fit.components[pos,fit.symbols.index(s)]) for s in names if s in fit.symbols}
+        maximum=max(contributions.values(),default=0.)
+        names=sorted(s for s,v in contributions.items() if v>=.1*max(float(y[pos]),1.) and v>=.1*maximum)
+        if names:
+            ax.annotate('/'.join(names),(e[pos],max(y[pos],1)),xytext=(0,9),
+                        textcoords='offset points',ha='center',fontsize=9)
+    ax.set_yscale('symlog',linthresh=1)
+    ax.set_ylim(0,max(3.,float(np.max(y))*3.))
+    ax.set(xlabel='Energy (keV)',ylabel='Counts / channel')
+    ax.legend(loc='upper right')
+    name=Path(result['summary']['input_files']['sample_spectrum']['path']).stem
+    fig.savefig(out/(name+'_elements.png'),dpi=160)
+    plt.close(fig)

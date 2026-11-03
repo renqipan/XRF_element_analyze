@@ -12,7 +12,8 @@ import pandas as pd
 
 
 def same_value(a, b):
-    if pd.isna(a) and pd.isna(b):
+    missing=lambda value:pd.isna(value) or (isinstance(value,str) and value=='')
+    if missing(a) and missing(b):
         return True
     if isinstance(a, (float, int, np.number)) and isinstance(b, (float, int, np.number)):
         return bool(np.isclose(a, b, rtol=1e-11, atol=1e-12))
@@ -23,7 +24,12 @@ def main(root):
     out = Path(root)
     manifest = json.loads((out/'batch_manifest.json').read_text())
     samples = pd.read_csv(out/'batch_summary.txt', sep='\t', encoding='utf-8-sig').fillna('')
-    aggregate = pd.read_csv(out/'relative_areal_density_all.txt', sep='\t', encoding='utf-8-sig')
+    detail=json.loads((out/'density_details.json').read_text())
+    aggregate=pd.DataFrame(detail['records'],columns=detail['columns'])
+    from xrf_analyzer.batch import format_density_summary
+    expected=format_density_summary(manifest['samples'],detail['records'])
+    assert (out/'relative_areal_density_all.txt').read_text(encoding='utf-8-sig')==expected
+    assert len(expected.splitlines())==3*len(samples)
     errors, records = [], []
     for _, sample in samples.iterrows():
         name = sample.Spectrum_File
@@ -87,13 +93,13 @@ def main(root):
             check(len(matching)==1,'TXT row count differs for '+row.Element)
             if len(matching)==1:
                 for col in density.columns:
-                    check(same_value(row[col],matching.iloc[0][col]),'TXT differs: '+row.Element+'.'+col)
+                    check(same_value(row[col],matching.iloc[0][col]),'Detailed JSON differs: '+row.Element+'.'+col)
         hash_expected = summary['input_files']['sample_spectrum']['sha256']
         check(sample_rows.Spectrum_SHA256.eq(hash_expected).all(), 'Aggregate source hash differs')
         image = out/sample.Spectrum_Fit_Image
         check(image.is_file(), 'Root spectrum-fit image is missing')
         if image.is_file():
-            check(hashlib.sha256(image.read_bytes()).digest()==hashlib.sha256((destination/'spectrum_fit.png').read_bytes()).digest(),
+            check(hashlib.sha256(image.read_bytes()).digest()==hashlib.sha256((destination/(Path(name).stem+'_elements.png')).read_bytes()).digest(),
                   'Root fit image differs from sample image')
         errors.extend(name+': '+message for message in local)
         records.append({'sample':name,'channels':len(spec),'supported':sorted(supported),

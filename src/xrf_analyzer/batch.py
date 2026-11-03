@@ -50,6 +50,35 @@ def _atomic_txt(path, rows, columns):
     temporary.replace(path)
 
 
+def format_density_summary(samples,records):
+    """Exactly three lines per input, including failed or unquantifiable inputs."""
+    lines=[]
+    clean=lambda value:' '.join(str(value).splitlines())
+    for sample in samples:
+        entries=[]
+        references=set()
+        for row in records:
+            if row['Spectrum_File']!=sample['Spectrum_File'] or row.get('Element_Status')!='supported':continue
+            ratio=row.get('Relative_to_Reference')
+            text='暂不可估计'
+            if ratio is not None and pd.notna(ratio):
+                text='%.6g'%ratio
+                if row.get('Reference_Element'):references.add(str(row['Reference_Element']))
+            entries.append('%s=%s'%(row['Element'],text))
+        failed=sample['Fit_Status']!='success'
+        prefix='确定元素及相对面密度'+('（%s=1）'%next(iter(references)) if len(references)==1 else '')+'：'
+        lines.extend(['文件名：'+clean(sample['Spectrum_File']),
+                      prefix+('；'.join(entries) or ('无法判定（分析失败）' if failed else '无')),
+                      '可能存在的元素：'+(clean(sample.get('Possible_Elements','')).replace(',',', ') or ('无法判定' if failed else '无'))])
+    return '\n'.join(lines)+'\n' if lines else ''
+
+
+def _write_density_summary(path,samples,records):
+    temporary=path.with_name(path.name+'.tmp')
+    temporary.write_text(format_density_summary(samples,records),encoding='utf-8-sig')
+    temporary.replace(path)
+
+
 def _clean_failed_output(destination):
     for name in ANALYSIS_OUTPUT_FILES:
         stale = destination/name
@@ -68,6 +97,7 @@ def run_batch(input_dir, output_dir, calibration, sensitivity, config=None):
     if source == out:
         raise ValueError('Input and output directories must differ')
     files = discover_spectra(source)
+    stems=[p.stem.casefold() for p in files]
     calibration, sensitivity = Path(calibration).resolve(), Path(sensitivity).resolve()
     for label, path in [('calibration', calibration), ('sensitivity', sensitivity)]:
         if not path.is_file():
@@ -80,14 +110,15 @@ def run_batch(input_dir, output_dir, calibration, sensitivity, config=None):
     density_rows, sample_rows = [], []
     failures = 0
     manifest = {
-        'schema_version': '2.0', 'input_directory': str(source), 'output_directory': str(out),
+        'schema_version': '3.0', 'input_directory': str(source), 'output_directory': str(out),
         'calibration': {'path': str(calibration), 'sha256': sha256(calibration)},
         'sensitivity': {'path': str(sensitivity), 'sha256': sha256(sensitivity)},
         'parameters': asdict(cfg), 'sample_count': len(files), 'processed_samples': 0,
         'failures': 0, 'completed': False,
         'physical_conditions_policy': 'No tube voltage, target, or sensitivity matching inferred from filenames',
         'aggregate_density_txt': 'relative_areal_density_all.txt', 'sample_summary_txt': 'batch_summary.txt',
-        'text_format': 'UTF-8 BOM, tab-separated; blank ratios are unavailable, never zero',
+        'text_format': 'UTF-8 BOM; exactly three lines per spectrum',
+        'density_details_json': 'density_details.json',
         'samples': sample_rows,
     }
     for index, spectrum in enumerate(files, 1):
@@ -95,7 +126,10 @@ def run_batch(input_dir, output_dir, calibration, sensitivity, config=None):
         sample_id = spectrum.name
         destination = out/'spectra'/sample_id
         destination.mkdir(parents=True, exist_ok=True)
-        image_path = out/(sample_id+'.spectrum_fit.png')
+        image_dir=out if stems.count(spectrum.stem.casefold())==1 else out/('elements_'+spectrum.suffix[1:].lower())
+        image_dir.mkdir(parents=True,exist_ok=True)
+        image_path = image_dir/(spectrum.stem+'_elements.png')
+        (out/(sample_id+'.spectrum_fit.png')).unlink(missing_ok=True)
         image_path.unlink(missing_ok=True)
         relative_destination = destination.relative_to(out).as_posix()
         prefix = {'Spectrum_File': spectrum.name, 'Sample_ID': sample_id, 'Spectrum_SHA256': None}
@@ -108,18 +142,18 @@ def run_batch(input_dir, output_dir, calibration, sensitivity, config=None):
             supported = candidates.loc[candidates.Status == 'supported', 'Element'].tolist()
             possible = report.get('elements_need_confirmation', [])
             successful_fit = report['fit_status'] == 'success'
-            figure = destination/'spectrum_fit.png'
+            figure = destination/(spectrum.stem+'_elements.png')
             if figure.is_file():
                 shutil.copyfile(figure, image_path)
             else:
-                raise OSError('Analysis did not generate spectrum_fit.png')
+                raise OSError('Analysis did not generate the elements image')
             warnings = '; '.join(str(w) for w in report.get('warnings', []))
             reason = '' if successful_fit else 'joint_optimization_failed'
             tail = {'Failure_Reason': reason, 'Warnings': warnings,
                     'Possible_Elements': ','.join(possible),
                     'Sensitivity_Provenance': report.get('sensitivity', {}).get('sensitivity_provenance'),
                     'Excitation_Match_Verified': report.get('excitation_match_verified', False),
-                    'Spectrum_Fit_Image': image_path.name,
+                    'Spectrum_Fit_Image': image_path.relative_to(out).as_posix(),
                     'Sample_Output_Directory': relative_destination}
             prefix.update(Fit_Status=report['fit_status'], Analysis_Status=report.get('analysis_status'))
             # Defense in depth: no tentative/ambiguous element can enter this table,
@@ -158,6 +192,7 @@ def run_batch(input_dir, output_dir, calibration, sensitivity, config=None):
             print_failed_summary(spectrum, exc)
             image_path.unlink(missing_ok=True)
             _clean_failed_output(destination)
+            (destination/(spectrum.stem+'_elements.png')).unlink(missing_ok=True)
             write_json(destination/'fit_summary.json', {
                 'fit_status': 'failed', 'analysis_status': 'input_or_runtime_failed', 'error': str(exc),
                 'input_spectrum': str(spectrum), 'parameters': asdict(cfg)})
@@ -171,7 +206,8 @@ def run_batch(input_dir, output_dir, calibration, sensitivity, config=None):
                                 'Supported_Elements': '', 'Possible_Elements': '',
                                 'Quantitative_Interpretation_Valid': False, **tail})
         manifest.update(processed_samples=index, failures=failures, elapsed_seconds=time.monotonic()-started)
-        _atomic_txt(out/'relative_areal_density_all.txt', density_rows, ALL_DENSITY_COLUMNS)
+        _write_density_summary(out/'relative_areal_density_all.txt',sample_rows,density_rows)
+        write_json(out/'density_details.json',{'columns':ALL_DENSITY_COLUMNS,'records':density_rows})
         _atomic_txt(out/'batch_summary.txt', sample_rows, SUMMARY_COLUMNS)
         write_json(out/'batch_manifest.json', manifest)
     manifest.update(completed=True, successful_samples=len(files)-failures)
@@ -179,7 +215,7 @@ def run_batch(input_dir, output_dir, calibration, sensitivity, config=None):
     print('\n批量处理完成：%d 个样品，%d 个拟合/输入失败。' % (len(files), failures), flush=True)
     print('统一面密度TXT：'+str(out/'relative_areal_density_all.txt'), flush=True)
     print('样品状态TXT：'+str(out/'batch_summary.txt'), flush=True)
-    print('空比值表示未通过定量质量检查，不代表零含量。', flush=True)
+    print('“暂不可估计”表示未通过定量质量检查，不代表零含量。', flush=True)
     return manifest
 
 

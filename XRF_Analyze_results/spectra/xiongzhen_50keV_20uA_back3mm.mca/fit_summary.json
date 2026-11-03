@@ -1,5 +1,9 @@
 {
   "schema_version": "3.0",
+  "measured_background": {
+    "enabled": false,
+    "path": null
+  },
   "fit_status": "success",
   "analysis_status": "model_mismatch",
   "quantitative_interpretation_valid": true,
@@ -27,7 +31,7 @@
     "pandas": "2.0.3",
     "matplotlib": "3.5.1",
     "xraylib": "4.2.0",
-    "xrf-spectrum-analyzer": "0.4.0"
+    "xrf-spectrum-analyzer": "0.5.0"
   },
   "parameters": {
     "energy_range": [
@@ -91,7 +95,8 @@
     "bootstrap": 0,
     "seed": 42,
     "max_iterations": 1800,
-    "save_intermediate": false
+    "save_intermediate": false,
+    "background_spectrum": null
   },
   "effective_parameters": {
     "background_method": "snip",
@@ -3968,14 +3973,9 @@
   ],
   "uncertainty": {
     "method": "expected_poisson_information_nuisance_adjusted",
-    "scaled_jacobian_condition": 5.661771686504487,
+    "scaled_jacobian_condition": 5.661771686504486,
     "singular_directions": 0,
     "auxiliary_shell_pruning": [
-      {
-        "Element": "Cd",
-        "Primary_Information_Score": 0.0,
-        "Reason": "Independent auxiliary shells require detectable primary anchors"
-      },
       {
         "Element": "Tl",
         "Primary_Information_Score": 0.0,
@@ -3983,6 +3983,11 @@
       },
       {
         "Element": "Sn",
+        "Primary_Information_Score": 0.0,
+        "Reason": "Independent auxiliary shells require detectable primary anchors"
+      },
+      {
+        "Element": "Cd",
         "Primary_Information_Score": 0.0,
         "Reason": "Independent auxiliary shells require detectable primary anchors"
       },
@@ -4002,12 +4007,12 @@
         "Reason": "Independent auxiliary shells require detectable primary anchors"
       },
       {
-        "Element": "Tb",
+        "Element": "Tc",
         "Primary_Information_Score": 0.0,
         "Reason": "Independent auxiliary shells require detectable primary anchors"
       },
       {
-        "Element": "Tc",
+        "Element": "Tb",
         "Primary_Information_Score": 0.0,
         "Reason": "Independent auxiliary shells require detectable primary anchors"
       }
@@ -4198,8 +4203,8 @@
         "Element": "Fe",
         "Z": 26,
         "q_Area": 916.1495456322631,
-        "q_Std": 11.501115446673712,
-        "q_Stat_Std": 10.63031065844886,
+        "q_Std": 11.501115446673705,
+        "q_Stat_Std": 10.630310658448854,
         "Quantification_Status": "local_area_estimate",
         "Failure_Reason": "",
         "Notes": "Conditional on supplied common-scale S; local Gaussian/background and candidate set; S/absorption systematics excluded",
@@ -4216,8 +4221,8 @@
         "Element": "Ag",
         "Z": 47,
         "q_Area": 442.0603925138071,
-        "q_Std": 31.135760226875238,
-        "q_Stat_Std": 24.661420894472396,
+        "q_Std": 31.13576022687523,
+        "q_Stat_Std": 24.661420894472393,
         "Quantification_Status": "local_area_estimate",
         "Failure_Reason": "",
         "Notes": "Conditional on supplied common-scale S; local Gaussian/background and candidate set; S/absorption systematics excluded",
@@ -4234,8 +4239,8 @@
         "Element": "Pb",
         "Z": 82,
         "q_Area": 23709.550484234514,
-        "q_Std": 94.90996353531841,
-        "q_Stat_Std": 71.10357184072612,
+        "q_Std": 94.9099635353186,
+        "q_Stat_Std": 71.10357184072627,
         "Quantification_Status": "local_area_estimate",
         "Failure_Reason": "",
         "Notes": "Conditional on supplied common-scale S; local Gaussian/background and candidate set; S/absorption systematics excluded",
@@ -4256,36 +4261,36 @@
     ],
     "q_area_covariance": [
       [
-        132.27565651771667,
+        132.2756565177165,
         0.0,
         0.0
       ],
       [
         0.0,
-        969.435564905466,
+        969.4355649054655,
         0.0
       ],
       [
         0.0,
         0.0,
-        9007.901178275471
+        9007.901178275506
       ]
     ],
     "q_area_stat_covariance": [
       [
-        113.00350469513144,
+        113.00350469513131,
         0.0,
         0.0
       ],
       [
         0.0,
-        608.1856805343198,
+        608.1856805343195,
         0.0
       ],
       [
         0.0,
         0.0,
-        5055.717928509301
+        5055.7179285093225
       ]
     ],
     "audit": [
@@ -4304,7 +4309,7 @@
           "Nuisance_Groups": [],
           "Nuisance_Policies": [],
           "q_Area": 914.7344995653561,
-          "q_Fisher_Std": 11.317253055194204,
+          "q_Fisher_Std": 11.317253055194211,
           "Area_Counts": 11379.205701143073,
           "Sensitivity_Sum": 12.4399,
           "Area_Fraction_in_Window": 0.9998321183056599,
@@ -4331,7 +4336,7 @@
             "supported_resolved_group_area_free"
           ],
           "q_Area": 916.1495456322631,
-          "q_Fisher_Std": 10.630310658448842,
+          "q_Fisher_Std": 10.63031065844884,
           "Area_Counts": 11396.80873271079,
           "Sensitivity_Sum": 12.4399,
           "Area_Fraction_in_Window": 0.9999999935373335,
@@ -4361,7 +4366,7 @@
           "Nuisance_Groups": [],
           "Nuisance_Policies": [],
           "q_Area": 431.6555293545366,
-          "q_Fisher_Std": 29.855722637444874,
+          "q_Fisher_Std": 29.85572263744488,
           "Area_Counts": 860.5812691414351,
           "Sensitivity_Sum": 1.9936759999999998,
           "Area_Fraction_in_Window": 0.9999482545953186,
@@ -4445,7 +4450,7 @@
             "supported_resolved_group_area_free"
           ],
           "q_Area": 0.0,
-          "q_Fisher_Std": 0.119736386967496,
+          "q_Fisher_Std": 0.11973638696749603,
           "Area_Counts": 0.0,
           "Sensitivity_Sum": 8.961764886008448,
           "Area_Fraction_in_Window": 0.9999999974650048,
@@ -4475,7 +4480,7 @@
           "Nuisance_Groups": [],
           "Nuisance_Policies": [],
           "q_Area": 23676.20455234955,
-          "q_Fisher_Std": 78.54097198744236,
+          "q_Fisher_Std": 78.54097198744235,
           "Area_Counts": 120858.9506539921,
           "Sensitivity_Sum": 5.104659,
           "Area_Fraction_in_Window": 0.9996768418572314,
@@ -4498,7 +4503,7 @@
           "Nuisance_Groups": [],
           "Nuisance_Policies": [],
           "q_Area": 23709.550484234514,
-          "q_Fisher_Std": 71.10357184072616,
+          "q_Fisher_Std": 71.10357184072625,
           "Area_Counts": 121029.17026530206,
           "Sensitivity_Sum": 5.104659,
           "Area_Fraction_in_Window": 0.9999999254694648,
@@ -4633,5 +4638,5 @@
     "5 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary",
     "需要进一步确定（待定）的元素: Ni, Sn；不参与相对面密度计算"
   ],
-  "elapsed_seconds": 20.80687282300005
+  "elapsed_seconds": 21.4202384550008
 }

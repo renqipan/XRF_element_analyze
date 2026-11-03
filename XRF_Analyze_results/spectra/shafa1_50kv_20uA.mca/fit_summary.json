@@ -1,5 +1,9 @@
 {
   "schema_version": "3.0",
+  "measured_background": {
+    "enabled": false,
+    "path": null
+  },
   "fit_status": "success",
   "analysis_status": "model_mismatch",
   "quantitative_interpretation_valid": true,
@@ -27,7 +31,7 @@
     "pandas": "2.0.3",
     "matplotlib": "3.5.1",
     "xraylib": "4.2.0",
-    "xrf-spectrum-analyzer": "0.4.0"
+    "xrf-spectrum-analyzer": "0.5.0"
   },
   "parameters": {
     "energy_range": [
@@ -91,7 +95,8 @@
     "bootstrap": 0,
     "seed": 42,
     "max_iterations": 1800,
-    "save_intermediate": false
+    "save_intermediate": false,
+    "background_spectrum": null
   },
   "effective_parameters": {
     "background_method": "snip",
@@ -4725,7 +4730,7 @@
   ],
   "uncertainty": {
     "method": "expected_poisson_information_nuisance_adjusted",
-    "scaled_jacobian_condition": 13.129216659962907,
+    "scaled_jacobian_condition": 13.129216659962927,
     "singular_directions": 0,
     "auxiliary_shell_pruning": [
       {
@@ -4754,43 +4759,43 @@
     ],
     [
       null,
-      60.9613842692139,
-      2.8117092442839846,
-      2.330129159022176,
-      0.8590094295498093,
+      60.961384269213866,
+      2.8117092442840184,
+      2.330129159022194,
+      0.8590094295497984,
       null,
-      0.9080640868968395,
-      6.71679470832318
+      0.9080640868968288,
+      6.7167947083231745
     ],
     [
       null,
-      2.8117092442839873,
-      72.55302771317938,
-      4.45630952978294,
-      7.229957552228216,
+      2.8117092442840166,
+      72.5530277131793,
+      4.456309529783021,
+      7.22995755222827,
       null,
-      -1.1304215922915883,
-      0.7942892866255985
+      -1.1304215922915455,
+      0.7942892866255015
     ],
     [
       null,
-      2.3301291590221758,
-      4.456309529782941,
-      59.41012569043111,
-      6.50713519611222,
+      2.3301291590221944,
+      4.45630952978302,
+      59.41012569043121,
+      6.507135196112246,
       null,
-      -1.4665861731366692,
-      -1.3612318415875557
+      -1.4665861731367298,
+      -1.3612318415875648
     ],
     [
       null,
-      0.8590094295498097,
-      7.229957552228218,
-      6.50713519611222,
-      40.02904499047534,
+      0.8590094295497978,
+      7.229957552228269,
+      6.507135196112244,
+      40.02904499047535,
       null,
-      0.5357717212458417,
-      4.3712856864072185
+      0.5357717212458272,
+      4.371285686406971
     ],
     [
       null,
@@ -4804,23 +4809,23 @@
     ],
     [
       null,
-      0.9080640868968393,
-      -1.130421592291589,
-      -1.4665861731366674,
-      0.5357717212458429,
+      0.9080640868968279,
+      -1.1304215922915464,
+      -1.4665861731367276,
+      0.535771721245827,
       null,
-      73.59910970376379,
-      10.817241380998741
+      73.5991097037638,
+      10.817241380998594
     ],
     [
       null,
-      6.716794708323178,
-      0.7942892866255971,
-      -1.3612318415875593,
-      4.371285686407216,
+      6.716794708323174,
+      0.7942892866254982,
+      -1.3612318415875644,
+      4.3712856864069645,
       null,
-      10.817241380998743,
-      1581.0288799879268
+      10.81724138099857,
+      1581.0288799879245
     ]
   ],
   "covariance_element_order": [
@@ -4859,8 +4864,8 @@
         "Element": "Fe",
         "Z": 26,
         "q_Area": 708.7912094533177,
-        "q_Std": 10.55755277485334,
-        "q_Stat_Std": 9.342468012128284,
+        "q_Std": 10.55755277485335,
+        "q_Stat_Std": 9.342468012128297,
         "Quantification_Status": "local_area_estimate",
         "Failure_Reason": "",
         "Notes": "Conditional on supplied common-scale S; local Gaussian/background and candidate set; S/absorption systematics excluded",
@@ -4878,7 +4883,7 @@
         "Z": 51,
         "q_Area": 126.3730661950083,
         "q_Std": 55.04676359617367,
-        "q_Stat_Std": 35.1698359525713,
+        "q_Stat_Std": 35.16983595257131,
         "Quantification_Status": "local_area_estimate",
         "Failure_Reason": "",
         "Notes": "Conditional on supplied common-scale S; local Gaussian/background and candidate set; S/absorption systematics excluded",
@@ -4895,8 +4900,8 @@
         "Element": "Pb",
         "Z": 82,
         "q_Area": 10734.256026437326,
-        "q_Std": 59.457200719264755,
-        "q_Stat_Std": 49.048750447220314,
+        "q_Std": 59.45720071926497,
+        "q_Stat_Std": 49.04875044722049,
         "Quantification_Status": "local_area_estimate",
         "Failure_Reason": "",
         "Notes": "Conditional on supplied common-scale S; local Gaussian/background and candidate set; S/absorption systematics excluded",
@@ -4917,36 +4922,36 @@
     ],
     "q_area_covariance": [
       [
-        111.46192059381346,
+        111.46192059381367,
         0.0,
         0.0
       ],
       [
         0.0,
-        3030.1461824130306,
+        3030.146182413031,
         0.0
       ],
       [
         0.0,
         0.0,
-        3535.158717370937
+        3535.158717370962
       ]
     ],
     "q_area_stat_covariance": [
       [
-        87.28170855764023,
+        87.28170855764044,
         0.0,
         0.0
       ],
       [
         0.0,
-        1236.9173609307768,
+        1236.9173609307775,
         0.0
       ],
       [
         0.0,
         0.0,
-        2405.779920433695
+        2405.7799204337125
       ]
     ],
     "audit": [
@@ -4975,7 +4980,7 @@
             "unconfirmed_same_initial_shell_L2_ratios_retained"
           ],
           "q_Area": 713.7085473546799,
-          "q_Fisher_Std": 10.831311766119269,
+          "q_Fisher_Std": 10.831311766119258,
           "Area_Counts": 8878.462958237482,
           "Sensitivity_Sum": 12.4399,
           "Area_Fraction_in_Window": 0.9999711142587172,
@@ -5008,7 +5013,7 @@
             "unconfirmed_same_initial_shell_L2_ratios_retained"
           ],
           "q_Area": 708.7912094533177,
-          "q_Fisher_Std": 9.342468012128286,
+          "q_Fisher_Std": 9.342468012128291,
           "Area_Counts": 8817.291766478327,
           "Sensitivity_Sum": 12.4399,
           "Area_Fraction_in_Window": 0.9999999991460806,
@@ -5054,7 +5059,7 @@
             "unconfirmed_same_initial_shell_L3_ratios_retained"
           ],
           "q_Area": 143.0042476528098,
-          "q_Fisher_Std": 50.28735697813424,
+          "q_Fisher_Std": 50.287356978134305,
           "Area_Counts": 331.57278900541996,
           "Sensitivity_Sum": 2.318621960170182,
           "Area_Fraction_in_Window": 0.9999102882363456,
@@ -5095,7 +5100,7 @@
             "unconfirmed_same_initial_shell_L3_ratios_retained"
           ],
           "q_Area": 134.3589906350508,
-          "q_Fisher_Std": 76.70688185998385,
+          "q_Fisher_Std": 76.70688185998439,
           "Area_Counts": 311.5277062327286,
           "Sensitivity_Sum": 2.318621960170182,
           "Area_Fraction_in_Window": 0.9999999631303799,
@@ -5129,7 +5134,7 @@
             "unconfirmed_same_initial_shell_K_ratios_retained"
           ],
           "q_Area": 87.99452111602302,
-          "q_Fisher_Std": 23.376622029214793,
+          "q_Fisher_Std": 23.37662202921481,
           "Area_Counts": 92.76408814407482,
           "Sensitivity_Sum": 1.054203,
           "Area_Fraction_in_Window": 0.9999999997843371,
@@ -5156,7 +5161,7 @@
             "unconfirmed_same_initial_shell_K_ratios_retained"
           ],
           "q_Area": 126.3730661950083,
-          "q_Fisher_Std": 35.16983595257129,
+          "q_Fisher_Std": 35.1698359525713,
           "Area_Counts": 133.22286550197634,
           "Sensitivity_Sum": 1.054203,
           "Area_Fraction_in_Window": 0.9999990698533316,
@@ -5223,7 +5228,7 @@
             "unconfirmed_same_initial_shell_L3_ratios_retained"
           ],
           "q_Area": 10734.256026437326,
-          "q_Fisher_Std": 49.048750447220364,
+          "q_Fisher_Std": 49.04875044722045,
           "Area_Counts": 54794.71663365753,
           "Sensitivity_Sum": 5.104659,
           "Area_Fraction_in_Window": 0.9999999994997248,
@@ -5340,5 +5345,5 @@
     "4 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary",
     "需要进一步确定（待定）的元素: Ag, Pm, Hg；不参与相对面密度计算"
   ],
-  "elapsed_seconds": 12.638808831999995
+  "elapsed_seconds": 12.181457757000317
 }

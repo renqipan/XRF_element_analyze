@@ -7,8 +7,8 @@
       "Element": "Fe",
       "Z": 26,
       "q_Area": 145.20840335326778,
-      "q_Std": 5.148408079435936,
-      "q_Stat_Std": 4.458871923760184,
+      "q_Std": 5.148408079435933,
+      "q_Stat_Std": 4.4588719237601815,
       "Quantification_Status": "local_area_estimate",
       "Failure_Reason": "",
       "Notes": "Conditional on supplied common-scale S; local Gaussian/background and candidate set; S/absorption systematics excluded",
@@ -26,7 +26,7 @@
       "Z": 82,
       "q_Area": 3702.629219392753,
       "q_Std": 40.583582554090654,
-      "q_Stat_Std": 28.27615116569073,
+      "q_Stat_Std": 28.276151165690727,
       "Quantification_Status": "local_area_estimate",
       "Failure_Reason": "",
       "Notes": "Conditional on supplied common-scale S; local Gaussian/background and candidate set; S/absorption systematics excluded",
@@ -46,22 +46,22 @@
   ],
   "q_area_covariance": [
     [
-      26.506105752401226,
+      26.506105752401194,
       0.0
     ],
     [
       0.0,
-      1647.0271729246913
+      1647.027172924691
     ]
   ],
   "q_area_stat_covariance": [
     [
-      19.881538832496847,
+      19.881538832496823,
       0.0
     ],
     [
       0.0,
-      799.5407247449932
+      799.5407247449931
     ]
   ],
   "audit": [
@@ -80,7 +80,7 @@
         "Nuisance_Groups": [],
         "Nuisance_Policies": [],
         "q_Area": 144.27858590656191,
-        "q_Fisher_Std": 4.710351927443978,
+        "q_Fisher_Std": 4.710351927443975,
         "Area_Counts": 1794.8111808190395,
         "Sensitivity_Sum": 12.4399,
         "Area_Fraction_in_Window": 0.9997919751565042,
@@ -107,7 +107,7 @@
           "supported_resolved_group_area_free"
         ],
         "q_Area": 145.20840335326778,
-        "q_Fisher_Std": 4.458871923760185,
+        "q_Fisher_Std": 4.458871923760184,
         "Area_Counts": 1806.3780168743158,
         "Sensitivity_Sum": 12.4399,
         "Area_Fraction_in_Window": 0.999999811083283,
@@ -141,7 +141,7 @@
           "supported_resolved_group_area_free"
         ],
         "q_Area": 0.0,
-        "q_Fisher_Std": 0.0008632455355272911,
+        "q_Fisher_Std": 0.0008632455355272917,
         "Area_Counts": 0.0,
         "Sensitivity_Sum": 8.961764886008448,
         "Area_Fraction_in_Window": 0.9999855524423711,
@@ -168,7 +168,7 @@
           "supported_resolved_group_area_free"
         ],
         "q_Area": 0.0,
-        "q_Fisher_Std": 0.05040311955569202,
+        "q_Fisher_Std": 0.050403119555692016,
         "Area_Counts": 0.0,
         "Sensitivity_Sum": 8.961764886008448,
         "Area_Fraction_in_Window": 0.9999999979176061,
@@ -198,7 +198,7 @@
         "Nuisance_Groups": [],
         "Nuisance_Policies": [],
         "q_Area": 3673.5175988920028,
-        "q_Fisher_Std": 31.113887579820293,
+        "q_Fisher_Std": 31.113887579820307,
         "Area_Counts": 18752.054672842452,
         "Sensitivity_Sum": 5.104659,
         "Area_Fraction_in_Window": 0.9997243735376804,

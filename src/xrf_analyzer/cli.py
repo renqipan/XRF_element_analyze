@@ -103,6 +103,7 @@ def main(argv=None):
                     stale.unlink()
             write_json(destination/'fit_summary.json', {'fit_status': 'failed', 'error': str(exc),
                        'input_spectrum': str(Path(spectrum).resolve()), 'parameters': config.to_dict()})
+            (destination/(Path(spectrum).stem+'_elements.png')).unlink(missing_ok=True)
             logging.error('%s: %s', spectrum, exc)
             print_failed_summary(spectrum, exc)
             code = 1

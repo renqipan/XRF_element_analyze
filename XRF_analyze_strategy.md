@@ -183,3 +183,10 @@ A为该组完整净面积，rho为质量面密度，C包含公共入射通量、
 自动化测试包含已知真值的泊松谱、真实MCA、零/低计数、标定错误、无可用谱线、峰边界、重叠、同层补线、手动输入、两种坐标、先验平局与强罕见元素证据、低Z弱Kβ、独立标定锚点、支持元素专用比例、终端输出和批量失败隔离。最新执行记录见`VALIDATION.md`。
 
 上传到用户确认的私有GitHub仓库`renqipan/XRF_element_analyze`。保留原始数据、配置、测试、文档、示例和可审计结果；排除虚拟环境、缓存、构建产物和密钥。原始MCA/CSV保持字节，不为发布重写。
+
+
+## 简洁交付格式
+
+批量`relative_areal_density_all.txt`每个输入严格三行，顺序为文件名、支持元素及相对面密度（注明参考）、待定元素。未确证者不进入分母；无法估计及失败明确文字标记，不能用0补缺。完整数值和误差另存`density_details.json`。
+
+单谱新增`name_elements.png`，仅绘制Observed raw count与由实测峰匹配和拟合贡献共同支持的元素标签。批量根目录复制该图，不再复制带MCA扩展名的spectrum_fit图；完整诊断图留在逐谱子目录。若同stem的MCA/CSV并存，分别用elements_mca/、elements_csv/子目录，保持图片名仍为name_elements.png。

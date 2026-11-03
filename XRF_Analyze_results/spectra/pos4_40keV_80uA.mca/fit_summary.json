@@ -1,5 +1,9 @@
 {
   "schema_version": "3.0",
+  "measured_background": {
+    "enabled": false,
+    "path": null
+  },
   "fit_status": "success",
   "analysis_status": "model_mismatch",
   "quantitative_interpretation_valid": true,
@@ -27,7 +31,7 @@
     "pandas": "2.0.3",
     "matplotlib": "3.5.1",
     "xraylib": "4.2.0",
-    "xrf-spectrum-analyzer": "0.4.0"
+    "xrf-spectrum-analyzer": "0.5.0"
   },
   "parameters": {
     "energy_range": [
@@ -91,7 +95,8 @@
     "bootstrap": 0,
     "seed": 42,
     "max_iterations": 1800,
-    "save_intermediate": false
+    "save_intermediate": false,
+    "background_spectrum": null
   },
   "effective_parameters": {
     "background_method": "snip",
@@ -4683,64 +4688,64 @@
   },
   "q_covariance": [
     [
-      18.40416782590299,
-      -1.319328804979936,
-      1.2546289468786942,
-      3.548055226488599,
-      13.0623164035181,
-      3.568521564181077,
+      18.404167825903006,
+      -1.3193288049798693,
+      1.2546289468787117,
+      3.54805522648863,
+      13.062316403517693,
+      3.568521564181078,
       null,
-      -1.0513399587018286
+      -1.051339958701569
     ],
     [
-      -1.319328804979937,
-      531.1189882677727,
-      30.15826215091725,
-      -3.213220376220014,
-      -834.3406048407343,
-      9.996195081590413,
+      -1.3193288049798715,
+      531.1189882677746,
+      30.15826215091775,
+      -3.213220376220442,
+      -834.3406048407384,
+      9.996195081589526,
       null,
-      104.26718300739024
+      104.26718300738193
     ],
     [
-      1.2546289468786938,
-      30.158262150917235,
-      56.02971623796169,
-      2.492896762633366,
-      -85.53013493854377,
-      -25.950457960364137,
+      1.254628946878712,
+      30.158262150917746,
+      56.02971623796171,
+      2.4928967626334018,
+      -85.53013493854503,
+      -25.9504579603641,
       null,
-      30.354149566619718
+      30.35414956661831
     ],
     [
-      3.5480552264886,
-      -3.2132203762200104,
-      2.4928967626333667,
+      3.5480552264886307,
+      -3.2132203762204354,
+      2.492896762633402,
       104.32660466486982,
-      30.793450530981456,
-      6.474490098842722,
+      30.7934505309821,
+      6.474490098842499,
       null,
-      -9.124938753522047
+      -9.124938753521075
     ],
     [
-      13.062316403518095,
-      -834.3406048407342,
-      -85.5301349385438,
-      30.793450530981456,
-      2916.061895484317,
-      -48.4051877040266,
+      13.062316403517695,
+      -834.3406048407385,
+      -85.53013493854505,
+      30.793450530982096,
+      2916.061895484326,
+      -48.40518770402565,
       null,
-      -272.5335965649766
+      -272.5335965649492
     ],
     [
       3.5685215641810775,
-      9.99619508159042,
-      -25.95045796036414,
-      6.474490098842721,
-      -48.40518770402662,
-      610.0258171932887,
+      9.996195081589516,
+      -25.95045796036411,
+      6.474490098842497,
+      -48.40518770402569,
+      610.0258171932892,
       null,
-      70.38124927020634
+      70.38124927020772
     ],
     [
       null,
@@ -4753,14 +4758,14 @@
       null
     ],
     [
-      -1.0513399587018333,
-      104.26718300739026,
-      30.35414956661971,
-      -9.12493875352205,
-      -272.5335965649766,
-      70.38124927020635,
+      -1.0513399587015573,
+      104.26718300738189,
+      30.35414956661832,
+      -9.124938753521075,
+      -272.5335965649491,
+      70.38124927020773,
       null,
-      11739.061042909498
+      11739.061042909516
     ]
   ],
   "covariance_element_order": [
@@ -4799,8 +4804,8 @@
         "Element": "Ca",
         "Z": 20,
         "q_Area": 51.14262083134522,
-        "q_Std": 6.0438848273224295,
-        "q_Stat_Std": 5.958418664024999,
+        "q_Std": 6.043884827322428,
+        "q_Stat_Std": 5.958418664024998,
         "Quantification_Status": "local_area_estimate",
         "Failure_Reason": "",
         "Notes": "Conditional on supplied common-scale S; local Gaussian/background and candidate set; S/absorption systematics excluded",
@@ -4817,8 +4822,8 @@
         "Element": "Fe",
         "Z": 26,
         "q_Area": 2979.7970818442723,
-        "q_Std": 85.06127497803348,
-        "q_Stat_Std": 58.02447904532693,
+        "q_Std": 85.06127497803354,
+        "q_Stat_Std": 58.024479045327,
         "Quantification_Status": "local_area_estimate",
         "Failure_Reason": "",
         "Notes": "Conditional on supplied common-scale S; local Gaussian/background and candidate set; S/absorption systematics excluded",
@@ -4835,8 +4840,8 @@
         "Element": "Pb",
         "Z": 82,
         "q_Area": 79291.1367438764,
-        "q_Std": 452.3632048467544,
-        "q_Stat_Std": 131.77715810274634,
+        "q_Std": 452.36320484675434,
+        "q_Stat_Std": 131.7771581027463,
         "Quantification_Status": "local_area_estimate",
         "Failure_Reason": "",
         "Notes": "Conditional on supplied common-scale S; local Gaussian/background and candidate set; S/absorption systematics excluded",
@@ -4857,36 +4862,36 @@
     ],
     "q_area_covariance": [
       [
-        36.52854380593827,
+        36.52854380593825,
         0.0,
         0.0
       ],
       [
         0.0,
-        7235.420500888624,
+        7235.420500888635,
         0.0
       ],
       [
         0.0,
         0.0,
-        204632.4690992267
+        204632.46909922664
       ]
     ],
     "q_area_stat_covariance": [
       [
-        35.50275297580146,
+        35.502752975801435,
         0.0,
         0.0
       ],
       [
         0.0,
-        3366.8401684815835,
+        3366.8401684815917,
         0.0
       ],
       [
         0.0,
         0.0,
-        17365.219397636203
+        17365.2193976362
       ]
     ],
     "audit": [
@@ -4916,7 +4921,7 @@
             "unconfirmed_same_initial_shell_L3_ratios_retained"
           ],
           "q_Area": 52.15543415577219,
-          "q_Fisher_Std": 9.955543129200048,
+          "q_Fisher_Std": 9.955543129200029,
           "Area_Counts": 326.4612030002989,
           "Sensitivity_Sum": 6.25939,
           "Area_Fraction_in_Window": 0.999999759534926,
@@ -4998,7 +5003,7 @@
             "unconfirmed_same_initial_shell_L2_ratios_retained"
           ],
           "q_Area": 3033.823564997253,
-          "q_Fisher_Std": 73.70994264611205,
+          "q_Fisher_Std": 73.70994264611221,
           "Area_Counts": 37740.46176620933,
           "Sensitivity_Sum": 12.4399,
           "Area_Fraction_in_Window": 0.9999741268960584,
@@ -5015,7 +5020,8 @@
           "Background_Window_Sigmas": 6.0,
           "Success": true,
           "Interferent_Anchor_Extensions": [
-            "Tm:L3:Lalpha2+Lalpha1+L2M1"
+            "Tb:L1:L1M3",
+            "Tm:L2:Lalpha2+Lalpha1+L2M1"
           ],
           "Optimizer_Message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH",
           "ROI_Start_keV": 5.870769230769231,
@@ -5039,7 +5045,7 @@
             "unconfirmed_same_initial_shell_L2_ratios_retained"
           ],
           "q_Area": 2979.7970818442723,
-          "q_Fisher_Std": 58.02447904532692,
+          "q_Fisher_Std": 58.024479045326956,
           "Area_Counts": 37068.37771843456,
           "Sensitivity_Sum": 12.4399,
           "Area_Fraction_in_Window": 0.9999999998354767,
@@ -5267,5 +5273,5 @@
     "7 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary",
     "需要进一步确定（待定）的元素: Ni, Ag, Tb, Tm；不参与相对面密度计算"
   ],
-  "elapsed_seconds": 20.23851903099967
+  "elapsed_seconds": 18.14564815599806
 }

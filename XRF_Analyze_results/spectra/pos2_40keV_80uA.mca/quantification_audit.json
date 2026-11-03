@@ -8,7 +8,7 @@
       "Z": 82,
       "q_Area": 23354.986735815597,
       "q_Std": 135.24131704179032,
-      "q_Stat_Std": 74.58853284155103,
+      "q_Stat_Std": 74.58853284155104,
       "Quantification_Status": "local_area_estimate",
       "Failure_Reason": "",
       "Notes": "Conditional on supplied common-scale S; local Gaussian/background and candidate set; S/absorption systematics excluded",
@@ -27,12 +27,12 @@
   ],
   "q_area_covariance": [
     [
-      18290.213835198043
+      18290.213835198047
     ]
   ],
   "q_area_stat_covariance": [
     [
-      5563.449231455137
+      5563.449231455139
     ]
   ],
   "audit": [
@@ -55,7 +55,7 @@
           "supported_resolved_group_area_free"
         ],
         "q_Area": 0.0,
-        "q_Fisher_Std": 0.0008314274145793104,
+        "q_Fisher_Std": 0.0008314274145793107,
         "Area_Counts": 0.0,
         "Sensitivity_Sum": 8.961764886008448,
         "Area_Fraction_in_Window": 0.9999689122109745,
@@ -82,7 +82,7 @@
           "supported_resolved_group_area_free"
         ],
         "q_Area": 0.0,
-        "q_Fisher_Std": 0.09672145145100572,
+        "q_Fisher_Std": 0.09672145145100565,
         "Area_Counts": 0.0,
         "Sensitivity_Sum": 8.961764886008448,
         "Area_Fraction_in_Window": 0.9999999966602773,
@@ -135,7 +135,7 @@
         "Nuisance_Groups": [],
         "Nuisance_Policies": [],
         "q_Area": 23354.986735815597,
-        "q_Fisher_Std": 74.588532841551,
+        "q_Fisher_Std": 74.58853284155101,
         "Area_Counts": 119219.24323586171,
         "Sensitivity_Sum": 5.104659,
         "Area_Fraction_in_Window": 0.9999993414641866,

@@ -1,5 +1,5 @@
 {
-  "schema_version": "2.0",
+  "schema_version": "3.0",
   "input_directory": "/home/renqi/Documents/ChatGPT/XRF_element_analyze/XRF_SDD",
   "output_directory": "/home/renqi/Documents/ChatGPT/XRF_element_analyze/XRF_Analyze_results",
   "calibration": {
@@ -72,7 +72,8 @@
     "bootstrap": 0,
     "seed": 42,
     "max_iterations": 1800,
-    "save_intermediate": false
+    "save_intermediate": false,
+    "background_spectrum": null
   },
   "sample_count": 17,
   "processed_samples": 17,
@@ -81,7 +82,8 @@
   "physical_conditions_policy": "No tube voltage, target, or sensitivity matching inferred from filenames",
   "aggregate_density_txt": "relative_areal_density_all.txt",
   "sample_summary_txt": "batch_summary.txt",
-  "text_format": "UTF-8 BOM, tab-separated; blank ratios are unavailable, never zero",
+  "text_format": "UTF-8 BOM; exactly three lines per spectrum",
+  "density_details_json": "density_details.json",
   "samples": [
     {
       "Spectrum_File": "Pb_50keV_20uA_back3mm.mca",
@@ -93,7 +95,7 @@
       "Quantitative_Interpretation_Valid": true,
       "Failure_Reason": "",
       "Warnings": "Non-UTF8 MCA headers decoded using latin-1; DATA remains strict ASCII numeric; Accepted instrument origin (0,0); zero energy is allowed only at channel zero; Two-point residuals do not estimate calibration statistical uncertainty; Sensitivity provenance unverified: missing .metadata.json; source matching is not established; Severe global model mismatch: joint-template q is diagnostic; independently measured primary peak areas are evaluated separately; Global response parameter at bound: review calibration/resolution; no symmetric quantitative uncertainty; Structured residual / overdispersion: matrix_effect_or_model_mismatch or unmodelled scattering/artifacts; branch_ratio_mismatch: regional observed residuals disagree with the fixed branch model; 1 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary; 需要进一步确定（待定）的元素: Fe, Sn, Pm, Eu；不参与相对面密度计算",
-      "Spectrum_Fit_Image": "Pb_50keV_20uA_back3mm.mca.spectrum_fit.png",
+      "Spectrum_Fit_Image": "Pb_50keV_20uA_back3mm_elements.png",
       "Sample_Output_Directory": "spectra/Pb_50keV_20uA_back3mm.mca"
     },
     {
@@ -106,7 +108,7 @@
       "Quantitative_Interpretation_Valid": true,
       "Failure_Reason": "",
       "Warnings": "Non-UTF8 MCA headers decoded using latin-1; DATA remains strict ASCII numeric; Accepted instrument origin (0,0); zero energy is allowed only at channel zero; Two-point residuals do not estimate calibration statistical uncertainty; Sensitivity provenance unverified: missing .metadata.json; source matching is not established; Severe global model mismatch: joint-template q is diagnostic; independently measured primary peak areas are evaluated separately; Structured residual / overdispersion: matrix_effect_or_model_mismatch or unmodelled scattering/artifacts; branch_ratio_mismatch: regional observed residuals disagree with the fixed branch model; 4 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary; 需要进一步确定（待定）的元素: Ni, Sm；不参与相对面密度计算",
-      "Spectrum_Fit_Image": "pos1_40keV_80uA.mca.spectrum_fit.png",
+      "Spectrum_Fit_Image": "pos1_40keV_80uA_elements.png",
       "Sample_Output_Directory": "spectra/pos1_40keV_80uA.mca"
     },
     {
@@ -119,7 +121,7 @@
       "Quantitative_Interpretation_Valid": true,
       "Failure_Reason": "",
       "Warnings": "Non-UTF8 MCA headers decoded using latin-1; DATA remains strict ASCII numeric; Accepted instrument origin (0,0); zero energy is allowed only at channel zero; Two-point residuals do not estimate calibration statistical uncertainty; Sensitivity provenance unverified: missing .metadata.json; source matching is not established; Severe global model mismatch: joint-template q is diagnostic; independently measured primary peak areas are evaluated separately; Global response parameter at bound: review calibration/resolution; no symmetric quantitative uncertainty; Structured residual / overdispersion: matrix_effect_or_model_mismatch or unmodelled scattering/artifacts; branch_ratio_mismatch: regional observed residuals disagree with the fixed branch model; 1 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary; 需要进一步确定（待定）的元素: Fe, Cd, Eu；不参与相对面密度计算",
-      "Spectrum_Fit_Image": "pos2_40keV_80uA.mca.spectrum_fit.png",
+      "Spectrum_Fit_Image": "pos2_40keV_80uA_elements.png",
       "Sample_Output_Directory": "spectra/pos2_40keV_80uA.mca"
     },
     {
@@ -132,7 +134,7 @@
       "Quantitative_Interpretation_Valid": true,
       "Failure_Reason": "",
       "Warnings": "Non-UTF8 MCA headers decoded using latin-1; DATA remains strict ASCII numeric; Accepted instrument origin (0,0); zero energy is allowed only at channel zero; Two-point residuals do not estimate calibration statistical uncertainty; Sensitivity provenance unverified: missing .metadata.json; source matching is not established; Inferred acquisition lower cutoff 2.99077 keV: zero-prefix channels excluded, not treated as measured absence; Severe global model mismatch: joint-template q is diagnostic; independently measured primary peak areas are evaluated separately; Structured residual / overdispersion: matrix_effect_or_model_mismatch or unmodelled scattering/artifacts; branch_ratio_mismatch: regional observed residuals disagree with the fixed branch model; 6 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary; 需要进一步确定（待定）的元素: Ag；不参与相对面密度计算",
-      "Spectrum_Fit_Image": "pos3_40keV_80uA.mca.spectrum_fit.png",
+      "Spectrum_Fit_Image": "pos3_40keV_80uA_elements.png",
       "Sample_Output_Directory": "spectra/pos3_40keV_80uA.mca"
     },
     {
@@ -145,7 +147,7 @@
       "Quantitative_Interpretation_Valid": true,
       "Failure_Reason": "",
       "Warnings": "Non-UTF8 MCA headers decoded using latin-1; DATA remains strict ASCII numeric; Accepted instrument origin (0,0); zero energy is allowed only at channel zero; Two-point residuals do not estimate calibration statistical uncertainty; Sensitivity provenance unverified: missing .metadata.json; source matching is not established; Inferred acquisition lower cutoff 2.99077 keV: zero-prefix channels excluded, not treated as measured absence; Severe global model mismatch: joint-template q is diagnostic; independently measured primary peak areas are evaluated separately; Structured residual / overdispersion: matrix_effect_or_model_mismatch or unmodelled scattering/artifacts; branch_ratio_mismatch: regional observed residuals disagree with the fixed branch model; 7 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary; 需要进一步确定（待定）的元素: Ni, Ag, Tb, Tm；不参与相对面密度计算",
-      "Spectrum_Fit_Image": "pos4_40keV_80uA.mca.spectrum_fit.png",
+      "Spectrum_Fit_Image": "pos4_40keV_80uA_elements.png",
       "Sample_Output_Directory": "spectra/pos4_40keV_80uA.mca"
     },
     {
@@ -158,7 +160,7 @@
       "Quantitative_Interpretation_Valid": true,
       "Failure_Reason": "",
       "Warnings": "Non-UTF8 MCA headers decoded using latin-1; DATA remains strict ASCII numeric; Accepted instrument origin (0,0); zero energy is allowed only at channel zero; Two-point residuals do not estimate calibration statistical uncertainty; Sensitivity provenance unverified: missing .metadata.json; source matching is not established; Severe global model mismatch: joint-template q is diagnostic; independently measured primary peak areas are evaluated separately; Global response parameter at bound: review calibration/resolution; no symmetric quantitative uncertainty; Structured residual / overdispersion: matrix_effect_or_model_mismatch or unmodelled scattering/artifacts; branch_ratio_mismatch: regional observed residuals disagree with the fixed branch model; 5 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary; 需要进一步确定（待定）的元素: Ni, Ag；不参与相对面密度计算",
-      "Spectrum_Fit_Image": "pos5_40keV_5uA.mca.spectrum_fit.png",
+      "Spectrum_Fit_Image": "pos5_40keV_5uA_elements.png",
       "Sample_Output_Directory": "spectra/pos5_40keV_5uA.mca"
     },
     {
@@ -171,7 +173,7 @@
       "Quantitative_Interpretation_Valid": true,
       "Failure_Reason": "",
       "Warnings": "Non-UTF8 MCA headers decoded using latin-1; DATA remains strict ASCII numeric; Accepted instrument origin (0,0); zero energy is allowed only at channel zero; Two-point residuals do not estimate calibration statistical uncertainty; Sensitivity provenance unverified: missing .metadata.json; source matching is not established; Inferred acquisition lower cutoff 2.99077 keV: zero-prefix channels excluded, not treated as measured absence; Severe global model mismatch: joint-template q is diagnostic; independently measured primary peak areas are evaluated separately; Structured residual / overdispersion: matrix_effect_or_model_mismatch or unmodelled scattering/artifacts; branch_ratio_mismatch: regional observed residuals disagree with the fixed branch model; 4 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary; 需要进一步确定（待定）的元素: Ag, Pm, Hg；不参与相对面密度计算",
-      "Spectrum_Fit_Image": "shafa1_50kv_20uA.mca.spectrum_fit.png",
+      "Spectrum_Fit_Image": "shafa1_50kv_20uA_elements.png",
       "Sample_Output_Directory": "spectra/shafa1_50kv_20uA.mca"
     },
     {
@@ -184,7 +186,7 @@
       "Quantitative_Interpretation_Valid": true,
       "Failure_Reason": "",
       "Warnings": "Non-UTF8 MCA headers decoded using latin-1; DATA remains strict ASCII numeric; Accepted instrument origin (0,0); zero energy is allowed only at channel zero; Two-point residuals do not estimate calibration statistical uncertainty; Sensitivity provenance unverified: missing .metadata.json; source matching is not established; Inferred acquisition lower cutoff 2.99077 keV: zero-prefix channels excluded, not treated as measured absence; Severe global model mismatch: joint-template q is diagnostic; independently measured primary peak areas are evaluated separately; Structured residual / overdispersion: matrix_effect_or_model_mismatch or unmodelled scattering/artifacts; branch_ratio_mismatch: regional observed residuals disagree with the fixed branch model; 6 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary; 需要进一步确定（待定）的元素: Cr, Ag, Pm；不参与相对面密度计算",
-      "Spectrum_Fit_Image": "shafa_50kv_20uA.mca.spectrum_fit.png",
+      "Spectrum_Fit_Image": "shafa_50kv_20uA_elements.png",
       "Sample_Output_Directory": "spectra/shafa_50kv_20uA.mca"
     },
     {
@@ -197,7 +199,7 @@
       "Quantitative_Interpretation_Valid": true,
       "Failure_Reason": "",
       "Warnings": "Non-UTF8 MCA headers decoded using latin-1; DATA remains strict ASCII numeric; Accepted instrument origin (0,0); zero energy is allowed only at channel zero; Two-point residuals do not estimate calibration statistical uncertainty; Sensitivity provenance unverified: missing .metadata.json; source matching is not established; Severe global model mismatch: joint-template q is diagnostic; independently measured primary peak areas are evaluated separately; Global response parameter at bound: review calibration/resolution; no symmetric quantitative uncertainty; Structured residual / overdispersion: matrix_effect_or_model_mismatch or unmodelled scattering/artifacts; branch_ratio_mismatch: regional observed residuals disagree with the fixed branch model; 13 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary",
-      "Spectrum_Fit_Image": "shou_50keV_20uA_back3mm.mca.spectrum_fit.png",
+      "Spectrum_Fit_Image": "shou_50keV_20uA_back3mm_elements.png",
       "Sample_Output_Directory": "spectra/shou_50keV_20uA_back3mm.mca"
     },
     {
@@ -210,7 +212,7 @@
       "Quantitative_Interpretation_Valid": true,
       "Failure_Reason": "",
       "Warnings": "Non-UTF8 MCA headers decoded using latin-1; DATA remains strict ASCII numeric; Accepted instrument origin (0,0); zero energy is allowed only at channel zero; Two-point residuals do not estimate calibration statistical uncertainty; Sensitivity provenance unverified: missing .metadata.json; source matching is not established; Severe global model mismatch: joint-template q is diagnostic; independently measured primary peak areas are evaluated separately; Global response parameter at bound: review calibration/resolution; no symmetric quantitative uncertainty; Structured residual / overdispersion: matrix_effect_or_model_mismatch or unmodelled scattering/artifacts; branch_ratio_mismatch: regional observed residuals disagree with the fixed branch model; 7 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary; 需要进一步确定（待定）的元素: Fe, Eu；不参与相对面密度计算",
-      "Spectrum_Fit_Image": "shu_50keV_20uA_back3mm.mca.spectrum_fit.png",
+      "Spectrum_Fit_Image": "shu_50keV_20uA_back3mm_elements.png",
       "Sample_Output_Directory": "spectra/shu_50keV_20uA_back3mm.mca"
     },
     {
@@ -223,7 +225,7 @@
       "Quantitative_Interpretation_Valid": true,
       "Failure_Reason": "",
       "Warnings": "Non-UTF8 MCA headers decoded using latin-1; DATA remains strict ASCII numeric; Accepted instrument origin (0,0); zero energy is allowed only at channel zero; Two-point residuals do not estimate calibration statistical uncertainty; Sensitivity provenance unverified: missing .metadata.json; source matching is not established; Severe global model mismatch: joint-template q is diagnostic; independently measured primary peak areas are evaluated separately; Global response parameter at bound: review calibration/resolution; no symmetric quantitative uncertainty; Structured residual / overdispersion: matrix_effect_or_model_mismatch or unmodelled scattering/artifacts; branch_ratio_mismatch: regional observed residuals disagree with the fixed branch model; 7 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary; 需要进一步确定（待定）的元素: Ni, Sn；不参与相对面密度计算",
-      "Spectrum_Fit_Image": "toufa_50keV_20uA_back3mm.mca.spectrum_fit.png",
+      "Spectrum_Fit_Image": "toufa_50keV_20uA_back3mm_elements.png",
       "Sample_Output_Directory": "spectra/toufa_50keV_20uA_back3mm.mca"
     },
     {
@@ -236,7 +238,7 @@
       "Quantitative_Interpretation_Valid": true,
       "Failure_Reason": "",
       "Warnings": "Non-UTF8 MCA headers decoded using latin-1; DATA remains strict ASCII numeric; Accepted instrument origin (0,0); zero energy is allowed only at channel zero; Two-point residuals do not estimate calibration statistical uncertainty; Sensitivity provenance unverified: missing .metadata.json; source matching is not established; Inferred acquisition lower cutoff 2.99077 keV: zero-prefix channels excluded, not treated as measured absence; Severe global model mismatch: joint-template q is diagnostic; independently measured primary peak areas are evaluated separately; Structured residual / overdispersion: matrix_effect_or_model_mismatch or unmodelled scattering/artifacts; branch_ratio_mismatch: regional observed residuals disagree with the fixed branch model; 4 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary; 需要进一步确定（待定）的元素: Ag；不参与相对面密度计算",
-      "Spectrum_Fit_Image": "xiongzhen1.mca.spectrum_fit.png",
+      "Spectrum_Fit_Image": "xiongzhen1_elements.png",
       "Sample_Output_Directory": "spectra/xiongzhen1.mca"
     },
     {
@@ -249,7 +251,7 @@
       "Quantitative_Interpretation_Valid": true,
       "Failure_Reason": "",
       "Warnings": "Non-UTF8 MCA headers decoded using latin-1; DATA remains strict ASCII numeric; Accepted instrument origin (0,0); zero energy is allowed only at channel zero; Two-point residuals do not estimate calibration statistical uncertainty; Sensitivity provenance unverified: missing .metadata.json; source matching is not established; Severe global model mismatch: joint-template q is diagnostic; independently measured primary peak areas are evaluated separately; Global response parameter at bound: review calibration/resolution; no symmetric quantitative uncertainty; Structured residual / overdispersion: matrix_effect_or_model_mismatch or unmodelled scattering/artifacts; branch_ratio_mismatch: regional observed residuals disagree with the fixed branch model; 5 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary; 需要进一步确定（待定）的元素: Ni, Sn；不参与相对面密度计算",
-      "Spectrum_Fit_Image": "xiongzhen_50keV_20uA_back3mm.mca.spectrum_fit.png",
+      "Spectrum_Fit_Image": "xiongzhen_50keV_20uA_back3mm_elements.png",
       "Sample_Output_Directory": "spectra/xiongzhen_50keV_20uA_back3mm.mca"
     },
     {
@@ -262,7 +264,7 @@
       "Quantitative_Interpretation_Valid": true,
       "Failure_Reason": "",
       "Warnings": "Non-UTF8 MCA headers decoded using latin-1; DATA remains strict ASCII numeric; Accepted instrument origin (0,0); zero energy is allowed only at channel zero; Two-point residuals do not estimate calibration statistical uncertainty; Sensitivity provenance unverified: missing .metadata.json; source matching is not established; Severe global model mismatch: joint-template q is diagnostic; independently measured primary peak areas are evaluated separately; Structured residual / overdispersion: matrix_effect_or_model_mismatch or unmodelled scattering/artifacts; branch_ratio_mismatch: regional observed residuals disagree with the fixed branch model; 9 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary",
-      "Spectrum_Fit_Image": "yifu1_tou_50keV_20uA_back3mm.mca.spectrum_fit.png",
+      "Spectrum_Fit_Image": "yifu1_tou_50keV_20uA_back3mm_elements.png",
       "Sample_Output_Directory": "spectra/yifu1_tou_50keV_20uA_back3mm.mca"
     },
     {
@@ -275,7 +277,7 @@
       "Quantitative_Interpretation_Valid": true,
       "Failure_Reason": "",
       "Warnings": "Non-UTF8 MCA headers decoded using latin-1; DATA remains strict ASCII numeric; Accepted instrument origin (0,0); zero energy is allowed only at channel zero; Two-point residuals do not estimate calibration statistical uncertainty; Sensitivity provenance unverified: missing .metadata.json; source matching is not established; Inferred acquisition lower cutoff 2.99077 keV: zero-prefix channels excluded, not treated as measured absence; Severe global model mismatch: joint-template q is diagnostic; independently measured primary peak areas are evaluated separately; Structured residual / overdispersion: matrix_effect_or_model_mismatch or unmodelled scattering/artifacts; branch_ratio_mismatch: regional observed residuals disagree with the fixed branch model; 2 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary; 需要进一步确定（待定）的元素: Ni, Pm；不参与相对面密度计算",
-      "Spectrum_Fit_Image": "yifu2_50kv_20uA.mca.spectrum_fit.png",
+      "Spectrum_Fit_Image": "yifu2_50kv_20uA_elements.png",
       "Sample_Output_Directory": "spectra/yifu2_50kv_20uA.mca"
     },
     {
@@ -288,7 +290,7 @@
       "Quantitative_Interpretation_Valid": true,
       "Failure_Reason": "",
       "Warnings": "Non-UTF8 MCA headers decoded using latin-1; DATA remains strict ASCII numeric; Accepted instrument origin (0,0); zero energy is allowed only at channel zero; Two-point residuals do not estimate calibration statistical uncertainty; Sensitivity provenance unverified: missing .metadata.json; source matching is not established; Severe global model mismatch: joint-template q is diagnostic; independently measured primary peak areas are evaluated separately; Global response parameter at bound: review calibration/resolution; no symmetric quantitative uncertainty; Structured residual / overdispersion: matrix_effect_or_model_mismatch or unmodelled scattering/artifacts; branch_ratio_mismatch: regional observed residuals disagree with the fixed branch model; 6 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary",
-      "Spectrum_Fit_Image": "yifu_50keV_20uA_back3mm.mca.spectrum_fit.png",
+      "Spectrum_Fit_Image": "yifu_50keV_20uA_back3mm_elements.png",
       "Sample_Output_Directory": "spectra/yifu_50keV_20uA_back3mm.mca"
     },
     {
@@ -301,10 +303,10 @@
       "Quantitative_Interpretation_Valid": true,
       "Failure_Reason": "",
       "Warnings": "Non-UTF8 MCA headers decoded using latin-1; DATA remains strict ASCII numeric; Accepted instrument origin (0,0); zero energy is allowed only at channel zero; Two-point residuals do not estimate calibration statistical uncertainty; Sensitivity provenance unverified: missing .metadata.json; source matching is not established; Inferred acquisition lower cutoff 2.99077 keV: zero-prefix channels excluded, not treated as measured absence; Severe global model mismatch: joint-template q is diagnostic; independently measured primary peak areas are evaluated separately; Structured residual / overdispersion: matrix_effect_or_model_mismatch or unmodelled scattering/artifacts; branch_ratio_mismatch: regional observed residuals disagree with the fixed branch model; 2 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary; 需要进一步确定（待定）的元素: Ag；不参与相对面密度计算",
-      "Spectrum_Fit_Image": "yinzhang_50kv_20uA.mca.spectrum_fit.png",
+      "Spectrum_Fit_Image": "yinzhang_50kv_20uA_elements.png",
       "Sample_Output_Directory": "spectra/yinzhang_50kv_20uA.mca"
     }
   ],
-  "elapsed_seconds": 197.37827685699995,
+  "elapsed_seconds": 194.94654050200188,
   "successful_samples": 17
 }

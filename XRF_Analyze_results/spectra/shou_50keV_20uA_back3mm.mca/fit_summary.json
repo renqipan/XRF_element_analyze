@@ -1,5 +1,9 @@
 {
   "schema_version": "3.0",
+  "measured_background": {
+    "enabled": false,
+    "path": null
+  },
   "fit_status": "success",
   "analysis_status": "model_mismatch",
   "quantitative_interpretation_valid": true,
@@ -27,7 +31,7 @@
     "pandas": "2.0.3",
     "matplotlib": "3.5.1",
     "xraylib": "4.2.0",
-    "xrf-spectrum-analyzer": "0.4.0"
+    "xrf-spectrum-analyzer": "0.5.0"
   },
   "parameters": {
     "energy_range": [
@@ -91,7 +95,8 @@
     "bootstrap": 0,
     "seed": 42,
     "max_iterations": 1800,
-    "save_intermediate": false
+    "save_intermediate": false,
+    "background_spectrum": null
   },
   "effective_parameters": {
     "background_method": "snip",
@@ -3619,12 +3624,12 @@
     "singular_directions": 0,
     "auxiliary_shell_pruning": [
       {
-        "Element": "Cd",
+        "Element": "Hg",
         "Primary_Information_Score": 0.0,
         "Reason": "Independent auxiliary shells require detectable primary anchors"
       },
       {
-        "Element": "Hg",
+        "Element": "Cd",
         "Primary_Information_Score": 0.0,
         "Reason": "Independent auxiliary shells require detectable primary anchors"
       },
@@ -3634,12 +3639,12 @@
         "Reason": "Independent auxiliary shells require detectable primary anchors"
       },
       {
-        "Element": "U",
+        "Element": "Yb",
         "Primary_Information_Score": 0.0,
         "Reason": "Independent auxiliary shells require detectable primary anchors"
       },
       {
-        "Element": "Yb",
+        "Element": "U",
         "Primary_Information_Score": 0.0,
         "Reason": "Independent auxiliary shells require detectable primary anchors"
       }
@@ -3764,8 +3769,8 @@
         "Element": "Fe",
         "Z": 26,
         "q_Area": 367.9352519500168,
-        "q_Std": 8.549589458653271,
-        "q_Stat_Std": 7.662066055856182,
+        "q_Std": 8.549589458653282,
+        "q_Stat_Std": 7.662066055856191,
         "Quantification_Status": "local_area_estimate",
         "Failure_Reason": "",
         "Notes": "Conditional on supplied common-scale S; local Gaussian/background and candidate set; S/absorption systematics excluded",
@@ -3782,8 +3787,8 @@
         "Element": "Ag",
         "Z": 47,
         "q_Area": 455.8546611628438,
-        "q_Std": 40.79360492739435,
-        "q_Stat_Std": 25.935442385082982,
+        "q_Std": 40.79360492739434,
+        "q_Stat_Std": 25.935442385082975,
         "Quantification_Status": "local_area_estimate",
         "Failure_Reason": "",
         "Notes": "Conditional on supplied common-scale S; local Gaussian/background and candidate set; S/absorption systematics excluded",
@@ -3822,13 +3827,13 @@
     ],
     "q_area_covariance": [
       [
-        73.09547991151514,
+        73.09547991151533,
         0.0,
         0.0
       ],
       [
         0.0,
-        1664.1182029723323,
+        1664.1182029723318,
         0.0
       ],
       [
@@ -3839,13 +3844,13 @@
     ],
     "q_area_stat_covariance": [
       [
-        58.70725624430351,
+        58.70725624430364,
         0.0,
         0.0
       ],
       [
         0.0,
-        672.6471717099589,
+        672.6471717099586,
         0.0
       ],
       [
@@ -3897,7 +3902,7 @@
             "supported_resolved_group_area_free"
           ],
           "q_Area": 367.9352519500168,
-          "q_Fisher_Std": 7.662066055856185,
+          "q_Fisher_Std": 7.66206605585619,
           "Area_Counts": 4577.077740733013,
           "Sensitivity_Sum": 12.4399,
           "Area_Fraction_in_Window": 0.9999999494111294,
@@ -3927,7 +3932,7 @@
           "Nuisance_Groups": [],
           "Nuisance_Policies": [],
           "q_Area": 487.3422941520409,
-          "q_Fisher_Std": 45.29498233706928,
+          "q_Fisher_Std": 45.294982337069264,
           "Area_Counts": 971.6026356358642,
           "Sensitivity_Sum": 1.9936759999999998,
           "Area_Fraction_in_Window": 0.9981589263110623,
@@ -4011,7 +4016,7 @@
             "supported_resolved_group_area_free"
           ],
           "q_Area": 0.0,
-          "q_Fisher_Std": 0.12463954654008651,
+          "q_Fisher_Std": 0.12463954654008648,
           "Area_Counts": 0.0,
           "Sensitivity_Sum": 8.961764886008448,
           "Area_Fraction_in_Window": 0.9999999991833971,
@@ -4041,7 +4046,7 @@
           "Nuisance_Groups": [],
           "Nuisance_Policies": [],
           "q_Area": 27422.455028115593,
-          "q_Fisher_Std": 89.4640785462074,
+          "q_Fisher_Std": 89.46407854620738,
           "Area_Counts": 139982.2818613655,
           "Sensitivity_Sum": 5.104659,
           "Area_Fraction_in_Window": 0.9997142992456912,
@@ -4342,5 +4347,5 @@
     "branch_ratio_mismatch: regional observed residuals disagree with the fixed branch model",
     "13 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary"
   ],
-  "elapsed_seconds": 9.699656196999968
+  "elapsed_seconds": 9.678832326000702
 }

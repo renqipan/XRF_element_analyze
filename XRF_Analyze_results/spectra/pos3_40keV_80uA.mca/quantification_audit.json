@@ -7,8 +7,8 @@
       "Element": "Fe",
       "Z": 26,
       "q_Area": 358.03001266781365,
-      "q_Std": 13.070354757362287,
-      "q_Stat_Std": 10.22678810278556,
+      "q_Std": 13.070354757362276,
+      "q_Stat_Std": 10.226788102785545,
       "Quantification_Status": "local_area_estimate",
       "Failure_Reason": "",
       "Notes": "Conditional on supplied common-scale S; local Gaussian/background and candidate set; S/absorption systematics excluded",
@@ -25,8 +25,8 @@
       "Element": "Ni",
       "Z": 28,
       "q_Area": 315.50884517403045,
-      "q_Std": 56.98658733939271,
-      "q_Stat_Std": 13.029866033690904,
+      "q_Std": 56.9865873393927,
+      "q_Stat_Std": 13.029866033690876,
       "Quantification_Status": "local_area_estimate",
       "Failure_Reason": "",
       "Notes": "Conditional on supplied common-scale S; local Gaussian/background and candidate set; S/absorption systematics excluded",
@@ -43,8 +43,8 @@
       "Element": "Pb",
       "Z": 82,
       "q_Area": 95555.56698981985,
-      "q_Std": 416.2793696654328,
-      "q_Stat_Std": 144.19272134569414,
+      "q_Std": 416.2793696654327,
+      "q_Stat_Std": 144.19272134569408,
       "Quantification_Status": "local_area_estimate",
       "Failure_Reason": "",
       "Notes": "Conditional on supplied common-scale S; local Gaussian/background and candidate set; S/absorption systematics excluded",
@@ -65,36 +65,36 @@
   ],
   "q_area_covariance": [
     [
-      170.83417348330298,
-      24.792655910145193,
+      170.83417348330266,
+      24.792655910145086,
       0.0
     ],
     [
-      24.792655910145193,
-      3247.4711365902335,
+      24.79265591014508,
+      3247.471136590232,
       0.0
     ],
     [
       0.0,
       0.0,
-      173288.51360905005
+      173288.51360904996
     ]
   ],
   "q_area_stat_covariance": [
     [
-      104.58719489927627,
-      19.605082072440236,
+      104.58719489927594,
+      19.60508207244015,
       0.0
     ],
     [
-      19.605082072440236,
-      169.77740885593195,
+      19.605082072440148,
+      169.7774088559312,
       0.0
     ],
     [
       0.0,
       0.0,
-      20791.540889076998
+      20791.540889076983
     ]
   ],
   "audit": [
@@ -117,7 +117,7 @@
           "supported_resolved_group_area_free"
         ],
         "q_Area": 366.0616869071439,
-        "q_Fisher_Std": 12.502364004646212,
+        "q_Fisher_Std": 12.502364004646205,
         "Area_Counts": 4553.770778956179,
         "Sensitivity_Sum": 12.4399,
         "Area_Fraction_in_Window": 0.9999592231576888,
@@ -144,7 +144,7 @@
           "supported_resolved_group_area_free"
         ],
         "q_Area": 358.03001266781365,
-        "q_Fisher_Std": 10.220539775687445,
+        "q_Fisher_Std": 10.220539775687438,
         "Area_Counts": 4453.857554586335,
         "Sensitivity_Sum": 12.4399,
         "Area_Fraction_in_Window": 0.99999999968567,
@@ -178,7 +178,7 @@
           "supported_resolved_group_area_free"
         ],
         "q_Area": 260.9158008198838,
-        "q_Fisher_Std": 25.749745965639697,
+        "q_Fisher_Std": 25.74974596563963,
         "Area_Counts": 3623.616905892604,
         "Sensitivity_Sum": 13.88807,
         "Area_Fraction_in_Window": 0.9999863239285574,
@@ -207,7 +207,7 @@
           "supported_resolved_group_area_free"
         ],
         "q_Area": 315.50884517403045,
-        "q_Fisher_Std": 13.071902443220997,
+        "q_Fisher_Std": 13.071902443220983,
         "Area_Counts": 4381.808927396098,
         "Sensitivity_Sum": 13.88807,
         "Area_Fraction_in_Window": 0.9999999933929598,
@@ -237,7 +237,7 @@
         "Nuisance_Groups": [],
         "Nuisance_Policies": [],
         "q_Area": 95323.33666658128,
-        "q_Fisher_Std": 148.04322760021512,
+        "q_Fisher_Std": 148.0432276002151,
         "Area_Counts": 486593.1284250941,
         "Sensitivity_Sum": 5.104659,
         "Area_Fraction_in_Window": 0.9999666800730337,
@@ -264,7 +264,7 @@
           "supported_resolved_group_area_free"
         ],
         "q_Area": 95555.56698981985,
-        "q_Fisher_Std": 144.1927213456942,
+        "q_Fisher_Std": 144.19272134569417,
         "Area_Counts": 487778.58503468684,
         "Sensitivity_Sum": 5.104659,
         "Area_Fraction_in_Window": 0.9999999974312757,

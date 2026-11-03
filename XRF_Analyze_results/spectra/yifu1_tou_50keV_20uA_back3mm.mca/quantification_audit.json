@@ -7,8 +7,8 @@
       "Element": "Pb",
       "Z": 82,
       "q_Area": 26869.31160238881,
-      "q_Std": 142.36487289667636,
-      "q_Stat_Std": 76.3958123369149,
+      "q_Std": 142.36487289667622,
+      "q_Stat_Std": 76.3958123369148,
       "Quantification_Status": "local_area_estimate",
       "Failure_Reason": "",
       "Notes": "Conditional on supplied common-scale S; local Gaussian/background and candidate set; S/absorption systematics excluded",
@@ -27,12 +27,12 @@
   ],
   "q_area_covariance": [
     [
-      20267.757034886814
+      20267.757034886774
     ]
   ],
   "q_area_stat_covariance": [
     [
-      5836.320142617118
+      5836.3201426171045
     ]
   ],
   "audit": [
@@ -63,7 +63,7 @@
           "unconfirmed_same_initial_shell_L1_ratios_retained"
         ],
         "q_Area": 0.0,
-        "q_Fisher_Std": 0.002765957341447077,
+        "q_Fisher_Std": 0.0027659573414470853,
         "Area_Counts": 0.0,
         "Sensitivity_Sum": 8.961764886008448,
         "Area_Fraction_in_Window": 0.9999999999676853,
@@ -80,7 +80,6 @@
         "Background_Window_Sigmas": 6.0,
         "Success": true,
         "Interferent_Anchor_Extensions": [
-          "Ag:L2:Lbeta1",
           "Ag:L1:L1M2+L1M3"
         ],
         "Optimizer_Message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH",
@@ -99,7 +98,7 @@
           "unconfirmed_same_initial_shell_L1_ratios_retained"
         ],
         "q_Area": 0.0,
-        "q_Fisher_Std": 0.011356075668975356,
+        "q_Fisher_Std": 0.011356075668975344,
         "Area_Counts": 0.0,
         "Sensitivity_Sum": 8.961764886008448,
         "Area_Fraction_in_Window": 0.9999999997997552,
@@ -129,7 +128,7 @@
         "Nuisance_Groups": [],
         "Nuisance_Policies": [],
         "q_Area": 26810.992269373346,
-        "q_Fisher_Std": 78.47116573261489,
+        "q_Fisher_Std": 78.4711657326149,
         "Area_Counts": 136860.97298678706,
         "Sensitivity_Sum": 5.104659,
         "Area_Fraction_in_Window": 0.999965726753917,
@@ -156,7 +155,7 @@
           "supported_resolved_group_area_free"
         ],
         "q_Area": 26869.31160238881,
-        "q_Fisher_Std": 76.395812336915,
+        "q_Fisher_Std": 76.39581233691497,
         "Area_Counts": 137158.67329493846,
         "Sensitivity_Sum": 5.104659,
         "Area_Fraction_in_Window": 0.9999999979961095,

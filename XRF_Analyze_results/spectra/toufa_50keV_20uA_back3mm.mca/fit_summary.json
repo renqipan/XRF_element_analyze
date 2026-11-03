@@ -1,5 +1,9 @@
 {
   "schema_version": "3.0",
+  "measured_background": {
+    "enabled": false,
+    "path": null
+  },
   "fit_status": "success",
   "analysis_status": "model_mismatch",
   "quantitative_interpretation_valid": true,
@@ -27,7 +31,7 @@
     "pandas": "2.0.3",
     "matplotlib": "3.5.1",
     "xraylib": "4.2.0",
-    "xrf-spectrum-analyzer": "0.4.0"
+    "xrf-spectrum-analyzer": "0.5.0"
   },
   "parameters": {
     "energy_range": [
@@ -91,7 +95,8 @@
     "bootstrap": 0,
     "seed": 42,
     "max_iterations": 1800,
-    "save_intermediate": false
+    "save_intermediate": false,
+    "background_spectrum": null
   },
   "effective_parameters": {
     "background_method": "snip",
@@ -3171,7 +3176,7 @@
   ],
   "uncertainty": {
     "method": "expected_poisson_information_nuisance_adjusted",
-    "scaled_jacobian_condition": 5.676332354997807,
+    "scaled_jacobian_condition": 5.6763323549978,
     "singular_directions": 0,
     "auxiliary_shell_pruning": [],
     "low_z_counterfactual_reviews": []
@@ -3233,8 +3238,8 @@
         "Element": "Fe",
         "Z": 26,
         "q_Area": 361.2220344715292,
-        "q_Std": 7.876674365795948,
-        "q_Stat_Std": 7.793014940400785,
+        "q_Std": 7.876674365795954,
+        "q_Stat_Std": 7.7930149404007905,
         "Quantification_Status": "local_area_estimate",
         "Failure_Reason": "",
         "Notes": "Conditional on supplied common-scale S; local Gaussian/background and candidate set; S/absorption systematics excluded",
@@ -3251,8 +3256,8 @@
         "Element": "Pb",
         "Z": 82,
         "q_Area": 28156.25899244466,
-        "q_Std": 147.3410577964535,
-        "q_Stat_Std": 77.68924065436298,
+        "q_Std": 147.34105779645347,
+        "q_Stat_Std": 77.68924065436295,
         "Quantification_Status": "local_area_estimate",
         "Failure_Reason": "",
         "Notes": "Conditional on supplied common-scale S; local Gaussian/background and candidate set; S/absorption systematics excluded",
@@ -3272,22 +3277,22 @@
     ],
     "q_area_covariance": [
       [
-        62.041999064787,
+        62.04199906478709,
         0.0
       ],
       [
         0.0,
-        21709.387312577852
+        21709.38731257784
       ]
     ],
     "q_area_stat_covariance": [
       [
-        60.731081861309846,
+        60.73108186130994,
         0.0
       ],
       [
         0.0,
-        6035.6181134515255
+        6035.618113451521
       ]
     ],
     "audit": [
@@ -3306,7 +3311,7 @@
           "Nuisance_Groups": [],
           "Nuisance_Policies": [],
           "q_Area": 362.3669873978441,
-          "q_Fisher_Std": 8.522017567478601,
+          "q_Fisher_Std": 8.522017567478605,
           "Area_Counts": 4507.809086530441,
           "Sensitivity_Sum": 12.4399,
           "Area_Fraction_in_Window": 0.9998520085745078,
@@ -3333,7 +3338,7 @@
             "supported_resolved_group_area_free"
           ],
           "q_Area": 361.2220344715292,
-          "q_Fisher_Std": 7.793014940400783,
+          "q_Fisher_Std": 7.793014940400785,
           "Area_Counts": 4493.565986622376,
           "Sensitivity_Sum": 12.4399,
           "Area_Fraction_in_Window": 0.9999999005115154,
@@ -3424,7 +3429,7 @@
           "Nuisance_Groups": [],
           "Nuisance_Policies": [],
           "q_Area": 28105.696058202615,
-          "q_Fisher_Std": 85.25924617997707,
+          "q_Fisher_Std": 85.2592461799771,
           "Area_Counts": 143469.9943347685,
           "Sensitivity_Sum": 5.104659,
           "Area_Fraction_in_Window": 0.9997423466688411,
@@ -3447,7 +3452,7 @@
           "Nuisance_Groups": [],
           "Nuisance_Policies": [],
           "q_Area": 28156.25899244466,
-          "q_Fisher_Std": 77.68924065436293,
+          "q_Fisher_Std": 77.68924065436292,
           "Area_Counts": 143728.10087211354,
           "Sensitivity_Sum": 5.104659,
           "Area_Fraction_in_Window": 0.9999999542473017,
@@ -3618,5 +3623,5 @@
     "7 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary",
     "需要进一步确定（待定）的元素: Ni, Sn；不参与相对面密度计算"
   ],
-  "elapsed_seconds": 5.106726302000425
+  "elapsed_seconds": 5.0320387089996075
 }

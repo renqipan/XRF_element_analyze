@@ -7,8 +7,8 @@
       "Element": "Fe",
       "Z": 26,
       "q_Area": 708.7912094533177,
-      "q_Std": 10.55755277485334,
-      "q_Stat_Std": 9.342468012128284,
+      "q_Std": 10.55755277485335,
+      "q_Stat_Std": 9.342468012128297,
       "Quantification_Status": "local_area_estimate",
       "Failure_Reason": "",
       "Notes": "Conditional on supplied common-scale S; local Gaussian/background and candidate set; S/absorption systematics excluded",
@@ -26,7 +26,7 @@
       "Z": 51,
       "q_Area": 126.3730661950083,
       "q_Std": 55.04676359617367,
-      "q_Stat_Std": 35.1698359525713,
+      "q_Stat_Std": 35.16983595257131,
       "Quantification_Status": "local_area_estimate",
       "Failure_Reason": "",
       "Notes": "Conditional on supplied common-scale S; local Gaussian/background and candidate set; S/absorption systematics excluded",
@@ -43,8 +43,8 @@
       "Element": "Pb",
       "Z": 82,
       "q_Area": 10734.256026437326,
-      "q_Std": 59.457200719264755,
-      "q_Stat_Std": 49.048750447220314,
+      "q_Std": 59.45720071926497,
+      "q_Stat_Std": 49.04875044722049,
       "Quantification_Status": "local_area_estimate",
       "Failure_Reason": "",
       "Notes": "Conditional on supplied common-scale S; local Gaussian/background and candidate set; S/absorption systematics excluded",
@@ -65,36 +65,36 @@
   ],
   "q_area_covariance": [
     [
-      111.46192059381346,
+      111.46192059381367,
       0.0,
       0.0
     ],
     [
       0.0,
-      3030.1461824130306,
+      3030.146182413031,
       0.0
     ],
     [
       0.0,
       0.0,
-      3535.158717370937
+      3535.158717370962
     ]
   ],
   "q_area_stat_covariance": [
     [
-      87.28170855764023,
+      87.28170855764044,
       0.0,
       0.0
     ],
     [
       0.0,
-      1236.9173609307768,
+      1236.9173609307775,
       0.0
     ],
     [
       0.0,
       0.0,
-      2405.779920433695
+      2405.7799204337125
     ]
   ],
   "audit": [
@@ -123,7 +123,7 @@
           "unconfirmed_same_initial_shell_L2_ratios_retained"
         ],
         "q_Area": 713.7085473546799,
-        "q_Fisher_Std": 10.831311766119269,
+        "q_Fisher_Std": 10.831311766119258,
         "Area_Counts": 8878.462958237482,
         "Sensitivity_Sum": 12.4399,
         "Area_Fraction_in_Window": 0.9999711142587172,
@@ -156,7 +156,7 @@
           "unconfirmed_same_initial_shell_L2_ratios_retained"
         ],
         "q_Area": 708.7912094533177,
-        "q_Fisher_Std": 9.342468012128286,
+        "q_Fisher_Std": 9.342468012128291,
         "Area_Counts": 8817.291766478327,
         "Sensitivity_Sum": 12.4399,
         "Area_Fraction_in_Window": 0.9999999991460806,
@@ -202,7 +202,7 @@
           "unconfirmed_same_initial_shell_L3_ratios_retained"
         ],
         "q_Area": 143.0042476528098,
-        "q_Fisher_Std": 50.28735697813424,
+        "q_Fisher_Std": 50.287356978134305,
         "Area_Counts": 331.57278900541996,
         "Sensitivity_Sum": 2.318621960170182,
         "Area_Fraction_in_Window": 0.9999102882363456,
@@ -243,7 +243,7 @@
           "unconfirmed_same_initial_shell_L3_ratios_retained"
         ],
         "q_Area": 134.3589906350508,
-        "q_Fisher_Std": 76.70688185998385,
+        "q_Fisher_Std": 76.70688185998439,
         "Area_Counts": 311.5277062327286,
         "Sensitivity_Sum": 2.318621960170182,
         "Area_Fraction_in_Window": 0.9999999631303799,
@@ -277,7 +277,7 @@
           "unconfirmed_same_initial_shell_K_ratios_retained"
         ],
         "q_Area": 87.99452111602302,
-        "q_Fisher_Std": 23.376622029214793,
+        "q_Fisher_Std": 23.37662202921481,
         "Area_Counts": 92.76408814407482,
         "Sensitivity_Sum": 1.054203,
         "Area_Fraction_in_Window": 0.9999999997843371,
@@ -304,7 +304,7 @@
           "unconfirmed_same_initial_shell_K_ratios_retained"
         ],
         "q_Area": 126.3730661950083,
-        "q_Fisher_Std": 35.16983595257129,
+        "q_Fisher_Std": 35.1698359525713,
         "Area_Counts": 133.22286550197634,
         "Sensitivity_Sum": 1.054203,
         "Area_Fraction_in_Window": 0.9999990698533316,
@@ -371,7 +371,7 @@
           "unconfirmed_same_initial_shell_L3_ratios_retained"
         ],
         "q_Area": 10734.256026437326,
-        "q_Fisher_Std": 49.048750447220364,
+        "q_Fisher_Std": 49.04875044722045,
         "Area_Counts": 54794.71663365753,
         "Sensitivity_Sum": 5.104659,
         "Area_Fraction_in_Window": 0.9999999994997248,

@@ -7,8 +7,8 @@
       "Element": "Fe",
       "Z": 26,
       "q_Area": 348.80970188642436,
-      "q_Std": 8.912062520280326,
-      "q_Stat_Std": 7.115837687975361,
+      "q_Std": 8.912062520280328,
+      "q_Stat_Std": 7.115837687975364,
       "Quantification_Status": "local_area_estimate",
       "Failure_Reason": "",
       "Notes": "Conditional on supplied common-scale S; local Gaussian/background and candidate set; S/absorption systematics excluded",
@@ -25,8 +25,8 @@
       "Element": "Pb",
       "Z": 82,
       "q_Area": 9869.913309763298,
-      "q_Std": 61.06540974942165,
-      "q_Stat_Std": 46.96142821364389,
+      "q_Std": 61.0654097494217,
+      "q_Stat_Std": 46.961428213643934,
       "Quantification_Status": "local_area_estimate",
       "Failure_Reason": "",
       "Notes": "Conditional on supplied common-scale S; local Gaussian/background and candidate set; S/absorption systematics excluded",
@@ -46,22 +46,22 @@
   ],
   "q_area_covariance": [
     [
-      79.4248583653853,
+      79.42485836538535,
       0.0
     ],
     [
       0.0,
-      3728.98426786476
+      3728.9842678647665
     ]
   ],
   "q_area_stat_covariance": [
     [
-      50.63514600161053,
+      50.635146001610565,
       0.0
     ],
     [
       0.0,
-      2205.3757398652283
+      2205.375739865233
     ]
   ],
   "audit": [
@@ -84,7 +84,7 @@
           "supported_resolved_group_area_free"
         ],
         "q_Area": 354.1753064528991,
-        "q_Fisher_Std": 8.11757245781422,
+        "q_Fisher_Std": 8.117572457814214,
         "Area_Counts": 4405.9053947434195,
         "Sensitivity_Sum": 12.4399,
         "Area_Fraction_in_Window": 0.9999678115567573,
@@ -111,7 +111,7 @@
           "supported_resolved_group_area_free"
         ],
         "q_Area": 348.80970188642436,
-        "q_Fisher_Std": 7.11583768797536,
+        "q_Fisher_Std": 7.115837687975362,
         "Area_Counts": 4339.15781049693,
         "Sensitivity_Sum": 12.4399,
         "Area_Fraction_in_Window": 0.9999999991534794,
@@ -141,7 +141,7 @@
         "Nuisance_Groups": [],
         "Nuisance_Policies": [],
         "q_Area": 9844.893688314545,
-        "q_Fisher_Std": 47.77320959987816,
+        "q_Fisher_Std": 47.773209599878186,
         "Area_Counts": 50254.82517009804,
         "Sensitivity_Sum": 5.104659,
         "Area_Fraction_in_Window": 0.9999654217296851,
@@ -168,7 +168,7 @@
           "supported_resolved_group_area_free"
         ],
         "q_Area": 9869.913309763298,
-        "q_Fisher_Std": 46.96142821364389,
+        "q_Fisher_Std": 46.961428213643906,
         "Area_Counts": 50382.541805903005,
         "Sensitivity_Sum": 5.104659,
         "Area_Fraction_in_Window": 0.9999999942261275,

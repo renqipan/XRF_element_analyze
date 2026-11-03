@@ -1,3 +1,10 @@
+# 简洁输出验证记录
+
+- 批量主TXT改为每谱严格三行：文件名、支持元素及相对面密度（含参考）、待定元素；待定元素不参与比值。完整误差与质量信息保存在`density_details.json`。
+- 单谱新增`name_elements.png`，仅一条Observed raw count曲线和支持元素标签；批量根目录改用该图，详细拟合图保留在逐谱子目录。相同stem的MCA/CSV分别放入elements_mca/、elements_csv/以避免覆盖。
+- 完整回归145项通过；最后图标注调整的8项输出专项回归通过。包含每谱三行、待定元素排除、失败/空谱占三行、同stem防覆盖、图中仅原始曲线和支持元素标签。
+- 实际复算当前17份谱，三行主TXT共51行，根目录17张name_elements.png，旧式*.mca.spectrum_fit.png为0。逐谱数值与明细JSON、简洁TXT、图片和哈希审计0错误。
+
 # 0.5验证记录：可选实测背景
 
 - 默认`background_spectrum=None`；所有下划线/连字符别名及`--background None`覆盖配置已验证。

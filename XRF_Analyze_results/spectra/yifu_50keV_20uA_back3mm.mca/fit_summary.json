@@ -1,5 +1,9 @@
 {
   "schema_version": "3.0",
+  "measured_background": {
+    "enabled": false,
+    "path": null
+  },
   "fit_status": "success",
   "analysis_status": "model_mismatch",
   "quantitative_interpretation_valid": true,
@@ -27,7 +31,7 @@
     "pandas": "2.0.3",
     "matplotlib": "3.5.1",
     "xraylib": "4.2.0",
-    "xrf-spectrum-analyzer": "0.4.0"
+    "xrf-spectrum-analyzer": "0.5.0"
   },
   "parameters": {
     "energy_range": [
@@ -91,7 +95,8 @@
     "bootstrap": 0,
     "seed": 42,
     "max_iterations": 1800,
-    "save_intermediate": false
+    "save_intermediate": false,
+    "background_spectrum": null
   },
   "effective_parameters": {
     "background_method": "snip",
@@ -3387,7 +3392,7 @@
         "Z": 47,
         "q_Area": 468.31356688885387,
         "q_Std": 36.19968630821655,
-        "q_Stat_Std": 24.52596225915466,
+        "q_Stat_Std": 24.525962259154667,
         "Quantification_Status": "local_area_estimate",
         "Failure_Reason": "",
         "Notes": "Conditional on supplied common-scale S; local Gaussian/background and candidate set; S/absorption systematics excluded",
@@ -3404,7 +3409,7 @@
         "Element": "Pm",
         "Z": 61,
         "q_Area": 108.75933345142471,
-        "q_Std": 21.286821213618442,
+        "q_Std": 21.28682121361844,
         "q_Stat_Std": 16.269687008552523,
         "Quantification_Status": "local_area_estimate",
         "Failure_Reason": "",
@@ -3444,36 +3449,36 @@
     ],
     "q_area_covariance": [
       [
-        1310.4172888132805,
+        1310.4172888132807,
         0.0,
         0.0
       ],
       [
         0.0,
-        453.12875738055607,
+        453.12875738055595,
         0.0
       ],
       [
         0.0,
         0.0,
-        16921.17618045483
+        16921.176180454833
       ]
     ],
     "q_area_stat_covariance": [
       [
-        601.5228247374788,
+        601.522824737479,
         0.0,
         0.0
       ],
       [
         0.0,
-        264.7027153562628,
+        264.70271535626273,
         0.0
       ],
       [
         0.0,
         0.0,
-        5596.659830794824
+        5596.659830794825
       ]
     ],
     "audit": [
@@ -3515,7 +3520,7 @@
           "Nuisance_Groups": [],
           "Nuisance_Policies": [],
           "q_Area": 468.31356688885387,
-          "q_Fisher_Std": 24.525962259154657,
+          "q_Fisher_Std": 24.52596225915466,
           "Area_Counts": 933.6655187807025,
           "Sensitivity_Sum": 1.9936759999999998,
           "Area_Fraction_in_Window": 0.9999999984146272,
@@ -3549,7 +3554,7 @@
             "supported_resolved_group_area_free"
           ],
           "q_Area": 118.32045485779096,
-          "q_Fisher_Std": 23.368601994960255,
+          "q_Fisher_Std": 23.368601994960237,
           "Area_Counts": 428.21290845390365,
           "Sensitivity_Sum": 3.619094508794541,
           "Area_Fraction_in_Window": 0.9998691565599478,
@@ -3612,7 +3617,7 @@
             "supported_resolved_group_area_free"
           ],
           "q_Area": 0.0,
-          "q_Fisher_Std": 0.0008445613694743761,
+          "q_Fisher_Std": 0.000844561369474376,
           "Area_Counts": 0.0,
           "Sensitivity_Sum": 8.961764886008448,
           "Area_Fraction_in_Window": 0.9999899340487216,
@@ -3639,7 +3644,7 @@
             "supported_resolved_group_area_free"
           ],
           "q_Area": 0.0,
-          "q_Fisher_Std": 0.1282517602365837,
+          "q_Fisher_Std": 0.12825176023658363,
           "Area_Counts": 0.0,
           "Sensitivity_Sum": 8.961764886008448,
           "Area_Fraction_in_Window": 0.9999999990105843,
@@ -3669,7 +3674,7 @@
           "Nuisance_Groups": [],
           "Nuisance_Policies": [],
           "q_Area": 26226.421056820724,
-          "q_Fisher_Std": 82.26535596257305,
+          "q_Fisher_Std": 82.26535596257304,
           "Area_Counts": 133876.9362854894,
           "Sensitivity_Sum": 5.104659,
           "Area_Fraction_in_Window": 0.9996790383920635,
@@ -3844,5 +3849,5 @@
     "branch_ratio_mismatch: regional observed residuals disagree with the fixed branch model",
     "6 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary"
   ],
-  "elapsed_seconds": 4.130508049999662
+  "elapsed_seconds": 4.308448015999602
 }

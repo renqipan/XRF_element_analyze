@@ -214,7 +214,8 @@ def export_analysis(result, output_dir):
                'branch_evidence':[row for row in ident.branch_evidence if row['Element']=='Ca'],
                'interpretation':'Identity and quantitative quality are separate; weak Kbeta evidence requires confirmation near thresholds',
                'manual_peaks':result['summary']['manual_peaks']})
-    from .visualization import make_plots,make_calcium_plot,make_quantification_plots
+    from .visualization import make_plots,make_calcium_plot,make_quantification_plots,make_elements_plot
     make_plots(result, out)
     make_calcium_plot(result,out)
     make_quantification_plots(result,out)
+    make_elements_plot(result,out)

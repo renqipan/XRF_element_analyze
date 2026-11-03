@@ -1,5 +1,9 @@
 {
   "schema_version": "3.0",
+  "measured_background": {
+    "enabled": false,
+    "path": null
+  },
   "fit_status": "success",
   "analysis_status": "model_mismatch",
   "quantitative_interpretation_valid": true,
@@ -27,7 +31,7 @@
     "pandas": "2.0.3",
     "matplotlib": "3.5.1",
     "xraylib": "4.2.0",
-    "xrf-spectrum-analyzer": "0.4.0"
+    "xrf-spectrum-analyzer": "0.5.0"
   },
   "parameters": {
     "energy_range": [
@@ -91,7 +95,8 @@
     "bootstrap": 0,
     "seed": 42,
     "max_iterations": 1800,
-    "save_intermediate": false
+    "save_intermediate": false,
+    "background_spectrum": null
   },
   "effective_parameters": {
     "background_method": "snip",
@@ -3472,7 +3477,7 @@
   ],
   "uncertainty": {
     "method": "expected_poisson_information_nuisance_adjusted",
-    "scaled_jacobian_condition": 5.916974136302618,
+    "scaled_jacobian_condition": 5.916974136302624,
     "singular_directions": 0,
     "auxiliary_shell_pruning": [
       {
@@ -3485,39 +3490,39 @@
   },
   "q_covariance": [
     [
-      50.81350029759884,
-      -0.9296039262366315,
-      -1.1504319299571533,
-      -14.460076360025472,
-      -0.7348649970145349
+      50.81350029759889,
+      -0.9296039262367378,
+      -1.1504319299570904,
+      -14.460076360025555,
+      -0.7348649970145412
     ],
     [
-      -0.9296039262366314,
-      488.2666678959129,
-      1.0161723217015097,
-      0.6384110592042967,
-      -3.873618760935844
+      -0.929603926236739,
+      488.26666789591246,
+      1.016172321701557,
+      0.6384110592044673,
+      -3.8736187609361235
     ],
     [
-      -1.1504319299571526,
-      1.0161723217015115,
-      87.15638797021644,
-      -4.48242756065733,
-      0.4593118961635651
+      -1.15043192995709,
+      1.0161723217015561,
+      87.15638797021641,
+      -4.482427560657429,
+      0.45931189616348234
     ],
     [
-      -14.460076360025472,
-      0.6384110592042963,
-      -4.48242756065733,
-      136.3187388597515,
-      2.1460564263782325
+      -14.460076360025559,
+      0.6384110592044661,
+      -4.482427560657428,
+      136.31873885975185,
+      2.146056426378143
     ],
     [
-      -0.7348649970145327,
-      -3.8736187609358432,
-      0.45931189616355006,
-      2.1460564263782316,
-      674.7152091249267
+      -0.7348649970145417,
+      -3.873618760936122,
+      0.45931189616347934,
+      2.146056426378142,
+      674.7152091249269
     ]
   ],
   "covariance_element_order": [
@@ -3551,8 +3556,8 @@
         "Element": "Pb",
         "Z": 82,
         "q_Area": 26869.31160238881,
-        "q_Std": 142.36487289667636,
-        "q_Stat_Std": 76.3958123369149,
+        "q_Std": 142.36487289667622,
+        "q_Stat_Std": 76.3958123369148,
         "Quantification_Status": "local_area_estimate",
         "Failure_Reason": "",
         "Notes": "Conditional on supplied common-scale S; local Gaussian/background and candidate set; S/absorption systematics excluded",
@@ -3571,12 +3576,12 @@
     ],
     "q_area_covariance": [
       [
-        20267.757034886814
+        20267.757034886774
       ]
     ],
     "q_area_stat_covariance": [
       [
-        5836.320142617118
+        5836.3201426171045
       ]
     ],
     "audit": [
@@ -3607,7 +3612,7 @@
             "unconfirmed_same_initial_shell_L1_ratios_retained"
           ],
           "q_Area": 0.0,
-          "q_Fisher_Std": 0.002765957341447077,
+          "q_Fisher_Std": 0.0027659573414470853,
           "Area_Counts": 0.0,
           "Sensitivity_Sum": 8.961764886008448,
           "Area_Fraction_in_Window": 0.9999999999676853,
@@ -3624,7 +3629,6 @@
           "Background_Window_Sigmas": 6.0,
           "Success": true,
           "Interferent_Anchor_Extensions": [
-            "Ag:L2:Lbeta1",
             "Ag:L1:L1M2+L1M3"
           ],
           "Optimizer_Message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH",
@@ -3643,7 +3647,7 @@
             "unconfirmed_same_initial_shell_L1_ratios_retained"
           ],
           "q_Area": 0.0,
-          "q_Fisher_Std": 0.011356075668975356,
+          "q_Fisher_Std": 0.011356075668975344,
           "Area_Counts": 0.0,
           "Sensitivity_Sum": 8.961764886008448,
           "Area_Fraction_in_Window": 0.9999999997997552,
@@ -3673,7 +3677,7 @@
           "Nuisance_Groups": [],
           "Nuisance_Policies": [],
           "q_Area": 26810.992269373346,
-          "q_Fisher_Std": 78.47116573261489,
+          "q_Fisher_Std": 78.4711657326149,
           "Area_Counts": 136860.97298678706,
           "Sensitivity_Sum": 5.104659,
           "Area_Fraction_in_Window": 0.999965726753917,
@@ -3700,7 +3704,7 @@
             "supported_resolved_group_area_free"
           ],
           "q_Area": 26869.31160238881,
-          "q_Fisher_Std": 76.395812336915,
+          "q_Fisher_Std": 76.39581233691497,
           "Area_Counts": 137158.67329493846,
           "Sensitivity_Sum": 5.104659,
           "Area_Fraction_in_Window": 0.9999999979961095,
@@ -3905,5 +3909,5 @@
     "branch_ratio_mismatch: regional observed residuals disagree with the fixed branch model",
     "9 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary"
   ],
-  "elapsed_seconds": 7.9848506939997606
+  "elapsed_seconds": 8.100978898000903
 }
