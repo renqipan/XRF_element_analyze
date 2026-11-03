@@ -1,0 +1,2 @@
+peak_id,channel,energy_keV,local_prominence,estimated_fwhm_keV,approx_significance,roi_start_keV,roi_end_keV,quality_flags,maximum_channel,maximum_energy_keV,centroid_std_keV,net_area_counts,area_std_counts,local_fit_status,local_deviance_per_dof
+12,285.3035947354211,21.068573149692945,16.08465726065747,0.5510915769286814,7.114445586996468,20.366492014332,21.77065428505389,poisson_fitted_centroid;local_score_not_global_p_value,286,21.12,,100.50407419259442,,success,0.8580856983275531

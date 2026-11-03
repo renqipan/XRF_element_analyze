@@ -1,0 +1,70 @@
+{
+  "candidate": [
+    {
+      "Z": 20,
+      "Element": "Ca",
+      "Status": "supported",
+      "Score": 277.46011549507415,
+      "DeltaDeviance": 283.67672159615904,
+      "NumObservableLines": 4,
+      "NumIndependentEvidenceRegions": 2,
+      "ExpectedMissingStrongLines": "",
+      "OverlapFlag": true,
+      "ConfidenceNotes": "low_Z_Kalpha_dominant_support; independent Kbeta not required; single-region evidence retained; Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities; severe_global_model_mismatch: quantitative interpretation withheld",
+      "MatchedPeakIDs": "1",
+      "OverlapElements": "Ag",
+      "q_Fit": 56.12739387797424,
+      "q_Std": 4.184599543256637,
+      "Upper95_q": null,
+      "Uncertainty_Status": "fisher_interior",
+      "Quantification_Status": "global_model_mismatch",
+      "PatternScore": -0.5432273608186002,
+      "PatternMissingLinePenalty": 0.0,
+      "Element_Class": "common",
+      "Preferred_By_Prior": false,
+      "Prior_Alternatives": ""
+    }
+  ],
+  "branch_evidence": [
+    {
+      "Element": "Ca",
+      "Family": "K",
+      "Branches": "Kalpha2+Kalpha1",
+      "Background_Window_Sigmas": 4.0,
+      "ROI_Start_keV": 3.433846153846154,
+      "ROI_End_keV": 4.541538461538462,
+      "Local_Free_Area_Counts": 483.77168297973276,
+      "Expected_Area_From_Tied_Counts": 483.1162412793826,
+      "Branch_DeltaDeviance": 315.29669519937033,
+      "Observed_Ratio_to_Strongest_Group": 1.0,
+      "Expected_Ratio_to_Strongest_Group": 1.0,
+      "Tied_vs_Free_DeltaDeviance": 0.5961962990477332,
+      "Group_Observed": true,
+      "Method": "local_Poisson_background_refit_other_elements_fixed; conditional_not_global_p_value",
+      "Wide_Window_Branch_DeltaDeviance": 416.87061490026827,
+      "Robust_Group_Observed": true,
+      "Ratio_Compatible": true
+    },
+    {
+      "Element": "Ca",
+      "Family": "K",
+      "Branches": "Kbeta1+KM2",
+      "Background_Window_Sigmas": 4.0,
+      "ROI_Start_keV": 3.433846153846154,
+      "ROI_End_keV": 4.541538461538462,
+      "Local_Free_Area_Counts": 46.13127126552568,
+      "Expected_Area_From_Tied_Counts": 60.70700165146472,
+      "Branch_DeltaDeviance": 6.141657613708048,
+      "Observed_Ratio_to_Strongest_Group": 0.09535752688414034,
+      "Expected_Ratio_to_Strongest_Group": 0.12565713272379578,
+      "Tied_vs_Free_DeltaDeviance": 0.5961962990477332,
+      "Group_Observed": true,
+      "Method": "local_Poisson_background_refit_other_elements_fixed; conditional_not_global_p_value",
+      "Wide_Window_Branch_DeltaDeviance": 6.445210484745985,
+      "Robust_Group_Observed": true,
+      "Ratio_Compatible": true
+    }
+  ],
+  "interpretation": "Identity and quantitative quality are separate; weak Kbeta evidence requires confirmation near thresholds",
+  "manual_peaks": null
+}

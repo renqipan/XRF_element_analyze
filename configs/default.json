@@ -25,5 +25,11 @@
   "find_peaks_axis": "reference",
   "element_prior": "general",
   "prior_tie_margin": 0.5,
-  "branch_evidence": true
+  "branch_evidence": true,
+  "low_z_kalpha": true,
+  "low_z_max_z": 24,
+  "low_z_kalpha_min_delta": 25.0,
+  "low_z_beta_visibility_sigma": 5.0,
+  "low_z_min_kalpha_share": 0.7,
+  "prune_unanchored_auxiliary": true
 }

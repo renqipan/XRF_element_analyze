@@ -1,0 +1,12 @@
+Z,Element,Branch,Reference_Energy_keV,Centroid_keV,Net_Area,Strength_Source,Quantitative_S_Available,Notes
+26,Fe,L1M2,0.7921,0.8895772811129545,0.0,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+26,Fe,L1M3,0.7921,0.8895772811129545,0.0,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+62,Sm,L1M2,6.1961,6.268912556422517,73.59677560324398,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+62,Sm,L1M3,6.317,6.3892607493878995,107.41086919042294,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+62,Sm,L1M4,6.6308,6.701628515744698,1.4690888085216909,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+62,Sm,L1M5,6.6566,6.72731076039736,2.1950931021529696,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+62,Sm,L1N2,7.4712,7.538192795050796,17.241060009323643,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+62,Sm,L1N3,7.4894,7.556309727325155,26.14222753828484,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+62,Sm,L1N5,7.6078,7.674169330692411,0.3040516609421023,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+62,Sm,L1O2,7.7155,7.781377770579687,2.4365410076744425,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+62,Sm,L1O3,7.7155,7.781377770579687,3.601554432724504,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated

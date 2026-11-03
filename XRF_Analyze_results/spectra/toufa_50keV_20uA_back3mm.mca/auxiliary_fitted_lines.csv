@@ -1,0 +1,24 @@
+Z,Element,Branch,Reference_Energy_keV,Centroid_keV,Net_Area,Strength_Source,Quantitative_S_Available,Notes
+26,Fe,L1M2,0.7921,0.9653853372740671,0.0,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+26,Fe,L1M3,0.7921,0.9653853372740671,0.0,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+28,Ni,L1M2,0.94,1.111806337274067,0.0,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+28,Ni,L1M3,0.94,1.111806337274067,0.0,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+28,Ni,L1M5,1.0045,1.175661337274067,0.0,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+82,Pb,L1M2,12.3066,12.364740337274068,23517.0761910678,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+82,Pb,L1M3,12.7944,12.847662337274068,25688.280241806107,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+82,Pb,L1M4,13.2752,13.323654337274068,849.2316261416502,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+82,Pb,L1M5,13.3768,13.424238337274067,1270.9878386316764,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+82,Pb,L1N2,15.0969,15.127137337274068,6052.449248794359,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+82,Pb,L1N3,15.2163,15.245343337274068,7204.798536500695,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+82,Pb,L1N4,15.4256,15.452550337274067,130.50938065343757,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+82,Pb,L1N5,15.4479,15.474627337274068,206.22602432454264,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+82,Pb,L1O2,15.756,15.779646337274068,1185.6880456971135,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+82,Pb,L1O3,15.7778,15.801228337274067,1386.7667889762179,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+50,Sn,L1M2,3.7083,3.852423337274067,17.01718265051509,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+50,Sn,L1M3,3.7503,3.894003337274067,27.71086394970058,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+50,Sn,L1M4,3.9714,4.112892337274067,0.21489822935663994,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+50,Sn,L1M5,3.9799,4.121307337274067,0.3208049598131426,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+50,Sn,L1N2,4.3761,4.513545337274067,3.326289923200045,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+50,Sn,L1N3,4.3761,4.513545337274067,5.501079071774471,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+50,Sn,L1O2,4.4636,4.600170337274067,0.07603981609371124,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated
+50,Sn,L1O3,4.4636,4.600170337274067,0.1183499083170603,unscaled_shell_radiative_rates,False,Free shell amplitude; not a sensitivity-derived areal density; uncertainty not estimated

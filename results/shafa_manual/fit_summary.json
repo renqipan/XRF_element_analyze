@@ -23,7 +23,7 @@
     "pandas": "2.0.3",
     "matplotlib": "3.5.1",
     "xraylib": "4.2.0",
-    "xrf-spectrum-analyzer": "0.2.0"
+    "xrf-spectrum-analyzer": "0.3.0"
   },
   "parameters": {
     "energy_range": [
@@ -46,6 +46,12 @@
     "element_prior": "general",
     "prior_tie_margin": 0.5,
     "branch_evidence": true,
+    "low_z_kalpha": true,
+    "low_z_max_z": 24,
+    "low_z_kalpha_min_delta": 25.0,
+    "low_z_beta_visibility_sigma": 5.0,
+    "low_z_min_kalpha_share": 0.7,
+    "prune_unanchored_auxiliary": true,
     "complete_atomic_lines": true,
     "shell_consistency_tolerance": 0.05,
     "minimum_radiative_rate": 0.001,
@@ -138,9 +144,7 @@
     "tie_margin": 0.5,
     "policy": "tie_break_only; data_ambiguity_is_not_confirmation"
   },
-  "elements_need_confirmation": [
-    "Ca"
-  ],
+  "elements_need_confirmation": [],
   "excluded_from_density": [
     "H",
     "He",
@@ -161,7 +165,6 @@
     "Cl",
     "Ar",
     "K",
-    "Ca",
     "Sc",
     "Ti",
     "V",
@@ -308,6 +311,24 @@
       "Wide_Window_Branch_DeltaDeviance": 694.3820976283605,
       "Robust_Group_Observed": true,
       "Ratio_Compatible": false
+    }
+  ],
+  "low_z_kalpha_evidence": [
+    {
+      "Element": "Ca",
+      "Z": 20,
+      "Applicable": true,
+      "Eligible": true,
+      "Method": "low_Z_Kalpha_dominant; weak_Kbeta_not_required",
+      "Reasons": [],
+      "Calibration_Anchored": true,
+      "Kalpha_DeltaDeviance": 235.17421997968086,
+      "Wide_Kalpha_DeltaDeviance": 270.4639806916239,
+      "Kalpha_Area_Counts": 428.55507114423204,
+      "Kalpha_Share_vs_Strongest_Interferent": 1.0,
+      "Expected_Kbeta_Information_Score": 2.5559429209425346,
+      "Kbeta_Strongly_Contradicted": false,
+      "Kbeta_Independently_Required": false
     }
   ],
   "acquisition_cutoff": {
@@ -3912,7 +3933,9 @@
   "uncertainty": {
     "method": "expected_poisson_information_nuisance_adjusted",
     "scaled_jacobian_condition": 13.916589251895772,
-    "singular_directions": 0
+    "singular_directions": 0,
+    "auxiliary_shell_pruning": [],
+    "low_z_counterfactual_reviews": []
   },
   "q_covariance": [
     [
@@ -3979,8 +4002,7 @@
     "Severe global model mismatch: all quantitative ratios withheld; candidate q values are diagnostic only",
     "Structured residual / overdispersion: matrix_effect_or_model_mismatch or unmodelled scattering/artifacts",
     "branch_ratio_mismatch: regional observed residuals disagree with the fixed branch model",
-    "No quantitatively valid elements; fraction denominator is empty; see separate identification statuses",
-    "需要进一步确定（待定）的元素: Ca；不参与相对面密度计算"
+    "No quantitatively valid elements; fraction denominator is empty; see separate identification statuses"
   ],
-  "elapsed_seconds": 3.396665418000339
+  "elapsed_seconds": 3.127209897999819
 }

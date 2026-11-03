@@ -41,7 +41,7 @@ def _groups(lines, auxiliary, config):
                 center = float(weights @ energies/weights.sum())
                 spread = float(np.sqrt(weights @ (energies-center)**2/weights.sum()))
                 groups.append(dict(symbol=symbol, entries=group['entries'], center=center, spread=spread,
-                                   strength=float(weights.sum()), family=group['entries'][0][0].branch[0],
+                                   strength=float(weights.sum()), Z=group['entries'][0][0].Z, family=group['entries'][0][0].branch[0],
                                    auxiliary=group['entries'][0][2]=='unscaled_auxiliary_shell', id=len(groups)+1))
     return groups
 
@@ -117,7 +117,10 @@ def discover_elements(peaks, lines, auxiliary, energy, counts, config, fixed_del
                     noise = np.sqrt(observed_total+expected+1)
                     signal = expected/noise
                     if signal >= config.candidate_threshold_sigma:
-                        penalties[si] += min(6., np.log1p(signal))
+                        weak_beta=(config.low_z_kalpha and groups[i]['Z']<=config.low_z_max_z
+                                   and all(l.branch.startswith('K') and not l.branch.startswith('Kalpha') for l,_,_ in groups[i]['entries'])
+                                   and signal<config.low_z_beta_visibility_sigma)
+                        penalties[si] += (0.25 if weak_beta else 1.)*min(6., np.log1p(signal))
         costs = config.pattern_element_penalty+penalties
         selected, explained = [], np.zeros(m)
         while len(selected) < 15:
@@ -187,8 +190,8 @@ def discover_elements(peaks, lines, auxiliary, energy, counts, config, fixed_del
             p = peaks.iloc[j]
             for line, _, source in g['entries']:
                 pairings.append([int(p.peak_id), float(p.energy_keV), float(uncertainty[j]), line.Z, line.symbol,
-                                 line.branch, line.energy_keV, line.energy_keV+delta,
-                                 float(p.energy_keV-line.energy_keV-delta), config.match_sigma*float(tolerances[i, j]),
+                                 line.branch, line.energy_keV, line.energy_keV*(1+fixed_gain)+delta,
+                                 float(p.energy_keV-line.energy_keV*(1+fixed_gain)-delta), config.match_sigma*float(tolerances[i, j]),
                                  source, g['id'], g['center'], float(affinity[i, j]), line.symbol in selected,
                                  'selected_group_candidate' if line.symbol in selected else 'alternative'])
     alignment = {'method': 'global_centroid_branch_graph_weighted_sparse_peak_cover', 'delta_E_keV': delta,

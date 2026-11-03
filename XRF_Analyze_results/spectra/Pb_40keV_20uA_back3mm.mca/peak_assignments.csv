@@ -1,0 +1,14 @@
+peak_id,Fitted_Centroid_keV,Centroid_Std_keV,Elements,Branches,Status,Alternative_Elements,Input_Center_keV,Primary_Element,Minor_Overlapping_Elements,Assignment_Model_Information_Score,Preferred_By_Context_Prior,Notes
+1,3.21702414244903,0.028867539402078785,Ag,Ag:L2N1;Ag:L3N1;Ag:L3N4;Ag:Lalpha1;Ag:Lalpha2;Ag:Lbeta1;Ag:Lbeta2;Ag:Lgamma1,tentative,"Ar,Cd,In,Pa,Pd,Rh,Sn,Tc,Th,U",3.21702414244903,Ag,,11.801474511284301,,Observed complex center; unresolved branches share one evidence region
+2,6.47185203971604,0.012505320709657748,"Sm,Fe",Fe:Kalpha1;Fe:Kalpha2;Sm:L1M2;Sm:L1M3,tentative,"Ce,Nd,Pm,Pr,Tb,Tm",6.47185203971604,Sm,,9.767643991867232,,Observed complex center; unresolved branches share one evidence region
+3,7.0373678536226265,0.038901147346277316,"Sm,Eu",Eu:L1M4;Eu:L1M5;Eu:L3N4;Eu:L3O1;Eu:Lbeta2;Sm:L2N1,tentative,"Co,Er,Gd,Hf,Nd,Pm,Tb",7.0373678536226265,Sm,,3.8007108014653643,,Observed complex center; unresolved branches share one evidence region
+4,7.574552293004092,0.007436559231719644,Ni,Ni:Kalpha1;Ni:Kalpha2,supported,"Gd,Ho,Tb,W,Yb",7.574552293004092,Ni,,15.239476408710232,,Observed complex center; unresolved branches share one evidence region
+5,8.286524858696417,0.039303844039972745,Ni,Ni:KM2;Ni:Kbeta1,tentative,"Dy,Er,Gd,Hf,Pt,Ta,Tb,Tm,Yb",8.286524858696417,Ni,,2.376215927814879,,Observed complex center; unresolved branches share one evidence region
+6,9.286766438837937,0.004063865646213659,Pb,Pb:L3M1,supported,"Ga,Hf,Ho,Ir,Lu,Ta,Tm",9.286766438837937,Pb,,20.620916037917738,,Observed complex center; unresolved branches share one evidence region
+7,10.62520195303149,0.0006139900251916644,Pb,Pb:Lalpha1;Pb:Lalpha2,supported,"As,Hf,Ir,Lu,Os,Ra,Re,Ta",10.62520195303149,Pb,,134.3525006496748,,Observed complex center; unresolved branches share one evidence region
+8,11.431914640280162,0.009060017390836395,Pb,Pb:L2M1,supported,"At,Au,Ir,Pa,Re,W",11.431914640280162,Pb,,5.685992532698303,,Observed complex center; unresolved branches share one evidence region
+9,12.686733913342572,0.0007999620770756145,Pb,Pb:L3N4;Pb:Lbeta1;Pb:Lbeta2,supported,"Ac,Bi,Kr,Pt,Tl",12.686733913342572,Pb,,157.17170915046776,,Observed complex center; unresolved branches share one evidence region
+10,14.840493582018835,0.0031618827990356076,Pb,Pb:Lgamma1,supported,"Bi,Fr,Hg,Ra",14.840493582018835,Pb,,63.49546167672894,,Observed complex center; unresolved branches share one evidence region
+11,18.771555089897433,0.02086857609760135,,,unassigned,Ac,18.771555089897433,,,0.0,,Observed complex center; unresolved branches share one evidence region
+12,22.114719763679478,0.010966534102227742,Ag,Ag:Kalpha1;Ag:Kalpha2,tentative,Ru,22.114719763679478,Ag,,6.113086939511036,,Observed complex center; unresolved branches share one evidence region
+13,24.951678645773875,0.028244160322617687,Ag,Ag:KM2;Ag:Kbeta1,tentative,Sn,24.951678645773875,Ag,,2.1331142269770913,,Observed complex center; unresolved branches share one evidence region

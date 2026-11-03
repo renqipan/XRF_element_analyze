@@ -22,6 +22,7 @@ from .element_identification import identify_elements
 from .fit_model import fit_spectrum
 from .quantification import compute_relative_areal_density
 from .reporting import sha256, export_analysis
+from .console import print_run_summary
 
 
 def analyze(spectrum, calibration, sensitivity, output_dir=None, config=None):
@@ -208,6 +209,7 @@ def analyze(spectrum, calibration, sensitivity, output_dir=None, config=None):
                    elements_need_confirmation=needs_confirmation,
                    excluded_from_density=identification.candidates.loc[identification.candidates.Status!='supported','Element'].tolist(),
                    local_branch_evidence=identification.branch_evidence,
+                   low_z_kalpha_evidence=identification.low_z_evidence,
                    acquisition_cutoff=cutoff, response_initialization=response_initialization,
                    centroid_alignment=identification.alignment, atomic_completion=completion_audit,
                    identification_method='fitted_centroids_then_global_branch_pattern_then_joint_Poisson_fit',
@@ -245,4 +247,5 @@ def analyze(spectrum, calibration, sensitivity, output_dir=None, config=None):
     for warning in warnings:
         logging.warning(warning)
     logging.info('Completed %s in %.2fs: %s', spectrum, time.monotonic()-start, summary['fit_status'])
+    print_run_summary(result)
     return result

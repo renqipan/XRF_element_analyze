@@ -13,6 +13,12 @@ class AnalysisConfig:
     element_prior: str = "general"
     prior_tie_margin: float = 0.5
     branch_evidence: bool = True
+    low_z_kalpha: bool = True
+    low_z_max_z: int = 24
+    low_z_kalpha_min_delta: float = 25.0
+    low_z_beta_visibility_sigma: float = 5.0
+    low_z_min_kalpha_share: float = 0.7
+    prune_unanchored_auxiliary: bool = True
     complete_atomic_lines: bool = True
     shell_consistency_tolerance: float = 0.05
     minimum_radiative_rate: float = 0.001
@@ -73,6 +79,12 @@ class AnalysisConfig:
                 raise ValueError("find_peaks energies must be positive finite numbers in keV")
             if len(set(self.find_peaks)) != len(self.find_peaks):
                 raise ValueError("Exact duplicate find_peaks centers are not allowed; close unresolved centers are supported")
+        if not 1 <= self.low_z_max_z <= 118:
+            raise ValueError("low_z_max_z must be in 1..118")
+        if not 0.5 < self.low_z_min_kalpha_share <= 1:
+            raise ValueError("low_z_min_kalpha_share must be in (0.5,1]")
+        if not all(math.isfinite(v) and v > 0 for v in (self.low_z_kalpha_min_delta, self.low_z_beta_visibility_sigma)):
+            raise ValueError("Low-Z evidence thresholds must be finite and positive")
         numeric = (self.fwhm_ref_energy_kev, self.fwhm_ref_kev, self.fano,
                    self.pair_energy_kev, self.candidate_threshold_sigma,
                    self.support_delta_deviance, self.tentative_delta_deviance,

@@ -9,6 +9,7 @@ from .pattern_matching import discover_elements
 from .manual_peaks import constrain_line_centers
 from .element_prior import element_class, preferred_in_group
 from .branch_evidence import evaluate_branch_evidence
+from .low_z import assess_low_z_kalpha
 
 CANDIDATE_COLUMNS = ['Z', 'Element', 'Status', 'Score', 'DeltaDeviance', 'NumObservableLines',
                      'NumIndependentEvidenceRegions', 'ExpectedMissingStrongLines', 'OverlapFlag',
@@ -31,6 +32,7 @@ class IdentificationResult:
     pattern_rankings: object = None
     alignment: object = None
     branch_evidence: object = None
+    low_z_evidence: object = None
 
 
 def _regions(lines, fit, idx, energy, counts, config):
@@ -85,21 +87,45 @@ def identify_elements(counts, energy, edges, background, lines, peaks, config, d
                           +(config.energy_gain_bound*float(np.median(peaks.energy_keV)) if config.fit_energy_gain and len(peaks) else 0.)))
     initial_delta = float(np.clip(initial_shift, -delta_bound, delta_bound))
     comparisons = []
+    disabled_auxiliary=set()
+    auxiliary_pruning=[]
     for iteration in range(config.max_selection_iterations):
         fit_lines = [l for l in lines if l.symbol in selected]
-        fit_auxiliary = [l for l in auxiliary_lines if l.symbol in selected]
+        fit_auxiliary = [l for l in auxiliary_lines if l.symbol in selected and l.symbol not in disabled_auxiliary]
         logging.info('Centroid-pattern candidates: %s; shared shift initial %.5f keV', sorted(selected), initial_delta)
         fit = fit_spectrum(counts, energy, edges, background, fit_lines, config, delta_bound,
                            auxiliary_lines=fit_auxiliary, initial_delta=initial_delta, line_centers=line_centers, center_axis=config.find_peaks_axis)
+        if config.prune_unanchored_auxiliary:
+            for _ in range(3):
+                if not fit.success:break
+                orphan=[]
+                for symbol in {l.symbol for l in fit_auxiliary}:
+                    j=fit.symbols.index(symbol)
+                    primary=fit.matrix[:,j]*fit.t[j]
+                    information=float(np.sqrt(np.sum(primary**2/fit.model)))
+                    if information<config.candidate_threshold_sigma:
+                        orphan.append(symbol)
+                        auxiliary_pruning.append({'Element':symbol,'Primary_Information_Score':information,
+                            'Reason':'Independent auxiliary shells require detectable primary anchors'})
+                if not orphan:break
+                disabled_auxiliary.update(orphan)
+                removed=[len(fit.symbols)+j for j,name in enumerate(fit.nuisance_names)
+                         if any(name.startswith(symbol+'_') and name.endswith('_unscaled') for symbol in orphan)]
+                fit_auxiliary=[l for l in fit_auxiliary if l.symbol not in disabled_auxiliary]
+                logging.info('Disable unanchored auxiliary shells: %s',sorted(orphan))
+                fit=fit_spectrum(counts,energy,edges,background,fit_lines,config,delta_bound,
+                     initial=np.delete(fit.parameters,removed),auxiliary_lines=fit_auxiliary,
+                     initial_delta=fit.delta,line_centers=line_centers,center_axis=config.find_peaks_axis)
         if not fit.success or config.find_peaks is not None or config.element_selection == 'manual' or iteration == config.max_selection_iterations-1:
             break
         from .peak_detection import detect_peaks
         residual_peaks = detect_peaks(np.arange(len(counts)), energy, edges, counts, fit.model, config)
-        residual_pattern = discover_elements(residual_peaks, lines, auxiliary_lines, energy, counts,
+        active_auxiliary = [l for l in auxiliary_lines if l.symbol not in disabled_auxiliary]
+        residual_pattern = discover_elements(residual_peaks, lines, active_auxiliary, energy, counts,
                                              config, fixed_delta=fit.delta, fixed_gain=fit.energy_gain)
         multi = set(residual_pattern.rankings.loc[residual_pattern.rankings.IndependentPeakRegions >= 2, 'Element'])
         additional = residual_pattern.selected.intersection(multi)-selected
-        raw_pattern=discover_elements(peaks,lines,auxiliary_lines,energy,counts,config,fixed_delta=fit.delta,fixed_gain=fit.energy_gain)
+        raw_pattern=discover_elements(peaks,lines,active_auxiliary,energy,counts,config,fixed_delta=fit.delta,fixed_gain=fit.energy_gain)
         novel=set()
         for symbol in additional:
             ids=raw_pattern.pairings.loc[(raw_pattern.pairings.Element==symbol)&(raw_pattern.pairings.Group_Affinity>=.5),'peak_id']
@@ -118,11 +144,13 @@ def identify_elements(counts, energy, edges, background, lines, peaks, config, d
         initial_delta = fit.delta
     # Recompute branch pairings with the final shared affine response, fixing
     # the old low-energy Ca mismatch caused by using only an initial offset.
-    pattern=discover_elements(peaks,lines,auxiliary_lines,energy,counts,config,
+    active_auxiliary = [l for l in auxiliary_lines if l.symbol not in disabled_auxiliary]
+    pattern=discover_elements(peaks,lines,active_auxiliary,energy,counts,config,
                               fixed_delta=0. if manual_reference else fit.delta,
                               fixed_gain=0. if manual_reference else fit.energy_gain)
     cov, unc_status, unc_info = estimate_covariance(fit)
-    rows, diag, overlap_pairs, branch_details = [], [], [], []
+    unc_info['auxiliary_shell_pruning']=auxiliary_pruning
+    rows, diag, overlap_pairs, branch_details, low_z_details = [], [], [], [], []
     weighted = fit.matrix[:, :len(fit.symbols)]/np.sqrt(fit.model[:, None])
     norms = np.linalg.norm(weighted, axis=0)
     cos = (weighted.T @ weighted)/np.maximum(norms[:, None]*norms[None, :], 1e-30)
@@ -189,10 +217,17 @@ def identify_elements(counts, energy, edges, background, lines, peaks, config, d
         overlap = sorted({l.symbol for a in element_lines for l in fit_lines
                           if l.symbol != symbol and abs(a.energy_keV-l.energy_keV) <
                           FWHM_FACTOR*float(sigma_kev(a.energy_keV, config))*fit.resolution_scale})
+        primary_pairs=pattern.pairings.loc[pattern.pairings.Strength_Source!='unscaled_auxiliary_shell']
+        low_z=assess_low_z_kalpha(symbol,fit_lines,peaks,primary_pairs,ranking,
+                                  np.asarray(counts),energy,edges,fit,config,details)
+        if low_z['Applicable']:low_z_details.append(low_z)
         std = np.sqrt(cov[i, i]) if np.isfinite(cov[i, i]) else None
         if not fit.success or delta is None:
             status = 'not_supported'
             notes.append('fit_failed_or_comparison_failed')
+        elif low_z['Eligible'] and delta >= config.support_delta_deviance:
+            status='supported'
+            notes.append('low_Z_Kalpha_dominant_support; independent Kbeta not required; single-region evidence retained')
         elif delta >= config.support_delta_deviance and evidence >= 2 and (pattern_score > 0 or robust_local):
             status = 'supported'
         elif delta >= config.tentative_delta_deviance or (fit.t[i] > 0 and evidence >= 1):
@@ -206,7 +241,7 @@ def identify_elements(counts, energy, edges, background, lines, peaks, config, d
         if unc_status[i] == 'not_estimable' and status in ('supported', 'tentative'):
             status = 'unidentifiable'
             quantitative = 'not_estimable'
-        if evidence < 2:
+        if evidence < 2 and not low_z['Eligible']:
             notes.append('Fewer than two independent observed centroid regions')
         notes.append('Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities')
         rows.append([z, symbol, status, score, delta, len(element_lines), evidence, '+'.join(missing), bool(overlap),
@@ -216,6 +251,81 @@ def identify_elements(counts, energy, edges, background, lines, peaks, config, d
     candidates['Element_Class']=candidates.Element.map(lambda symbol:element_class(symbol,config.element_prior))
     candidates['Preferred_By_Prior']=False
     candidates['Prior_Alternatives']=''
+    # A zero fitted amplitude is conditional on all competitors being present.
+    # Recheck a suppressed low-Z Kalpha against an unconfirmed, ratio-incompatible
+    # overlapping competitor. This can recover a *possible* interpretation only:
+    # the original full model, q, covariance and quantitative status stay intact.
+    counterfactual_reviews = []
+    if fit.success and config.low_z_kalpha:
+        reviews = 0
+        for row_index, candidate in candidates.iterrows():
+            if (reviews >= 3 or candidate.Z > config.low_z_max_z or candidate.Status != 'not_supported'
+                    or candidate.Element not in fit.symbols or candidate.q_Fit > 1e-6):
+                continue
+            symbol = candidate.Element
+            alpha_pairs=primary_pairs.loc[(primary_pairs.Element==symbol)
+                & primary_pairs.Branch.isin(['Kalpha1','Kalpha2']) & (primary_pairs.Group_Affinity>=.5)]
+            if alpha_pairs.empty:
+                continue
+            peak_ids=set(alpha_pairs.peak_id)
+            rivals=candidates.loc[candidates.Element.isin(str(candidate.OverlapElements).split(','))
+                & candidates.Status.isin(['tentative','ambiguous','unidentifiable'])]
+            for _, rival_row in rivals.iterrows():
+                if reviews >= 3:
+                    break
+                rival=rival_row.Element
+                if rival not in fit.symbols or fit.t[fit.symbols.index(rival)] <= 1e-5:
+                    continue
+                rival_pairs=primary_pairs.loc[(primary_pairs.Element==rival)
+                    & primary_pairs.peak_id.isin(peak_ids) & (primary_pairs.Group_Affinity>=.5)]
+                if rival_pairs.empty:
+                    continue
+                details=[d for d in branch_details if d['Element']==rival]
+                contradicted={d['Family'] for d in details if d['Tied_vs_Free_DeltaDeviance']>=9}
+                if not contradicted:
+                    continue
+                wide=evaluate_branch_evidence(rival,fit_lines,energy,edges,np.asarray(counts),fit,config,roi_sigma=6.)
+                if not any(d['Family'] in contradicted and d['Tied_vs_Free_DeltaDeviance']>=9 for d in wide):
+                    continue
+                reviews += 1
+                removed=[fit.symbols.index(rival)]+[len(fit.symbols)+j for j,name in enumerate(fit.nuisance_names)
+                    if name.startswith(rival+'_') and name.endswith('_unscaled')]
+                cf_lines=[l for l in fit_lines if l.symbol!=rival]
+                cf_auxiliary=[l for l in fit_auxiliary if l.symbol!=rival]
+                cf_fit=fit_spectrum(counts,energy,edges,background,cf_lines,config,delta_bound,
+                    initial=np.delete(fit.parameters,removed),auxiliary_lines=cf_auxiliary,
+                    initial_delta=fit.delta,line_centers=line_centers,center_axis=config.find_peaks_axis)
+                audit={'Element':symbol,'Removed_Rival':rival,'Method':'leave_unconfirmed_rival_out; tentative_only',
+                       'Counterfactual_Fit_Success':cf_fit.success,'Recovered_Possible_Interpretation':False,
+                       'Full_Model_and_Quantification_Unchanged':True}
+                if cf_fit.success:
+                    cf_pattern=discover_elements(peaks,lines,[l for l in active_auxiliary if l.symbol!=rival],
+                        energy,counts,config,fixed_delta=0. if manual_reference else cf_fit.delta,
+                        fixed_gain=0. if manual_reference else cf_fit.energy_gain)
+                    cf_pairs=cf_pattern.pairings.loc[cf_pattern.pairings.Strength_Source!='unscaled_auxiliary_shell']
+                    cf_branches=evaluate_branch_evidence(symbol,cf_lines,energy,edges,np.asarray(counts),cf_fit,config)
+                    cf_alpha=assess_low_z_kalpha(symbol,cf_lines,peaks,cf_pairs,cf_pattern.rankings.set_index('Element'),
+                        np.asarray(counts),energy,edges,cf_fit,config,cf_branches)
+                    cf_removed=[cf_fit.symbols.index(symbol)]+[len(cf_fit.symbols)+j for j,name in enumerate(cf_fit.nuisance_names)
+                        if name.startswith(symbol+'_') and name.endswith('_unscaled')]
+                    cf_null=fit_spectrum(counts,energy,edges,background,[l for l in cf_lines if l.symbol!=symbol],
+                        config,delta_bound,initial=np.delete(cf_fit.parameters,cf_removed),
+                        auxiliary_lines=[l for l in cf_auxiliary if l.symbol!=symbol],initial_delta=cf_fit.delta,
+                        line_centers=line_centers,center_axis=config.find_peaks_axis)
+                    delta=max(0.,2*(cf_null.nll-cf_fit.nll)) if cf_null.success and cf_null.nll>=cf_fit.nll-.1 else None
+                    recovered=bool(cf_alpha['Eligible'] and delta is not None and delta>=config.support_delta_deviance)
+                    audit.update(Counterfactual_Kalpha_Evidence=cf_alpha,Counterfactual_Element_DeltaDeviance=delta,
+                                 Recovered_Possible_Interpretation=recovered)
+                    if recovered:
+                        candidates.loc[row_index,'Status']='tentative'
+                        candidates.loc[row_index,'Quantification_Status']='not_estimable'
+                        candidates.loc[row_index,'ConfidenceNotes'] += ('; Kalpha recovered only when unconfirmed overlapping '
+                            +rival+' is removed; rival branch ratios incompatible in both windows; '
+                            'counterfactual interpretation remains tentative; full-model q unchanged')
+                counterfactual_reviews.append(audit)
+                if audit['Recovered_Possible_Interpretation']:
+                    break
+    unc_info['low_z_counterfactual_reviews']=counterfactual_reviews
     # Check mathematically indistinguishable unselected alternatives as well:
     # choosing a common element does not make a data ambiguity disappear.
     for symbol in fit.symbols:
@@ -270,9 +380,9 @@ def identify_elements(counts, energy, edges, background, lines, peaks, config, d
         pattern.pairings['Element_Status'] = pattern.pairings.Element.map(candidates.set_index('Element').Status)
         pattern.pairings['Model_Centroid_keV']=[line_centers.get((r.Element,r.Branch),r.Reference_Energy_keV) if config.find_peaks_axis=='observed' and (r.Element,r.Branch) in line_centers else line_centers.get((r.Element,r.Branch),r.Reference_Energy_keV)*(1+fit.energy_gain)+fit.delta for _,r in pattern.pairings.iterrows()]
         pattern.pairings['Model_Energy_Residual_keV'] = pattern.pairings.Observed_Centroid_keV-pattern.pairings.Model_Centroid_keV
-        pattern.pairings['Group_Energy_Residual_keV'] = pattern.pairings.Observed_Centroid_keV-pattern.pairings.Group_Centroid_keV-pattern.delta
+        pattern.pairings['Group_Energy_Residual_keV'] = pattern.pairings.Observed_Centroid_keV-pattern.pairings.Group_Centroid_keV*(1+pattern.alignment.get('gain_for_matching',0.))-pattern.delta
     pattern.rankings['Fitted'] = pattern.rankings.Element.isin(fit.symbols)
     pattern.alignment['effective_fit_delta_bound_keV'] = delta_bound
     pattern.alignment['initial_alignment']=initial_alignment
     return IdentificationResult(fit, candidates, cov, unc_status, unc_info, fit_lines, comparisons,
-                                overlap_pairs, diag, pattern.pairings, pattern.rankings, pattern.alignment, branch_details)
+                                overlap_pairs, diag, pattern.pairings, pattern.rankings, pattern.alignment, branch_details, low_z_details)

@@ -1,8 +1,8 @@
-# XRF Spectrum Analyzer 0.2
+# XRF Spectrum Analyzer 0.3
 
 对SDD测量的XRF原始计数谱执行：自动寻峰、亚道峰心拟合、全谱多分支元素识别、多元素泊松联合拟合，以及**仅对证据支持且通过定量质量检查的元素**计算表观相对质量面密度。
 
-本轮新增低能钙检验、K/L/M同空穴层分支扩展、场景常见元素平局先验，以及用户指定峰心 `find_peaks`。当前流程以本README和 `XRF_analyze_strategy.md` 为准；`ANALYSIS_IMPROVEMENTS.md`保留上一轮推导和对照。代码仓库：[renqipan/XRF_element_analyze](https://github.com/renqipan/XRF_element_analyze)（私有）。
+本轮加入 **Z≤24的Kα主导识别**、无主线证据的辅助壳层控制、每次运行的终端结果摘要，以及整个目录的批处理和TXT汇总。已有K/L/M同空穴层分支扩展、场景常见元素平局先验及用户指定峰心 `find_peaks`继续使用。当前流程以本README和 `XRF_analyze_strategy.md` 为准；`ANALYSIS_IMPROVEMENTS.md`保留早期推导和对照。代码仓库：[renqipan/XRF_element_analyze](https://github.com/renqipan/XRF_element_analyze)（私有）。
 
 ## 安装与测试
 
@@ -25,7 +25,7 @@ python3 -m pip install --target .venv/lib/python3.8/site-packages \
 PYTHON_BIN=.venv/bin/python scripts/verify.sh
 ```
 
-当前 **80项测试通过**，包含真实谱、已知真值的泊松合成谱、手动峰心和元素先验回归。
+回归测试包含真实谱、已知真值的泊松合成谱、手动峰心、元素先验和批处理失败隔离。当前测试与真实数据的复验结果见 `VALIDATION.md`。
 
 ## 自动分析真实谱
 
@@ -64,6 +64,33 @@ PYTHON_BIN=.venv/bin/python scripts/verify.sh
 
 ### 批量与合成谱
 
+逐个处理 `XRF_SDD/` 中所有MCA或CSV（扩展名不区分大小写）：
+
+```bash
+./analyze_all_spectrums.sh
+```
+
+默认输出到 `XRF_Analyze_results/`。脚本可从任意工作目录执行；优先使用项目 `.venv/bin/python`，也可通过 `PYTHON_BIN`选择Python。输入目录、输出目录、标定、灵敏度和配置分别可由 `XRF_INPUT_DIR`、`XRF_OUTPUT_DIR`、`CALIBRATION_FILE`、`SENSITIVITY_FILE`、`XRF_CONFIG`覆盖，CLI分析选项可直接追加：
+
+```bash
+./analyze_all_spectrums.sh --input-dir XRF_SDD --output-dir XRF_Analyze_results \
+  --reference-element Fe --element-prior heritage
+```
+
+每个输入的完整文件名都会保留，避免 `sample.mca` 与 `sample.csv`相互覆盖：
+
+- `<完整文件名>.spectrum_fit.png`：输出目录中的逐样品拟合图片。
+- `spectra/<完整文件名>/`：完整的单样品报告，包括原有逐样品CSV。
+- **`relative_areal_density_all.txt`**：所有样品的面密度比值汇总，UTF-8 BOM编码、制表符分隔的TXT；每个证据支持的元素一行，包含参考元素、相对比值、定量状态、无法估计的原因以及该样品的待定元素。没有支持元素或处理失败的样品也保留状态行；待定元素不进入比值分母。
+- `batch_summary.txt`：每样品一行的支持/可能元素、拟合状态和图片路径。
+- `batch_manifest.json`：输入哈希、参数和逐文件处理进度。
+
+汇总的**空比值代表暂不可估计**，不能解释为零含量或强行填1。每处理完一份谱立即保存汇总；单文件输入或拟合失败会继续下一个样品，最终返回非零。模型失配与程序失败分开记录。默认不从文件名猜测40/50 kV、靶材或灵敏度匹配关系；各样品的定量解释仍需核对实验条件。批处理仅遍历输入目录第一层，避免误读子目录中的派生结果。
+
+本轮已实际处理20份MCA，生成20张fit图和49条支持元素记录；所有真实谱仍未通过默认定量门控，数值比值为空。执行/产物完整不代表科学模型验证通过。可用 `.venv/bin/python scripts/audit_batch_results.py XRF_Analyze_results`复核模型分量、元素筛选、TXT、图片和哈希；完整记录见`VALIDATION.md`。
+
+生成与分析固定真值的合成谱：
+
 ```bash
 .venv/bin/python examples/generate_examples.py
 .venv/bin/python -m xrf_analyzer analyze \
@@ -78,13 +105,15 @@ PYTHON_BIN=.venv/bin/python scripts/verify.sh
 
 `results/shafa_current/`是最新版自动结果；`results/shafa_manual/`对应上述用户指定中心示例。旧结果目录保留作历史对照，不作为当前算法输出。
 
-自动结果中Ca、Fe、Hg、Pb获得默认规则下的`Status=supported`。Ca Kα的实测复合峰约3.82 keV；使用全谱最终偏移和增益后，与Ca理论Kα位置相符。程序在原始计数上比较Kα/Kβ固定比例、自由比例及逐组移除模型，并用两种背景窗口复验：
+0.3自动结果中Ca、Fe、Hg、Pb获得默认规则下的`Status=supported`，Cr、Ag、Pm待定。Ca Kα的实测复合峰约3.82 keV；使用全谱最终偏移和增益后，与Ca理论Kα位置相符。程序在原始计数上比较Kα/Kβ固定比例、自由比例及逐组移除模型，并用两种背景窗口复验：
 
 - Ca Kα局部删除增益ΔD约315，证据强。
 - Ca Kβ（含同能分支）ΔD约6.1，宽窗口约6.4；证据偏弱、接近默认阈值，适合复测确认。
 - 自由拟合的Kβ/Kα面积比约0.095，模型比约0.126；固定比与自由比的差异ΔD约0.60，没有显示明显矛盾。
 
-因此自动流程在联合证据下支持Ca，但不把它说成无条件确证。使用用户给出的粗略手动中心时，Ca仍待定，不能因输入3.69 keV就强行确认。详见`calcium_analysis.json`、`branch_ratio_evidence.csv`和`calcium_region.png`。
+因此自动流程支持Ca，但不把它说成无条件确证。用户给出的粗略手动中心在旧版中使Ca待定；0.3的Kα主导检验在双窗口给出ΔD约235/270，因此该手动示例也支持Ca。这里的证据来自原始计数，而非输入3.69 keV本身。详见`calcium_analysis.json`、`branch_ratio_evidence.csv`和`calcium_region.png`。
+
+新Kα主导路径对Ca另做Kα单组局部检验：窄/宽窗口ΔD约269/398，预计Kβ信息分数约3.33，故不要求独立Kβ。Cr Kα与Pm Lα相距约0.018 keV，低于当前探测器分辨率；去掉未确证Pm后的反事实模型中Cr全组ΔD约73.57、Kα双窗口约41.53/44.74，但这依赖竞争元素解释。因此只恢复Cr为待定并优先展示常见解释，原始拟合q和定量集合保持不变。详细审计位于`fit_summary.json`的`uncertainty.low_z_counterfactual_reviews`。
 
 自动全谱deviance/dof约7.02，仍有背景、散射、分支比或基体方面的失配，故**真实谱的比例继续留空**。`Status`表示元素身份，`Quantification_Status`表示模型是否允许计算比例，两者独立。
 
@@ -93,14 +122,15 @@ PYTHON_BIN=.venv/bin/python scripts/verify.sh
 1. **原始计数和标定。** 校准CSV做线性回归。两点标定不产生虚假的零协方差；含完整误差时加权。所有输入保留SHA256。
 2. **有效采集域。** 长精确零前缀且随后骤增时，保守推断低能截断。当前文件推断约2.9908 keV，不把未采集区当成“没有Pb M线”。推断需仪器确认，`--no-infer-cutoff`可关闭。
 3. **峰心。** SNIP背景、分辨率相关平滑发现凸起；相邻峰对原始泊松计数联合拟合中心、面积、宽度和正背景。没有独立极大值的肩峰不编造新观测证据。
-4. **更多分支。** 原九分支CSV保留。只对正S建立锚点；同空穴层满足`S_line=C_shell*RadRate_line`时补全遗漏K/L/M跃迁。已有锚点`S/RadRate`相对不一致超过5%则停止该层补全。原S不再乘产额，不改写、不归一化。缺少L1锚点时只加独立非定量辅助壳层幅度，不跨壳层猜S。
+4. **更多分支。** 原九分支CSV保留。只对正S建立锚点；同空穴层满足`S_line=C_shell*RadRate_line`时补全遗漏K/L/M跃迁。已有锚点`S/RadRate`相对不一致超过5%则停止该层补全。原S不再乘产额，不改写、不归一化。缺少L1锚点时只加独立非定量辅助壳层幅度，不跨壳层猜S。独立辅助壳层须有其主q模板的可检测贡献；主模板信息分数低于候选阈值（默认3.5）时禁用其辅助壳层并重拟合，避免无主线证据的自由壳层抢占其它元素信号。
 5. **全谱配对。** 结合峰心误差、未分辨组中心、缺失强线的可见性、分支比例及少元素原则构造候选。最终共享增益和偏移回传配对，避免低能钙被旧偏移初值误排。局部K分支检验能寻找弱Kβ贡献，不要求它形成独立最大值。
 6. **场景先验。** 仅在证据接近/无法区分时偏好常见元素；强数据支持的非常见元素照常保留。偏好不制造`supported`，歧义仍排除定量。
 7. **联合拟合。** `lambda=positive_background+sum(q_i*S_il*integrated_Gaussian)+auxiliary_shells+instrument`，q非负。全谱共享受限偏移、增益、分辨率，不逐线任意漂移。数值参数缩放不改变S的物理尺度。
 8. **残差与证据。** 删除元素时一起删除其辅助壳层并重拟合；残差新候选还需至少一处未被已有元素解释的原始观测特征，避免用稀有元素填已有强峰形状错误。
-9. **统计与定量。** 独立分支证据、模型比较和局部比例一致性共同判别。Fisher信息包含背景/响应/辅助幅度，比值误差包含协方差。边界/奇异/模型失配不报伪精确区间。局部ΔD、模式分数和先验均不是已校准概率。
+9. **低Z与统计。** 对Z≤24且具有Kα分支的元素增加Kα主导路径：峰心吻合、标定独立受约束、Kα窄/宽窗口局部ΔD均≥25、全元素删除ΔD≥25，且其它元素对该区域的竞争受控时，弱Kβ不必独立检出。独立标定锚点须分别有可检测的主模板贡献，不使用辅助壳层、共享被测Kα或宽散射结构。合并为一个分辨率组的低能K系也可接受局部检验。若由Kα强度预计Kβ应明显可见，而原始计数和分支比检验显著矛盾，仍拒绝该路径。被未确证且比例失配的重叠候选压制的Kα可做反事实复核，但最多恢复待定，不提升确证或定量。其它多分支证据规则继续使用；单个自由漂移的Kα不能同时标定和确证自己。
+10. **定量。** Fisher信息包含背景/响应/辅助幅度，比值误差包含协方差。边界/奇异/模型失配不报伪精确区间。放宽身份识别不解除定量质量门控；局部ΔD、模式分数和先验均不是已校准概率。
 
-可关闭/调整：`--no-atomic-completion`、`--no-estimate-resolution`、`--no-fit-gain`、`--fixed-response`、`--alignment-max-shift-kev`、`--centroid-tolerance-kev`、`--max-deviance-per-dof`。全部请求参数和有效参数写入摘要。
+可关闭/调整：`--no-low-z-kalpha`、`--no-atomic-completion`、`--no-estimate-resolution`、`--no-fit-gain`、`--fixed-response`、`--alignment-max-shift-kev`、`--centroid-tolerance-kev`、`--max-deviance-per-dof`。低Z阈值也可通过配置JSON调整，全部请求参数和有效参数写入摘要。
 
 ## 常见与非常见元素
 
@@ -119,6 +149,8 @@ PYTHON_BIN=.venv/bin/python scripts/verify.sh
 ## 面密度计算与输出
 
 `relative_areal_density.csv` **仅包含`Status=supported`的元素**。待定、歧义、不可辨识和未支持元素均不出现在这张表；所有候选q/状态在`element_diagnostics.csv`，待定清单在`elements_need_confirmation.csv`，日志和JSON明确提示需要进一步确定。
+
+每次分析结束，终端打印证据支持存在的元素、各自相对参考元素的面密度比值，以及可能存在、需要进一步确定的元素。身份支持但未通过定量检查时明确显示“暂不可估计”及原因，不把待定q当成有效比值。批处理对每份输入同样输出摘要；输入失败也明确报告失败状态。
 
 只有识别支持、`Quantification_Status=supported`、正q和可估计误差同时满足，才计算：
 
@@ -165,4 +197,4 @@ PYTHON_BIN=.venv/bin/python scripts/verify.sh
 
 上传包含代码、配置、原始数据、示例、测试、文档及结果；`.venv`、Python缓存、构建产物和环境密钥不上传。原始MCA/CSV通过Git属性保留字节，方便SHA256审计。
 
-补充原始资料位于`XRF_SDD/`（20份MCA，发布期间加入），均保留原始字节。当前验证范围为`SDD_Spectrum/shafa_50kv_20uA.mca`和合成示例；新增资料需逐采集条件匹配标定与灵敏度，见该目录说明。
+补充原始资料位于`XRF_SDD/`（20份MCA），均保留原始字节。可用上述批处理脚本重现全部目录分析；各采集条件需分别匹配标定与灵敏度，见该目录说明。实际本轮运行统计以 `VALIDATION.md`和批处理清单为准。

@@ -1,0 +1,3 @@
+Z,Element,Element_Status,q_Fit,Relative_to_Reference,Fraction_among_Reported_Elements,Uncertainty_percent,CI95_Low,CI95_High,Reference_Element,Apparent_Only,Quality_Flags,q_Std,Upper95_q,Quantification_Status
+47,Ag,supported,106.19522265110734,,,,,,,True,apparent_relative_areal_density; statistical_only; fixed_branch_ratios; excluded_from_fraction_denominator; upper_limit_not_estimable_without_profile_or_bootstrap; severe_global_model_mismatch; diagnostic_q_only,,,global_model_mismatch
+82,Pb,supported,12102.472971128474,,,,,,,True,apparent_relative_areal_density; statistical_only; fixed_branch_ratios; excluded_from_fraction_denominator; upper_limit_not_estimable_without_profile_or_bootstrap; severe_global_model_mismatch; diagnostic_q_only,,,global_model_mismatch

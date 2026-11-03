@@ -6,6 +6,7 @@ from .config import AnalysisConfig
 from .manual_peaks import parse_peak_energies
 from .pipeline import analyze
 from .reporting import write_json, ANALYSIS_OUTPUT_FILES
+from .console import print_failed_summary
 
 
 def build_parser():
@@ -48,6 +49,7 @@ def build_parser():
     p.add_argument('--strict-calibration', action='store_true', default=argparse.SUPPRESS)
     p.add_argument('--fill-missing-channels', action='store_true', default=argparse.SUPPRESS)
     p.add_argument('--save-intermediate', action='store_true', default=argparse.SUPPRESS)
+    p.add_argument('--no-low-z-kalpha',dest='low_z_kalpha',action='store_false',default=argparse.SUPPRESS,help='Use the stricter two-region identification rule also for Z<=24')
     p.add_argument('--no-atomic-completion', dest='complete_atomic_lines', action='store_false', default=argparse.SUPPRESS)
     p.add_argument('--no-infer-cutoff', dest='infer_low_energy_cutoff', action='store_false', default=argparse.SUPPRESS)
     p.add_argument('--no-estimate-resolution', dest='estimate_resolution_from_peaks', action='store_false', default=argparse.SUPPRESS)
@@ -97,5 +99,6 @@ def main(argv=None):
             write_json(destination/'fit_summary.json', {'fit_status': 'failed', 'error': str(exc),
                        'input_spectrum': str(Path(spectrum).resolve()), 'parameters': config.to_dict()})
             logging.error('%s: %s', spectrum, exc)
+            print_failed_summary(spectrum, exc)
             code = 1
     return code
