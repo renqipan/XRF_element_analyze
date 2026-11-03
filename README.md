@@ -79,7 +79,7 @@ PYTHON_BIN=.venv/bin/python scripts/verify.sh
 
 等价配置：`configs/shafa_manual_reference.json`。
 
-### 批量与合成谱
+### 批量处理能谱
 
 逐个处理 `XRF_SDD/` 中所有MCA或CSV（扩展名不区分大小写）：
 
@@ -94,6 +94,29 @@ PYTHON_BIN=.venv/bin/python scripts/verify.sh
   --reference-element Fe --element-prior heritage
 ```
 
+批量处理时考虑实测背景谱，直接在脚本后追加`--background_spectrum`：
+
+```bash
+./analyze_all_spectrums.sh --background_spectrum data/backgroud_spectrum.mca
+```
+
+脚本将背景路径传给每份能谱的分析程序；每份能谱分别拟合一个整体背景scale，并在元素识别和相对面密度计算中考虑背景贡献及其计数不确定度。`--backgroud_spectrum`是兼容拼写。相对路径按运行命令时的工作目录解析，从其它目录执行时可提供背景文件的绝对路径。
+
+默认值为`None`，不指定时不使用实测背景谱。若配置文件已指定背景路径，可用下列命令显式关闭：
+
+```bash
+./analyze_all_spectrums.sh --background_spectrum None
+# 等价写法：
+./analyze_all_spectrums.sh --background None
+```
+
+背景参数也可与输入目录、输出目录及参考元素一起使用：
+
+```bash
+./analyze_all_spectrums.sh --input-dir XRF_SDD --output-dir XRF_Analyze_results \
+  --background_spectrum data/backgroud_spectrum.mca --reference-element Fe
+```
+
 单样品完整报告保留原文件名；批量根目录按不含后缀的名称输出元素图。同名MCA/CSV的元素图分别置于`elements_mca/`和`elements_csv/`，避免覆盖：
 
 - `<无后缀文件名>_elements.png`：仅原始计数曲线（Observed raw count）和支持元素名称的谱图。
@@ -104,7 +127,7 @@ PYTHON_BIN=.venv/bin/python scripts/verify.sh
 
 汇总的**空比值代表暂不可估计**，不能解释为零含量或强行填1。每处理完一份谱立即保存汇总；单文件输入或拟合失败会继续下一个样品，最终返回非零。模型失配与程序失败分开记录。默认不从文件名猜测40/50 kV、靶材或灵敏度匹配关系；各样品的定量解释仍需核对实验条件。批处理仅遍历输入目录第一层，避免误读子目录中的派生结果。
 
-批处理沿用所选定量方法，TXT中保留`q_Fit`、`q_Area`、所选分支、方法和质量状态。可用 `.venv/bin/python scripts/audit_batch_results.py XRF_Analyze_results`复核模型分量、元素筛选、TXT、图片和哈希；实际执行记录见`VALIDATION.md`。产物完整、局部比例可估计和全谱模型有效是不同判断。
+批处理沿用所选定量方法，完整的`q_Fit`、`q_Area`、所选分支、方法和质量状态保存在`density_details.json`，主TXT保持每谱四行的简洁格式。可用 `.venv/bin/python scripts/audit_batch_results.py XRF_Analyze_results`复核模型分量、元素筛选、TXT、图片和哈希；实际执行记录见`VALIDATION.md`。产物完整、局部比例可估计和全谱模型有效是不同判断。
 
 生成与分析固定真值的合成谱：
 
