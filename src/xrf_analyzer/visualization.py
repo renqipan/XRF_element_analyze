@@ -107,3 +107,30 @@ def make_calcium_plot(result,out):
     res.plot(e[roi],residual[roi]);res.axhline(0,color='black',lw=.6)
     res.set(xlabel='Calibrated observed energy (keV)',ylabel='Pearson residual')
     fig.savefig(out/'calcium_region.png',dpi=160);plt.close(fig)
+
+
+def make_quantification_plots(result,out):
+    local=result.get('local_quantification')
+    fits=local.get('fits',[]) if local is not None else []
+    if not fits:
+        (out/'quantification_regions.png').unlink(missing_ok=True)
+        return
+    ncols=min(2,len(fits));nrows=(len(fits)+ncols-1)//ncols
+    fig,axes=plt.subplots(nrows,ncols,figsize=(7*ncols,4*nrows),squeeze=False,constrained_layout=True)
+    for ax,profile in zip(axes.ravel(),fits):
+        ids=np.asarray(profile['indices'],dtype=int)
+        energy=result['energy'][ids]
+        symbol=profile['Element']
+        row=local['elements'].set_index('Element').loc[symbol]
+        ax.step(energy,result['counts'][ids],where='mid',color='.4',label='Observed raw counts')
+        ax.plot(energy,profile['model'],color='black',lw=1.1,label='Local Poisson fit')
+        ax.plot(energy,profile['primary_counts'],color='tab:blue',label='Primary peak group')
+        ax.plot(energy,profile['background'],':',color='tab:brown',label='Local background')
+        ax.plot(energy,profile['nuisance_counts'],'--',color='tab:orange',label='Neighbouring groups')
+        ax.set(title='%s: %s\nA/S = %.5g +/- %.2g' % (symbol,row.Selected_Branches,row.q_Area,row.q_Std),
+               xlabel='Energy (keV)',ylabel='Counts / channel',ylim=(0,None))
+        ax.legend(fontsize=7)
+    for ax in axes.ravel()[len(fits):]:ax.set_visible(False)
+    fig.suptitle('Primary peak area / sensitivity | apparent relative density',fontsize=13)
+    fig.savefig(out/'quantification_regions.png',dpi=150)
+    plt.close(fig)

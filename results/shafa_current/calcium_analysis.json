@@ -10,19 +10,20 @@
       "NumIndependentEvidenceRegions": 2,
       "ExpectedMissingStrongLines": "",
       "OverlapFlag": true,
-      "ConfidenceNotes": "low_Z_Kalpha_dominant_support; independent Kbeta not required; single-region evidence retained; Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities; severe_global_model_mismatch: quantitative interpretation withheld",
+      "ConfidenceNotes": "low_Z_Kalpha_dominant_support; independent Kbeta not required; single-region evidence retained; Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities; severe_global_model_mismatch: joint-template q is diagnostic only",
       "MatchedPeakIDs": "1",
       "OverlapElements": "Ag",
       "q_Fit": 56.12739387797424,
       "q_Std": 4.184599543256637,
       "Upper95_q": null,
       "Uncertainty_Status": "fisher_interior",
-      "Quantification_Status": "global_model_mismatch",
+      "Quantification_Status": "supported",
       "PatternScore": -0.5432273608186002,
       "PatternMissingLinePenalty": 0.0,
       "Element_Class": "common",
       "Preferred_By_Prior": false,
-      "Prior_Alternatives": ""
+      "Prior_Alternatives": "",
+      "Global_Quantification_Status": "global_model_mismatch"
     }
   ],
   "branch_evidence": [

@@ -22,7 +22,8 @@
       "PatternMissingLinePenalty": 0.0,
       "Element_Class": "common",
       "Preferred_By_Prior": false,
-      "Prior_Alternatives": ""
+      "Prior_Alternatives": "",
+      "Global_Quantification_Status": "not_estimable"
     }
   ],
   "branch_evidence": [],

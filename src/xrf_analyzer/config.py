@@ -13,6 +13,7 @@ class AnalysisConfig:
     element_prior: str = "general"
     prior_tie_margin: float = 0.5
     branch_evidence: bool = True
+    quantification_method: str = "local-peaks"
     low_z_kalpha: bool = True
     low_z_max_z: int = 24
     low_z_kalpha_min_delta: float = 25.0
@@ -64,6 +65,8 @@ class AnalysisConfig:
 
     def validate(self):
         from .element_prior import PROFILES
+        if self.quantification_method not in ('local-peaks', 'global-template'):
+            raise ValueError('quantification_method must be local-peaks or global-template')
         if self.element_prior not in PROFILES:
             raise ValueError("Unknown element_prior profile")
         if not math.isfinite(self.prior_tie_margin) or not 0 <= self.prior_tie_margin <= 2:

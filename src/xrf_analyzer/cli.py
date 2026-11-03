@@ -26,6 +26,8 @@ def build_parser():
     p.add_argument('--elements', default=argparse.SUPPRESS, help='Comma-separated canonical symbols')
     p.add_argument('--exclude-elements', default=argparse.SUPPRESS)
     p.add_argument('--reference-element', default=argparse.SUPPRESS)
+    p.add_argument('--quantification-method', choices=['local-peaks','global-template'],
+                   default=argparse.SUPPRESS, help='Primary peak area / sensitivity (default) or strict global fixed-branch templates')
     p.add_argument('--tube-target', default=argparse.SUPPRESS)
     p.add_argument('--tube-voltage-kv', type=float, default=argparse.SUPPRESS)
     p.add_argument('--scatter-angle-deg', type=float, default=argparse.SUPPRESS)

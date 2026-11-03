@@ -1,0 +1,177 @@
+{
+  "method": "local_primary_peak_area_over_sensitivity",
+  "covariance_method": "shared_channel_influence_Poisson_covariance; local_overdispersion_plus_window_difference",
+  "formula": "A_i = common_flux_geometry_time * areal_density_i * S_i; ratio=(A_i/S_i)/(A_ref/S_ref)",
+  "elements": [
+    {
+      "Element": "Pb",
+      "Z": 82,
+      "q_Area": 26869.31160238881,
+      "q_Std": 142.36487289667636,
+      "q_Stat_Std": 76.3958123369149,
+      "Quantification_Status": "local_area_estimate",
+      "Failure_Reason": "",
+      "Notes": "Conditional on supplied common-scale S; local Gaussian/background and candidate set; S/absorption systematics excluded",
+      "Selected_Branches": "Lalpha2+Lalpha1",
+      "Area_Counts": 137158.67329493846,
+      "Sensitivity_Sum": 5.104659,
+      "Background_Window_Relative_Difference": 0.0021704811004640565,
+      "Window_Systematic_q": 58.31933301546451,
+      "Local_Overdispersion": 2.8899395542676403,
+      "Local_Response_At_Boundary": false,
+      "Method": "local_primary_area_over_common_scale_sensitivity"
+    }
+  ],
+  "covariance_element_order": [
+    "Pb"
+  ],
+  "q_area_covariance": [
+    [
+      20267.757034886814
+    ]
+  ],
+  "q_area_stat_covariance": [
+    [
+      5836.320142617118
+    ]
+  ],
+  "audit": [
+    {
+      "Element": "Pb",
+      "Branches": "M5N6+Malpha1+M5O3",
+      "Primary_Group_Policy": "unresolved_primary_group",
+      "Sensitivity_Sum": 8.961764886008448,
+      "Narrow": {
+        "Background_Window_Sigmas": 4.0,
+        "Success": true,
+        "Interferent_Anchor_Extensions": [
+          "Ag:L3:Lalpha2+Lalpha1"
+        ],
+        "Optimizer_Message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH",
+        "ROI_Start_keV": 2.030769230769231,
+        "ROI_End_keV": 3.3600000000000003,
+        "Nuisance_Groups": [
+          "Pb:M5N3",
+          "Ag:L3M1+Lalpha2+Lalpha1+L3N1+Lbeta2+L3N4",
+          "Ag:L2M1+Lbeta1+L2N1+Lgamma1",
+          "Ag:L1M2+L1M3+L1M4+L1M5+L1N2+L1N3"
+        ],
+        "Nuisance_Policies": [
+          "supported_resolved_group_area_free",
+          "unconfirmed_same_initial_shell_L3_ratios_retained",
+          "unconfirmed_same_initial_shell_L2_ratios_retained",
+          "unconfirmed_same_initial_shell_L1_ratios_retained"
+        ],
+        "q_Area": 0.0,
+        "q_Fisher_Std": 0.002765957341447077,
+        "Area_Counts": 0.0,
+        "Sensitivity_Sum": 8.961764886008448,
+        "Area_Fraction_in_Window": 0.9999999999676853,
+        "DeltaDeviance": 0.0,
+        "Deviance": 7.653369652577273,
+        "Degrees_of_Freedom": 9,
+        "Deviance_per_dof": 0.8503744058419191,
+        "Local_Shift_keV": -0.01422836776573388,
+        "Local_Width_Scale": 0.65,
+        "Response_At_Boundary": true,
+        "Local_Primary_Center_keV": 2.4818787412238295
+      },
+      "Wide": {
+        "Background_Window_Sigmas": 6.0,
+        "Success": true,
+        "Interferent_Anchor_Extensions": [
+          "Ag:L2:Lbeta1",
+          "Ag:L1:L1M2+L1M3"
+        ],
+        "Optimizer_Message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH",
+        "ROI_Start_keV": 1.883076923076923,
+        "ROI_End_keV": 3.581538461538462,
+        "Nuisance_Groups": [
+          "Pb:M5N3",
+          "Ag:L3M1+Lalpha2+Lalpha1+L3N1+Lbeta2+L3N4",
+          "Ag:L2M1+Lbeta1+L2N1+Lgamma1",
+          "Ag:L1M2+L1M3+L1M4+L1M5+L1N2+L1N3"
+        ],
+        "Nuisance_Policies": [
+          "supported_resolved_group_area_free",
+          "unconfirmed_same_initial_shell_L3_ratios_retained",
+          "unconfirmed_same_initial_shell_L2_ratios_retained",
+          "unconfirmed_same_initial_shell_L1_ratios_retained"
+        ],
+        "q_Area": 0.0,
+        "q_Fisher_Std": 0.011356075668975356,
+        "Area_Counts": 0.0,
+        "Sensitivity_Sum": 8.961764886008448,
+        "Area_Fraction_in_Window": 0.9999999997997552,
+        "DeltaDeviance": 0.0,
+        "Deviance": 22.365273361121517,
+        "Degrees_of_Freedom": 14,
+        "Deviance_per_dof": 1.5975195257943942,
+        "Local_Shift_keV": 0.05491242567252575,
+        "Local_Width_Scale": 1.0059313176821327,
+        "Response_At_Boundary": false,
+        "Local_Primary_Center_keV": 2.5510195346620894
+      },
+      "Accepted": false
+    },
+    {
+      "Element": "Pb",
+      "Branches": "Lalpha2+Lalpha1",
+      "Primary_Group_Policy": "unresolved_primary_group",
+      "Sensitivity_Sum": 5.104659,
+      "Narrow": {
+        "Background_Window_Sigmas": 4.0,
+        "Success": true,
+        "Interferent_Anchor_Extensions": [],
+        "Optimizer_Message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH",
+        "ROI_Start_keV": 10.08,
+        "ROI_End_keV": 11.113846153846154,
+        "Nuisance_Groups": [],
+        "Nuisance_Policies": [],
+        "q_Area": 26810.992269373346,
+        "q_Fisher_Std": 78.47116573261489,
+        "Area_Counts": 136860.97298678706,
+        "Sensitivity_Sum": 5.104659,
+        "Area_Fraction_in_Window": 0.999965726753917,
+        "DeltaDeviance": 173897.09101819806,
+        "Deviance": 14.378923284570597,
+        "Degrees_of_Freedom": 9,
+        "Deviance_per_dof": 1.5976581427300662,
+        "Local_Shift_keV": 0.0034592888156291615,
+        "Local_Width_Scale": 0.9816112854036099,
+        "Response_At_Boundary": false,
+        "Local_Primary_Center_keV": 10.623970705894694
+      },
+      "Wide": {
+        "Background_Window_Sigmas": 6.0,
+        "Success": true,
+        "Interferent_Anchor_Extensions": [],
+        "Optimizer_Message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH",
+        "ROI_Start_keV": 9.784615384615385,
+        "ROI_End_keV": 11.335384615384616,
+        "Nuisance_Groups": [
+          "Pb:L2M1"
+        ],
+        "Nuisance_Policies": [
+          "supported_resolved_group_area_free"
+        ],
+        "q_Area": 26869.31160238881,
+        "q_Fisher_Std": 76.395812336915,
+        "Area_Counts": 137158.67329493846,
+        "Sensitivity_Sum": 5.104659,
+        "Area_Fraction_in_Window": 0.9999999979961095,
+        "DeltaDeviance": 264056.97983769514,
+        "Deviance": 43.3490933140146,
+        "Degrees_of_Freedom": 15,
+        "Deviance_per_dof": 2.8899395542676403,
+        "Local_Shift_keV": 0.003230691032910211,
+        "Local_Width_Scale": 0.9845116931703028,
+        "Response_At_Boundary": false,
+        "Local_Primary_Center_keV": 10.623742108111975
+      },
+      "Accepted": true
+    }
+  ],
+  "conditional_on": "supplied sensitivity; selected elements and local line shapes; thin-sample apparent density",
+  "global_template_q_unchanged": true
+}

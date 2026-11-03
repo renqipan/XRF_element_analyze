@@ -2,7 +2,11 @@
   "schema_version": "3.0",
   "fit_status": "success",
   "analysis_status": "model_mismatch",
-  "quantitative_interpretation_valid": false,
+  "quantitative_interpretation_valid": true,
+  "global_model_valid": false,
+  "local_quantification_valid": true,
+  "normalized_fractions_available": true,
+  "quantification_method": "local-peaks",
   "input_files": {
     "sample_spectrum": {
       "path": "/home/renqi/Documents/ChatGPT/XRF_element_analyze/XRF_SDD/xiongzhen_50keV_20uA_back3mm.mca",
@@ -23,7 +27,7 @@
     "pandas": "2.0.3",
     "matplotlib": "3.5.1",
     "xraylib": "4.2.0",
-    "xrf-spectrum-analyzer": "0.3.0"
+    "xrf-spectrum-analyzer": "0.4.0"
   },
   "parameters": {
     "energy_range": [
@@ -36,6 +40,7 @@
     "element_prior": "general",
     "prior_tie_margin": 0.5,
     "branch_evidence": true,
+    "quantification_method": "local-peaks",
     "low_z_kalpha": true,
     "low_z_max_z": 24,
     "low_z_kalpha_min_delta": 25.0,
@@ -3967,12 +3972,12 @@
     "singular_directions": 0,
     "auxiliary_shell_pruning": [
       {
-        "Element": "Tl",
+        "Element": "Cd",
         "Primary_Information_Score": 0.0,
         "Reason": "Independent auxiliary shells require detectable primary anchors"
       },
       {
-        "Element": "Cd",
+        "Element": "Tl",
         "Primary_Information_Score": 0.0,
         "Reason": "Independent auxiliary shells require detectable primary anchors"
       },
@@ -3997,12 +4002,12 @@
         "Reason": "Independent auxiliary shells require detectable primary anchors"
       },
       {
-        "Element": "Tc",
+        "Element": "Tb",
         "Primary_Information_Score": 0.0,
         "Reason": "Independent auxiliary shells require detectable primary anchors"
       },
       {
-        "Element": "Tb",
+        "Element": "Tc",
         "Primary_Information_Score": 0.0,
         "Reason": "Independent auxiliary shells require detectable primary anchors"
       }
@@ -4173,11 +4178,345 @@
     "method": null
   },
   "reference": {
-    "Element": null,
-    "selection_rule": "No reliable supported reference; requested reference is not silently replaced",
-    "fraction_denominator_elements": []
+    "Element": "Pb",
+    "selection_rule": "minimum relative primary-area uncertainty among supported measurable elements",
+    "fraction_denominator_elements": [
+      "Fe",
+      "Ag",
+      "Pb"
+    ],
+    "formula": "(net_area_i / sensitivity_i) / (net_area_reference / sensitivity_reference)",
+    "scale_source": "local_primary_peak_area; joint_fit_q_is_diagnostic"
   },
   "apparent_relative_areal_density": true,
+  "primary_peak_quantification": {
+    "method": "local_primary_peak_area_over_sensitivity",
+    "covariance_method": "shared_channel_influence_Poisson_covariance; local_overdispersion_plus_window_difference",
+    "formula": "A_i = common_flux_geometry_time * areal_density_i * S_i; ratio=(A_i/S_i)/(A_ref/S_ref)",
+    "elements": [
+      {
+        "Element": "Fe",
+        "Z": 26,
+        "q_Area": 916.1495456322631,
+        "q_Std": 11.501115446673712,
+        "q_Stat_Std": 10.63031065844886,
+        "Quantification_Status": "local_area_estimate",
+        "Failure_Reason": "",
+        "Notes": "Conditional on supplied common-scale S; local Gaussian/background and candidate set; S/absorption systematics excluded",
+        "Selected_Branches": "Kalpha2+Kalpha1",
+        "Area_Counts": 11396.80873271079,
+        "Sensitivity_Sum": 12.4399,
+        "Background_Window_Relative_Difference": 0.0015445579530690833,
+        "Window_Systematic_q": 1.415046066906939,
+        "Local_Overdispersion": 1.1528253172121348,
+        "Local_Response_At_Boundary": false,
+        "Method": "local_primary_area_over_common_scale_sensitivity"
+      },
+      {
+        "Element": "Ag",
+        "Z": 47,
+        "q_Area": 442.0603925138071,
+        "q_Std": 31.135760226875238,
+        "q_Stat_Std": 24.661420894472396,
+        "Quantification_Status": "local_area_estimate",
+        "Failure_Reason": "",
+        "Notes": "Conditional on supplied common-scale S; local Gaussian/background and candidate set; S/absorption systematics excluded",
+        "Selected_Branches": "Kalpha2+Kalpha1",
+        "Area_Counts": 881.3251951053568,
+        "Sensitivity_Sum": 1.9936759999999998,
+        "Background_Window_Relative_Difference": 0.02353719839070514,
+        "Window_Systematic_q": 10.404863159270462,
+        "Local_Overdispersion": 1.4159728107799905,
+        "Local_Response_At_Boundary": false,
+        "Method": "local_primary_area_over_common_scale_sensitivity"
+      },
+      {
+        "Element": "Pb",
+        "Z": 82,
+        "q_Area": 23709.550484234514,
+        "q_Std": 94.90996353531841,
+        "q_Stat_Std": 71.10357184072612,
+        "Quantification_Status": "local_area_estimate",
+        "Failure_Reason": "",
+        "Notes": "Conditional on supplied common-scale S; local Gaussian/background and candidate set; S/absorption systematics excluded",
+        "Selected_Branches": "Lalpha2+Lalpha1",
+        "Area_Counts": 121029.17026530206,
+        "Sensitivity_Sum": 5.104659,
+        "Background_Window_Relative_Difference": 0.0014064345887593597,
+        "Window_Systematic_q": 33.34593188496365,
+        "Local_Overdispersion": 1.5617861037051548,
+        "Local_Response_At_Boundary": false,
+        "Method": "local_primary_area_over_common_scale_sensitivity"
+      }
+    ],
+    "covariance_element_order": [
+      "Fe",
+      "Ag",
+      "Pb"
+    ],
+    "q_area_covariance": [
+      [
+        132.27565651771667,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        969.435564905466,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        9007.901178275471
+      ]
+    ],
+    "q_area_stat_covariance": [
+      [
+        113.00350469513144,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        608.1856805343198,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        5055.717928509301
+      ]
+    ],
+    "audit": [
+      {
+        "Element": "Fe",
+        "Branches": "Kalpha2+Kalpha1",
+        "Primary_Group_Policy": "unresolved_primary_group",
+        "Sensitivity_Sum": 12.4399,
+        "Narrow": {
+          "Background_Window_Sigmas": 4.0,
+          "Success": true,
+          "Interferent_Anchor_Extensions": [],
+          "Optimizer_Message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH",
+          "ROI_Start_keV": 6.092307692307693,
+          "ROI_End_keV": 6.9046153846153855,
+          "Nuisance_Groups": [],
+          "Nuisance_Policies": [],
+          "q_Area": 914.7344995653561,
+          "q_Fisher_Std": 11.317253055194204,
+          "Area_Counts": 11379.205701143073,
+          "Sensitivity_Sum": 12.4399,
+          "Area_Fraction_in_Window": 0.9998321183056599,
+          "DeltaDeviance": 10356.41123700433,
+          "Deviance": 5.6431122690134,
+          "Degrees_of_Freedom": 6,
+          "Deviance_per_dof": 0.9405187115022334,
+          "Local_Shift_keV": -0.011802293686689171,
+          "Local_Width_Scale": 1.0676781586891688,
+          "Response_At_Boundary": false,
+          "Local_Primary_Center_keV": 6.503919930709913
+        },
+        "Wide": {
+          "Background_Window_Sigmas": 6.0,
+          "Success": true,
+          "Interferent_Anchor_Extensions": [],
+          "Optimizer_Message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH",
+          "ROI_Start_keV": 5.870769230769231,
+          "ROI_End_keV": 7.126153846153847,
+          "Nuisance_Groups": [
+            "Fe:Kbeta1+KM2"
+          ],
+          "Nuisance_Policies": [
+            "supported_resolved_group_area_free"
+          ],
+          "q_Area": 916.1495456322631,
+          "q_Fisher_Std": 10.630310658448842,
+          "Area_Counts": 11396.80873271079,
+          "Sensitivity_Sum": 12.4399,
+          "Area_Fraction_in_Window": 0.9999999935373335,
+          "DeltaDeviance": 14854.617825606605,
+          "Deviance": 12.681078489333483,
+          "Degrees_of_Freedom": 11,
+          "Deviance_per_dof": 1.1528253172121348,
+          "Local_Shift_keV": -0.011785592642379676,
+          "Local_Width_Scale": 1.0697889906314142,
+          "Response_At_Boundary": false,
+          "Local_Primary_Center_keV": 6.5039366317542235
+        },
+        "Accepted": true
+      },
+      {
+        "Element": "Ag",
+        "Branches": "Kalpha2+Kalpha1",
+        "Primary_Group_Policy": "unresolved_primary_group",
+        "Sensitivity_Sum": 1.9936759999999998,
+        "Narrow": {
+          "Background_Window_Sigmas": 4.0,
+          "Success": true,
+          "Interferent_Anchor_Extensions": [],
+          "Optimizer_Message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH",
+          "ROI_Start_keV": 21.452307692307695,
+          "ROI_End_keV": 22.633846153846157,
+          "Nuisance_Groups": [],
+          "Nuisance_Policies": [],
+          "q_Area": 431.6555293545366,
+          "q_Fisher_Std": 29.855722637444874,
+          "Area_Counts": 860.5812691414351,
+          "Sensitivity_Sum": 1.9936759999999998,
+          "Area_Fraction_in_Window": 0.9999482545953186,
+          "DeltaDeviance": 434.26959075060586,
+          "Deviance": 15.575700918579894,
+          "Degrees_of_Freedom": 11,
+          "Deviance_per_dof": 1.4159728107799905,
+          "Local_Shift_keV": 0.04588179971477582,
+          "Local_Width_Scale": 0.98700219773393,
+          "Response_At_Boundary": false,
+          "Local_Primary_Center_keV": 22.108211665557796
+        },
+        "Wide": {
+          "Background_Window_Sigmas": 6.0,
+          "Success": true,
+          "Interferent_Anchor_Extensions": [],
+          "Optimizer_Message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH",
+          "ROI_Start_keV": 21.230769230769234,
+          "ROI_End_keV": 22.85538461538462,
+          "Nuisance_Groups": [],
+          "Nuisance_Policies": [],
+          "q_Area": 442.0603925138071,
+          "q_Fisher_Std": 24.661420894472393,
+          "Area_Counts": 881.3251951053568,
+          "Sensitivity_Sum": 1.9936759999999998,
+          "Area_Fraction_in_Window": 0.999999979076653,
+          "DeltaDeviance": 594.4221442214766,
+          "Deviance": 22.350466051087757,
+          "Degrees_of_Freedom": 17,
+          "Deviance_per_dof": 1.3147332971228092,
+          "Local_Shift_keV": 0.0486349463839188,
+          "Local_Width_Scale": 1.0148608225983784,
+          "Response_At_Boundary": false,
+          "Local_Primary_Center_keV": 22.11096481222694
+        },
+        "Accepted": true
+      },
+      {
+        "Element": "Pb",
+        "Branches": "M5N6+Malpha1+M5O3",
+        "Primary_Group_Policy": "unresolved_primary_group",
+        "Sensitivity_Sum": 8.961764886008448,
+        "Narrow": {
+          "Background_Window_Sigmas": 4.0,
+          "Success": true,
+          "Interferent_Anchor_Extensions": [],
+          "Optimizer_Message": "CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL",
+          "ROI_Start_keV": 2.1046153846153848,
+          "ROI_End_keV": 2.9169230769230774,
+          "Nuisance_Groups": [
+            "Pb:M5N3"
+          ],
+          "Nuisance_Policies": [
+            "supported_resolved_group_area_free"
+          ],
+          "q_Area": 0.0,
+          "q_Fisher_Std": 0.0008678198981421655,
+          "Area_Counts": 0.0,
+          "Sensitivity_Sum": 8.961764886008448,
+          "Area_Fraction_in_Window": 0.9999842602892377,
+          "DeltaDeviance": 0.0,
+          "Deviance": 0.00013517267177322063,
+          "Degrees_of_Freedom": 5,
+          "Deviance_per_dof": 2.7034534354644126e-05,
+          "Local_Shift_keV": 0.0,
+          "Local_Width_Scale": 1.0,
+          "Response_At_Boundary": false,
+          "Local_Primary_Center_keV": 2.504784356332239
+        },
+        "Wide": {
+          "Background_Window_Sigmas": 6.0,
+          "Success": true,
+          "Interferent_Anchor_Extensions": [],
+          "Optimizer_Message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH",
+          "ROI_Start_keV": 1.956923076923077,
+          "ROI_End_keV": 3.138461538461539,
+          "Nuisance_Groups": [
+            "Pb:M5N3"
+          ],
+          "Nuisance_Policies": [
+            "supported_resolved_group_area_free"
+          ],
+          "q_Area": 0.0,
+          "q_Fisher_Std": 0.119736386967496,
+          "Area_Counts": 0.0,
+          "Sensitivity_Sum": 8.961764886008448,
+          "Area_Fraction_in_Window": 0.9999999974650048,
+          "DeltaDeviance": 0.0,
+          "Deviance": 37.22742444312687,
+          "Degrees_of_Freedom": 10,
+          "Deviance_per_dof": 3.7227424443126873,
+          "Local_Shift_keV": -4.3226096036290495e-09,
+          "Local_Width_Scale": 0.9999999979384544,
+          "Response_At_Boundary": false,
+          "Local_Primary_Center_keV": 2.5047843520096293
+        },
+        "Accepted": false
+      },
+      {
+        "Element": "Pb",
+        "Branches": "Lalpha2+Lalpha1",
+        "Primary_Group_Policy": "unresolved_primary_group",
+        "Sensitivity_Sum": 5.104659,
+        "Narrow": {
+          "Background_Window_Sigmas": 4.0,
+          "Success": true,
+          "Interferent_Anchor_Extensions": [],
+          "Optimizer_Message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH",
+          "ROI_Start_keV": 10.08,
+          "ROI_End_keV": 11.040000000000001,
+          "Nuisance_Groups": [],
+          "Nuisance_Policies": [],
+          "q_Area": 23676.20455234955,
+          "q_Fisher_Std": 78.54097198744236,
+          "Area_Counts": 120858.9506539921,
+          "Sensitivity_Sum": 5.104659,
+          "Area_Fraction_in_Window": 0.9996768418572314,
+          "DeltaDeviance": 132484.07384232455,
+          "Deviance": 6.049903543457339,
+          "Degrees_of_Freedom": 8,
+          "Deviance_per_dof": 0.7562379429321674,
+          "Local_Shift_keV": 0.008885046975948179,
+          "Local_Width_Scale": 1.1101808550020023,
+          "Response_At_Boundary": false,
+          "Local_Primary_Center_keV": 10.624527191324592
+        },
+        "Wide": {
+          "Background_Window_Sigmas": 6.0,
+          "Success": true,
+          "Interferent_Anchor_Extensions": [],
+          "Optimizer_Message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH",
+          "ROI_Start_keV": 9.858461538461539,
+          "ROI_End_keV": 11.261538461538462,
+          "Nuisance_Groups": [],
+          "Nuisance_Policies": [],
+          "q_Area": 23709.550484234514,
+          "q_Fisher_Std": 71.10357184072616,
+          "Area_Counts": 121029.17026530206,
+          "Sensitivity_Sum": 5.104659,
+          "Area_Fraction_in_Window": 0.9999999254694648,
+          "DeltaDeviance": 213456.26767228125,
+          "Deviance": 21.865005451872168,
+          "Degrees_of_Freedom": 14,
+          "Deviance_per_dof": 1.5617861037051548,
+          "Local_Shift_keV": 0.00865348892619219,
+          "Local_Width_Scale": 1.1122801581808395,
+          "Response_At_Boundary": false,
+          "Local_Primary_Center_keV": 10.624295633274837
+        },
+        "Accepted": true
+      }
+    ],
+    "conditional_on": "supplied sensitivity; selected elements and local line shapes; thin-sample apparent density",
+    "global_template_q_unchanged": true
+  },
   "assumptions": {
     "thin_sample": true,
     "self_absorption": false,
@@ -4287,13 +4626,12 @@
     "Accepted instrument origin (0,0); zero energy is allowed only at channel zero",
     "Two-point residuals do not estimate calibration statistical uncertainty",
     "Sensitivity provenance unverified: missing .metadata.json; source matching is not established",
-    "Severe global model mismatch: all quantitative ratios withheld; candidate q values are diagnostic only",
+    "Severe global model mismatch: joint-template q is diagnostic; independently measured primary peak areas are evaluated separately",
     "Global response parameter at bound: review calibration/resolution; no symmetric quantitative uncertainty",
     "Structured residual / overdispersion: matrix_effect_or_model_mismatch or unmodelled scattering/artifacts",
     "branch_ratio_mismatch: regional observed residuals disagree with the fixed branch model",
     "5 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary",
-    "No quantitatively valid elements; fraction denominator is empty; see separate identification statuses",
     "需要进一步确定（待定）的元素: Ni, Sn；不参与相对面密度计算"
   ],
-  "elapsed_seconds": 20.83042240800023
+  "elapsed_seconds": 20.80687282300005
 }

@@ -132,6 +132,8 @@ def run_batch(input_dir, output_dir, calibration, sensitivity, config=None):
                 for record in densities.to_dict('records'):
                     available = pd.notna(record.get('Relative_to_Reference'))
                     unavailable_reason = record.get('Quantification_Status', 'not_estimable')
+                    if unavailable_reason=='local_area_not_estimable' and record.get('Measurement_Failure_Reason'):
+                        unavailable_reason=record['Measurement_Failure_Reason']
                     if unavailable_reason == 'supported':
                         unavailable_reason = 'no_reliable_supported_reference'
                     density_rows.append({**prefix, 'Record_Type': 'supported_element', **record, **tail,

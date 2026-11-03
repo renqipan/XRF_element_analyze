@@ -1,8 +1,8 @@
-# XRF Spectrum Analyzer 0.3
+# XRF Spectrum Analyzer 0.4
 
 对SDD测量的XRF原始计数谱执行：自动寻峰、亚道峰心拟合、全谱多分支元素识别、多元素泊松联合拟合，以及**仅对证据支持且通过定量质量检查的元素**计算表观相对质量面密度。
 
-本轮加入 **Z≤24的Kα主导识别**、无主线证据的辅助壳层控制、每次运行的终端结果摘要，以及整个目录的批处理和TXT汇总。已有K/L/M同空穴层分支扩展、场景常见元素平局先验及用户指定峰心 `find_peaks`继续使用。当前流程以本README和 `XRF_analyze_strategy.md` 为准；`ANALYSIS_IMPROVEMENTS.md`保留早期推导和对照。代码仓库：[renqipan/XRF_element_analyze](https://github.com/renqipan/XRF_element_analyze)（私有）。
+本轮将**元素识别的全谱模板**与**面密度计算的局部净峰面积**分开：默认从已支持元素的主线独立测量面积，按共同尺度灵敏度计算比值。全谱的散射、背景或远处分支比失配保留诊断，不再自动清空所有可测主线的比例。已有Z≤24的Kα主导识别、K/L/M同空穴层分支扩展、场景先验、用户中心 `find_peaks`和TXT批处理继续使用。当前流程以本README和 `XRF_analyze_strategy.md` 为准；历史结果见`VALIDATION.md`。代码仓库：[renqipan/XRF_element_analyze](https://github.com/renqipan/XRF_element_analyze)（私有）。
 
 ## 安装与测试
 
@@ -34,10 +34,13 @@ PYTHON_BIN=.venv/bin/python scripts/verify.sh
   --spectrum SDD_Spectrum/shafa_50kv_20uA.mca \
   --calibration data/calibration.csv \
   --sensitivity data/xrf_relative_sensitivity.csv \
-  --config configs/shafa.json --output-dir results/shafa_current
+  --quantification-method local-peaks \
+  --config configs/shafa.json --reference-element Fe --output-dir results/shafa_current
 ```
 
 默认 `find_peaks=None`，自动发现观测峰。参数JSON中同名值由CLI覆盖。`--elements Fe,Ca,Cu,Hg,Pb`可限制候选，`--exclude-elements`可排除。文件名注明50 kV，配置记录该电压；没有依据不自动猜测靶材。若仪器确为Ag靶，可加 `--tube-target Ag`；靶元素的瑞利峰不作为样品含Ag的确证。
+
+默认 `--quantification-method local-peaks` 使用独立主线面积定量。需要复现旧版严格的全谱共同q方法时，使用 `--quantification-method global-template`；此模式继续受全局模型和固定分支比质量检查约束。
 
 ### 用户指定峰心
 
@@ -48,7 +51,7 @@ PYTHON_BIN=.venv/bin/python scripts/verify.sh
   --spectrum SDD_Spectrum/shafa_50kv_20uA.mca \
   --calibration data/calibration.csv \
   --sensitivity data/xrf_relative_sensitivity.csv \
-  --config configs/shafa.json --output-dir results/shafa_manual \
+  --config configs/shafa.json --reference-element Fe --output-dir results/shafa_manual \
   --find_peaks '[3.69, 3.688, 6.4, 7.06, 10.5, 12.6, 14.7, 9.98, 11.9]'
 ```
 
@@ -58,7 +61,7 @@ PYTHON_BIN=.venv/bin/python scripts/verify.sh
 
 如果输入的是已经在当前标定谱轴上读出的实测中心，使用 `--find-peaks-axis observed`，这些中心直接固定，不再施加共享平移或增益。`fitted_lines.csv`同时保存数据库参考值、`Specified_Center_keV`、最终观测轴上的中心和`Center_Source`，不混淆两种坐标。
 
-3.69与3.688 keV远小于SDD分辨率，保留两个输入约束但只作为一份独立观测证据。同一元素的幅度仍通过S/分支比关联，不将不可分双线当作独立面积测量。输入不存在的峰不会自动确证元素；输入粗略四舍五入的中心可能增加模型失配。参数不完整时仍可能得到待定或空定量结果。
+3.69与3.688 keV远小于SDD分辨率，保留两个输入约束但只作为一份独立观测证据。全谱识别模板的同一元素幅度仍通过S/分支比关联；局部定量在不可分主组内部保留S比例，不将双线当作两个独立面积测量。输入不存在的峰不会自动确证元素；输入粗略四舍五入的中心可能增加模型失配。参数不完整时仍可能得到待定或空定量结果。
 
 等价配置：`configs/shafa_manual_reference.json`。
 
@@ -87,7 +90,7 @@ PYTHON_BIN=.venv/bin/python scripts/verify.sh
 
 汇总的**空比值代表暂不可估计**，不能解释为零含量或强行填1。每处理完一份谱立即保存汇总；单文件输入或拟合失败会继续下一个样品，最终返回非零。模型失配与程序失败分开记录。默认不从文件名猜测40/50 kV、靶材或灵敏度匹配关系；各样品的定量解释仍需核对实验条件。批处理仅遍历输入目录第一层，避免误读子目录中的派生结果。
 
-本轮已实际处理20份MCA，生成20张fit图和49条支持元素记录；所有真实谱仍未通过默认定量门控，数值比值为空。执行/产物完整不代表科学模型验证通过。可用 `.venv/bin/python scripts/audit_batch_results.py XRF_Analyze_results`复核模型分量、元素筛选、TXT、图片和哈希；完整记录见`VALIDATION.md`。
+批处理沿用所选定量方法，TXT中保留`q_Fit`、`q_Area`、所选分支、方法和质量状态。可用 `.venv/bin/python scripts/audit_batch_results.py XRF_Analyze_results`复核模型分量、元素筛选、TXT、图片和哈希；实际执行记录见`VALIDATION.md`。产物完整、局部比例可估计和全谱模型有效是不同判断。
 
 生成与分析固定真值的合成谱：
 
@@ -101,21 +104,26 @@ PYTHON_BIN=.venv/bin/python scripts/verify.sh
 
 每个样品输出到独立子目录。示例是固定随机种子的泊松**样品谱**，不是入射激发谱；真值、偏移、峰宽和辅助L1幅度保存在`.truth.json`。批量不自动将不同live time的q作为计数率比较。
 
-## 当前真实谱与钙
+## 真实谱的身份与定量诊断
+
+0.4自动分析`SDD_Spectrum/shafa_50kv_20uA.mca`，以Fe为参考，得到：
+
+| 元素 | 主组净面积 counts | 对应S合计 | 表观相对面密度（Fe=1） | 比值相对不确定度 |
+|---|---:|---:|---:|---:|
+| Ca | 499.49 | 6.25939 | 0.154585 | 11.10% |
+| Fe | 6421.61 | 12.4399 | 1 | 参考归一化 |
+| Hg | 1955.68 | 5.159645 | 0.734261 | 15.50% |
+| Pb | 53230.07 | 5.104659 | 20.200559 | 1.94% |
+
+比值误差包含局部计数、背景/响应参数、共享道相关、过散度和窗口差异；不包含未知S标定、自吸收及几何系统误差。这些是给定S/薄样品假设下的表观值，Cr/Ag/Pm待定，未进入分母。全局deviance/dof仍约7.018，局部主线可测与全谱模型有效分开报告。
+
+本轮当前目录17份谱已全部复算，43条支持元素记录均有数值比值，输出到`XRF_Analyze_results/relative_areal_density_all.txt`；121项回归通过。高窗口敏感性及局部响应边界等标志保留在质量列，不能把所有数值视为同等精度。详细验证见`VALIDATION.md`。
 
 `results/shafa_current/`是最新版自动结果；`results/shafa_manual/`对应上述用户指定中心示例。旧结果目录保留作历史对照，不作为当前算法输出。
 
-0.3自动结果中Ca、Fe、Hg、Pb获得默认规则下的`Status=supported`，Cr、Ag、Pm待定。Ca Kα的实测复合峰约3.82 keV；使用全谱最终偏移和增益后，与Ca理论Kα位置相符。程序在原始计数上比较Kα/Kβ固定比例、自由比例及逐组移除模型，并用两种背景窗口复验：
+先检查`element_candidates.csv`中的身份状态，再检查`quantification_peaks.csv`中该支持元素的主线是否可测。Ca等低Z元素主要依赖Kα，弱Kβ不必独立形成最大值；原始计数、共享标定和竞争元素仍参与识别。Cr/Pm这类低于探测器分辨率的重叠解释需要保留待定，不能因某个反事实模型中的面积为正就进入面密度分母。
 
-- Ca Kα局部删除增益ΔD约315，证据强。
-- Ca Kβ（含同能分支）ΔD约6.1，宽窗口约6.4；证据偏弱、接近默认阈值，适合复测确认。
-- 自由拟合的Kβ/Kα面积比约0.095，模型比约0.126；固定比与自由比的差异ΔD约0.60，没有显示明显矛盾。
-
-因此自动流程支持Ca，但不把它说成无条件确证。用户给出的粗略手动中心在旧版中使Ca待定；0.3的Kα主导检验在双窗口给出ΔD约235/270，因此该手动示例也支持Ca。这里的证据来自原始计数，而非输入3.69 keV本身。详见`calcium_analysis.json`、`branch_ratio_evidence.csv`和`calcium_region.png`。
-
-新Kα主导路径对Ca另做Kα单组局部检验：窄/宽窗口ΔD约269/398，预计Kβ信息分数约3.33，故不要求独立Kβ。Cr Kα与Pm Lα相距约0.018 keV，低于当前探测器分辨率；去掉未确证Pm后的反事实模型中Cr全组ΔD约73.57、Kα双窗口约41.53/44.74，但这依赖竞争元素解释。因此只恢复Cr为待定并优先展示常见解释，原始拟合q和定量集合保持不变。详细审计位于`fit_summary.json`的`uncertainty.low_z_counterfactual_reviews`。
-
-自动全谱deviance/dof约7.02，仍有背景、散射、分支比或基体方面的失配，故**真实谱的比例继续留空**。`Status`表示元素身份，`Quantification_Status`表示模型是否允许计算比例，两者独立。
+旧版将全谱`deviance/dof`超限、固定分支比失配或全局响应问题统一传递成“所有比例不可估计”。这混淆了远处模型误差与局部峰面积能否测量；全谱强制分支共享q还可能拉偏主线面积。0.4在支持身份之后，单独对主线区域做局部原始计数拟合，用净面积与对应S计算相对面密度。全谱失配仍显示在`fit_summary.json`和全谱图中，局部测量与误差则见`quantification_audit.json`、`quantification_fit.csv`和`quantification_regions.png`。
 
 ## 算法
 
@@ -128,7 +136,8 @@ PYTHON_BIN=.venv/bin/python scripts/verify.sh
 7. **联合拟合。** `lambda=positive_background+sum(q_i*S_il*integrated_Gaussian)+auxiliary_shells+instrument`，q非负。全谱共享受限偏移、增益、分辨率，不逐线任意漂移。数值参数缩放不改变S的物理尺度。
 8. **残差与证据。** 删除元素时一起删除其辅助壳层并重拟合；残差新候选还需至少一处未被已有元素解释的原始观测特征，避免用稀有元素填已有强峰形状错误。
 9. **低Z与统计。** 对Z≤24且具有Kα分支的元素增加Kα主导路径：峰心吻合、标定独立受约束、Kα窄/宽窗口局部ΔD均≥25、全元素删除ΔD≥25，且其它元素对该区域的竞争受控时，弱Kβ不必独立检出。独立标定锚点须分别有可检测的主模板贡献，不使用辅助壳层、共享被测Kα或宽散射结构。合并为一个分辨率组的低能K系也可接受局部检验。若由Kα强度预计Kβ应明显可见，而原始计数和分支比检验显著矛盾，仍拒绝该路径。被未确证且比例失配的重叠候选压制的Kα可做反事实复核，但最多恢复待定，不提升确证或定量。其它多分支证据规则继续使用；单个自由漂移的Kα不能同时标定和确证自己。
-10. **定量。** Fisher信息包含背景/响应/辅助幅度，比值误差包含协方差。边界/奇异/模型失配不报伪精确区间。放宽身份识别不解除定量质量门控；局部ΔD、模式分数和先验均不是已校准概率。
+10. **独立面积定量。** 默认对身份支持元素选择可测Kα/Lα/Mα主组，重新拟合净面积、局部正背景和邻峰干扰；可分辨的远处分支不再强制共享q。未分辨主组内部保留已有S比例。自动峰模式允许有限的局部位移/宽度修正，用户指定中心时遵守固定中心约束。窄/宽窗口分别检验可检测性、面积覆盖、可辨识性和背景稳定性，严重失败的元素仍不计算比例。
+11. **误差与状态。** 从局部拟合的逐道影响函数求协方差，保留共享通道造成的跨元素相关项，再计入局部过散度及窗口差异；比值传播使用该协方差。全谱失配作为独立诊断，显式源条件冲突仍撤下比例。`global-template`模式保留旧版严格定量规则。局部ΔD、模式分数和先验均不是已校准概率。
 
 可关闭/调整：`--no-low-z-kalpha`、`--no-atomic-completion`、`--no-estimate-resolution`、`--no-fit-gain`、`--fixed-response`、`--alignment-max-shift-kev`、`--centroid-tolerance-kev`、`--max-deviance-per-dof`。低Z阈值也可通过配置JSON调整，全部请求参数和有效参数写入摘要。
 
@@ -146,19 +155,31 @@ PYTHON_BIN=.venv/bin/python scripts/verify.sh
 
 有歧义时输出`Preferred_By_Prior`和`Prior_Alternatives`，逐峰表给出`Preferred_By_Context_Prior`。例如Cr/Pm均未确证且能量解释接近时，优先展示Cr，但二者不参与质量比例。真正无法辨识的共线模型继续标为`unidentifiable`。
 
-## 面密度计算与输出
+## 面密度原理、计算与输出
 
 `relative_areal_density.csv` **仅包含`Status=supported`的元素**。待定、歧义、不可辨识和未支持元素均不出现在这张表；所有候选q/状态在`element_diagnostics.csv`，待定清单在`elements_need_confirmation.csv`，日志和JSON明确提示需要进一步确定。
 
 每次分析结束，终端打印证据支持存在的元素、各自相对参考元素的面密度比值，以及可能存在、需要进一步确定的元素。身份支持但未通过定量检查时明确显示“暂不可估计”及原因，不把待定q当成有效比值。批处理对每份输入同样输出摘要；输入失败也明确报告失败状态。
 
-只有识别支持、`Quantification_Status=supported`、正q和可估计误差同时满足，才计算：
+在给定共同尺度S及表观薄样品近似下，某个未分辨主线组g满足：
 
-`Relative_to_Reference=q_i/q_ref`
+`A_ig = C * rho_i * S_ig`，`S_ig = sum(S_il, l in group g)`。
 
-`Fraction_among_Reported_Elements=q_i/sum(q_eligible)`。
+其中A为扣除连续背景及邻峰后的净面积，C为同一份谱共有的通量、几何和曝光尺度，rho为元素质量面密度。因此：
 
-显式`--reference-element Fe`不可靠时不会悄悄换参考。没有合格元素时输出合法空表；身份支持但强度模型失配时保留诊断q，比例为空。份额是**报告元素之间的归一化量**，不是样品全部元素质量百分比，更不是绝对g/cm²。
+`q_Area_i = A_ig / S_ig`
+
+`Relative_to_Reference = q_Area_i / q_Area_ref`
+
+`Fraction_among_Reported_Elements = q_Area_i / sum(q_Area_eligible)`。
+
+C在同一谱内比值中抵消；S不再重复乘荧光产额或分支率。面积和S必须对应同一组谱线，不能用Kα双线总面积除以单条Kα1灵敏度。局部测量仍使用原始计数的Poisson似然，不把扣背景后的差谱当Poisson数据。
+
+默认`local-peaks`仅对身份支持、主线可检测、可辨识、窗口稳定且有正`q_Area`与可估计误差的元素计算比例。邻峰可作为干扰参数参与拟合，但待定元素不因此获得定量身份。窄/宽两种窗口对同一批计数高度相关，不视为独立重复测量；不同元素定量窗口共享通道时，逐道影响函数保留统计协方差。局部过散度扩张该协方差，窄/宽窗口点估计差另作为模型敏感性项。该误差仍不覆盖所有实验系统偏差。
+
+`q_Fit`始终保留全谱固定分支模板的共同幅度，可能受全局失配影响；`q_Area`是主线独立净面积/S。局部模式的比值使用后者，二者不能混用。面密度表中的`q_Std`、`q_Stat_Std`对应面积估计及其统计分量；`Global_Quantification_Status`保留旧全谱诊断。需要复现旧方法时选择`--quantification-method global-template`，其比值使用`q_Fit`并保留严格全局门控。
+
+显式`--reference-element Fe`不可测时不会悄悄换参考。无合格元素时不计算比值；局部主线不可分、缺少正S、窗口严重不稳定或显式源条件冲突时保留具体原因。仅缺少S来源元数据会标记未验证，并在假定用户提供S适用的条件下报告表观结果。份额是**合格报告元素之间的归一化量**，不是样品全部元素质量百分比，更不是绝对g/cm²。
 
 | 文件 | 内容 |
 |---|---|
@@ -173,13 +194,16 @@ PYTHON_BIN=.venv/bin/python scripts/verify.sh
 | `branch_ratio_evidence.csv` | 窄/宽窗口的原始计数分支检验及自由/理论比例 |
 | `calcium_analysis.json`, `calcium_region.png` | 钙的详细证据与局部图（有相关候选时） |
 | `relative_areal_density.csv` | 仅已支持元素；通过定量质量门控时才有比例 |
+| `quantification_peaks.csv` | 独立主线的净面积、S合计、q_Area、统计/合并误差、所选分支与失败原因 |
+| `quantification_audit.json` | 窄/宽窗口、邻峰干扰、局部响应、协方差及估计条件的审计 |
+| `quantification_fit.csv`, `quantification_regions.png` | 局部原始计数、拟合分量、残差及定量区域图 |
 | `fit_spectrum.csv`, `fit_components.csv` | 原始计数、总模型、背景、散射、元素分量和残差 |
 | `fit_summary.json` | 完整配置、输入哈希、版本、推断和警告 |
 | `spectrum_fit.png`, `residuals.png`, `unassigned_peaks.csv` | 谱图、残差和未解释特征 |
 
-`Net_Area=q*S`为完整线面积；`Gross_Area`为中心±3σ内原始计数（边界道按长度分摊），包括背景和其它峰。重叠ROI的Gross不能相加；同范围比较用`Net_Area_in_ROI`，不能将Gross−全峰Net视作精确背景。不可分双线共用q和相关误差。
+全谱`fitted_lines.csv`中的`Net_Area=q_Fit*S`为全谱模型线面积；它与`quantification_peaks.csv`中独立测量的主组面积分开。`Gross_Area`为中心±3σ内原始计数（边界道按长度分摊），包括背景和其它峰。重叠ROI的Gross不能相加；同范围比较用`Net_Area_in_ROI`，不能将Gross−全峰Net视作精确背景。不可分双线共享组面积及相关误差。
 
-摘要区分数值`fit_status`、模型`analysis_status`、`quantitative_interpretation_valid`。模型失配仍完整保存诊断；不能仅凭命令退出码认定科学模型有效。输入/优化失败返回非零并清除同目录旧成功输出，避免误用历史结果。
+摘要区分数值`fit_status`、全谱`analysis_status`/`global_model_valid`和当前方法的`quantitative_interpretation_valid`。局部主线可测时，后者可为true而`global_model_valid`为false；它表示在给定S和局部模型条件下存在可报告比值，不是全谱模型或实物成分已验证。输入/优化失败返回非零并清除同目录旧成功输出，避免误用历史结果。
 
 ## 输入与科学限制
 
@@ -188,8 +212,9 @@ PYTHON_BIN=.venv/bin/python scripts/verify.sh
 - MCA：支持真实文件所用的Amptek PMCA ASCII标记、MCAC道数、时间和嵌入标定。Windows头部字符允许明确的latin-1回退，数据区严格数值校验。`.mac`按内容识别，未知/二进制明确报错。
 - 灵敏度CSV保留原九列契约；0、缺失、负数/无穷含义分别处理。新增线只从已有同层正S推导，补线不改写用户CSV。无锚点壳层不臆造S。
 - 能量只从`xraylib.LineEnergy`读取，单位keV；`data/characteristic_lines_energy.csv`保留为原始参考，不参与分析。
+- `data/backgroud_spectrum.mca`的采集条件与样品不同或不确定，当前仅作参考资料，不直接缩放扣除。连续背景由样品原始计数局部估计；需要未来建立匹配的背景测量、曝光归一及计数联合模型后才能作定量背景输入。
 
-当前默认薄样品、无自吸收、全能峰效率1.0。统计区间不包括源S、效率、自吸收/分层、背景、截断推断、元素选择等系统误差。原S缺少来源元数据，源条件匹配未经验证；文物与矿物的基体可能改变分支比。元素未支持不表示不存在，元素存在也不能单独确定化合物、年代或真伪。常见性不会弥补这些信息缺失。
+当前默认薄样品、无自吸收、全能峰效率1.0。局部误差计入计数统计、拟合参数、过散度和窗口敏感性，仍不包含S、效率、自吸收/分层、截断推断、元素选择及所有背景形状的系统误差。原S缺少来源元数据，源条件匹配未经验证；文物与矿物的基体可能改变分支比。元素未支持不表示不存在，元素存在也不能单独确定化合物、年代或真伪。常见性不会弥补这些信息缺失。
 
 ## 研究依据与发布
 
@@ -197,4 +222,4 @@ PYTHON_BIN=.venv/bin/python scripts/verify.sh
 
 上传包含代码、配置、原始数据、示例、测试、文档及结果；`.venv`、Python缓存、构建产物和环境密钥不上传。原始MCA/CSV通过Git属性保留字节，方便SHA256审计。
 
-补充原始资料位于`XRF_SDD/`（20份MCA），均保留原始字节。可用上述批处理脚本重现全部目录分析；各采集条件需分别匹配标定与灵敏度，见该目录说明。实际本轮运行统计以 `VALIDATION.md`和批处理清单为准。
+补充原始资料位于`XRF_SDD/`。批处理按运行时目录中实际存在的MCA/CSV逐一分析，不按历史文件清单恢复或补造样品；各采集条件需分别匹配标定与灵敏度。实际运行统计以 `VALIDATION.md`和批处理清单为准。

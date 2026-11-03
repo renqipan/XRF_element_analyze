@@ -114,9 +114,14 @@ def test_real_spectrum_multibranch_identity_and_auditable_pairings(tmp_path):
     assert result['summary']['response_initialization']['used']
     assert result['summary']['deviance_per_dof'] < 15
     assert len(result['identification'].fit.symbols) < 15
-    # Identification remains meaningful even where the quantitative ratios fail.
-    assert not result['summary']['quantitative_interpretation_valid']
-    assert result['density'].Relative_to_Reference.isna().all()
+    # Global shape mismatch does not invalidate independently measurable primary areas.
+    assert not result['summary']['global_model_valid']
+    assert result['summary']['quantitative_interpretation_valid']
+    numeric = result['density'].loc[result['density'].Relative_to_Reference.notna()]
+    assert not numeric.empty
+    assert numeric.Element_Status.eq('supported').all()
+    assert np.isfinite(numeric.Relative_to_Reference).all()
+    assert (numeric.Relative_to_Reference > 0).all()
     pairs = pd.read_csv(tmp_path/'out/peak_line_matches.csv')
     pb = pairs.loc[(pairs.Element == 'Pb') & pairs.Selected_Element]
     assert {'Lalpha1', 'Lbeta1', 'Lgamma1', 'L3M1'} <= set(pb.Branch)

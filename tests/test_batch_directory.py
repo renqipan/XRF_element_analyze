@@ -58,6 +58,7 @@ def test_directory_batch_spaces_case_collisions_and_failure_continuation(synthet
 def test_unsupported_or_unquantifiable_not_replaced_by_zero(synthetic, tmp_path):
     spectrum, calibration, sensitivity, cfg, _, _ = synthetic({'Fe': 600.})
     cfg.elements = ('Fe',)
+    cfg.quantification_method = 'global-template'
     cfg.max_deviance_per_dof = .00001
     source = tmp_path/'input'
     source.mkdir()

@@ -113,7 +113,9 @@ def test_absorption_mismatch_warned(synthetic):
     lines = data[-1]
     alternate = [LineCandidate(l.Z, l.symbol, l.branch, l.energy_keV,
                              l.sensitivity_cm2_g*(.1 if l.symbol == 'Fe' and l.branch == 'Kbeta1' else 1)) for l in lines]
-    result = run(synthetic({'Fe': 1500.}, custom_lines=alternate))
+    mismatched = synthetic({'Fe': 1500.}, custom_lines=alternate)
+    mismatched[3].quantification_method = 'global-template'
+    result = run(mismatched)
     assert any('branch_ratio_mismatch' in w for w in result['summary']['warnings'])
     assert status(result, 'Fe') == 'supported'  # Two measured energies can identify Fe even when ratios fail.
     assert result['identification'].candidates.set_index('Element').loc['Fe', 'Quantification_Status'] != 'supported'
@@ -198,6 +200,7 @@ def test_broad_unmodelled_structure_flagged(synthetic):
 
 def test_severe_global_mismatch_never_reports_normalized_content(synthetic):
     data = synthetic({'Fe': 1000})
+    data[3].quantification_method = 'global-template'
     data[3].max_deviance_per_dof = .0001
     result = run(data)
     assert result['summary']['analysis_status'] == 'model_mismatch'

@@ -17,7 +17,8 @@ ANALYSIS_OUTPUT_FILES = ('calibration_result.json', 'calibration.png', 'detected
     'spectrum_fit.png', 'residuals.png', 'branch_diagnostics.csv', 'unassigned_peaks.csv',
     'sensitivity_states.csv', 'background_initial.csv', 'peak_line_matches.csv', 'peak_assignments.csv',
     'element_pattern_scores.csv', 'auxiliary_fitted_lines.csv', 'elements_need_confirmation.csv',
-    'element_diagnostics.csv','element_classes.csv','branch_ratio_evidence.csv','calcium_analysis.json','calcium_region.png')
+    'element_diagnostics.csv','element_classes.csv','branch_ratio_evidence.csv','calcium_analysis.json','calcium_region.png',
+    'quantification_peaks.csv','quantification_audit.json','quantification_fit.csv','quantification_regions.png')
 
 GROUP_COLUMNS = ['Z', 'Element', 'Branches', 'Centroid_keV', 'Moment_Equivalent_FWHM_keV',
                  'Net_Area', 'Area_Std_Counts', 'Notes']
@@ -64,12 +65,15 @@ def fitted_line_tables(ident, counts, edges, config):
         roi_probability = max(0., ndtr((min(edges[-1], hi)-centroid)/sig)-ndtr((max(edges[0], lo)-centroid)/sig))
         truncated = lo < edges[0] or hi > edges[-1]
         notes = 'fixed_by_sensitivity; correlated branches; overlapping Gross_Area values must not be summed'
+        if config.quantification_method=='local-peaks':
+            notes += '; joint_template_area_diagnostic; measured_quantitative_area_in_quantification_peaks.csv'
         if truncated:
             notes += '; roi_truncated=true; full-area response not renormalized'
         row = [l.Z, l.symbol, l.branch, l.energy_keV, centroid, FWHM_FACTOR*sig, area, gross,
                100*std/area if std is not None and area > 0 else None, area*roi_probability,
                max(edges[0], lo), min(edges[-1], hi), std, cand.Status, bool(cand.OverlapFlag),
-               cand.Uncertainty_Status, notes, l.sensitivity_cm2_g, truncated, 'success', l.strength_source, cand.Quantification_Status, fit.line_centers.get((l.symbol,l.branch)),
+               cand.Uncertainty_Status, notes, l.sensitivity_cm2_g, truncated, 'success', l.strength_source,
+               cand.get('Global_Quantification_Status',cand.Quantification_Status), fit.line_centers.get((l.symbol,l.branch)),
                'user_specified' if (l.symbol,l.branch) in fit.line_centers else 'xraylib']
         (rejected if cand.Status == 'not_supported' else rows).append(row)
     groups = []
@@ -163,6 +167,22 @@ def export_analysis(result, output_dir):
     pd.DataFrame(auxiliary, columns=['Z', 'Element', 'Branch', 'Reference_Energy_keV', 'Centroid_keV', 'Net_Area',
                  'Strength_Source', 'Quantitative_S_Available', 'Notes']).to_csv(out/'auxiliary_fitted_lines.csv', index=False)
     result['density'].to_csv(out/'relative_areal_density.csv', index=False)
+    if result.get('local_quantification') is not None:
+        result['local_quantification']['elements'].to_csv(out/'quantification_peaks.csv',index=False)
+        write_json(out/'quantification_audit.json',result['summary']['primary_peak_quantification'])
+        local_rows=[]
+        for local in result['local_quantification'].get('fits',[]):
+            ids=np.asarray(local['indices'],dtype=int)
+            for j,idx in enumerate(ids):
+                mu=local['model'][j]
+                local_rows.append([local['Element'],result['channel'][idx],result['energy'][idx],result['counts'][idx],
+                    mu,local['background'][j],local['primary_counts'][j],local['nuisance_counts'][j],
+                    (result['counts'][idx]-mu)/np.sqrt(max(mu,1e-12))])
+        pd.DataFrame(local_rows,columns=['Element','channel','energy_keV','observed_counts','model_counts',
+            'background_counts','primary_counts','nuisance_counts','pearson_residual']).to_csv(out/'quantification_fit.csv',index=False)
+    else:
+        for name in ('quantification_peaks.csv','quantification_audit.json','quantification_fit.csv','quantification_regions.png'):
+            (out/name).unlink(missing_ok=True)
     lines, rejected, groups = fitted_line_tables(ident, result['counts'], result['edges'], result['config'])
     if result['summary']['analysis_status'] != 'completed':
         for table in (lines, rejected):
@@ -192,6 +212,7 @@ def export_analysis(result, output_dir):
                'branch_evidence':[row for row in ident.branch_evidence if row['Element']=='Ca'],
                'interpretation':'Identity and quantitative quality are separate; weak Kbeta evidence requires confirmation near thresholds',
                'manual_peaks':result['summary']['manual_peaks']})
-    from .visualization import make_plots,make_calcium_plot
+    from .visualization import make_plots,make_calcium_plot,make_quantification_plots
     make_plots(result, out)
     make_calcium_plot(result,out)
+    make_quantification_plots(result,out)

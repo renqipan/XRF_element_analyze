@@ -137,14 +137,26 @@ def analyze(spectrum, calibration, sensitivity, output_dir=None, config=None):
             warnings.append('Insufficient successful bootstrap replicates; no bootstrap intervals reported (need >=20 and 80% success)')
     dof = max(0, len(counts)-fit.n_parameters)
     severe_mismatch = bool(dof and fit.deviance/dof > config.max_deviance_per_dof)
+    identification.candidates['Global_Quantification_Status']=identification.candidates.Quantification_Status
     if severe_mismatch:
         idx = identification.candidates.Status == 'supported'
+        identification.candidates.loc[idx, 'Global_Quantification_Status'] = 'global_model_mismatch'
         identification.candidates.loc[idx, 'Quantification_Status'] = 'global_model_mismatch'
-        identification.candidates.loc[idx, 'ConfidenceNotes'] += '; severe_global_model_mismatch: quantitative interpretation withheld'
-        warnings.append('Severe global model mismatch: all quantitative ratios withheld; candidate q values are diagnostic only')
-    density, reference_info = compute_relative_areal_density(identification, config.reference_element)
+        identification.candidates.loc[idx, 'ConfidenceNotes'] += '; severe_global_model_mismatch: joint-template q is diagnostic only'
+        warnings.append('Severe global model mismatch: joint-template q is diagnostic; independently measured primary peak areas are evaluated separately')
+    local_quantification=None
+    if config.quantification_method=='local-peaks' and fit.success:
+        from .local_quantification import fit_local_quantification
+        local_quantification=fit_local_quantification(identification,counts,energy,edges,fit_config)
+        local_lookup=local_quantification['elements'].set_index('Element')
+        for symbol in identification.candidates.loc[identification.candidates.Status=='supported','Element']:
+            row=local_lookup.loc[symbol] if symbol in local_lookup.index else None
+            status=row.Quantification_Status if row is not None else 'local_area_not_estimable'
+            if status=='local_area_estimate':status='supported'
+            identification.candidates.loc[identification.candidates.Element==symbol,'Quantification_Status']=status
+    density, reference_info = compute_relative_areal_density(identification, config.reference_element,local_quantification)
     if severe_mismatch:
-        density['Quality_Flags'] += '; severe_global_model_mismatch; diagnostic_q_only'
+        density['Quality_Flags'] += '; global_template_mismatch; joint_q_diagnostic_only'
     declared = table.metadata.get('declared', {})
     source_mismatch = False
     for key, actual in [('tube_target', config.tube_target), ('tube_voltage_kV', config.tube_voltage_kv)]:
@@ -159,7 +171,9 @@ def analyze(spectrum, calibration, sensitivity, output_dir=None, config=None):
             density[col] = np.nan
         density['Quality_Flags'] += '; excitation_mismatch_ratios_withheld'
         density['Quantification_Status']='excitation_mismatch'
+        density['Global_Quantification_Status']='excitation_mismatch'
         identification.candidates.loc[identification.candidates.Status=='supported','Quantification_Status']='excitation_mismatch'
+        identification.candidates.loc[identification.candidates.Status=='supported','Global_Quantification_Status']='excitation_mismatch'
         reference_info = {'Element': None, 'selection_rule': 'excitation_mismatch_ratios_withheld', 'fraction_denominator_elements': []}
     accepted_symbols = set(identification.candidates.loc[identification.candidates.Status.isin(['supported', 'tentative']), 'Element'])
     selected_pairs = identification.pairings.loc[identification.pairings.Element.isin(accepted_symbols)]
@@ -198,7 +212,11 @@ def analyze(spectrum, calibration, sensitivity, output_dir=None, config=None):
         files['sensitivity_metadata'] = {'path': table.metadata['metadata_file'], 'sha256': sha256(table.metadata['metadata_file'])}
     summary = dict(schema_version='3.0', fit_status='success' if fit.success else 'failed',
                    analysis_status='fit_failed' if not fit.success else ('model_mismatch' if severe_mismatch else 'completed'),
-                   quantitative_interpretation_valid=bool(fit.success and not severe_mismatch and not source_mismatch and reference_info['fraction_denominator_elements']),
+                   quantitative_interpretation_valid=bool(fit.success and not source_mismatch and density.Relative_to_Reference.notna().any()),
+                   global_model_valid=bool(fit.success and not severe_mismatch),
+                   local_quantification_valid=bool(local_quantification is not None and not source_mismatch and reference_info['fraction_denominator_elements']),
+                   normalized_fractions_available=bool(density.Fraction_among_Reported_Elements.notna().any()),
+                   quantification_method=config.quantification_method,
                    input_files=files, dependency_versions=versions, parameters=config.to_dict(),
                    effective_parameters={'background_method': 'snip', 'snip_iterations': iterations, 'delta_E_bound_keV': identification.alignment['effective_fit_delta_bound_keV'],
                                          'effective_fwhm_ref_kev': fit_config.fwhm_ref_kev,
@@ -229,6 +247,17 @@ def analyze(spectrum, calibration, sensitivity, output_dir=None, config=None):
                    uncertainty=identification.uncertainty_info, q_covariance=identification.qcov.tolist(),
                    covariance_element_order=fit.symbols, bootstrap=bootstrap_info,
                    reference=reference_info, apparent_relative_areal_density=True,
+                   primary_peak_quantification=None if local_quantification is None else {
+                       'method':local_quantification['method'],
+                       'covariance_method':local_quantification.get('covariance_method'),
+                       'formula':'A_i = common_flux_geometry_time * areal_density_i * S_i; ratio=(A_i/S_i)/(A_ref/S_ref)',
+                       'elements':local_quantification['elements'].to_dict('records'),
+                       'covariance_element_order':local_quantification['elements'].Element.tolist(),
+                       'q_area_covariance':np.asarray(local_quantification['covariance']).tolist(),
+                       'q_area_stat_covariance':np.asarray(local_quantification.get('stat_covariance',local_quantification['covariance'])).tolist(),
+                       'audit':local_quantification['audit'],
+                       'conditional_on':'supplied sensitivity; selected elements and local line shapes; thin-sample apparent density',
+                       'global_template_q_unchanged':True},
                    assumptions={'thin_sample': True, 'self_absorption': False, 'full_energy_efficiency': 1.0,
                                 'absolute_areal_density_available': False},
                    systematics_included=False, excitation_match_verified=False,
@@ -242,6 +271,7 @@ def analyze(spectrum, calibration, sensitivity, output_dir=None, config=None):
                   config=fit_config, requested_config=config, channel=channel, counts=counts, energy=energy, edges=edges,
                   background0=b0, peaks=peaks, identification=identification, density=density,
                   summary=summary, unassigned_peaks=unassigned, element_classes=classification_table(config.element_prior))
+    result['local_quantification']=local_quantification
     if output_dir:
         export_analysis(result, output_dir)
     for warning in warnings:

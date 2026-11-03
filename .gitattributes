@@ -1,6 +1,7 @@
 *.png binary
 SDD_Spectrum/* -text whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
 /data/*.csv -text whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
+/data/*.mca -text whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
 /calibration.csv -text whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
 /xrf_relative_sensitivity.csv -text whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
 XRF_SDD/*.mca -text whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol

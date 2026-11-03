@@ -26,6 +26,7 @@
   "element_prior": "general",
   "prior_tie_margin": 0.5,
   "branch_evidence": true,
+  "quantification_method": "local-peaks",
   "low_z_kalpha": true,
   "low_z_max_z": 24,
   "low_z_kalpha_min_delta": 25.0,

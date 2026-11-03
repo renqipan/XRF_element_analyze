@@ -70,6 +70,14 @@ def main(root):
         check(numeric.Quantification_Status.eq('supported').all(), 'Invalid quantitative status has numeric ratio')
         check((numeric.Relative_to_Reference>0).all(), 'Reported numeric ratio is nonpositive')
         check(not set(numeric.Element)&possible, 'Pending element participates in reported ratios')
+        if summary.get('quantification_method')=='local-peaks' and len(numeric):
+            check(np.allclose(numeric.q_Area,numeric.Area_Counts/numeric.Sensitivity_Sum,
+                              rtol=1e-10,atol=1e-12),'Primary-area density does not equal A/S')
+            check(numeric.Quantification_Method.eq('local-peaks').all(),'Numeric ratios have the wrong measurement method')
+            local_fit=pd.read_csv(destination/'quantification_fit.csv')
+            check(np.allclose(local_fit.model_counts,local_fit.background_counts+local_fit.primary_counts+local_fit.nuisance_counts,
+                              rtol=1e-10,atol=1e-9),'Local model components do not sum to total')
+            check(np.isfinite(local_fit.to_numpy()[:,1:].astype(float)).all(),'Nonfinite local measurement model')
         if len(numeric):
             check(np.isclose(numeric.Fraction_among_Reported_Elements.sum(),1.), 'Reported fractions do not sum to 1')
         if not summary['quantitative_interpretation_valid']:

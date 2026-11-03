@@ -1,58 +1,10 @@
 {
   "batch_completed": true,
-  "manifest_processed": 20,
-  "audited_samples": 20,
-  "aggregate_rows": 49,
+  "manifest_processed": 17,
+  "audited_samples": 17,
+  "aggregate_rows": 43,
   "errors": [],
   "samples": [
-    {
-      "sample": "Pb_40keV_20uA_back3mm.mca",
-      "channels": 528,
-      "supported": [
-        "Ni",
-        "Pb"
-      ],
-      "possible": [
-        "Ag",
-        "Eu",
-        "Fe",
-        "Sm"
-      ],
-      "numeric_ratio_count": 0,
-      "max_model_sum_error": 1.8189894035458565e-12,
-      "errors": []
-    },
-    {
-      "sample": "Pb_40keV_80uA.mca",
-      "channels": 528,
-      "supported": [
-        "Ag",
-        "Pb"
-      ],
-      "possible": [
-        "Gd",
-        "La",
-        "Tb"
-      ],
-      "numeric_ratio_count": 0,
-      "max_model_sum_error": 9.094947017729282e-13,
-      "errors": []
-    },
-    {
-      "sample": "Pb_40keV_80uA_back3mm.mca",
-      "channels": 501,
-      "supported": [
-        "Ni",
-        "Pb"
-      ],
-      "possible": [
-        "Ag",
-        "Fe"
-      ],
-      "numeric_ratio_count": 0,
-      "max_model_sum_error": 3.637978807091713e-12,
-      "errors": []
-    },
     {
       "sample": "Pb_50keV_20uA_back3mm.mca",
       "channels": 528,
@@ -67,7 +19,7 @@
         "Pm",
         "Sn"
       ],
-      "numeric_ratio_count": 0,
+      "numeric_ratio_count": 3,
       "max_model_sum_error": 9.094947017729282e-13,
       "errors": []
     },
@@ -83,7 +35,7 @@
         "Ni",
         "Sm"
       ],
-      "numeric_ratio_count": 0,
+      "numeric_ratio_count": 3,
       "max_model_sum_error": 3.637978807091713e-12,
       "errors": []
     },
@@ -98,7 +50,7 @@
         "Eu",
         "Fe"
       ],
-      "numeric_ratio_count": 0,
+      "numeric_ratio_count": 1,
       "max_model_sum_error": 3.637978807091713e-12,
       "errors": []
     },
@@ -113,7 +65,7 @@
       "possible": [
         "Ag"
       ],
-      "numeric_ratio_count": 0,
+      "numeric_ratio_count": 3,
       "max_model_sum_error": 1.4551915228366852e-11,
       "errors": []
     },
@@ -131,7 +83,7 @@
         "Tb",
         "Tm"
       ],
-      "numeric_ratio_count": 0,
+      "numeric_ratio_count": 3,
       "max_model_sum_error": 1.4551915228366852e-11,
       "errors": []
     },
@@ -146,7 +98,7 @@
         "Ag",
         "Ni"
       ],
-      "numeric_ratio_count": 0,
+      "numeric_ratio_count": 2,
       "max_model_sum_error": 2.2737367544323206e-13,
       "errors": []
     },
@@ -163,7 +115,7 @@
         "Hg",
         "Pm"
       ],
-      "numeric_ratio_count": 0,
+      "numeric_ratio_count": 3,
       "max_model_sum_error": 9.094947017729282e-13,
       "errors": []
     },
@@ -181,7 +133,7 @@
         "Cr",
         "Pm"
       ],
-      "numeric_ratio_count": 0,
+      "numeric_ratio_count": 4,
       "max_model_sum_error": 1.8189894035458565e-12,
       "errors": []
     },
@@ -194,7 +146,7 @@
         "Pb"
       ],
       "possible": [],
-      "numeric_ratio_count": 0,
+      "numeric_ratio_count": 3,
       "max_model_sum_error": 3.637978807091713e-12,
       "errors": []
     },
@@ -209,7 +161,7 @@
         "Eu",
         "Fe"
       ],
-      "numeric_ratio_count": 0,
+      "numeric_ratio_count": 2,
       "max_model_sum_error": 7.275957614183426e-12,
       "errors": []
     },
@@ -224,7 +176,7 @@
         "Ni",
         "Sn"
       ],
-      "numeric_ratio_count": 0,
+      "numeric_ratio_count": 2,
       "max_model_sum_error": 1.8189894035458565e-12,
       "errors": []
     },
@@ -238,7 +190,7 @@
       "possible": [
         "Ag"
       ],
-      "numeric_ratio_count": 0,
+      "numeric_ratio_count": 2,
       "max_model_sum_error": 1.8189894035458565e-12,
       "errors": []
     },
@@ -254,7 +206,7 @@
         "Ni",
         "Sn"
       ],
-      "numeric_ratio_count": 0,
+      "numeric_ratio_count": 3,
       "max_model_sum_error": 1.8189894035458565e-12,
       "errors": []
     },
@@ -265,7 +217,7 @@
         "Pb"
       ],
       "possible": [],
-      "numeric_ratio_count": 0,
+      "numeric_ratio_count": 1,
       "max_model_sum_error": 3.637978807091713e-12,
       "errors": []
     },
@@ -281,7 +233,7 @@
         "Ni",
         "Pm"
       ],
-      "numeric_ratio_count": 0,
+      "numeric_ratio_count": 3,
       "max_model_sum_error": 1.8189894035458565e-12,
       "errors": []
     },
@@ -294,7 +246,7 @@
         "Pm"
       ],
       "possible": [],
-      "numeric_ratio_count": 0,
+      "numeric_ratio_count": 3,
       "max_model_sum_error": 3.637978807091713e-12,
       "errors": []
     },
@@ -308,7 +260,7 @@
       "possible": [
         "Ag"
       ],
-      "numeric_ratio_count": 0,
+      "numeric_ratio_count": 2,
       "max_model_sum_error": 1.8189894035458565e-12,
       "errors": []
     }
