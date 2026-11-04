@@ -1,3 +1,12 @@
+# 2026-11-04单谱默认分析模型与shafa配置对齐
+
+- 单谱CLI改用`config.py`中的`single_spectrum_defaults()`：Ag靶、50kV、1–40keV、保存中间文件，其余分析参数与当前`configs/shafa.json`一致；`reference_element=None`，不默认固定Fe。JSON和CLI仍可覆盖。
+- 参数核对发现原CLI与shafa配置的差异为能区、管压和中间文件输出；此次仅对齐单谱入口预设，通用Python配置和目录批处理保留原默认值。
+- 实际运行shafa默认命令、显式shafa配置（自动参考）、显式shafa配置+Fe参考三种情况。前两者Hg均为supported，自动参考均为Pb；候选表、面密度表、局部主线表和拟合谱表逐值一致。
+- 显式Fe参考不改变候选身份或q_Area；它改变比值的归一化基准。因此需要比值也一致时，应保持参考设置相同，而不是将默认参考固定为Fe。
+- 对照证据：`results/single_spectrum_defaults_check/comparison.json`及三份密度表。实际分析报告保存在该JSON记录的独立临时目录，未覆盖用户已有输出。
+- 完整回归：**226 passed, 2 warnings in 118.95s**。新增覆盖完整预设与shafa配置相同、短命令与显式配置相同、自动/显式参考、JSON/CLI覆盖，以及批处理和通用API不受单谱预设影响。
+
 # 2026-11-04命令入口与默认配置更新
 
 - 单谱命令仅保留`--spectrum`与`--output-dir`必填；标定和灵敏度分别默认读取工作目录下的`data/calibration.csv`及`data/xrf_relative_sensitivity.csv`，可独立显式覆盖。

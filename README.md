@@ -2,7 +2,7 @@
 
 本程序分析SDD测量的XRF原始计数谱，完成自动寻峰、元素识别、谱峰拟合，并对身份获得支持且通过定量检查的元素计算**表观相对质量面密度**。支持单谱、多个指定谱和整个目录的批量分析。
 
-当前版本为0.5.0。本仪器已确认为Ag靶，**单谱命令和批处理默认均使用Ag靶**，可通过参数修改。额外背景参考默认关闭。
+当前版本为0.5.0。单谱命令默认分析参数与`configs/shafa.json`一致：**Ag靶、50kV、1–40keV、自动寻峰并保存中间文件**，不固定Fe参考，参考元素自动选择。参数仍可覆盖。批处理默认Ag靶；额外背景参考默认关闭。
 
 ## 1. 安装和查看帮助
 
@@ -83,7 +83,7 @@ Element,Kalpha1,Kalpha2,Kbeta1,Lalpha1,Lalpha2,Lbeta1,Lbeta2,Lgamma1,Malpha1
 
 自定义文件时，追加`--calibration 文件路径`和/或`--sensitivity 文件路径`。
 
-shafa自动分析示例：
+显式使用shafa配置：
 
 ```bash
 .venv/bin/python -m xrf_analyzer analyze \
@@ -91,7 +91,6 @@ shafa自动分析示例：
   --calibration data/calibration.csv \
   --sensitivity data/xrf_relative_sensitivity.csv \
   --config configs/shafa.json \
-  --reference-element Fe \
   --output-dir results/shafa_ag
 ```
 
@@ -122,7 +121,6 @@ JSON使用下划线字段名，例如：
   "tube_target": "Ag",
   "tube_voltage_kv": 50.0,
   "energy_range": [1.0, 40.0],
-  "reference_element": "Fe",
   "quantification_method": "local-peaks",
   "background_spectrum": null
 }
@@ -132,24 +130,24 @@ JSON使用下划线字段名，例如：
 
 | 配置位置 | 作用 |
 |---|---|
-| [src/xrf_analyzer/config.py](src/xrf_analyzer/config.py) | `AnalysisConfig`定义基础默认参数 |
-| [src/xrf_analyzer/cli.py](src/xrf_analyzer/cli.py) | 单谱命令默认Ag靶及data目录内的标定/灵敏度路径 |
+| [src/xrf_analyzer/config.py](src/xrf_analyzer/config.py) | `AnalysisConfig`定义基础参数；`single_spectrum_defaults()`定义单谱命令预设 |
+| [src/xrf_analyzer/cli.py](src/xrf_analyzer/cli.py) | 应用单谱预设，设置标定/灵敏度默认路径并合并JSON及CLI覆盖 |
 | [src/xrf_analyzer/batch.py](src/xrf_analyzer/batch.py) | 批处理入口默认Ag靶、1–40keV能区 |
 | [configs/default.json](configs/default.json) | Shell批处理脚本默认加载的JSON配置 |
 | [configs/shafa.json](configs/shafa.json) | shafa自动寻峰配置，Ag靶、50kV |
 | [configs/shafa_manual_reference.json](configs/shafa_manual_reference.json) | shafa手动参考峰心配置，Ag靶、50kV |
 
-单谱命令**不会自动加载`configs/default.json`**，需要时显式使用`--config configs/default.json`。未提供能区配置时，单谱的`energy_range=None`，表示不额外指定用户能区；有效能量和硬件采集域限制仍生效。批处理默认1–40keV。
+单谱命令通过`single_spectrum_defaults()`提供与当前`configs/shafa.json`一致的内置分析参数，不依赖运行时读取该JSON。`--config`文件在此预设上覆盖，CLI再覆盖JSON；例如`--tube-voltage-kv 40`可指定其它管压。批处理继续使用自己的入口默认值和配置文件，未因此默认指定50kV。
 
-基础`AnalysisConfig()`的靶材仍为`None`，命令入口另外默认指定Ag。直接调用Python API时应显式设置`AnalysisConfig(tube_target="Ag")`，或传入自己的完整配置。
+基础`AnalysisConfig()`保留通用默认值；Python API需要相同单谱预设时，可调用`single_spectrum_defaults()`取得配置。单谱预设的`reference_element=None`，不会固定Fe。需要Fe=1时显式添加`--reference-element Fe`；它会改变比值归一化基准，所以与自动参考的数值不必相同，但元素身份和主线面积应一致。
 
-查看当前单谱命令的内置分析参数（包含CLI的默认Ag；输入文件路径默认值另外见`--help`中的`--calibration`和`--sensitivity`）：
+查看当前单谱命令完整预设（输入文件路径默认值另外见`--help`中的`--calibration`和`--sensitivity`）：
 
 ```bash
 .venv/bin/python - <<'PY'
 import json
-from xrf_analyzer.config import AnalysisConfig
-print(json.dumps(AnalysisConfig(tube_target="Ag").to_dict(), indent=2, ensure_ascii=False))
+from xrf_analyzer.config import single_spectrum_defaults
+print(json.dumps(single_spectrum_defaults().to_dict(), indent=2, ensure_ascii=False))
 PY
 ```
 
@@ -166,7 +164,7 @@ PY
 | 参数 | 用途及默认行为 |
 |---|---|
 | `--tube-target Ag` | 靶材；两个命令入口默认Ag |
-| `--tube-voltage-kv 50` | 管压kV；未配置时不从文件名猜测 |
+| `--tube-voltage-kv 50` | 单谱默认50kV；批处理按其配置，不从文件名猜测 |
 | `--scatter-angle-deg 90` | 已知散射角，单位度；默认不指定 |
 | `--energy-range 1 40` | 分析能区keV，与有效采集域相交 |
 | `--reference-element Fe` | 显式指定参考；默认从合格元素中选相对误差较小者 |
@@ -174,7 +172,7 @@ PY
 | `--exclude-elements Pm,Tc` | 排除指定元素 |
 | `--quantification-method local-peaks` | 默认局部净面积/S定量；`global-template`使用严格全谱模板模式 |
 | `--element-prior heritage` | 场景先验：`general`（默认）、`heritage`、`archaeology`、`minerals`、`none` |
-| `--save-intermediate` | 额外保存灵敏度状态和初始背景 |
+| `--save-intermediate` | 保存灵敏度状态和初始背景；单谱默认开启，JSON中`save_intermediate: false`可关闭 |
 | `--fixed-response` | 固定共享响应，默认允许拟合 |
 | `--no-infer-cutoff` | 关闭形状截断猜测；明确硬件阈值仍生效 |
 | `--bootstrap 100` | 条件Poisson重采样诊断；默认0，开启后耗时增加 |

@@ -2,7 +2,7 @@ import argparse
 import json
 import logging
 from pathlib import Path
-from .config import AnalysisConfig
+from .config import AnalysisConfig, single_spectrum_defaults
 from .manual_peaks import parse_peak_energies
 from .pipeline import analyze
 from .reporting import write_json, ANALYSIS_OUTPUT_FILES
@@ -19,7 +19,7 @@ def build_parser():
     p.add_argument('--sensitivity', default='data/xrf_relative_sensitivity.csv',
                    help='Nine-branch common-scale S CSV, never row-normalized (default: %(default)s, relative to working directory)')
     p.add_argument('--output-dir', required=True)
-    p.add_argument('--config', help='JSON overrides of AnalysisConfig; CLI overrides JSON')
+    p.add_argument('--config', help='JSON overrides of the single-spectrum preset (Ag, 50 kV, 1-40 keV, save intermediates); CLI overrides JSON')
     p.add_argument('--background_spectrum','--backgroud_spectrum','--background-spectrum',
                    '--backgroud-spectrum','--background',dest='background_spectrum',default=argparse.SUPPRESS,
                    help='Measured background MCA/CSV; default None; use None to disable; global scale is fitted')
@@ -78,7 +78,7 @@ def main(argv=None):
     args.pop('command')
     args.pop('background_method')
     try:
-        settings = {'tube_target': 'Ag'}
+        settings = single_spectrum_defaults().to_dict()
         if config_path:
             settings.update(json.loads(Path(config_path).read_text(encoding='utf-8-sig')))
         if 'find_peaks' in args:

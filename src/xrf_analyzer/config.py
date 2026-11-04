@@ -147,3 +147,13 @@ class AnalysisConfig:
 
     def to_dict(self):
         return asdict(self)
+
+
+def single_spectrum_defaults():
+    """Single-spectrum CLI preset matching shafa.json, with automatic reference.
+
+    Keep instrument-specific CLI defaults separate from the generic Python API
+    and directory-batch defaults. JSON and explicit CLI options override this.
+    """
+    return AnalysisConfig(energy_range=(1., 40.), tube_target='Ag',
+                          tube_voltage_kv=50., save_intermediate=True)
