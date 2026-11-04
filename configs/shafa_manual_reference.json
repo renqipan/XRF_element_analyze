@@ -1,5 +1,8 @@
 {
   "tube_target": "Ag",
+  "low_z_max_z": 26,
+  "candidate_threshold_sigma": 3.5,
+  "max_iterations": 4000,
   "energy_range": [
     1.0,
     40.0

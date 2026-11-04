@@ -105,9 +105,17 @@ def identify_elements(counts, energy, edges, background, lines, peaks, config, d
                     j=fit.symbols.index(symbol)
                     primary=fit.matrix[:,j]*fit.t[j]
                     information=float(np.sqrt(np.sum(primary**2/fit.model)))
-                    if information<config.candidate_threshold_sigma:
+                    anchor_pairs=pattern.pairings.loc[(pattern.pairings.Element==symbol)
+                        & pattern.pairings.Branch.isin(['Kalpha1','Kalpha2','Lalpha1','Lalpha2','Malpha1'])
+                        & (pattern.pairings.Group_Affinity>=.5)
+                        & (pattern.pairings.Strength_Source!='unscaled_auxiliary_shell')]
+                    anchor_peaks=peaks.loc[peaks.peak_id.isin(anchor_pairs.peak_id)]
+                    anchored=bool((anchor_peaks.approx_significance>=np.sqrt(config.support_delta_deviance)).any())
+                    if information<max(config.candidate_threshold_sigma,np.sqrt(config.support_delta_deviance)) or not anchored:
                         orphan.append(symbol)
                         auxiliary_pruning.append({'Element':symbol,'Primary_Information_Score':information,
+                            'Required_Primary_Information_Score':max(config.candidate_threshold_sigma,np.sqrt(config.support_delta_deviance)),
+                            'Principal_Centroid_Anchored':anchored,
                             'Reason':'Independent auxiliary shells require detectable primary anchors'})
                 if not orphan:break
                 disabled_auxiliary.update(orphan)
@@ -161,6 +169,10 @@ def identify_elements(counts, energy, edges, background, lines, peaks, config, d
             if cos[i, k] >= config.correlation_threshold:
                 overlap_pairs.append({'elements': [fit.symbols[i], fit.symbols[k]], 'weighted_cosine': float(cos[i, k])})
     ranking = pattern.rankings.set_index('Element')
+    # Local nuisance groups may be independent only with an actual multi-region
+    # primary pattern. A high fitted amplitude alone can be borrowed from Fe.
+    config._branch_confirmed_symbols=set(pattern.rankings.loc[
+        (pattern.rankings.IndependentPeakRegions>=2) & (pattern.rankings.PatternScore>0),'Element'])
     for symbol in all_symbols:
         element_lines = [l for l in lines if l.symbol == symbol]
         z = element_lines[0].Z
@@ -212,14 +224,41 @@ def identify_elements(counts, energy, edges, background, lines, peaks, config, d
             item['Wide_Window_Branch_DeltaDeviance']=alt['Branch_DeltaDeviance'] if alt else None
             item['Robust_Group_Observed']=bool(item['Group_Observed'] and alt and alt['Group_Observed'])
             item['Ratio_Compatible']=bool(item['Tied_vs_Free_DeltaDeviance']<9 and alt and alt['Tied_vs_Free_DeltaDeviance']<9)
+            item['Within_Shell_Ratio_Compatible']=bool(
+                item.get('Within_Initial_Shell_DeltaDeviance') is not None
+                and item['Within_Initial_Shell_DeltaDeviance']<9 and alt
+                and alt.get('Within_Initial_Shell_DeltaDeviance') is not None
+                and alt['Within_Initial_Shell_DeltaDeviance']<9)
         branch_details.extend(details)
         observed_groups=sum(d['Robust_Group_Observed'] for d in details)
-        robust_local=observed_groups>=2 and all(d['Ratio_Compatible'] for d in details)
-        evidence=max(evidence,observed_groups)
+        # Identity uses observed energies; a cross-shell intensity mismatch
+        # belongs to quantification/model quality, not an energy-evidence veto.
+        robust_local=observed_groups>=2 and all(d['Within_Shell_Ratio_Compatible'] for d in details)
+        evidence=min(int(ranking.loc[symbol,'IndependentPeakRegions']),fitted_evidence)
         overlap = sorted({l.symbol for a in element_lines for l in fit_lines
                           if l.symbol != symbol and abs(a.energy_keV-l.energy_keV) <
                           FWHM_FACTOR*float(sigma_kev(a.energy_keV, config))*fit.resolution_scale})
         primary_pairs=pattern.pairings.loc[pattern.pairings.Strength_Source!='unscaled_auxiliary_shell']
+        principal = [l for l in element_lines if l.branch in ('Kalpha1','Kalpha2','Lalpha1','Lalpha2','Malpha1')
+                     and energy[0] <= line_model_center(l,fit) <= energy[-1]]
+        if not principal:
+            principal = [max(element_lines,key=lambda l:l.sensitivity_cm2_g)]
+        principal_pairs=primary_pairs.loc[(primary_pairs.Element==symbol)
+            & primary_pairs.Branch.isin([l.branch for l in principal]) & (primary_pairs.Group_Affinity>=.5)]
+        principal_observed=bool(principal_pairs.peak_id.isin(peaks.loc[
+            ~peaks.quality_flags.str.contains('broad_structure'),'peak_id']).any())
+        # A blended beta can be measured without its own local maximum.
+        # Count robust local groups only in a family with an observed alpha;
+        # do not join a weak Kalpha to an unrelated fitted L-shell residual.
+        anchored_families={branch[0] for branch in principal_pairs.Branch}
+        local_family_evidence=max([sum(d['Robust_Group_Observed'] for d in details if d['Family']==family)
+                                   for family in anchored_families]+[0])
+        local_family_available=any(d['Family'] in anchored_families for d in details)
+        severe_template_mismatch=fit.deviance/max(len(counts)-fit.n_parameters,1)>config.max_deviance_per_dof
+        if severe_template_mismatch and local_family_available:
+            evidence=local_family_evidence
+        else:
+            evidence=max(evidence,local_family_evidence)
         low_z=assess_low_z_kalpha(symbol,fit_lines,peaks,primary_pairs,ranking,
                                   np.asarray(counts),energy,edges,fit,config,details)
         if low_z['Applicable']:low_z_details.append(low_z)
@@ -227,10 +266,11 @@ def identify_elements(counts, energy, edges, background, lines, peaks, config, d
         if not fit.success or delta is None:
             status = 'not_supported'
             notes.append('fit_failed_or_comparison_failed')
-        elif low_z['Eligible'] and delta >= config.support_delta_deviance:
+        elif low_z['Eligible'] and delta >= config.tentative_delta_deviance:
             status='supported'
-            notes.append('low_Z_Kalpha_dominant_support; independent Kbeta not required; single-region evidence retained')
-        elif delta >= config.support_delta_deviance and evidence >= 2 and (pattern_score > 0 or robust_local):
+            notes.append('low_Z_Kalpha_dominant_support; independent Kbeta not required; single-region evidence retained; robust local evidence controls identity')
+        elif (delta >= config.support_delta_deviance and evidence >= 2 and principal_observed
+              and (pattern_score > 0 or robust_local)):
             status = 'supported'
         elif delta >= config.tentative_delta_deviance or (fit.t[i] > 0 and evidence >= 1):
             status = 'tentative'
@@ -243,6 +283,8 @@ def identify_elements(counts, energy, edges, background, lines, peaks, config, d
         if unc_status[i] == 'not_estimable' and status in ('supported', 'tentative'):
             status = 'unidentifiable'
             quantitative = 'not_estimable'
+        if not principal_observed:
+            notes.append('No precise observed principal alpha group; minor or auxiliary branches cannot establish identity alone')
         if evidence < 2 and not low_z['Eligible']:
             notes.append('Fewer than two independent observed centroid regions')
         notes.append('Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities')
@@ -253,16 +295,16 @@ def identify_elements(counts, energy, edges, background, lines, peaks, config, d
     candidates['Element_Class']=candidates.Element.map(lambda symbol:element_class(symbol,config.element_prior))
     candidates['Preferred_By_Prior']=False
     candidates['Prior_Alternatives']=''
-    # A zero fitted amplitude is conditional on all competitors being present.
-    # Recheck a suppressed low-Z Kalpha against an unconfirmed, ratio-incompatible
-    # overlapping competitor. This can recover a *possible* interpretation only:
+    # A suppressed fitted amplitude is conditional on all competitors being present.
+    # Recheck a suppressed low-Z Kalpha against an unconfirmed overlapping
+    # competitor, including one with a failed identity but nonzero amplitude. This can recover a *possible* interpretation only:
     # the original full model, q, covariance and quantitative status stay intact.
     counterfactual_reviews = []
     if fit.success and config.low_z_kalpha:
         reviews = 0
         for row_index, candidate in candidates.iterrows():
             if (reviews >= 3 or candidate.Z > config.low_z_max_z or candidate.Status != 'not_supported'
-                    or candidate.Element not in fit.symbols or candidate.q_Fit > 1e-6):
+                    or candidate.Element not in fit.symbols):
                 continue
             symbol = candidate.Element
             alpha_pairs=primary_pairs.loc[(primary_pairs.Element==symbol)
@@ -271,7 +313,7 @@ def identify_elements(counts, energy, edges, background, lines, peaks, config, d
                 continue
             peak_ids=set(alpha_pairs.peak_id)
             rivals=candidates.loc[candidates.Element.isin(str(candidate.OverlapElements).split(','))
-                & candidates.Status.isin(['tentative','ambiguous','unidentifiable'])]
+                & candidates.Status.isin(['tentative','ambiguous','unidentifiable','not_supported'])]
             for _, rival_row in rivals.iterrows():
                 if reviews >= 3:
                     break
@@ -284,11 +326,11 @@ def identify_elements(counts, energy, edges, background, lines, peaks, config, d
                     continue
                 details=[d for d in branch_details if d['Element']==rival]
                 contradicted={d['Family'] for d in details if d['Tied_vs_Free_DeltaDeviance']>=9}
-                if not contradicted:
-                    continue
+                # An unconfirmed rival need not have contradictory ratios to
+                # suppress a valid alternative: its branch may be unresolvable
+                # under a stronger element once interference is profiled.
                 wide=evaluate_branch_evidence(rival,fit_lines,energy,edges,np.asarray(counts),fit,config,roi_sigma=6.)
-                if not any(d['Family'] in contradicted and d['Tied_vs_Free_DeltaDeviance']>=9 for d in wide):
-                    continue
+                ratio_contradicted=any(d['Family'] in contradicted and d['Tied_vs_Free_DeltaDeviance']>=9 for d in wide)
                 reviews += 1
                 removed=[fit.symbols.index(rival)]+[len(fit.symbols)+j for j,name in enumerate(fit.nuisance_names)
                     if name.startswith(rival+'_') and name.endswith('_unscaled')]
@@ -299,6 +341,7 @@ def identify_elements(counts, energy, edges, background, lines, peaks, config, d
                     initial_delta=fit.delta,line_centers=line_centers,center_axis=config.find_peaks_axis)
                 audit={'Element':symbol,'Removed_Rival':rival,'Method':'leave_unconfirmed_rival_out; tentative_only',
                        'Counterfactual_Fit_Success':cf_fit.success,'Recovered_Possible_Interpretation':False,
+                       'Rival_Ratio_Contradicted_In_Both_Windows':bool(ratio_contradicted),
                        'Full_Model_and_Quantification_Unchanged':True}
                 if cf_fit.success:
                     cf_pattern=discover_elements(peaks,lines,[l for l in active_auxiliary if l.symbol!=rival],
@@ -322,7 +365,7 @@ def identify_elements(counts, energy, edges, background, lines, peaks, config, d
                         candidates.loc[row_index,'Status']='tentative'
                         candidates.loc[row_index,'Quantification_Status']='not_estimable'
                         candidates.loc[row_index,'ConfidenceNotes'] += ('; Kalpha recovered only when unconfirmed overlapping '
-                            +rival+' is removed; rival branch ratios incompatible in both windows; '
+                            +rival+' is removed; rival lacks independently confirmed identity; '
                             'counterfactual interpretation remains tentative; full-model q unchanged')
                 counterfactual_reviews.append(audit)
                 if audit['Recovered_Possible_Interpretation']:

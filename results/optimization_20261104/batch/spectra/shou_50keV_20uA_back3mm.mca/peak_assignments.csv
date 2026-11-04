@@ -1,0 +1,21 @@
+peak_id,Fitted_Centroid_keV,Centroid_Std_keV,Elements,Branches,Status,Alternative_Elements,Input_Center_keV,Primary_Element,Minor_Overlapping_Elements,Assignment_Model_Information_Score,Preferred_By_Context_Prior,Notes
+1,6.501602536012877,0.0020898678392583174,Fe,Fe:Kalpha1;Fe:Kalpha2,supported,"Ce,Eu,Nd,Pm,Pr,Sm,Tm",6.501602536012877,Fe,,48.96482406869914,,Observed complex center; unresolved branches share one evidence region
+2,7.1230159458432825,0.009010051491038973,Fe,Fe:KM2;Fe:Kbeta1,supported,"Co,Er,Eu,Gd,Hf,Nd,Sm",7.1230159458432825,Fe,,15.903640756387523,,Observed complex center; unresolved branches share one evidence region
+3,7.545044946106276,0.014388169688540692,Tb,Tb:L3N4;Tb:L3O1;Tb:Lbeta2,tentative,"Dy,Eu,Ho,Ni,Sm,W,Yb",7.545044946106276,Tb,,10.465010580389025,,Observed complex center; unresolved branches share one evidence region
+4,8.19484649361567,0.03151752495621517,Tb,Tb:Lgamma1,tentative,"Cu,Dy,Er,Gd,Hf,Ho,Ta,Tm",8.19484649361567,Tb,,4.086522876014964,,Observed complex center; unresolved branches share one evidence region
+5,8.812390327776813,0.014928973074106074,Hg,Hg:L3M1,supported,"Dy,Ho,Re,Tm,W,Yb,Zn",8.812390327776813,Hg,,6.491063932121782,,Observed complex center; unresolved branches share one evidence region
+6,9.281156055730962,0.0023180535542826662,Pb,Pb:L3M1,supported,"Er,Ga,Hf,Ho,Ta,Tm",9.281156055730962,Pb,,79.83115320802897,,Observed complex center; unresolved branches share one evidence region
+7,10.078432640214656,0.0027763006485574822,Hg,Hg:Lalpha1;Hg:Lalpha2,supported,"At,Pt,Re,Ta,W",10.078432640214656,Hg,,63.681859064836225,,Observed complex center; unresolved branches share one evidence region
+8,10.625100990144013,0.0003635051735529335,Pb,Pb:Lalpha1;Pb:Lalpha2,supported,"As,Hf,Os,Ra,Re,Ta",10.625100990144013,Pb,,390.41508969433147,,Observed complex center; unresolved branches share one evidence region
+9,11.517764435503695,0.010345523378773772,"Pb,Hg",Hg:L3N1;Pb:L2M1,supported,"At,Au,Pa,Pt,Ta,W",11.517764435503695,Pb,,96.81164227132659,,Observed complex center; unresolved branches share one evidence region
+10,12.039213336744623,0.007981927179289038,Hg,Hg:L1M3;Hg:L3N4;Hg:Lbeta1;Hg:Lbeta2,supported,"Au,Br,Fr,Re",12.039213336744623,Hg,,50.16243579122588,,Observed complex center; unresolved branches share one evidence region
+11,12.687773633702154,0.0005027485377051096,Pb,Hg:L1M4;Hg:L1M5;Pb:L3N4;Pb:Lbeta1;Pb:Lbeta2,supported,"Bi,Kr,Pt",12.687773633702154,Pb,Hg,337.3066771740808,,Observed complex center; unresolved branches share one evidence region
+12,13.888234381241542,0.01879697762658701,Hg,Hg:Lgamma1,supported,"At,Au,Bi,Fr,Pt,Rn",13.888234381241542,Hg,,12.79527997165944,,Observed complex center; unresolved branches share one evidence region
+13,14.903112936554898,0.0025079817883833923,Pb,Hg:L1O2;Hg:L1O3;Pb:Lgamma1,supported,"Bi,Fr,Pa,Ra,Rb,Y",14.903112936554898,Pb,Hg,137.85570343769862,,Observed complex center; unresolved branches share one evidence region
+14,15.716644176096192,0.04882458075072073,Pb,Pb:L1O2;Pb:L1O3,supported,"At,Bi,Fr,Po,Sr,Th,U,Zr",15.716644176096192,Pb,,90.80516578425093,,Observed complex center; unresolved branches share one evidence region
+15,20.649788434853203,0.017740203165223078,,,unassigned,"Tc,U",20.649788434853203,,,0.0,,Observed complex center; unresolved branches share one evidence region
+16,22.10753581396584,0.008228906727595459,,,unassigned,"Ag,Ru",22.10753581396584,,,0.0,,Observed complex center; unresolved branches share one evidence region
+17,23.145632303678944,0.0227204149839832,,,unassigned,Rh,23.145632303678944,,,0.0,,Observed complex center; unresolved branches share one evidence region
+18,25.02452687504704,0.02555770929955852,,,unassigned,Sn,25.02452687504704,,,0.0,,Observed complex center; unresolved branches share one evidence region
+19,26.30632767979369,0.039107556787953184,Sb,Sb:Kalpha1,tentative,,26.30632767979369,Sb,,0.19943045313553334,,Observed complex center; unresolved branches share one evidence region
+20,32.247519004245945,0.018177603856210138,,,unassigned,I,32.247519004245945,,,0.0,,Observed complex center; unresolved branches share one evidence region

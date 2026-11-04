@@ -1,7 +1,7 @@
 """Conservative acquisition-domain and empirical response initialization."""
 from dataclasses import replace
 import numpy as np
-from .response import FWHM_FACTOR
+from .response import FWHM_FACTOR, sigma_kev
 
 
 def infer_hard_lower_cutoff(spectrum, calibration, config):
@@ -49,3 +49,19 @@ def initialize_resolution(peaks, config):
         'used': True, 'method': 'narrow_isolated_peak_Fano_electronic_variance_median',
         'configured_reference_FWHM_keV': config.fwhm_ref_kev, 'effective_reference_FWHM_keV': float(reference),
         'peak_ids': good.peak_id.astype(int).tolist(), 'is_instrument_calibration': False}
+
+
+def reclassify_peak_widths(peaks, config):
+    """Interpret measured widths using the response actually used for matching.
+
+    Initial peak discovery uses the configured resolution. After an empirical
+    update, retaining its old broad flags would reject normal low-energy lines.
+    Peak positions, areas, raw counts and local fit quality are unchanged.
+    """
+    peaks = peaks.copy()
+    for index, peak in peaks.iterrows():
+        flags = [flag for flag in peak.quality_flags.split(';') if flag and flag != 'broad_structure']
+        if peak.estimated_fwhm_keV > 2.5*FWHM_FACTOR*float(sigma_kev(peak.energy_keV, config)):
+            flags.append('broad_structure')
+        peaks.at[index, 'quality_flags'] = ';'.join(flags)
+    return peaks

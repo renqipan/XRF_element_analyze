@@ -60,7 +60,7 @@ class AnalysisConfig:
     detector_efficiency: float = 1.0
     bootstrap: int = 0
     seed: int = 42
-    max_iterations: int = 1800
+    max_iterations: int = 4000
     save_intermediate: bool = False
     background_spectrum: Optional[str] = None
 
@@ -156,4 +156,4 @@ def single_spectrum_defaults():
     and directory-batch defaults. JSON and explicit CLI options override this.
     """
     return AnalysisConfig(energy_range=(1., 40.), tube_target='Ag',
-                          tube_voltage_kv=50., save_intermediate=True)
+                          tube_voltage_kv=50., save_intermediate=True, low_z_max_z=26)

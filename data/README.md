@@ -10,4 +10,4 @@
 
 若纯Pb谱代表测量装置的Pb基底，需要额外描述样品/基底几何和样品对基底荧光的能量相关衰减；一个共同scale不能自动区分样品Pb与基底Pb。纯Pb标准也不能在缺少曝光、通量、几何、质量面密度和自吸收信息时直接给出其它样品的绝对质量面密度。
 
-`calibration.csv` 与根目录同名文件字节一致；`xrf_relative_sensitivity.csv` 与根目录同名文件字节一致。原始计数、标定点和灵敏度数值未因本次审查而修改。`characteristic_lines_energy.csv`保留为历史参考，分析中的谱线能量和吸收边取自xraylib。
+`calibration.csv` 与根目录同名文件字节一致。灵敏度表统一使用 `data/xrf_relative_sensitivity.csv`；根目录的同名重复文件已删除，保留的数据文件内容不变。原始计数、标定点和灵敏度数值未因本次审查而修改。`characteristic_lines_energy.csv`保留为历史参考，分析中的谱线能量和吸收边取自xraylib。

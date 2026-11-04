@@ -12,7 +12,7 @@ from .calibration import fit_linear_calibration
 from .io_spectrum import load_spectrum
 from .atomic_lines import load_sensitivity, validate_symbol, excitation_edge_kev
 from .atomic_completion import complete_transitions
-from .measurement import infer_hard_lower_cutoff, initialize_resolution
+from .measurement import infer_hard_lower_cutoff, initialize_resolution, reclassify_peak_widths
 from .response import sigma_kev, gaussian_response, FWHM_FACTOR
 from .baseline import snip_background
 from .peak_detection import detect_peaks
@@ -98,6 +98,12 @@ def analyze(spectrum, calibration, sensitivity, output_dir=None, config=None, ba
         fit_config=replace(config,fwhm_ref_kev=max(limit,config.fwhm_ref_kev*manual_response['resolution_scale']),
                            centroid_tolerance_kev=max(config.centroid_tolerance_kev,config.manual_match_tolerance_kev/config.match_sigma))
         response_initialization={'used':True,'method':'user_centers_shared_response_fit','effective_reference_FWHM_keV':fit_config.fwhm_ref_kev}
+    if config.find_peaks is None and response_initialization.get('used'):
+        old_broad=int(peaks.quality_flags.str.contains('broad_structure').sum())
+        peaks=reclassify_peak_widths(peaks,fit_config)
+        response_initialization['broad_flags_before_update']=old_broad
+        response_initialization['broad_flags_after_update']=int(peaks.quality_flags.str.contains('broad_structure').sum())
+        response_initialization['peak_quality_response']='empirically_initialized_resolution'
     lines, exclusions = [], []
     fit_config._background_counts=measured_counts
     fit_config._background_scale_initial=config._background_scale_initial

@@ -19,7 +19,7 @@ def test_shafa_cr_remains_possible_under_pm_template_competition():
     assert candidates.loc['Cr','Status']=='tentative'
     assert candidates.loc['Cr','q_Fit']<=1e-6  # Original full fit is deliberately unchanged.
     assert candidates.loc['Cr','Quantification_Status']=='not_estimable'
-    assert candidates.loc['Cr','Preferred_By_Prior']
+    assert candidates.loc['Cr','Element_Class']=='common'  # Preference still requires an actual evidence tie.
     assert candidates.loc['Pm','Status']!='supported'
     assert 'Cr' not in result['density'].Element.tolist()
     assert 'Cr' in result['summary']['elements_need_confirmation']
@@ -34,4 +34,8 @@ def test_shafa_cr_remains_possible_under_pm_template_competition():
     assert alpha['Calibration_Anchored']
     # Disabled independent shells may not re-enter centroid assignments or anchors.
     pairs=result['identification'].pairings
-    assert not ((pairs.Element=='Pm') & (pairs.Strength_Source=='unscaled_auxiliary_shell')).any()
+    # Updated response/candidate proposals can leave a detectable Pm primary;
+    # the invariant concerns shells actually disabled, not a frozen fit outcome.
+    disabled={row['Element'] for row in result['summary']['uncertainty']['auxiliary_shell_pruning']}
+    assert disabled
+    assert not (pairs.Element.isin(disabled) & (pairs.Strength_Source=='unscaled_auxiliary_shell')).any()

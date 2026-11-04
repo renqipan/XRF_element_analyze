@@ -1,0 +1,17 @@
+Spectrum,Before,After,Added,Removed,Before_Deviance_per_dof,After_Deviance_per_dof,Fit_Success,Input_SHA256_Unchanged,Numeric_Ratios
+pos1_40keV_80uA.mca,"Fe,Pb","Fe,Pb",,,12.48578638203561,12.522557519341763,True,True,2
+pos2_40keV_80uA.mca,Pb,"Fe,Pb",Fe,,10.307606671412715,10.358622329745398,True,True,2
+pos3_40keV_80uA.mca,"Fe,Ni,Pb","Fe,Ni,Pb",,,50.108158729097184,50.31521718399588,True,True,3
+pos4_40keV_80uA.mca,"Ca,Fe,Pb","Ca,Fe,Pb",,,43.87319047495495,44.43583377977322,True,True,3
+pos5_40keV_5uA.mca,"Fe,Pb","Fe,Pb",,,2.854059575462745,2.85154119331831,True,True,2
+shafa1_50kv_20uA.mca,"Fe,Pb","Ca,Fe,Pb",Ca,,8.406686654898154,8.165884317579513,True,True,3
+shafa_50kv_20uA.mca,"Ca,Fe,Hg,Pb","Ca,Fe,Hg,Pb",,,7.693770001371638,7.3308199686590125,True,True,4
+shou_50keV_20uA_back3mm.mca,,"Fe,Hg,Pb","Fe,Hg,Pb",,402.4111071632197,17.842736460743957,True,True,3
+shu_50keV_20uA_back3mm.mca,"Fe,Tb,Pb","Fe,Pb",,Tb,19.643823373000913,19.74062960748412,True,True,1
+toufa_50keV_20uA_back3mm.mca,"Fe,Pb","Fe,Pb",,,18.72858904443832,18.767444999295442,True,True,1
+xiongzhen1.mca,"Fe,Pb","Fe,Pb",,,8.807898230836237,8.807898230836237,True,True,2
+xiongzhen_50keV_20uA_back3mm.mca,"Fe,Pb","Fe,Pb",,,16.706466335853182,16.08859942272656,True,True,2
+yifu1_tou_50keV_20uA_back3mm.mca,"Tb,Pb",Pb,,Tb,16.23338121349291,16.20885681688741,True,True,1
+yifu2_50kv_20uA.mca,"Fe,Pb","Fe,Pb",,,7.740803791512832,7.724876211689134,True,True,2
+yifu_50keV_20uA_back3mm.mca,"Fe,Ni,Pm,Pb","Fe,Ni,Pb",,Pm,16.84582307060335,16.87152938644687,True,True,3
+yinzhang_50kv_20uA.mca,"Ca,Fe,Pb","Ca,Fe,Pb",,,9.380630414509104,8.129473795472512,True,True,3

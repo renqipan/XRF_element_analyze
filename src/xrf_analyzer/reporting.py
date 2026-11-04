@@ -111,7 +111,10 @@ def export_analysis(result, output_dir):
     pd.DataFrame(ident.branch_evidence,columns=['Element','Family','Branches','Background_Window_Sigmas','ROI_Start_keV','ROI_End_keV',
                  'Local_Free_Area_Counts','Expected_Area_From_Tied_Counts','Branch_DeltaDeviance','Tied_vs_Free_DeltaDeviance',
                  'Observed_Ratio_to_Strongest_Group','Expected_Ratio_to_Strongest_Group','Group_Observed',
-                 'Wide_Window_Branch_DeltaDeviance','Robust_Group_Observed','Ratio_Compatible','Method']).to_csv(out/'branch_ratio_evidence.csv',index=False)
+                 'Wide_Window_Branch_DeltaDeviance','Robust_Group_Observed','Ratio_Compatible',
+                 'Within_Initial_Shell_DeltaDeviance','Within_Shell_Ratio_Compatible',
+                 'Background_Method','Background_Parameters','Conditional_Response_DeltaDeviance',
+                 'Local_Response_Profiled','Local_Profile_Failure','Method']).to_csv(out/'branch_ratio_evidence.csv',index=False)
     ident.pairings.to_csv(out/'peak_line_matches.csv', index=False)
     ident.pattern_rankings.to_csv(out/'element_pattern_scores.csv', index=False)
     assignments = []

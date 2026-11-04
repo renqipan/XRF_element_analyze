@@ -1,0 +1,48 @@
+{
+  "a_keV": -1.972101179749473e-16,
+  "b_keV_per_channel": 0.07384615384615385,
+  "rms_keV": 2.5160153332370496e-15,
+  "covariance": null,
+  "points": [
+    {
+      "channel": 0,
+      "energy_keV": 0.0
+    },
+    {
+      "channel": 299,
+      "energy_keV": 22.08
+    }
+  ],
+  "residuals_keV": [
+    1.972101179749473e-16,
+    -3.552713678800501e-15
+  ],
+  "max_abs_residual_keV": 3.552713678800501e-15,
+  "two_point": true,
+  "weighted": false,
+  "calibration_quality": "ok",
+  "warnings": [
+    "Accepted instrument origin (0,0); zero energy is allowed only at channel zero",
+    "Two-point residuals do not estimate calibration statistical uncertainty"
+  ],
+  "acquisition_cutoff": {
+    "source": "Amptek_DP5_TLLD",
+    "threshold_device_channel": 40,
+    "first_retained_index": 41,
+    "first_retained_channel": 41,
+    "firmware_version": "6.10",
+    "channel_convention": "zero_based_device_indices; user_channel_origin_applied_separately",
+    "limitation": "Recorded channel LLD only; other trigger/acceptance effects are not inferred",
+    "energy_keV": 2.990769230769231,
+    "zero_prefix_channels": 41,
+    "first_counts": 121.0,
+    "inferred": false,
+    "reason": "recorded_Amptek_DP5_TLLD",
+    "background_edge_initialization": "lower_quartile_of_adjacent_SNIP_background"
+  },
+  "channel_origin": 0,
+  "effective_energy_range_keV": [
+    2.990769230769231,
+    39.98769230769231
+  ]
+}

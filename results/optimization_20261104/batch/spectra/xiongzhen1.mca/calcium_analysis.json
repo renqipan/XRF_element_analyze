@@ -1,0 +1,32 @@
+{
+  "candidate": [
+    {
+      "Z": 20,
+      "Element": "Ca",
+      "Status": "not_supported",
+      "Score": 0.011495874550945473,
+      "DeltaDeviance": null,
+      "NumObservableLines": 4,
+      "NumIndependentEvidenceRegions": 1,
+      "ExpectedMissingStrongLines": "",
+      "OverlapFlag": false,
+      "ConfidenceNotes": "Not selected by global centroid/branch pattern; alternatives retained in peak_line_matches.csv; not evidence of absence",
+      "MatchedPeakIDs": "1",
+      "OverlapElements": "",
+      "q_Fit": null,
+      "q_Std": null,
+      "Upper95_q": null,
+      "Uncertainty_Status": "not_estimable",
+      "Quantification_Status": "not_estimable",
+      "PatternScore": 0.011495874550945473,
+      "PatternMissingLinePenalty": 0.0,
+      "Element_Class": "common",
+      "Preferred_By_Prior": false,
+      "Prior_Alternatives": "",
+      "Global_Quantification_Status": "not_estimable"
+    }
+  ],
+  "branch_evidence": [],
+  "interpretation": "Identity and quantitative quality are separate; weak Kbeta evidence requires confirmation near thresholds",
+  "manual_peaks": null
+}

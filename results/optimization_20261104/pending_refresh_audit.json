@@ -1,0 +1,25 @@
+{
+  "rule_change": "Review overlapping unconfirmed rivals including not_supported with nonzero fitted amplitude",
+  "reused": [
+    "pos1_40keV_80uA.mca",
+    "pos2_40keV_80uA.mca",
+    "pos3_40keV_80uA.mca",
+    "pos4_40keV_80uA.mca",
+    "pos5_40keV_5uA.mca",
+    "shafa1_50kv_20uA.mca",
+    "shou_50keV_20uA_back3mm.mca",
+    "shu_50keV_20uA_back3mm.mca",
+    "toufa_50keV_20uA_back3mm.mca",
+    "xiongzhen1.mca",
+    "xiongzhen_50keV_20uA_back3mm.mca",
+    "yifu1_tou_50keV_20uA_back3mm.mca",
+    "yifu2_50kv_20uA.mca",
+    "yifu_50keV_20uA_back3mm.mca",
+    "yinzhang_50kv_20uA.mca"
+  ],
+  "recomputed": [
+    "shafa_50kv_20uA.mca"
+  ],
+  "input_and_configuration_hashes_verified": true,
+  "production_aggregation": "xrf_analyzer.batch.run_batch"
+}

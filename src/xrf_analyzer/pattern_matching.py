@@ -174,7 +174,7 @@ def discover_elements(peaks, lines, auxiliary, energy, counts, config, fixed_del
     if m and len(symbols):
         explained = np.max([cover[symbols.index(s)] for s in selected], axis=0) if selected else np.zeros(m)
         for j in range(m):
-            if explained[j] >= .5 or scores[j] < 5 or 'broad_structure' in peaks.iloc[j].quality_flags:
+            if explained[j] >= .5 or scores[j] < config.candidate_threshold_sigma or 'broad_structure' in peaks.iloc[j].quality_flags:
                 continue
             options = [(float(cover[i, j]-penalties[i]/6), symbols[i]) for i in range(len(symbols))
                        if cover[i, j] >= .3 and penalties[i] < 2 and symbols[i] != config.tube_target]
@@ -182,6 +182,33 @@ def discover_elements(peaks, lines, auxiliary, energy, counts, config, fixed_del
                 top = max(score for score, _ in options)
                 options.sort(key=lambda item: (item[0], element_class(item[1], config.element_prior)=='common'), reverse=True)
                 selected.update(s for score, s in options[:2] if score >= top-.2)
+    # Greedy peak coverage is a proposal mechanism. An already-covered peak
+    # may contain a second element, and the covering element can be wrong.
+    # Retain positive multi-region alternatives for the joint likelihood test;
+    # they do not become supported merely by entering this bounded shortlist.
+    alternatives = [i for i in range(len(symbols)) if symbols[i] != config.tube_target
+                    and np.sum(cover[i] >= .5) >= 2
+                    and weights @ cover[i]-config.pattern_element_penalty-penalties[i] > 0]
+    alternatives.sort(key=lambda i: float(weights @ cover[i]-penalties[i]), reverse=True)
+    retained_alternatives = []
+    for i in alternatives:
+        ids = symbol_groups[symbols[i]]
+        # Require an observed principal group, rather than borrowing large
+        # peaks through weak minor branches of a speculative element.
+        primary_anchor = False
+        for family in ('K', 'L', 'M'):
+            family_ids = [g for g in ids if not groups[g]['auxiliary'] and groups[g]['family'] == family]
+            if not family_ids:
+                continue
+            strongest = max(family_ids, key=lambda g: groups[g]['strength'])
+            matches = affinity[strongest] >= .5
+            family_matches = np.max(affinity[family_ids], axis=0) >= .5
+            if matches.any() and scores[matches].max() >= .5*scores[family_matches].max():
+                primary_anchor = True
+        if (primary_anchor and symbols[i] not in selected and len(selected) < 15
+                and len(retained_alternatives) < 3):
+            selected.add(symbols[i])
+            retained_alternatives.append(symbols[i])
     pairings = []
     for i, g in enumerate(groups):
         for j in range(m):
@@ -197,7 +224,8 @@ def discover_elements(peaks, lines, auxiliary, energy, counts, config, fixed_del
     alignment = {'method': 'global_centroid_branch_graph_weighted_sparse_peak_cover', 'delta_E_keV': delta,
                  'search_bound_keV': config.alignment_max_shift_kev, 'score': objective,
                  'is_calibration_replacement': False, 'gain_for_matching': fixed_gain,
-                 'element_prior': config.element_prior, 'prior_tie_margin': config.prior_tie_margin, 'grid_solutions': [{'delta': d, 'score': score} for d, score, _ in search]}
+                 'element_prior': config.element_prior, 'prior_tie_margin': config.prior_tie_margin,
+                 'retained_multiregion_alternatives': retained_alternatives, 'grid_solutions': [{'delta': d, 'score': score} for d, score, _ in search]}
     rankings = pd.DataFrame(rankings, columns=['Z', 'Element', 'PatternScore', 'IndependentPeakRegions',
                                                 'MatchedPeakIDs', 'MissingLinePenalty', 'Selected', 'Element_Class'])
     rankings['Selected'] = rankings.Element.isin(selected)

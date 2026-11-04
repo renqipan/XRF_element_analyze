@@ -1,0 +1,2983 @@
+{
+  "base_parameters": {
+    "energy_range": [
+      1.0,
+      40.0
+    ],
+    "find_peaks": null,
+    "find_peaks_axis": "reference",
+    "manual_match_tolerance_kev": 0.08,
+    "element_prior": "general",
+    "prior_tie_margin": 0.5,
+    "branch_evidence": true,
+    "quantification_method": "local-peaks",
+    "low_z_kalpha": true,
+    "low_z_max_z": 24,
+    "low_z_kalpha_min_delta": 25.0,
+    "low_z_beta_visibility_sigma": 5.0,
+    "low_z_min_kalpha_share": 0.7,
+    "prune_unanchored_auxiliary": true,
+    "complete_atomic_lines": true,
+    "shell_consistency_tolerance": 0.05,
+    "minimum_radiative_rate": 0.001,
+    "infer_low_energy_cutoff": true,
+    "alignment_max_shift_kev": 0.25,
+    "centroid_tolerance_kev": 0.015,
+    "pattern_element_penalty": 4.0,
+    "channel_start": 0,
+    "fill_missing_channels": false,
+    "strict_calibration": false,
+    "fwhm_ref_energy_kev": 5.9,
+    "fwhm_ref_kev": 0.135,
+    "fano": 0.115,
+    "pair_energy_kev": 0.0036,
+    "fit_response": true,
+    "estimate_resolution_from_peaks": true,
+    "fit_energy_gain": true,
+    "energy_gain_bound": 0.01,
+    "resolution_scale_bounds": [
+      0.75,
+      1.5
+    ],
+    "delta_max_kev": null,
+    "snip_iterations": null,
+    "background_degree": 3,
+    "background_regularization": 0.1,
+    "candidate_threshold_sigma": 3.5,
+    "max_deviance_per_dof": 5.0,
+    "support_delta_deviance": 25.0,
+    "tentative_delta_deviance": 6.0,
+    "match_sigma": 2.5,
+    "correlation_threshold": 0.995,
+    "elements": [
+      "Ca",
+      "Cr",
+      "Mn",
+      "Fe",
+      "Co",
+      "Ni",
+      "Cu",
+      "Zn",
+      "As",
+      "Pm",
+      "Tb",
+      "Hg",
+      "Pb"
+    ],
+    "exclude_elements": [],
+    "element_selection": "model-comparison",
+    "max_selection_iterations": 3,
+    "reference_element": null,
+    "tube_target": "Ag",
+    "tube_voltage_kv": 50.0,
+    "scatter_angle_deg": null,
+    "detector_efficiency": 1.0,
+    "bootstrap": 0,
+    "seed": 42,
+    "max_iterations": 1800,
+    "save_intermediate": false,
+    "background_spectrum": null
+  },
+  "generator_fwhm_ref_kev": 0.27,
+  "seed_offset": 1000,
+  "truth_scope": "synthetic counts conditional on supplied S and Gaussian response",
+  "variants": {
+    "current": {
+      "overrides": {},
+      "false_positives": 0,
+      "false_negatives": 2,
+      "fit_failures": 0,
+      "weighted_loss": 6,
+      "median_ratio_relative_error": 0.007830770560640521,
+      "cases": [
+        {
+          "case": "blank",
+          "truth": [],
+          "supported": [],
+          "false_positive": [],
+          "false_negative": [],
+          "fit_success": true,
+          "ratio_relative_errors": [],
+          "fitted_symbols": [
+            "Cr",
+            "Hg"
+          ],
+          "response_initialization": {
+            "used": false,
+            "reason": "Fewer than two well-fitted isolated observed peaks"
+          },
+          "centroid_alignment": 0.0,
+          "candidate_diagnostics": []
+        },
+        {
+          "case": "Fe_Cu_Pb",
+          "truth": [
+            "Cu",
+            "Fe",
+            "Pb"
+          ],
+          "supported": [
+            "Cu",
+            "Fe",
+            "Pb"
+          ],
+          "false_positive": [],
+          "false_negative": [],
+          "fit_success": true,
+          "ratio_relative_errors": [
+            0.0012616873073725277,
+            0.007389511044816555,
+            0.0
+          ],
+          "fitted_symbols": [
+            "Fe",
+            "Cu",
+            "Pb"
+          ],
+          "response_initialization": {
+            "used": true,
+            "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+            "configured_reference_FWHM_keV": 0.135,
+            "effective_reference_FWHM_keV": 0.2738930598744404,
+            "peak_ids": [
+              4,
+              5,
+              6,
+              8,
+              9,
+              10
+            ],
+            "is_instrument_calibration": false,
+            "broad_flags_before_update": 3,
+            "broad_flags_after_update": 0,
+            "peak_quality_response": "empirically_initialized_resolution"
+          },
+          "centroid_alignment": 0.08500000000000002,
+          "candidate_diagnostics": [
+            {
+              "Element": "Fe",
+              "Status": "supported",
+              "DeltaDeviance": 8282.9106394496,
+              "NumIndependentEvidenceRegions": 2,
+              "PatternScore": 5.3524081511,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Cu",
+              "Status": "supported",
+              "DeltaDeviance": 2736.7532973486,
+              "NumIndependentEvidenceRegions": 2,
+              "PatternScore": 1.0265312102,
+              "ConfidenceNotes": "Identified energies retained; matrix_effect_or_model_mismatch; branch_ratio_mismatch; Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Pb",
+              "Status": "supported",
+              "DeltaDeviance": 21158.2271358331,
+              "NumIndependentEvidenceRegions": 7,
+              "PatternScore": 17.7370903132,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            }
+          ]
+        },
+        {
+          "case": "weak_Ca",
+          "truth": [
+            "Ca",
+            "Fe",
+            "Pb"
+          ],
+          "supported": [
+            "Ca",
+            "Fe",
+            "Pb"
+          ],
+          "false_positive": [],
+          "false_negative": [],
+          "fit_success": true,
+          "ratio_relative_errors": [
+            0.061780800968278315,
+            0.008272030076464487,
+            0.0
+          ],
+          "fitted_symbols": [
+            "Ca",
+            "Fe",
+            "Pb"
+          ],
+          "response_initialization": {
+            "used": true,
+            "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+            "configured_reference_FWHM_keV": 0.135,
+            "effective_reference_FWHM_keV": 0.26651310029358294,
+            "peak_ids": [
+              2,
+              4,
+              5,
+              6,
+              7,
+              9,
+              10
+            ],
+            "is_instrument_calibration": false,
+            "broad_flags_before_update": 3,
+            "broad_flags_after_update": 0,
+            "peak_quality_response": "empirically_initialized_resolution"
+          },
+          "centroid_alignment": 0.08500000000000002,
+          "candidate_diagnostics": [
+            {
+              "Element": "Ca",
+              "Status": "supported",
+              "DeltaDeviance": 160.0779440482,
+              "NumIndependentEvidenceRegions": 1,
+              "PatternScore": -0.9186007733,
+              "ConfidenceNotes": "low_Z_Kalpha_dominant_support; independent Kbeta not required; single-region evidence retained; robust local evidence controls identity; Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Fe",
+              "Status": "supported",
+              "DeltaDeviance": 18103.0433512444,
+              "NumIndependentEvidenceRegions": 2,
+              "PatternScore": 6.181443567,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Pb",
+              "Status": "supported",
+              "DeltaDeviance": 118702.6267176229,
+              "NumIndependentEvidenceRegions": 10,
+              "PatternScore": 31.1827260336,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            }
+          ]
+        },
+        {
+          "case": "Hg_Pb",
+          "truth": [
+            "Hg",
+            "Pb"
+          ],
+          "supported": [
+            "Hg",
+            "Pb"
+          ],
+          "false_positive": [],
+          "false_negative": [],
+          "fit_success": true,
+          "ratio_relative_errors": [
+            0.0215827951188865,
+            0.0
+          ],
+          "fitted_symbols": [
+            "Hg",
+            "Pb"
+          ],
+          "response_initialization": {
+            "used": true,
+            "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+            "configured_reference_FWHM_keV": 0.135,
+            "effective_reference_FWHM_keV": 0.2693210595054178,
+            "peak_ids": [
+              3,
+              4,
+              5,
+              6,
+              7,
+              9
+            ],
+            "is_instrument_calibration": false,
+            "broad_flags_before_update": 2,
+            "broad_flags_after_update": 0,
+            "peak_quality_response": "empirically_initialized_resolution"
+          },
+          "centroid_alignment": 0.06,
+          "candidate_diagnostics": [
+            {
+              "Element": "Hg",
+              "Status": "supported",
+              "DeltaDeviance": 1473.2167757863,
+              "NumIndependentEvidenceRegions": 4,
+              "PatternScore": 8.0121082321,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Pb",
+              "Status": "supported",
+              "DeltaDeviance": 32341.4939105455,
+              "NumIndependentEvidenceRegions": 10,
+              "PatternScore": 25.4011409174,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            }
+          ]
+        },
+        {
+          "case": "Pb_As_overlap",
+          "truth": [
+            "As",
+            "Pb"
+          ],
+          "supported": [
+            "As",
+            "Pb"
+          ],
+          "false_positive": [],
+          "false_negative": [],
+          "fit_success": true,
+          "ratio_relative_errors": [
+            0.06940228543120641,
+            0.0
+          ],
+          "fitted_symbols": [
+            "As",
+            "Pb"
+          ],
+          "response_initialization": {
+            "used": true,
+            "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+            "configured_reference_FWHM_keV": 0.135,
+            "effective_reference_FWHM_keV": 0.25793446644343443,
+            "peak_ids": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "is_instrument_calibration": false,
+            "broad_flags_before_update": 1,
+            "broad_flags_after_update": 0,
+            "peak_quality_response": "empirically_initialized_resolution"
+          },
+          "centroid_alignment": 0.07,
+          "candidate_diagnostics": [
+            {
+              "Element": "As",
+              "Status": "supported",
+              "DeltaDeviance": 1105.1262983841,
+              "NumIndependentEvidenceRegions": 3,
+              "PatternScore": 8.6517375943,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Pb",
+              "Status": "supported",
+              "DeltaDeviance": 35543.6638720749,
+              "NumIndependentEvidenceRegions": 8,
+              "PatternScore": 24.5373137946,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            }
+          ]
+        },
+        {
+          "case": "weak_Fe_Ni",
+          "truth": [
+            "Fe",
+            "Ni",
+            "Pb"
+          ],
+          "supported": [
+            "Fe",
+            "Ni",
+            "Pb"
+          ],
+          "false_positive": [],
+          "false_negative": [],
+          "fit_success": true,
+          "ratio_relative_errors": [
+            0.03866191365066851,
+            0.08645975595937516,
+            0.0
+          ],
+          "fitted_symbols": [
+            "Fe",
+            "Ni",
+            "Pb"
+          ],
+          "response_initialization": {
+            "used": true,
+            "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+            "configured_reference_FWHM_keV": 0.135,
+            "effective_reference_FWHM_keV": 0.26638230151495695,
+            "peak_ids": [
+              3,
+              4,
+              6,
+              7,
+              9,
+              10
+            ],
+            "is_instrument_calibration": false,
+            "broad_flags_before_update": 2,
+            "broad_flags_after_update": 0,
+            "peak_quality_response": "empirically_initialized_resolution"
+          },
+          "centroid_alignment": 0.09500000000000003,
+          "candidate_diagnostics": [
+            {
+              "Element": "Fe",
+              "Status": "supported",
+              "DeltaDeviance": 840.5912446165,
+              "NumIndependentEvidenceRegions": 2,
+              "PatternScore": -0.0498876166,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Ni",
+              "Status": "supported",
+              "DeltaDeviance": 1204.0254389158,
+              "NumIndependentEvidenceRegions": 2,
+              "PatternScore": 1.6064378577,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Pb",
+              "Status": "supported",
+              "DeltaDeviance": 83851.7675920652,
+              "NumIndependentEvidenceRegions": 10,
+              "PatternScore": 27.2232740128,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            }
+          ]
+        },
+        {
+          "case": "true_Tb",
+          "truth": [
+            "Fe",
+            "Pb",
+            "Tb"
+          ],
+          "supported": [
+            "Pb",
+            "Tb"
+          ],
+          "false_positive": [],
+          "false_negative": [
+            "Fe"
+          ],
+          "fit_success": true,
+          "ratio_relative_errors": [
+            0.5540100666915677,
+            0.0
+          ],
+          "fitted_symbols": [
+            "As",
+            "Tb",
+            "Pb"
+          ],
+          "response_initialization": {
+            "used": true,
+            "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+            "configured_reference_FWHM_keV": 0.135,
+            "effective_reference_FWHM_keV": 0.24708805463970543,
+            "peak_ids": [
+              1,
+              2,
+              6,
+              7,
+              9,
+              10,
+              11,
+              12
+            ],
+            "is_instrument_calibration": false,
+            "broad_flags_before_update": 2,
+            "broad_flags_after_update": 0,
+            "peak_quality_response": "empirically_initialized_resolution"
+          },
+          "centroid_alignment": 0.065,
+          "candidate_diagnostics": [
+            {
+              "Element": "Fe",
+              "Status": "not_supported",
+              "DeltaDeviance": null,
+              "NumIndependentEvidenceRegions": 0,
+              "PatternScore": -3.587498221,
+              "ConfidenceNotes": "Not selected by global centroid/branch pattern; alternatives retained in peak_line_matches.csv; not evidence of absence"
+            },
+            {
+              "Element": "Tb",
+              "Status": "supported",
+              "DeltaDeviance": 11454.9846681222,
+              "NumIndependentEvidenceRegions": 6,
+              "PatternScore": 9.7732542442,
+              "ConfidenceNotes": "Identified energies retained; matrix_effect_or_model_mismatch; branch_ratio_mismatch; Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Pb",
+              "Status": "supported",
+              "DeltaDeviance": 31271.773462497,
+              "NumIndependentEvidenceRegions": 7,
+              "PatternScore": 24.5688073778,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            }
+          ]
+        },
+        {
+          "case": "hidden_Tb",
+          "truth": [
+            "Fe",
+            "Pb",
+            "Tb"
+          ],
+          "supported": [
+            "Fe",
+            "Pb"
+          ],
+          "false_positive": [],
+          "false_negative": [
+            "Tb"
+          ],
+          "fit_success": true,
+          "ratio_relative_errors": [
+            0.06882980049317178,
+            0.0
+          ],
+          "fitted_symbols": [
+            "Fe",
+            "Tb",
+            "Pb"
+          ],
+          "response_initialization": {
+            "used": true,
+            "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+            "configured_reference_FWHM_keV": 0.135,
+            "effective_reference_FWHM_keV": 0.2741301638707729,
+            "peak_ids": [
+              2,
+              3,
+              4,
+              6,
+              7,
+              9,
+              10
+            ],
+            "is_instrument_calibration": false,
+            "broad_flags_before_update": 1,
+            "broad_flags_after_update": 0,
+            "peak_quality_response": "empirically_initialized_resolution"
+          },
+          "centroid_alignment": 0.04999999999999999,
+          "candidate_diagnostics": [
+            {
+              "Element": "Fe",
+              "Status": "supported",
+              "DeltaDeviance": 2533.1363628815,
+              "NumIndependentEvidenceRegions": 2,
+              "PatternScore": 4.4654729705,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Tb",
+              "Status": "tentative",
+              "DeltaDeviance": 188.6487872862,
+              "NumIndependentEvidenceRegions": 5,
+              "PatternScore": -1.1759581631,
+              "ConfidenceNotes": "No precise observed principal alpha group; minor or auxiliary branches cannot establish identity alone; Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Pb",
+              "Status": "supported",
+              "DeltaDeviance": 39358.3323803059,
+              "NumIndependentEvidenceRegions": 7,
+              "PatternScore": 25.0132254683,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            }
+          ]
+        },
+        {
+          "case": "gain_drift",
+          "truth": [
+            "Cu",
+            "Fe",
+            "Pb"
+          ],
+          "supported": [
+            "Cu",
+            "Fe",
+            "Pb"
+          ],
+          "false_positive": [],
+          "false_negative": [],
+          "fit_success": true,
+          "ratio_relative_errors": [
+            0.01229133789609449,
+            0.017666084068433063,
+            0.0
+          ],
+          "fitted_symbols": [
+            "Fe",
+            "Cu",
+            "Pb"
+          ],
+          "response_initialization": {
+            "used": true,
+            "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+            "configured_reference_FWHM_keV": 0.135,
+            "effective_reference_FWHM_keV": 0.2589812854903055,
+            "peak_ids": [
+              3,
+              4,
+              5,
+              7,
+              8,
+              9
+            ],
+            "is_instrument_calibration": false,
+            "broad_flags_before_update": 3,
+            "broad_flags_after_update": 0,
+            "peak_quality_response": "empirically_initialized_resolution"
+          },
+          "centroid_alignment": 0.07500000000000001,
+          "candidate_diagnostics": [
+            {
+              "Element": "Fe",
+              "Status": "supported",
+              "DeltaDeviance": 12088.7509469317,
+              "NumIndependentEvidenceRegions": 2,
+              "PatternScore": 5.5083755011,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Cu",
+              "Status": "supported",
+              "DeltaDeviance": 7681.0401769507,
+              "NumIndependentEvidenceRegions": 2,
+              "PatternScore": 1.6564872931,
+              "ConfidenceNotes": "Identified energies retained; matrix_effect_or_model_mismatch; branch_ratio_mismatch; Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Pb",
+              "Status": "supported",
+              "DeltaDeviance": 65336.6548072868,
+              "NumIndependentEvidenceRegions": 9,
+              "PatternScore": 20.7301708141,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            }
+          ]
+        }
+      ]
+    },
+    "threshold_3": {
+      "overrides": {
+        "candidate_threshold_sigma": 3.0
+      },
+      "false_positives": 0,
+      "false_negatives": 1,
+      "fit_failures": 0,
+      "weighted_loss": 3,
+      "median_ratio_relative_error": 0.007594605397929,
+      "cases": [
+        {
+          "case": "blank",
+          "truth": [],
+          "supported": [],
+          "false_positive": [],
+          "false_negative": [],
+          "fit_success": true,
+          "ratio_relative_errors": [],
+          "fitted_symbols": [
+            "Cr",
+            "Pm",
+            "Hg"
+          ],
+          "response_initialization": {
+            "used": false,
+            "reason": "Fewer than two well-fitted isolated observed peaks"
+          },
+          "centroid_alignment": 0.0,
+          "candidate_diagnostics": []
+        },
+        {
+          "case": "Fe_Cu_Pb",
+          "truth": [
+            "Cu",
+            "Fe",
+            "Pb"
+          ],
+          "supported": [
+            "Cu",
+            "Fe",
+            "Pb"
+          ],
+          "false_positive": [],
+          "false_negative": [],
+          "fit_success": true,
+          "ratio_relative_errors": [
+            0.0012616657114336016,
+            0.007388357419875646,
+            0.0
+          ],
+          "fitted_symbols": [
+            "Fe",
+            "Cu",
+            "Pm",
+            "Pb"
+          ],
+          "response_initialization": {
+            "used": true,
+            "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+            "configured_reference_FWHM_keV": 0.135,
+            "effective_reference_FWHM_keV": 0.2738930598744404,
+            "peak_ids": [
+              5,
+              6,
+              7,
+              9,
+              10,
+              11
+            ],
+            "is_instrument_calibration": false,
+            "broad_flags_before_update": 4,
+            "broad_flags_after_update": 0,
+            "peak_quality_response": "empirically_initialized_resolution"
+          },
+          "centroid_alignment": 0.08500000000000002,
+          "candidate_diagnostics": [
+            {
+              "Element": "Fe",
+              "Status": "supported",
+              "DeltaDeviance": 7785.8484508609,
+              "NumIndependentEvidenceRegions": 2,
+              "PatternScore": 5.3524081517,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Cu",
+              "Status": "supported",
+              "DeltaDeviance": 2736.7532970857,
+              "NumIndependentEvidenceRegions": 2,
+              "PatternScore": 1.0265313933,
+              "ConfidenceNotes": "Identified energies retained; matrix_effect_or_model_mismatch; branch_ratio_mismatch; Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Pb",
+              "Status": "supported",
+              "DeltaDeviance": 21158.2271357558,
+              "NumIndependentEvidenceRegions": 7,
+              "PatternScore": 17.7370915735,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            }
+          ]
+        },
+        {
+          "case": "weak_Ca",
+          "truth": [
+            "Ca",
+            "Fe",
+            "Pb"
+          ],
+          "supported": [
+            "Ca",
+            "Fe",
+            "Pb"
+          ],
+          "false_positive": [],
+          "false_negative": [],
+          "fit_success": true,
+          "ratio_relative_errors": [
+            0.06178079527930169,
+            0.008272021742937175,
+            0.0
+          ],
+          "fitted_symbols": [
+            "Ca",
+            "Fe",
+            "Pb"
+          ],
+          "response_initialization": {
+            "used": true,
+            "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+            "configured_reference_FWHM_keV": 0.135,
+            "effective_reference_FWHM_keV": 0.26651310029358294,
+            "peak_ids": [
+              2,
+              4,
+              5,
+              6,
+              7,
+              9,
+              10
+            ],
+            "is_instrument_calibration": false,
+            "broad_flags_before_update": 3,
+            "broad_flags_after_update": 0,
+            "peak_quality_response": "empirically_initialized_resolution"
+          },
+          "centroid_alignment": 0.08500000000000002,
+          "candidate_diagnostics": [
+            {
+              "Element": "Ca",
+              "Status": "supported",
+              "DeltaDeviance": 160.0779441419,
+              "NumIndependentEvidenceRegions": 1,
+              "PatternScore": -0.9186007376,
+              "ConfidenceNotes": "low_Z_Kalpha_dominant_support; independent Kbeta not required; single-region evidence retained; robust local evidence controls identity; Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Fe",
+              "Status": "supported",
+              "DeltaDeviance": 18103.0433521641,
+              "NumIndependentEvidenceRegions": 2,
+              "PatternScore": 6.1814434912,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Pb",
+              "Status": "supported",
+              "DeltaDeviance": 118702.6267166708,
+              "NumIndependentEvidenceRegions": 10,
+              "PatternScore": 29.7446744353,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            }
+          ]
+        },
+        {
+          "case": "Hg_Pb",
+          "truth": [
+            "Hg",
+            "Pb"
+          ],
+          "supported": [
+            "Hg",
+            "Pb"
+          ],
+          "false_positive": [],
+          "false_negative": [],
+          "fit_success": true,
+          "ratio_relative_errors": [
+            0.021548291370700134,
+            0.0
+          ],
+          "fitted_symbols": [
+            "Tb",
+            "Hg",
+            "Pb"
+          ],
+          "response_initialization": {
+            "used": true,
+            "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+            "configured_reference_FWHM_keV": 0.135,
+            "effective_reference_FWHM_keV": 0.2693210595054178,
+            "peak_ids": [
+              6,
+              7,
+              8,
+              9,
+              10,
+              12
+            ],
+            "is_instrument_calibration": false,
+            "broad_flags_before_update": 3,
+            "broad_flags_after_update": 1,
+            "peak_quality_response": "empirically_initialized_resolution"
+          },
+          "centroid_alignment": 0.06,
+          "candidate_diagnostics": [
+            {
+              "Element": "Hg",
+              "Status": "supported",
+              "DeltaDeviance": 1478.1501919064,
+              "NumIndependentEvidenceRegions": 4,
+              "PatternScore": 8.0119638127,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Pb",
+              "Status": "supported",
+              "DeltaDeviance": 33130.333384573,
+              "NumIndependentEvidenceRegions": 10,
+              "PatternScore": 23.945560042,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            }
+          ]
+        },
+        {
+          "case": "Pb_As_overlap",
+          "truth": [
+            "As",
+            "Pb"
+          ],
+          "supported": [
+            "As",
+            "Pb"
+          ],
+          "false_positive": [],
+          "false_negative": [],
+          "fit_success": true,
+          "ratio_relative_errors": [
+            0.06940134202718795,
+            0.0
+          ],
+          "fitted_symbols": [
+            "As",
+            "Pb"
+          ],
+          "response_initialization": {
+            "used": true,
+            "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+            "configured_reference_FWHM_keV": 0.135,
+            "effective_reference_FWHM_keV": 0.25793446644343443,
+            "peak_ids": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "is_instrument_calibration": false,
+            "broad_flags_before_update": 1,
+            "broad_flags_after_update": 0,
+            "peak_quality_response": "empirically_initialized_resolution"
+          },
+          "centroid_alignment": 0.07,
+          "candidate_diagnostics": [
+            {
+              "Element": "As",
+              "Status": "supported",
+              "DeltaDeviance": 1105.1262988156,
+              "NumIndependentEvidenceRegions": 3,
+              "PatternScore": 8.6517383753,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Pb",
+              "Status": "supported",
+              "DeltaDeviance": 35543.6638743347,
+              "NumIndependentEvidenceRegions": 8,
+              "PatternScore": 21.5851988746,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            }
+          ]
+        },
+        {
+          "case": "weak_Fe_Ni",
+          "truth": [
+            "Fe",
+            "Ni",
+            "Pb"
+          ],
+          "supported": [
+            "Fe",
+            "Ni",
+            "Pb"
+          ],
+          "false_positive": [],
+          "false_negative": [],
+          "fit_success": true,
+          "ratio_relative_errors": [
+            0.0386619152007639,
+            0.08645975459003896,
+            0.0
+          ],
+          "fitted_symbols": [
+            "Fe",
+            "Ni",
+            "Pb"
+          ],
+          "response_initialization": {
+            "used": true,
+            "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+            "configured_reference_FWHM_keV": 0.135,
+            "effective_reference_FWHM_keV": 0.26638230151495695,
+            "peak_ids": [
+              3,
+              4,
+              6,
+              7,
+              9,
+              10
+            ],
+            "is_instrument_calibration": false,
+            "broad_flags_before_update": 2,
+            "broad_flags_after_update": 0,
+            "peak_quality_response": "empirically_initialized_resolution"
+          },
+          "centroid_alignment": 0.09500000000000003,
+          "candidate_diagnostics": [
+            {
+              "Element": "Fe",
+              "Status": "supported",
+              "DeltaDeviance": 840.5912449426,
+              "NumIndependentEvidenceRegions": 2,
+              "PatternScore": -0.0498876156,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Ni",
+              "Status": "supported",
+              "DeltaDeviance": 1204.0254391937,
+              "NumIndependentEvidenceRegions": 2,
+              "PatternScore": 1.6064378649,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Pb",
+              "Status": "supported",
+              "DeltaDeviance": 83851.7675923477,
+              "NumIndependentEvidenceRegions": 10,
+              "PatternScore": 27.2232739619,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            }
+          ]
+        },
+        {
+          "case": "true_Tb",
+          "truth": [
+            "Fe",
+            "Pb",
+            "Tb"
+          ],
+          "supported": [
+            "Pb",
+            "Tb"
+          ],
+          "false_positive": [],
+          "false_negative": [
+            "Fe"
+          ],
+          "fit_success": true,
+          "ratio_relative_errors": [
+            0.5540225594291033,
+            0.0
+          ],
+          "fitted_symbols": [
+            "As",
+            "Tb",
+            "Pb"
+          ],
+          "response_initialization": {
+            "used": true,
+            "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+            "configured_reference_FWHM_keV": 0.135,
+            "effective_reference_FWHM_keV": 0.24708805463970543,
+            "peak_ids": [
+              1,
+              2,
+              6,
+              7,
+              9,
+              10,
+              12,
+              13
+            ],
+            "is_instrument_calibration": false,
+            "broad_flags_before_update": 3,
+            "broad_flags_after_update": 0,
+            "peak_quality_response": "empirically_initialized_resolution"
+          },
+          "centroid_alignment": 0.06,
+          "candidate_diagnostics": [
+            {
+              "Element": "Fe",
+              "Status": "not_supported",
+              "DeltaDeviance": null,
+              "NumIndependentEvidenceRegions": 0,
+              "PatternScore": -3.5874983707,
+              "ConfidenceNotes": "Not selected by global centroid/branch pattern; alternatives retained in peak_line_matches.csv; not evidence of absence"
+            },
+            {
+              "Element": "Tb",
+              "Status": "supported",
+              "DeltaDeviance": 11454.9846674101,
+              "NumIndependentEvidenceRegions": 6,
+              "PatternScore": 9.773254669,
+              "ConfidenceNotes": "Identified energies retained; matrix_effect_or_model_mismatch; branch_ratio_mismatch; Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Pb",
+              "Status": "supported",
+              "DeltaDeviance": 31271.7734630491,
+              "NumIndependentEvidenceRegions": 7,
+              "PatternScore": 25.7102772889,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            }
+          ]
+        },
+        {
+          "case": "hidden_Tb",
+          "truth": [
+            "Fe",
+            "Pb",
+            "Tb"
+          ],
+          "supported": [
+            "Fe",
+            "Pb",
+            "Tb"
+          ],
+          "false_positive": [],
+          "false_negative": [],
+          "fit_success": true,
+          "ratio_relative_errors": [
+            0.0733069235385988,
+            0.0
+          ],
+          "fitted_symbols": [
+            "Fe",
+            "Tb",
+            "Pb"
+          ],
+          "response_initialization": {
+            "used": true,
+            "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+            "configured_reference_FWHM_keV": 0.135,
+            "effective_reference_FWHM_keV": 0.2741301638707729,
+            "peak_ids": [
+              3,
+              4,
+              5,
+              7,
+              8,
+              10,
+              11
+            ],
+            "is_instrument_calibration": false,
+            "broad_flags_before_update": 1,
+            "broad_flags_after_update": 0,
+            "peak_quality_response": "empirically_initialized_resolution"
+          },
+          "centroid_alignment": 0.04999999999999999,
+          "candidate_diagnostics": [
+            {
+              "Element": "Fe",
+              "Status": "supported",
+              "DeltaDeviance": 2533.1363628815,
+              "NumIndependentEvidenceRegions": 2,
+              "PatternScore": 4.4654729705,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Tb",
+              "Status": "supported",
+              "DeltaDeviance": 188.6487872862,
+              "NumIndependentEvidenceRegions": 5,
+              "PatternScore": 3.0580627686,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Pb",
+              "Status": "supported",
+              "DeltaDeviance": 39358.3323803059,
+              "NumIndependentEvidenceRegions": 7,
+              "PatternScore": 25.0132254683,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            }
+          ]
+        },
+        {
+          "case": "gain_drift",
+          "truth": [
+            "Cu",
+            "Fe",
+            "Pb"
+          ],
+          "supported": [
+            "Cu",
+            "Fe",
+            "Pb"
+          ],
+          "false_positive": [],
+          "false_negative": [],
+          "fit_success": true,
+          "ratio_relative_errors": [
+            0.007800853375982353,
+            0.017670800136757148,
+            0.0
+          ],
+          "fitted_symbols": [
+            "Fe",
+            "Cu",
+            "Pm",
+            "Pb"
+          ],
+          "response_initialization": {
+            "used": true,
+            "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+            "configured_reference_FWHM_keV": 0.135,
+            "effective_reference_FWHM_keV": 0.2589812854903055,
+            "peak_ids": [
+              3,
+              4,
+              5,
+              7,
+              9,
+              10
+            ],
+            "is_instrument_calibration": false,
+            "broad_flags_before_update": 3,
+            "broad_flags_after_update": 0,
+            "peak_quality_response": "empirically_initialized_resolution"
+          },
+          "centroid_alignment": 0.07500000000000001,
+          "candidate_diagnostics": [
+            {
+              "Element": "Fe",
+              "Status": "supported",
+              "DeltaDeviance": 11325.4648289246,
+              "NumIndependentEvidenceRegions": 2,
+              "PatternScore": 5.5083444728,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Cu",
+              "Status": "supported",
+              "DeltaDeviance": 7682.4387772238,
+              "NumIndependentEvidenceRegions": 2,
+              "PatternScore": 1.6569883475,
+              "ConfidenceNotes": "Identified energies retained; matrix_effect_or_model_mismatch; branch_ratio_mismatch; Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Pb",
+              "Status": "supported",
+              "DeltaDeviance": 65338.053404258,
+              "NumIndependentEvidenceRegions": 9,
+              "PatternScore": 23.6366292044,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            }
+          ]
+        }
+      ]
+    },
+    "threshold_4": {
+      "overrides": {
+        "candidate_threshold_sigma": 4.0
+      },
+      "false_positives": 0,
+      "false_negatives": 2,
+      "fit_failures": 0,
+      "weighted_loss": 6,
+      "median_ratio_relative_error": 0.007830214533563695,
+      "cases": [
+        {
+          "case": "blank",
+          "truth": [],
+          "supported": [],
+          "false_positive": [],
+          "false_negative": [],
+          "fit_success": true,
+          "ratio_relative_errors": [],
+          "fitted_symbols": [],
+          "response_initialization": {
+            "used": false
+          },
+          "centroid_alignment": 0.0,
+          "candidate_diagnostics": []
+        },
+        {
+          "case": "Fe_Cu_Pb",
+          "truth": [
+            "Cu",
+            "Fe",
+            "Pb"
+          ],
+          "supported": [
+            "Cu",
+            "Fe",
+            "Pb"
+          ],
+          "false_positive": [],
+          "false_negative": [],
+          "fit_success": true,
+          "ratio_relative_errors": [
+            0.0012616873073725277,
+            0.007389511044816555,
+            0.0
+          ],
+          "fitted_symbols": [
+            "Fe",
+            "Cu",
+            "Pb"
+          ],
+          "response_initialization": {
+            "used": true,
+            "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+            "configured_reference_FWHM_keV": 0.135,
+            "effective_reference_FWHM_keV": 0.2738930598744404,
+            "peak_ids": [
+              3,
+              4,
+              5,
+              7,
+              8,
+              9
+            ],
+            "is_instrument_calibration": false,
+            "broad_flags_before_update": 3,
+            "broad_flags_after_update": 0,
+            "peak_quality_response": "empirically_initialized_resolution"
+          },
+          "centroid_alignment": 0.08500000000000002,
+          "candidate_diagnostics": [
+            {
+              "Element": "Fe",
+              "Status": "supported",
+              "DeltaDeviance": 8282.9106394496,
+              "NumIndependentEvidenceRegions": 2,
+              "PatternScore": 5.3524081511,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Cu",
+              "Status": "supported",
+              "DeltaDeviance": 2736.7532973486,
+              "NumIndependentEvidenceRegions": 2,
+              "PatternScore": 1.0265312102,
+              "ConfidenceNotes": "Identified energies retained; matrix_effect_or_model_mismatch; branch_ratio_mismatch; Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Pb",
+              "Status": "supported",
+              "DeltaDeviance": 21158.2271358331,
+              "NumIndependentEvidenceRegions": 7,
+              "PatternScore": 17.7370903132,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            }
+          ]
+        },
+        {
+          "case": "weak_Ca",
+          "truth": [
+            "Ca",
+            "Fe",
+            "Pb"
+          ],
+          "supported": [
+            "Ca",
+            "Fe",
+            "Pb"
+          ],
+          "false_positive": [],
+          "false_negative": [],
+          "fit_success": true,
+          "ratio_relative_errors": [
+            0.06178196737174724,
+            0.008270918022310836,
+            0.0
+          ],
+          "fitted_symbols": [
+            "Ca",
+            "Fe",
+            "Pb"
+          ],
+          "response_initialization": {
+            "used": true,
+            "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+            "configured_reference_FWHM_keV": 0.135,
+            "effective_reference_FWHM_keV": 0.26651310029358294,
+            "peak_ids": [
+              2,
+              4,
+              5,
+              6,
+              7,
+              9,
+              10
+            ],
+            "is_instrument_calibration": false,
+            "broad_flags_before_update": 2,
+            "broad_flags_after_update": 0,
+            "peak_quality_response": "empirically_initialized_resolution"
+          },
+          "centroid_alignment": 0.08000000000000002,
+          "candidate_diagnostics": [
+            {
+              "Element": "Ca",
+              "Status": "supported",
+              "DeltaDeviance": 160.0779443506,
+              "NumIndependentEvidenceRegions": 1,
+              "PatternScore": -0.9186007036,
+              "ConfidenceNotes": "low_Z_Kalpha_dominant_support; independent Kbeta not required; single-region evidence retained; robust local evidence controls identity; Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Fe",
+              "Status": "supported",
+              "DeltaDeviance": 18103.0433713229,
+              "NumIndependentEvidenceRegions": 2,
+              "PatternScore": 6.1814434998,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Pb",
+              "Status": "supported",
+              "DeltaDeviance": 118702.6267183996,
+              "NumIndependentEvidenceRegions": 10,
+              "PatternScore": 32.7513451294,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            }
+          ]
+        },
+        {
+          "case": "Hg_Pb",
+          "truth": [
+            "Hg",
+            "Pb"
+          ],
+          "supported": [
+            "Hg",
+            "Pb"
+          ],
+          "false_positive": [],
+          "false_negative": [],
+          "fit_success": true,
+          "ratio_relative_errors": [
+            0.021568328137712367,
+            0.0
+          ],
+          "fitted_symbols": [
+            "Hg",
+            "Pb"
+          ],
+          "response_initialization": {
+            "used": true,
+            "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+            "configured_reference_FWHM_keV": 0.135,
+            "effective_reference_FWHM_keV": 0.2693210595054178,
+            "peak_ids": [
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "is_instrument_calibration": false,
+            "broad_flags_before_update": 2,
+            "broad_flags_after_update": 0,
+            "peak_quality_response": "empirically_initialized_resolution"
+          },
+          "centroid_alignment": 0.065,
+          "candidate_diagnostics": [
+            {
+              "Element": "Hg",
+              "Status": "supported",
+              "DeltaDeviance": 1473.2167759297,
+              "NumIndependentEvidenceRegions": 4,
+              "PatternScore": 7.3108364232,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Pb",
+              "Status": "supported",
+              "DeltaDeviance": 32703.0641206733,
+              "NumIndependentEvidenceRegions": 10,
+              "PatternScore": 27.0021278273,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            }
+          ]
+        },
+        {
+          "case": "Pb_As_overlap",
+          "truth": [
+            "As",
+            "Pb"
+          ],
+          "supported": [
+            "As",
+            "Pb"
+          ],
+          "false_positive": [],
+          "false_negative": [],
+          "fit_success": true,
+          "ratio_relative_errors": [
+            0.06940279832959839,
+            0.0
+          ],
+          "fitted_symbols": [
+            "As",
+            "Pb"
+          ],
+          "response_initialization": {
+            "used": true,
+            "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+            "configured_reference_FWHM_keV": 0.135,
+            "effective_reference_FWHM_keV": 0.25793446644343443,
+            "peak_ids": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "is_instrument_calibration": false,
+            "broad_flags_before_update": 1,
+            "broad_flags_after_update": 0,
+            "peak_quality_response": "empirically_initialized_resolution"
+          },
+          "centroid_alignment": 0.07,
+          "candidate_diagnostics": [
+            {
+              "Element": "As",
+              "Status": "supported",
+              "DeltaDeviance": 1105.1262989636,
+              "NumIndependentEvidenceRegions": 3,
+              "PatternScore": 8.6517371399,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Pb",
+              "Status": "supported",
+              "DeltaDeviance": 35543.6638724642,
+              "NumIndependentEvidenceRegions": 8,
+              "PatternScore": 24.5373133263,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            }
+          ]
+        },
+        {
+          "case": "weak_Fe_Ni",
+          "truth": [
+            "Fe",
+            "Ni",
+            "Pb"
+          ],
+          "supported": [
+            "Fe",
+            "Ni",
+            "Pb"
+          ],
+          "false_positive": [],
+          "false_negative": [],
+          "fit_success": true,
+          "ratio_relative_errors": [
+            0.03866195599598787,
+            0.08645970838231198,
+            0.0
+          ],
+          "fitted_symbols": [
+            "Fe",
+            "Ni",
+            "Pb"
+          ],
+          "response_initialization": {
+            "used": true,
+            "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+            "configured_reference_FWHM_keV": 0.135,
+            "effective_reference_FWHM_keV": 0.26638230151495695,
+            "peak_ids": [
+              3,
+              4,
+              6,
+              7,
+              9,
+              10
+            ],
+            "is_instrument_calibration": false,
+            "broad_flags_before_update": 2,
+            "broad_flags_after_update": 0,
+            "peak_quality_response": "empirically_initialized_resolution"
+          },
+          "centroid_alignment": 0.09500000000000003,
+          "candidate_diagnostics": [
+            {
+              "Element": "Fe",
+              "Status": "supported",
+              "DeltaDeviance": 840.5912445916,
+              "NumIndependentEvidenceRegions": 2,
+              "PatternScore": -0.0498876193,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Ni",
+              "Status": "supported",
+              "DeltaDeviance": 1204.0254392651,
+              "NumIndependentEvidenceRegions": 2,
+              "PatternScore": 1.6064378727,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Pb",
+              "Status": "supported",
+              "DeltaDeviance": 83851.7675922558,
+              "NumIndependentEvidenceRegions": 10,
+              "PatternScore": 28.7527816621,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            }
+          ]
+        },
+        {
+          "case": "true_Tb",
+          "truth": [
+            "Fe",
+            "Pb",
+            "Tb"
+          ],
+          "supported": [
+            "Pb",
+            "Tb"
+          ],
+          "false_positive": [],
+          "false_negative": [
+            "Fe"
+          ],
+          "fit_success": true,
+          "ratio_relative_errors": [
+            0.5540100666915677,
+            0.0
+          ],
+          "fitted_symbols": [
+            "As",
+            "Tb",
+            "Pb"
+          ],
+          "response_initialization": {
+            "used": true,
+            "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+            "configured_reference_FWHM_keV": 0.135,
+            "effective_reference_FWHM_keV": 0.24708805463970543,
+            "peak_ids": [
+              1,
+              2,
+              6,
+              7,
+              9,
+              10,
+              11,
+              12
+            ],
+            "is_instrument_calibration": false,
+            "broad_flags_before_update": 2,
+            "broad_flags_after_update": 0,
+            "peak_quality_response": "empirically_initialized_resolution"
+          },
+          "centroid_alignment": 0.065,
+          "candidate_diagnostics": [
+            {
+              "Element": "Fe",
+              "Status": "not_supported",
+              "DeltaDeviance": null,
+              "NumIndependentEvidenceRegions": 0,
+              "PatternScore": -3.587498221,
+              "ConfidenceNotes": "Not selected by global centroid/branch pattern; alternatives retained in peak_line_matches.csv; not evidence of absence"
+            },
+            {
+              "Element": "Tb",
+              "Status": "supported",
+              "DeltaDeviance": 11454.9846681222,
+              "NumIndependentEvidenceRegions": 6,
+              "PatternScore": 9.7732542442,
+              "ConfidenceNotes": "Identified energies retained; matrix_effect_or_model_mismatch; branch_ratio_mismatch; Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Pb",
+              "Status": "supported",
+              "DeltaDeviance": 31271.773462497,
+              "NumIndependentEvidenceRegions": 7,
+              "PatternScore": 24.5688073778,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            }
+          ]
+        },
+        {
+          "case": "hidden_Tb",
+          "truth": [
+            "Fe",
+            "Pb",
+            "Tb"
+          ],
+          "supported": [
+            "Fe",
+            "Pb"
+          ],
+          "false_positive": [],
+          "false_negative": [
+            "Tb"
+          ],
+          "fit_success": true,
+          "ratio_relative_errors": [
+            0.06882980049317178,
+            0.0
+          ],
+          "fitted_symbols": [
+            "Fe",
+            "Tb",
+            "Pb"
+          ],
+          "response_initialization": {
+            "used": true,
+            "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+            "configured_reference_FWHM_keV": 0.135,
+            "effective_reference_FWHM_keV": 0.2741301638707729,
+            "peak_ids": [
+              2,
+              3,
+              4,
+              6,
+              7,
+              9,
+              10
+            ],
+            "is_instrument_calibration": false,
+            "broad_flags_before_update": 1,
+            "broad_flags_after_update": 0,
+            "peak_quality_response": "empirically_initialized_resolution"
+          },
+          "centroid_alignment": 0.04999999999999999,
+          "candidate_diagnostics": [
+            {
+              "Element": "Fe",
+              "Status": "supported",
+              "DeltaDeviance": 2533.1363628815,
+              "NumIndependentEvidenceRegions": 2,
+              "PatternScore": 4.4654729705,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Tb",
+              "Status": "tentative",
+              "DeltaDeviance": 188.6487872862,
+              "NumIndependentEvidenceRegions": 5,
+              "PatternScore": -1.1759581631,
+              "ConfidenceNotes": "No precise observed principal alpha group; minor or auxiliary branches cannot establish identity alone; Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Pb",
+              "Status": "supported",
+              "DeltaDeviance": 39358.3323803059,
+              "NumIndependentEvidenceRegions": 7,
+              "PatternScore": 25.0132254683,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            }
+          ]
+        },
+        {
+          "case": "gain_drift",
+          "truth": [
+            "Cu",
+            "Fe",
+            "Pb"
+          ],
+          "supported": [
+            "Cu",
+            "Fe",
+            "Pb"
+          ],
+          "false_positive": [],
+          "false_negative": [],
+          "fit_success": true,
+          "ratio_relative_errors": [
+            0.012291373674364059,
+            0.01766691538674736,
+            0.0
+          ],
+          "fitted_symbols": [
+            "Fe",
+            "Cu",
+            "Pb"
+          ],
+          "response_initialization": {
+            "used": true,
+            "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+            "configured_reference_FWHM_keV": 0.135,
+            "effective_reference_FWHM_keV": 0.2589812854903055,
+            "peak_ids": [
+              3,
+              4,
+              5,
+              7,
+              8,
+              9
+            ],
+            "is_instrument_calibration": false,
+            "broad_flags_before_update": 3,
+            "broad_flags_after_update": 0,
+            "peak_quality_response": "empirically_initialized_resolution"
+          },
+          "centroid_alignment": 0.08500000000000002,
+          "candidate_diagnostics": [
+            {
+              "Element": "Fe",
+              "Status": "supported",
+              "DeltaDeviance": 12088.7509520389,
+              "NumIndependentEvidenceRegions": 2,
+              "PatternScore": 5.5083754852,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Cu",
+              "Status": "supported",
+              "DeltaDeviance": 7681.0401780896,
+              "NumIndependentEvidenceRegions": 2,
+              "PatternScore": 1.6564873443,
+              "ConfidenceNotes": "Identified energies retained; matrix_effect_or_model_mismatch; branch_ratio_mismatch; Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Pb",
+              "Status": "supported",
+              "DeltaDeviance": 65336.6548050179,
+              "NumIndependentEvidenceRegions": 9,
+              "PatternScore": 22.2775969179,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            }
+          ]
+        }
+      ]
+    },
+    "no_gain": {
+      "overrides": {
+        "fit_energy_gain": false
+      },
+      "false_positives": 0,
+      "false_negatives": 2,
+      "fit_failures": 0,
+      "weighted_loss": 6,
+      "median_ratio_relative_error": 0.00810012556542189,
+      "cases": [
+        {
+          "case": "blank",
+          "truth": [],
+          "supported": [],
+          "false_positive": [],
+          "false_negative": [],
+          "fit_success": true,
+          "ratio_relative_errors": [],
+          "fitted_symbols": [
+            "Cr",
+            "Hg"
+          ],
+          "response_initialization": {
+            "used": false,
+            "reason": "Fewer than two well-fitted isolated observed peaks"
+          },
+          "centroid_alignment": 0.0,
+          "candidate_diagnostics": []
+        },
+        {
+          "case": "Fe_Cu_Pb",
+          "truth": [
+            "Cu",
+            "Fe",
+            "Pb"
+          ],
+          "supported": [
+            "Cu",
+            "Fe",
+            "Pb"
+          ],
+          "false_positive": [],
+          "false_negative": [],
+          "fit_success": true,
+          "ratio_relative_errors": [
+            0.0012543153510121696,
+            0.007380728732366393,
+            0.0
+          ],
+          "fitted_symbols": [
+            "Fe",
+            "Cu",
+            "Pb"
+          ],
+          "response_initialization": {
+            "used": true,
+            "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+            "configured_reference_FWHM_keV": 0.135,
+            "effective_reference_FWHM_keV": 0.2738930598744404,
+            "peak_ids": [
+              4,
+              5,
+              6,
+              8,
+              9,
+              10
+            ],
+            "is_instrument_calibration": false,
+            "broad_flags_before_update": 3,
+            "broad_flags_after_update": 0,
+            "peak_quality_response": "empirically_initialized_resolution"
+          },
+          "centroid_alignment": 0.08500000000000002,
+          "candidate_diagnostics": [
+            {
+              "Element": "Fe",
+              "Status": "supported",
+              "DeltaDeviance": 8282.9601720263,
+              "NumIndependentEvidenceRegions": 2,
+              "PatternScore": 5.350787466,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Cu",
+              "Status": "supported",
+              "DeltaDeviance": 2736.7519921508,
+              "NumIndependentEvidenceRegions": 2,
+              "PatternScore": 1.0237267198,
+              "ConfidenceNotes": "Identified energies retained; matrix_effect_or_model_mismatch; branch_ratio_mismatch; Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Pb",
+              "Status": "supported",
+              "DeltaDeviance": 21194.9047717461,
+              "NumIndependentEvidenceRegions": 7,
+              "PatternScore": 17.7246983888,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            }
+          ]
+        },
+        {
+          "case": "weak_Ca",
+          "truth": [
+            "Ca",
+            "Fe",
+            "Pb"
+          ],
+          "supported": [
+            "Ca",
+            "Fe",
+            "Pb"
+          ],
+          "false_positive": [],
+          "false_negative": [],
+          "fit_success": true,
+          "ratio_relative_errors": [
+            0.06162743704975404,
+            0.008819522398477386,
+            0.0
+          ],
+          "fitted_symbols": [
+            "Ca",
+            "Fe",
+            "Pb"
+          ],
+          "response_initialization": {
+            "used": true,
+            "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+            "configured_reference_FWHM_keV": 0.135,
+            "effective_reference_FWHM_keV": 0.26651310029358294,
+            "peak_ids": [
+              2,
+              4,
+              5,
+              6,
+              7,
+              9,
+              10
+            ],
+            "is_instrument_calibration": false,
+            "broad_flags_before_update": 3,
+            "broad_flags_after_update": 0,
+            "peak_quality_response": "empirically_initialized_resolution"
+          },
+          "centroid_alignment": 0.08500000000000002,
+          "candidate_diagnostics": [
+            {
+              "Element": "Ca",
+              "Status": "supported",
+              "DeltaDeviance": 161.7227309422,
+              "NumIndependentEvidenceRegions": 1,
+              "PatternScore": -0.9043543903,
+              "ConfidenceNotes": "low_Z_Kalpha_dominant_support; independent Kbeta not required; single-region evidence retained; robust local evidence controls identity; Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Fe",
+              "Status": "supported",
+              "DeltaDeviance": 18098.5511959222,
+              "NumIndependentEvidenceRegions": 2,
+              "PatternScore": 6.1885620879,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Pb",
+              "Status": "supported",
+              "DeltaDeviance": 118474.1873200557,
+              "NumIndependentEvidenceRegions": 10,
+              "PatternScore": 27.9913606015,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            }
+          ]
+        },
+        {
+          "case": "Hg_Pb",
+          "truth": [
+            "Hg",
+            "Pb"
+          ],
+          "supported": [
+            "Hg",
+            "Pb"
+          ],
+          "false_positive": [],
+          "false_negative": [],
+          "fit_success": true,
+          "ratio_relative_errors": [
+            0.021351265918915452,
+            0.0
+          ],
+          "fitted_symbols": [
+            "Hg",
+            "Pb"
+          ],
+          "response_initialization": {
+            "used": true,
+            "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+            "configured_reference_FWHM_keV": 0.135,
+            "effective_reference_FWHM_keV": 0.2693210595054178,
+            "peak_ids": [
+              3,
+              4,
+              5,
+              6,
+              7,
+              9
+            ],
+            "is_instrument_calibration": false,
+            "broad_flags_before_update": 2,
+            "broad_flags_after_update": 0,
+            "peak_quality_response": "empirically_initialized_resolution"
+          },
+          "centroid_alignment": 0.06,
+          "candidate_diagnostics": [
+            {
+              "Element": "Hg",
+              "Status": "supported",
+              "DeltaDeviance": 1336.190619069,
+              "NumIndependentEvidenceRegions": 4,
+              "PatternScore": 6.9438863653,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Pb",
+              "Status": "supported",
+              "DeltaDeviance": 51618.8314648533,
+              "NumIndependentEvidenceRegions": 8,
+              "PatternScore": 23.3981771058,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            }
+          ]
+        },
+        {
+          "case": "Pb_As_overlap",
+          "truth": [
+            "As",
+            "Pb"
+          ],
+          "supported": [
+            "As",
+            "Pb"
+          ],
+          "false_positive": [],
+          "false_negative": [],
+          "fit_success": true,
+          "ratio_relative_errors": [
+            0.06949098437470624,
+            0.0
+          ],
+          "fitted_symbols": [
+            "As",
+            "Pb"
+          ],
+          "response_initialization": {
+            "used": true,
+            "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+            "configured_reference_FWHM_keV": 0.135,
+            "effective_reference_FWHM_keV": 0.25793446644343443,
+            "peak_ids": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "is_instrument_calibration": false,
+            "broad_flags_before_update": 1,
+            "broad_flags_after_update": 0,
+            "peak_quality_response": "empirically_initialized_resolution"
+          },
+          "centroid_alignment": 0.07,
+          "candidate_diagnostics": [
+            {
+              "Element": "As",
+              "Status": "supported",
+              "DeltaDeviance": 1105.0230955278,
+              "NumIndependentEvidenceRegions": 3,
+              "PatternScore": 8.6515102691,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Pb",
+              "Status": "supported",
+              "DeltaDeviance": 35543.5092803858,
+              "NumIndependentEvidenceRegions": 8,
+              "PatternScore": 24.5740099463,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            }
+          ]
+        },
+        {
+          "case": "weak_Fe_Ni",
+          "truth": [
+            "Fe",
+            "Ni",
+            "Pb"
+          ],
+          "supported": [
+            "Fe",
+            "Ni",
+            "Pb"
+          ],
+          "false_positive": [],
+          "false_negative": [],
+          "fit_success": true,
+          "ratio_relative_errors": [
+            0.03866039822168221,
+            0.08645936081921635,
+            0.0
+          ],
+          "fitted_symbols": [
+            "Fe",
+            "Ni",
+            "Pb"
+          ],
+          "response_initialization": {
+            "used": true,
+            "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+            "configured_reference_FWHM_keV": 0.135,
+            "effective_reference_FWHM_keV": 0.26638230151495695,
+            "peak_ids": [
+              3,
+              4,
+              6,
+              7,
+              9,
+              10
+            ],
+            "is_instrument_calibration": false,
+            "broad_flags_before_update": 2,
+            "broad_flags_after_update": 0,
+            "peak_quality_response": "empirically_initialized_resolution"
+          },
+          "centroid_alignment": 0.09500000000000003,
+          "candidate_diagnostics": [
+            {
+              "Element": "Fe",
+              "Status": "supported",
+              "DeltaDeviance": 840.5980576545,
+              "NumIndependentEvidenceRegions": 2,
+              "PatternScore": -0.0498775366,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Ni",
+              "Status": "supported",
+              "DeltaDeviance": 1204.047908387,
+              "NumIndependentEvidenceRegions": 2,
+              "PatternScore": 1.6062687494,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Pb",
+              "Status": "supported",
+              "DeltaDeviance": 83851.7608525076,
+              "NumIndependentEvidenceRegions": 10,
+              "PatternScore": 27.2179049989,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            }
+          ]
+        },
+        {
+          "case": "true_Tb",
+          "truth": [
+            "Fe",
+            "Pb",
+            "Tb"
+          ],
+          "supported": [
+            "Pb",
+            "Tb"
+          ],
+          "false_positive": [],
+          "false_negative": [
+            "Fe"
+          ],
+          "fit_success": true,
+          "ratio_relative_errors": [
+            0.5538515184659325,
+            0.0
+          ],
+          "fitted_symbols": [
+            "As",
+            "Tb",
+            "Pb"
+          ],
+          "response_initialization": {
+            "used": true,
+            "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+            "configured_reference_FWHM_keV": 0.135,
+            "effective_reference_FWHM_keV": 0.24708805463970543,
+            "peak_ids": [
+              1,
+              2,
+              6,
+              7,
+              9,
+              10,
+              11,
+              12
+            ],
+            "is_instrument_calibration": false,
+            "broad_flags_before_update": 2,
+            "broad_flags_after_update": 0,
+            "peak_quality_response": "empirically_initialized_resolution"
+          },
+          "centroid_alignment": 0.065,
+          "candidate_diagnostics": [
+            {
+              "Element": "Fe",
+              "Status": "not_supported",
+              "DeltaDeviance": null,
+              "NumIndependentEvidenceRegions": 0,
+              "PatternScore": -3.6447148174,
+              "ConfidenceNotes": "Not selected by global centroid/branch pattern; alternatives retained in peak_line_matches.csv; not evidence of absence"
+            },
+            {
+              "Element": "Tb",
+              "Status": "supported",
+              "DeltaDeviance": 11463.8000536201,
+              "NumIndependentEvidenceRegions": 6,
+              "PatternScore": 9.6883621677,
+              "ConfidenceNotes": "Identified energies retained; matrix_effect_or_model_mismatch; branch_ratio_mismatch; Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Pb",
+              "Status": "supported",
+              "DeltaDeviance": 31227.6554937813,
+              "NumIndependentEvidenceRegions": 6,
+              "PatternScore": 23.4869573613,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            }
+          ]
+        },
+        {
+          "case": "hidden_Tb",
+          "truth": [
+            "Fe",
+            "Pb",
+            "Tb"
+          ],
+          "supported": [
+            "Fe",
+            "Pb"
+          ],
+          "false_positive": [],
+          "false_negative": [
+            "Tb"
+          ],
+          "fit_success": true,
+          "ratio_relative_errors": [
+            0.06588482292660469,
+            0.0
+          ],
+          "fitted_symbols": [
+            "Fe",
+            "Tb",
+            "Pb"
+          ],
+          "response_initialization": {
+            "used": true,
+            "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+            "configured_reference_FWHM_keV": 0.135,
+            "effective_reference_FWHM_keV": 0.2741301638707729,
+            "peak_ids": [
+              2,
+              3,
+              4,
+              6,
+              7,
+              9,
+              10
+            ],
+            "is_instrument_calibration": false,
+            "broad_flags_before_update": 1,
+            "broad_flags_after_update": 0,
+            "peak_quality_response": "empirically_initialized_resolution"
+          },
+          "centroid_alignment": 0.04999999999999999,
+          "candidate_diagnostics": [
+            {
+              "Element": "Fe",
+              "Status": "supported",
+              "DeltaDeviance": 2503.8099059092,
+              "NumIndependentEvidenceRegions": 2,
+              "PatternScore": 4.3062950584,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Tb",
+              "Status": "tentative",
+              "DeltaDeviance": 192.1501070401,
+              "NumIndependentEvidenceRegions": 5,
+              "PatternScore": -1.0999678446,
+              "ConfidenceNotes": "No precise observed principal alpha group; minor or auxiliary branches cannot establish identity alone; Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Pb",
+              "Status": "supported",
+              "DeltaDeviance": 39293.4773617594,
+              "NumIndependentEvidenceRegions": 8,
+              "PatternScore": 24.3031862392,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            }
+          ]
+        },
+        {
+          "case": "gain_drift",
+          "truth": [
+            "Cu",
+            "Fe",
+            "Pb"
+          ],
+          "supported": [
+            "Cu",
+            "Fe",
+            "Pb"
+          ],
+          "false_positive": [],
+          "false_negative": [],
+          "fit_success": true,
+          "ratio_relative_errors": [
+            0.01312465169482413,
+            0.01554075678646849,
+            0.0
+          ],
+          "fitted_symbols": [
+            "Fe",
+            "Cu",
+            "Pb"
+          ],
+          "response_initialization": {
+            "used": true,
+            "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+            "configured_reference_FWHM_keV": 0.135,
+            "effective_reference_FWHM_keV": 0.2589812854903055,
+            "peak_ids": [
+              3,
+              4,
+              5,
+              7,
+              8,
+              9
+            ],
+            "is_instrument_calibration": false,
+            "broad_flags_before_update": 3,
+            "broad_flags_after_update": 0,
+            "peak_quality_response": "empirically_initialized_resolution"
+          },
+          "centroid_alignment": 0.07500000000000001,
+          "candidate_diagnostics": [
+            {
+              "Element": "Fe",
+              "Status": "supported",
+              "DeltaDeviance": 12061.9488866343,
+              "NumIndependentEvidenceRegions": 2,
+              "PatternScore": 5.4684161296,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Cu",
+              "Status": "supported",
+              "DeltaDeviance": 7702.3598925463,
+              "NumIndependentEvidenceRegions": 2,
+              "PatternScore": 1.6567615478,
+              "ConfidenceNotes": "Identified energies retained; matrix_effect_or_model_mismatch; branch_ratio_mismatch; Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Pb",
+              "Status": "supported",
+              "DeltaDeviance": 64764.9671560249,
+              "NumIndependentEvidenceRegions": 8,
+              "PatternScore": 12.114176148,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            }
+          ]
+        }
+      ]
+    },
+    "kalpha_30": {
+      "overrides": {
+        "low_z_max_z": 30
+      },
+      "false_positives": 0,
+      "false_negatives": 2,
+      "fit_failures": 0,
+      "weighted_loss": 6,
+      "median_ratio_relative_error": 0.007830770560640521,
+      "cases": [
+        {
+          "case": "blank",
+          "truth": [],
+          "supported": [],
+          "false_positive": [],
+          "false_negative": [],
+          "fit_success": true,
+          "ratio_relative_errors": [],
+          "fitted_symbols": [
+            "Cr",
+            "Hg"
+          ],
+          "response_initialization": {
+            "used": false,
+            "reason": "Fewer than two well-fitted isolated observed peaks"
+          },
+          "centroid_alignment": 0.0,
+          "candidate_diagnostics": []
+        },
+        {
+          "case": "Fe_Cu_Pb",
+          "truth": [
+            "Cu",
+            "Fe",
+            "Pb"
+          ],
+          "supported": [
+            "Cu",
+            "Fe",
+            "Pb"
+          ],
+          "false_positive": [],
+          "false_negative": [],
+          "fit_success": true,
+          "ratio_relative_errors": [
+            0.0012616873073725277,
+            0.007389511044816555,
+            0.0
+          ],
+          "fitted_symbols": [
+            "Fe",
+            "Cu",
+            "Pb"
+          ],
+          "response_initialization": {
+            "used": true,
+            "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+            "configured_reference_FWHM_keV": 0.135,
+            "effective_reference_FWHM_keV": 0.2738930598744404,
+            "peak_ids": [
+              4,
+              5,
+              6,
+              8,
+              9,
+              10
+            ],
+            "is_instrument_calibration": false,
+            "broad_flags_before_update": 3,
+            "broad_flags_after_update": 0,
+            "peak_quality_response": "empirically_initialized_resolution"
+          },
+          "centroid_alignment": 0.08500000000000002,
+          "candidate_diagnostics": [
+            {
+              "Element": "Fe",
+              "Status": "supported",
+              "DeltaDeviance": 8282.9106394496,
+              "NumIndependentEvidenceRegions": 2,
+              "PatternScore": 5.3524081511,
+              "ConfidenceNotes": "low_Z_Kalpha_dominant_support; independent Kbeta not required; single-region evidence retained; robust local evidence controls identity; Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Cu",
+              "Status": "supported",
+              "DeltaDeviance": 2736.7532973486,
+              "NumIndependentEvidenceRegions": 2,
+              "PatternScore": 1.0265312102,
+              "ConfidenceNotes": "low_Z_Kalpha_dominant_support; independent Kbeta not required; single-region evidence retained; robust local evidence controls identity; Identified energies retained; matrix_effect_or_model_mismatch; branch_ratio_mismatch; Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Pb",
+              "Status": "supported",
+              "DeltaDeviance": 21158.2271358331,
+              "NumIndependentEvidenceRegions": 7,
+              "PatternScore": 17.7370903132,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            }
+          ]
+        },
+        {
+          "case": "weak_Ca",
+          "truth": [
+            "Ca",
+            "Fe",
+            "Pb"
+          ],
+          "supported": [
+            "Ca",
+            "Fe",
+            "Pb"
+          ],
+          "false_positive": [],
+          "false_negative": [],
+          "fit_success": true,
+          "ratio_relative_errors": [
+            0.061780800968278315,
+            0.008272030076464487,
+            0.0
+          ],
+          "fitted_symbols": [
+            "Ca",
+            "Fe",
+            "Pb"
+          ],
+          "response_initialization": {
+            "used": true,
+            "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+            "configured_reference_FWHM_keV": 0.135,
+            "effective_reference_FWHM_keV": 0.26651310029358294,
+            "peak_ids": [
+              2,
+              4,
+              5,
+              6,
+              7,
+              9,
+              10
+            ],
+            "is_instrument_calibration": false,
+            "broad_flags_before_update": 3,
+            "broad_flags_after_update": 0,
+            "peak_quality_response": "empirically_initialized_resolution"
+          },
+          "centroid_alignment": 0.08500000000000002,
+          "candidate_diagnostics": [
+            {
+              "Element": "Ca",
+              "Status": "supported",
+              "DeltaDeviance": 160.0779440482,
+              "NumIndependentEvidenceRegions": 1,
+              "PatternScore": -0.9186007733,
+              "ConfidenceNotes": "low_Z_Kalpha_dominant_support; independent Kbeta not required; single-region evidence retained; robust local evidence controls identity; Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Fe",
+              "Status": "supported",
+              "DeltaDeviance": 18103.0433512444,
+              "NumIndependentEvidenceRegions": 2,
+              "PatternScore": 6.181443567,
+              "ConfidenceNotes": "low_Z_Kalpha_dominant_support; independent Kbeta not required; single-region evidence retained; robust local evidence controls identity; Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Pb",
+              "Status": "supported",
+              "DeltaDeviance": 118702.6267176229,
+              "NumIndependentEvidenceRegions": 10,
+              "PatternScore": 31.1827260336,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            }
+          ]
+        },
+        {
+          "case": "Hg_Pb",
+          "truth": [
+            "Hg",
+            "Pb"
+          ],
+          "supported": [
+            "Hg",
+            "Pb"
+          ],
+          "false_positive": [],
+          "false_negative": [],
+          "fit_success": true,
+          "ratio_relative_errors": [
+            0.0215827951188865,
+            0.0
+          ],
+          "fitted_symbols": [
+            "Hg",
+            "Pb"
+          ],
+          "response_initialization": {
+            "used": true,
+            "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+            "configured_reference_FWHM_keV": 0.135,
+            "effective_reference_FWHM_keV": 0.2693210595054178,
+            "peak_ids": [
+              3,
+              4,
+              5,
+              6,
+              7,
+              9
+            ],
+            "is_instrument_calibration": false,
+            "broad_flags_before_update": 2,
+            "broad_flags_after_update": 0,
+            "peak_quality_response": "empirically_initialized_resolution"
+          },
+          "centroid_alignment": 0.06,
+          "candidate_diagnostics": [
+            {
+              "Element": "Hg",
+              "Status": "supported",
+              "DeltaDeviance": 1473.2167757863,
+              "NumIndependentEvidenceRegions": 4,
+              "PatternScore": 8.0121082321,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Pb",
+              "Status": "supported",
+              "DeltaDeviance": 32341.4939105455,
+              "NumIndependentEvidenceRegions": 10,
+              "PatternScore": 25.4011409174,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            }
+          ]
+        },
+        {
+          "case": "Pb_As_overlap",
+          "truth": [
+            "As",
+            "Pb"
+          ],
+          "supported": [
+            "As",
+            "Pb"
+          ],
+          "false_positive": [],
+          "false_negative": [],
+          "fit_success": true,
+          "ratio_relative_errors": [
+            0.06940228543120641,
+            0.0
+          ],
+          "fitted_symbols": [
+            "As",
+            "Pb"
+          ],
+          "response_initialization": {
+            "used": true,
+            "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+            "configured_reference_FWHM_keV": 0.135,
+            "effective_reference_FWHM_keV": 0.25793446644343443,
+            "peak_ids": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "is_instrument_calibration": false,
+            "broad_flags_before_update": 1,
+            "broad_flags_after_update": 0,
+            "peak_quality_response": "empirically_initialized_resolution"
+          },
+          "centroid_alignment": 0.07,
+          "candidate_diagnostics": [
+            {
+              "Element": "As",
+              "Status": "supported",
+              "DeltaDeviance": 1105.1262983841,
+              "NumIndependentEvidenceRegions": 3,
+              "PatternScore": 8.6517375943,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Pb",
+              "Status": "supported",
+              "DeltaDeviance": 35543.6638720749,
+              "NumIndependentEvidenceRegions": 8,
+              "PatternScore": 24.5373137946,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            }
+          ]
+        },
+        {
+          "case": "weak_Fe_Ni",
+          "truth": [
+            "Fe",
+            "Ni",
+            "Pb"
+          ],
+          "supported": [
+            "Fe",
+            "Ni",
+            "Pb"
+          ],
+          "false_positive": [],
+          "false_negative": [],
+          "fit_success": true,
+          "ratio_relative_errors": [
+            0.03866191365066851,
+            0.08645975595937516,
+            0.0
+          ],
+          "fitted_symbols": [
+            "Fe",
+            "Ni",
+            "Pb"
+          ],
+          "response_initialization": {
+            "used": true,
+            "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+            "configured_reference_FWHM_keV": 0.135,
+            "effective_reference_FWHM_keV": 0.26638230151495695,
+            "peak_ids": [
+              3,
+              4,
+              6,
+              7,
+              9,
+              10
+            ],
+            "is_instrument_calibration": false,
+            "broad_flags_before_update": 2,
+            "broad_flags_after_update": 0,
+            "peak_quality_response": "empirically_initialized_resolution"
+          },
+          "centroid_alignment": 0.09500000000000003,
+          "candidate_diagnostics": [
+            {
+              "Element": "Fe",
+              "Status": "supported",
+              "DeltaDeviance": 840.5912446165,
+              "NumIndependentEvidenceRegions": 2,
+              "PatternScore": -0.0498876166,
+              "ConfidenceNotes": "low_Z_Kalpha_dominant_support; independent Kbeta not required; single-region evidence retained; robust local evidence controls identity; Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Ni",
+              "Status": "supported",
+              "DeltaDeviance": 1204.0254389158,
+              "NumIndependentEvidenceRegions": 2,
+              "PatternScore": 1.6064378577,
+              "ConfidenceNotes": "low_Z_Kalpha_dominant_support; independent Kbeta not required; single-region evidence retained; robust local evidence controls identity; Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Pb",
+              "Status": "supported",
+              "DeltaDeviance": 83851.7675920652,
+              "NumIndependentEvidenceRegions": 10,
+              "PatternScore": 27.2232740128,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            }
+          ]
+        },
+        {
+          "case": "true_Tb",
+          "truth": [
+            "Fe",
+            "Pb",
+            "Tb"
+          ],
+          "supported": [
+            "Pb",
+            "Tb"
+          ],
+          "false_positive": [],
+          "false_negative": [
+            "Fe"
+          ],
+          "fit_success": true,
+          "ratio_relative_errors": [
+            0.5540100666915677,
+            0.0
+          ],
+          "fitted_symbols": [
+            "As",
+            "Tb",
+            "Pb"
+          ],
+          "response_initialization": {
+            "used": true,
+            "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+            "configured_reference_FWHM_keV": 0.135,
+            "effective_reference_FWHM_keV": 0.24708805463970543,
+            "peak_ids": [
+              1,
+              2,
+              6,
+              7,
+              9,
+              10,
+              11,
+              12
+            ],
+            "is_instrument_calibration": false,
+            "broad_flags_before_update": 2,
+            "broad_flags_after_update": 0,
+            "peak_quality_response": "empirically_initialized_resolution"
+          },
+          "centroid_alignment": 0.065,
+          "candidate_diagnostics": [
+            {
+              "Element": "Fe",
+              "Status": "not_supported",
+              "DeltaDeviance": null,
+              "NumIndependentEvidenceRegions": 0,
+              "PatternScore": -3.587498221,
+              "ConfidenceNotes": "Not selected by global centroid/branch pattern; alternatives retained in peak_line_matches.csv; not evidence of absence"
+            },
+            {
+              "Element": "Tb",
+              "Status": "supported",
+              "DeltaDeviance": 11454.9846681222,
+              "NumIndependentEvidenceRegions": 6,
+              "PatternScore": 9.7732542442,
+              "ConfidenceNotes": "Identified energies retained; matrix_effect_or_model_mismatch; branch_ratio_mismatch; Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Pb",
+              "Status": "supported",
+              "DeltaDeviance": 31271.773462497,
+              "NumIndependentEvidenceRegions": 7,
+              "PatternScore": 24.5688073778,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            }
+          ]
+        },
+        {
+          "case": "hidden_Tb",
+          "truth": [
+            "Fe",
+            "Pb",
+            "Tb"
+          ],
+          "supported": [
+            "Fe",
+            "Pb"
+          ],
+          "false_positive": [],
+          "false_negative": [
+            "Tb"
+          ],
+          "fit_success": true,
+          "ratio_relative_errors": [
+            0.06882980049317178,
+            0.0
+          ],
+          "fitted_symbols": [
+            "Fe",
+            "Tb",
+            "Pb"
+          ],
+          "response_initialization": {
+            "used": true,
+            "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+            "configured_reference_FWHM_keV": 0.135,
+            "effective_reference_FWHM_keV": 0.2741301638707729,
+            "peak_ids": [
+              2,
+              3,
+              4,
+              6,
+              7,
+              9,
+              10
+            ],
+            "is_instrument_calibration": false,
+            "broad_flags_before_update": 1,
+            "broad_flags_after_update": 0,
+            "peak_quality_response": "empirically_initialized_resolution"
+          },
+          "centroid_alignment": 0.04999999999999999,
+          "candidate_diagnostics": [
+            {
+              "Element": "Fe",
+              "Status": "supported",
+              "DeltaDeviance": 2533.1363628815,
+              "NumIndependentEvidenceRegions": 2,
+              "PatternScore": 4.4654729705,
+              "ConfidenceNotes": "low_Z_Kalpha_dominant_support; independent Kbeta not required; single-region evidence retained; robust local evidence controls identity; Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Tb",
+              "Status": "tentative",
+              "DeltaDeviance": 188.6487872862,
+              "NumIndependentEvidenceRegions": 5,
+              "PatternScore": -1.1759581631,
+              "ConfidenceNotes": "No precise observed principal alpha group; minor or auxiliary branches cannot establish identity alone; Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Pb",
+              "Status": "supported",
+              "DeltaDeviance": 39358.3323803059,
+              "NumIndependentEvidenceRegions": 7,
+              "PatternScore": 25.0132254683,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            }
+          ]
+        },
+        {
+          "case": "gain_drift",
+          "truth": [
+            "Cu",
+            "Fe",
+            "Pb"
+          ],
+          "supported": [
+            "Cu",
+            "Fe",
+            "Pb"
+          ],
+          "false_positive": [],
+          "false_negative": [],
+          "fit_success": true,
+          "ratio_relative_errors": [
+            0.01229133789609449,
+            0.017666084068433063,
+            0.0
+          ],
+          "fitted_symbols": [
+            "Fe",
+            "Cu",
+            "Pb"
+          ],
+          "response_initialization": {
+            "used": true,
+            "method": "narrow_isolated_peak_Fano_electronic_variance_median",
+            "configured_reference_FWHM_keV": 0.135,
+            "effective_reference_FWHM_keV": 0.2589812854903055,
+            "peak_ids": [
+              3,
+              4,
+              5,
+              7,
+              8,
+              9
+            ],
+            "is_instrument_calibration": false,
+            "broad_flags_before_update": 3,
+            "broad_flags_after_update": 0,
+            "peak_quality_response": "empirically_initialized_resolution"
+          },
+          "centroid_alignment": 0.07500000000000001,
+          "candidate_diagnostics": [
+            {
+              "Element": "Fe",
+              "Status": "supported",
+              "DeltaDeviance": 12088.7509469317,
+              "NumIndependentEvidenceRegions": 2,
+              "PatternScore": 5.5083755011,
+              "ConfidenceNotes": "low_Z_Kalpha_dominant_support; independent Kbeta not required; single-region evidence retained; robust local evidence controls identity; Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Cu",
+              "Status": "supported",
+              "DeltaDeviance": 7681.0401769507,
+              "NumIndependentEvidenceRegions": 2,
+              "PatternScore": 1.6564872931,
+              "ConfidenceNotes": "low_Z_Kalpha_dominant_support; independent Kbeta not required; single-region evidence retained; robust local evidence controls identity; Identified energies retained; matrix_effect_or_model_mismatch; branch_ratio_mismatch; Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            },
+            {
+              "Element": "Pb",
+              "Status": "supported",
+              "DeltaDeviance": 65336.6548072868,
+              "NumIndependentEvidenceRegions": 9,
+              "PatternScore": 20.7301708141,
+              "ConfidenceNotes": "Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

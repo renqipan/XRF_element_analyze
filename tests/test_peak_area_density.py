@@ -51,7 +51,10 @@ def test_pending_elements_are_not_density_denominator_members(shafa_local_densit
     supported = set(candidates.loc[candidates.Status == 'supported', 'Element'])
     pending = set(result['summary']['elements_need_confirmation'])
     assert set(density.Element) == supported
-    assert {'Cr', 'Pm'} <= pending
+    assert 'Cr' in pending
+    # A failed Pm identity can now be not_supported rather than tentative;
+    # either state must stay outside the quantitative denominator.
+    assert candidates.set_index('Element').loc['Pm','Status'] != 'supported'
     assert not set(density.Element) & pending
     eligible = set(result['summary']['reference']['fraction_denominator_elements'])
     assert eligible and eligible <= supported and not eligible & pending

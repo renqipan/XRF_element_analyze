@@ -1,0 +1,14 @@
+........................................................................ [ 30%]
+........................................................................ [ 61%]
+........................................................................ [ 92%]
+..................                                                       [100%]
+=============================== warnings summary ===============================
+<frozen importlib._bootstrap>:219
+  <frozen importlib._bootstrap>:219: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute
+
+<frozen importlib._bootstrap>:219
+  <frozen importlib._bootstrap>:219: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+234 passed, 2 warnings in 191.78s (0:03:11)
+sys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute
