@@ -169,6 +169,20 @@ def test_detectable_kbeta_absence_still_contradicts_low_z_family():
     assert not evidence['Eligible']
 
 
+def test_beta_without_independent_gain_is_not_absent_when_raw_counts_accommodate_it():
+    case = _case('Cr', beta_strength=1.)
+    # A coincident nuisance can remove beta's independent deletion gain, while
+    # its raw counts remain fully compatible with the Cr family. Ratio mismatch
+    # elsewhere in that family cannot turn this into evidence of beta absence.
+    details = [{'Family': 'K', 'Branches': 'Kbeta1', 'Group_Observed': False,
+                'Robust_Group_Observed': False, 'Tied_vs_Free_DeltaDeviance': 100.}]
+    evidence = _assess(case, details)
+    assert evidence['Expected_Kbeta_Information_Score'] >= 5
+    assert evidence['Raw_Kbeta_Count_Budget'] > evidence['Expected_Kbeta_Counts_In_Observed_Region']
+    assert not evidence['Kbeta_Strongly_Contradicted']
+    assert evidence['Eligible']
+
+
 def test_strong_but_unresolved_competing_element_prevents_single_region_support():
     evidence = _assess(_case(overlap=True))
     assert evidence['Kalpha_DeltaDeviance'] >= 25

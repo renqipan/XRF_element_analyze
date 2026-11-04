@@ -25,10 +25,24 @@
     "Accepted instrument origin (0,0); zero energy is allowed only at channel zero",
     "Two-point residuals do not estimate calibration statistical uncertainty"
   ],
-  "acquisition_cutoff": null,
+  "acquisition_cutoff": {
+    "source": "Amptek_DP5_TLLD",
+    "threshold_device_channel": 40,
+    "first_retained_index": 41,
+    "first_retained_channel": 41,
+    "firmware_version": "6.10",
+    "channel_convention": "zero_based_device_indices; user_channel_origin_applied_separately",
+    "limitation": "Recorded channel LLD only; other trigger/acceptance effects are not inferred",
+    "energy_keV": 2.990769230769231,
+    "zero_prefix_channels": 41,
+    "first_counts": 21.0,
+    "inferred": false,
+    "reason": "recorded_Amptek_DP5_TLLD",
+    "background_edge_initialization": "lower_quartile_of_adjacent_SNIP_background"
+  },
   "channel_origin": 0,
   "effective_energy_range_keV": [
-    0.9969230769230768,
+    2.990769230769231,
     39.98769230769231
   ]
 }

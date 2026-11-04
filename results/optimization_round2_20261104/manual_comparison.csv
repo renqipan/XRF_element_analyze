@@ -1,0 +1,11 @@
+Spectrum,Manual_Suggested,Manual_Uncertain,Before_Supported,Before_Possible,After_Supported,After_Possible,Suggested_But_Still_Possible,Suggested_But_Not_Reported,Additional_Supported
+shafa_50kv_20uA.mca,"Pb,Fe,Hg,Ca",,"Ca,Fe,Hg,Pb","Cr,Ni,Cd","Ca,Fe,Hg,Pb","Cr,Ni,Cd",,,
+shafa1_50kv_20uA.mca,"Pb,Fe,Hg,Ca",,"Ca,Fe,Pb","Ni,Pm,Hg","Ca,Fe,Hg,Pb","Ni,Sb",,,
+shou_50keV_20uA_back3mm.mca,"Pb,Fe,Hg",,"Fe,Hg,Pb","Sb,Tb,Lu","Fe,Hg,Pb","Cd,Sb",,,
+yifu_50keV_20uA_back3mm.mca,"Pb,Fe,Cr,Ca",Cd,"Fe,Ni,Pb","Cr,Pm","Fe,Ni,Pb","Ca,Cr,Cd","Ca,Cr",,Ni
+yifu1_tou_50keV_20uA_back3mm.mca,"Pb,Fe,Cr,Ca",Cd,Pb,"Fe,Tb","Ca,Pb","Cr,Fe,Cd","Cr,Fe",,
+yifu2_50kv_20uA.mca,"Pb,Fe,Cr,Ca",,"Fe,Pb","Ni,Pm","Ca,Fe,Pb","Cr,Ni",Cr,,
+xiongzhen_50keV_20uA_back3mm.mca,"Pb,Fe",,"Fe,Pb","Ca,Ni,Tc,Tb","Fe,Pb","Ca,Ni",,,
+xiongzhen1.mca,"Pb,Fe,Ca",,"Fe,Pb",,"Ca,Fe,Pb",,,,
+yinzhang_50kv_20uA.mca,"Pb,Fe,Ca",,"Ca,Fe,Pb","Pd,Cd","Ca,Fe,Pb",Cd,,,
+toufa_50keV_20uA_back3mm.mca,"Pb,Fe,Ca",,"Fe,Pb","Ca,Ni,Eu","Fe,Pb","Ca,Ni,Sb",Ca,,

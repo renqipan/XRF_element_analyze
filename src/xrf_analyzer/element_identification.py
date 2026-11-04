@@ -5,7 +5,7 @@ import pandas as pd
 from .response import sigma_kev, FWHM_FACTOR, gaussian_response, line_model_center
 from .fit_model import fit_spectrum
 from .uncertainty import estimate_covariance
-from .pattern_matching import discover_elements
+from .pattern_matching import discover_elements, anchored_primary_symbols
 from .manual_peaks import constrain_line_centers
 from .element_prior import element_class, preferred_in_group
 from .branch_evidence import evaluate_branch_evidence
@@ -146,6 +146,11 @@ def identify_elements(counts, energy, edges, background, lines, peaks, config, d
                 if fit.components[j].sum() < .25*max(counts[j],1):
                     novel.add(symbol);break
         additional &= novel
+        # Shared affine calibration is now measured by the fitted major lines.
+        # Reconsider raw Kalpha proposals on that axis too; residual discovery
+        # alone requires two regions and would silently bypass the alpha-only
+        # route when the initial offset was inaccurate at low energies.
+        additional |= (set(raw_pattern.alignment.get('anchored_kalpha_candidates', []))-selected)
         additional.discard(config.tube_target)
         if not additional:
             break
@@ -171,8 +176,7 @@ def identify_elements(counts, energy, edges, background, lines, peaks, config, d
     ranking = pattern.rankings.set_index('Element')
     # Local nuisance groups may be independent only with an actual multi-region
     # primary pattern. A high fitted amplitude alone can be borrowed from Fe.
-    config._branch_confirmed_symbols=set(pattern.rankings.loc[
-        (pattern.rankings.IndependentPeakRegions>=2) & (pattern.rankings.PatternScore>0),'Element'])
+    config._branch_confirmed_symbols = anchored_primary_symbols(peaks, pattern.pairings, pattern.rankings, config)
     for symbol in all_symbols:
         element_lines = [l for l in lines if l.symbol == symbol]
         z = element_lines[0].Z
@@ -274,6 +278,13 @@ def identify_elements(counts, energy, edges, background, lines, peaks, config, d
             status = 'supported'
         elif delta >= config.tentative_delta_deviance or (fit.t[i] > 0 and evidence >= 1):
             status = 'tentative'
+        elif principal_observed and local_family_evidence >= 1:
+            # A measurable principal group can survive even when a global
+            # cross-family template drives q to zero (e.g. attenuated L lines
+            # with a possible Kalpha). This is a regional interpretation only;
+            # a single region cannot confirm identity or yield a density.
+            status = 'tentative'
+            notes.append('Observed principal group has local evidence despite suppressed global template; regional interpretation only')
         else:
             status = 'not_supported'
         quantitative = 'supported' if status == 'supported' and unc_status[i] == 'fisher_interior' else 'not_estimable'
@@ -340,6 +351,7 @@ def identify_elements(counts, energy, edges, background, lines, peaks, config, d
                     initial=np.delete(fit.parameters,removed),auxiliary_lines=cf_auxiliary,
                     initial_delta=fit.delta,line_centers=line_centers,center_axis=config.find_peaks_axis)
                 audit={'Element':symbol,'Removed_Rival':rival,'Method':'leave_unconfirmed_rival_out; tentative_only',
+                       'Conditional_Response_For_Possibility_Only':True,
                        'Counterfactual_Fit_Success':cf_fit.success,'Recovered_Possible_Interpretation':False,
                        'Rival_Ratio_Contradicted_In_Both_Windows':bool(ratio_contradicted),
                        'Full_Model_and_Quantification_Unchanged':True}
@@ -350,7 +362,7 @@ def identify_elements(counts, energy, edges, background, lines, peaks, config, d
                     cf_pairs=cf_pattern.pairings.loc[cf_pattern.pairings.Strength_Source!='unscaled_auxiliary_shell']
                     cf_branches=evaluate_branch_evidence(symbol,cf_lines,energy,edges,np.asarray(counts),cf_fit,config)
                     cf_alpha=assess_low_z_kalpha(symbol,cf_lines,peaks,cf_pairs,cf_pattern.rankings.set_index('Element'),
-                        np.asarray(counts),energy,edges,cf_fit,config,cf_branches)
+                        np.asarray(counts),energy,edges,cf_fit,config,cf_branches,profile_response=False)
                     cf_removed=[cf_fit.symbols.index(symbol)]+[len(cf_fit.symbols)+j for j,name in enumerate(cf_fit.nuisance_names)
                         if name.startswith(symbol+'_') and name.endswith('_unscaled')]
                     cf_null=fit_spectrum(counts,energy,edges,background,[l for l in cf_lines if l.symbol!=symbol],

@@ -20,6 +20,31 @@ class PatternResult:
     alignment: dict
 
 
+def anchored_primary_symbols(peaks, pairings, rankings, config):
+    """Which patterns can justify freeing resolved nuisance-line amplitudes?
+
+    Two borrowed minor peaks are insufficient. A principal alpha must itself
+    be observed and reasonably strong within the same family; other shells
+    have no assumed population ratio.
+    """
+    result = set()
+    if pairings.empty:
+        return result
+    precise = peaks.loc[~peaks.quality_flags.str.contains('broad_structure')].set_index('peak_id')
+    proposed = rankings.loc[(rankings.IndependentPeakRegions >= 2) & (rankings.PatternScore > 0), 'Element']
+    for symbol in proposed:
+        pairs = pairings.loc[(pairings.Element == symbol) & (pairings.Group_Affinity >= .5)
+                             & pairings.Strength_Source.ne('unscaled_auxiliary_shell')]
+        for family in ('K', 'L', 'M'):
+            same = pairs.loc[pairs.Branch.str.startswith(family)]
+            alpha = same.loc[same.Branch.isin(['Kalpha1','Kalpha2','Lalpha1','Lalpha2','Malpha1'])]
+            primary = precise.loc[precise.index.isin(alpha.peak_id), 'approx_significance']
+            all_peaks = precise.loc[precise.index.isin(same.peak_id), 'approx_significance']
+            if len(primary) and primary.max() >= max(np.sqrt(config.support_delta_deviance), .5*all_peaks.max()):
+                result.add(symbol)
+    return result
+
+
 def _groups(lines, auxiliary, config):
     groups = []
     for symbol in sorted({l.symbol for l in lines}):
@@ -209,6 +234,29 @@ def discover_elements(peaks, lines, auxiliary, energy, counts, config, fixed_del
                 and len(retained_alternatives) < 3):
             selected.add(symbols[i])
             retained_alternatives.append(symbols[i])
+    # Weak Kbeta is not required for the low-Z Kalpha route, so it must not
+    # veto the candidate before that route can measure the raw counts. The
+    # graph's complexity/missing-line costs rank proposals, not detections.
+    retained_kalpha = []
+    anchored_kalpha = []
+    if config.low_z_kalpha and m:
+        precise = ~peaks.quality_flags.str.contains('broad_structure').to_numpy()
+        for i, symbol in enumerate(symbols):
+            if (symbol == config.tube_target or
+                    next(l.Z for l in lines if l.symbol == symbol) > config.low_z_max_z):
+                continue
+            alpha = [g for g in symbol_groups[symbol] if not groups[g]['auxiliary']
+                     and any(l.branch in ('Kalpha1', 'Kalpha2') for l, _, _ in groups[g]['entries'])]
+            # A multiplet/shoulder can bias a single fitted maximum within the
+            # resolution core. Allow that envelope for proposals only; precise
+            # centroid affinity is still required for alpha-only confirmation.
+            if any(np.any(((affinity[g] >= .5) |
+                           (abs(observed-centers[g]-delta) <= .5*widths[g])) & precise &
+                          (scores >= config.candidate_threshold_sigma)) for g in alpha):
+                anchored_kalpha.append(symbol)
+                if symbol not in selected:
+                    selected.add(symbol)
+                    retained_kalpha.append(symbol)
     pairings = []
     for i, g in enumerate(groups):
         for j in range(m):
@@ -225,6 +273,8 @@ def discover_elements(peaks, lines, auxiliary, energy, counts, config, fixed_del
                  'search_bound_keV': config.alignment_max_shift_kev, 'score': objective,
                  'is_calibration_replacement': False, 'gain_for_matching': fixed_gain,
                  'element_prior': config.element_prior, 'prior_tie_margin': config.prior_tie_margin,
+                 'retained_kalpha_candidates': retained_kalpha,
+                 'anchored_kalpha_candidates': anchored_kalpha,
                  'retained_multiregion_alternatives': retained_alternatives, 'grid_solutions': [{'delta': d, 'score': score} for d, score, _ in search]}
     rankings = pd.DataFrame(rankings, columns=['Z', 'Element', 'PatternScore', 'IndependentPeakRegions',
                                                 'MatchedPeakIDs', 'MissingLinePenalty', 'Selected', 'Element_Class'])

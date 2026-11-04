@@ -1,0 +1,156 @@
+{
+  "final_parameters": {
+    "tube_target": "Ag",
+    "energy_range": [
+      1.0,
+      40.0
+    ],
+    "fwhm_ref_energy_kev": 5.9,
+    "fwhm_ref_kev": 0.135,
+    "fano": 0.115,
+    "background_degree": 3,
+    "candidate_threshold_sigma": 3.5,
+    "support_delta_deviance": 25.0,
+    "tentative_delta_deviance": 6.0,
+    "element_selection": "model-comparison",
+    "detector_efficiency": 1.0,
+    "seed": 42,
+    "max_iterations": 4000,
+    "max_deviance_per_dof": 5.0,
+    "complete_atomic_lines": true,
+    "infer_low_energy_cutoff": true,
+    "estimate_resolution_from_peaks": true,
+    "fit_energy_gain": true,
+    "energy_gain_bound": 0.01,
+    "alignment_max_shift_kev": 0.25,
+    "centroid_tolerance_kev": 0.015,
+    "find_peaks": null,
+    "find_peaks_axis": "reference",
+    "element_prior": "general",
+    "lanthanide_reporting": "supported-only",
+    "noble_gas_reporting": "supported-only",
+    "possible_min_delta_deviance": 9.0,
+    "prior_tie_margin": 0.5,
+    "branch_evidence": true,
+    "quantification_method": "local-peaks",
+    "low_z_kalpha": true,
+    "low_z_max_z": 26,
+    "low_z_kalpha_min_delta": 25.0,
+    "low_z_beta_visibility_sigma": 5.0,
+    "low_z_min_kalpha_share": 0.7,
+    "prune_unanchored_auxiliary": true
+  },
+  "selection_scope": "unknown real specimens: manual hypotheses are not ground truth; selection uses full-dictionary synthetic counts",
+  "training_seed_offset": 5000,
+  "holdout_seed_offset": 6000,
+  "training_variants": {
+    "current": {
+      "overrides": {},
+      "false_positives": 0,
+      "false_negatives": 2,
+      "fit_failures": 0,
+      "median_ratio_relative_error": 0.02817037219975238
+    },
+    "threshold_3": {
+      "overrides": {
+        "candidate_threshold_sigma": 3.0
+      },
+      "false_positives": 0,
+      "false_negatives": 2,
+      "fit_failures": 0,
+      "median_ratio_relative_error": 0.02817467791150019
+    },
+    "threshold_4": {
+      "overrides": {
+        "candidate_threshold_sigma": 4.0
+      },
+      "false_positives": 0,
+      "false_negatives": 2,
+      "fit_failures": 0,
+      "median_ratio_relative_error": 0.028141029768917747
+    },
+    "support_16": {
+      "overrides": {
+        "support_delta_deviance": 16.0,
+        "low_z_kalpha_min_delta": 16.0
+      },
+      "false_positives": 0,
+      "false_negatives": 2,
+      "fit_failures": 0,
+      "median_ratio_relative_error": 0.02817037219975238
+    },
+    "support_36": {
+      "overrides": {
+        "support_delta_deviance": 36.0,
+        "low_z_kalpha_min_delta": 36.0
+      },
+      "false_positives": 0,
+      "false_negatives": 2,
+      "fit_failures": 0,
+      "median_ratio_relative_error": 0.02817037219975238
+    }
+  },
+  "holdout_current": {
+    "overrides": {},
+    "false_positives": 0,
+    "false_negatives": 2,
+    "fit_failures": 0,
+    "weighted_loss": 6,
+    "median_ratio_relative_error": 0.02330533592754125
+  },
+  "holdout_previous_code": {
+    "overrides": {},
+    "false_positives": 0,
+    "false_negatives": 2,
+    "fit_failures": 0,
+    "weighted_loss": 6,
+    "median_ratio_relative_error": 0.025233602463616722
+  },
+  "decision": "Retain candidate 3.5, support DeltaD 25, tentative 6, low-Z through Fe. No detection gain justifies lowering support; tiny median-ratio differences in nine cases do not establish a universal optimum. Rare-group reporting independently hides unconfirmed La-Lu/group18; likelihood and density membership unchanged.",
+  "remaining_known_truth_failures": {
+    "true_Tb": [
+      "Fe"
+    ],
+    "hidden_Tb": [
+      "Tb"
+    ]
+  },
+  "validation_notes": {
+    "last_identity_change": "Whole-window overdispersion is a diagnostic rather than an identity veto. Window area consistency and response bounds remain enforced.",
+    "training_cases_with_severe_template_note": [],
+    "training_blank_fitted_symbols": {
+      "current": [
+        "Ba",
+        "La"
+      ],
+      "threshold_3": [
+        "Ba",
+        "Pr"
+      ],
+      "threshold_4": [],
+      "support_16": [
+        "Ba",
+        "La"
+      ],
+      "support_36": [
+        "Ba",
+        "La"
+      ]
+    },
+    "final_default_holdout_recomputed": true
+  },
+  "possible_reporting_selection": {
+    "default_floor": 9.0,
+    "main_peak_required": true,
+    "before_possible_records": 36,
+    "after_possible_records": 30,
+    "alternative_floors": {
+      "0": 36,
+      "6": 31,
+      "9": 30,
+      "12": 29,
+      "16": 29
+    },
+    "decision": "Mild tightening: keep informative main-peak and counterfactual interpretations; do not change supported statuses or quantitative fits. A higher floor of 12 would additionally suppress one borderline Sb interpretation."
+  }
+}

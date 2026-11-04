@@ -110,6 +110,22 @@ def test_unknown_cross_shell_population_is_not_within_shell_contradiction():
     assert rows[0]['Within_Initial_Shell_DeltaDeviance']<9
 
 
+def test_stable_fe_identity_is_not_vetoed_by_local_background_overdispersion():
+    import json
+    path = ROOT/'XRF_SDD/shou_50keV_20uA_back3mm.mca'
+    if not path.exists():
+        pytest.skip('Optional local measurement was removed')
+    cfg = AnalysisConfig(**json.loads((ROOT/'configs/default.json').read_text()))
+    result = analyze(path, ROOT/'data/calibration.csv', ROOT/'data/xrf_relative_sensitivity.csv', config=cfg)
+    evidence = next(d for d in result['summary']['low_z_kalpha_evidence'] if d['Element']=='Fe')
+    assert evidence['Local_Window_Shape_Mismatch']
+    assert min(evidence['Kalpha_DeltaDeviance'], evidence['Wide_Kalpha_DeltaDeviance']) > 25
+    assert evidence['Eligible']
+    assert result['identification'].candidates.set_index('Element').loc['Fe', 'Status']=='supported'
+    assert not result['summary']['global_model_valid']
+    assert 'Fe' in result['density'].Element.tolist()
+
+
 def test_empirical_resolution_updates_broad_flags_without_changing_measured_peaks():
     import pandas as pd
     from xrf_analyzer.measurement import reclassify_peak_widths

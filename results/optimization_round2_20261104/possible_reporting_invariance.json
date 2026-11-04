@@ -1,0 +1,313 @@
+{
+  "spectra": 16,
+  "before_possible_records": 36,
+  "after_possible_records": 30,
+  "math_files_checked": 80,
+  "errors": [],
+  "samples": [
+    {
+      "spectrum": "pos1_40keV_80uA.mca",
+      "supported_unchanged": true,
+      "math_files_unchanged": {
+        "fit_spectrum.csv": true,
+        "fit_components.csv": true,
+        "relative_areal_density.csv": true,
+        "quantification_peaks.csv": true,
+        "quantification_fit.csv": true
+      },
+      "possible_before": [
+        "Ni",
+        "Tc"
+      ],
+      "possible_after": [
+        "Ni"
+      ]
+    },
+    {
+      "spectrum": "pos2_40keV_80uA.mca",
+      "supported_unchanged": true,
+      "math_files_unchanged": {
+        "fit_spectrum.csv": true,
+        "fit_components.csv": true,
+        "relative_areal_density.csv": true,
+        "quantification_peaks.csv": true,
+        "quantification_fit.csv": true
+      },
+      "possible_before": [
+        "Ca",
+        "Ni",
+        "Cd"
+      ],
+      "possible_after": [
+        "Ca",
+        "Ni",
+        "Cd"
+      ]
+    },
+    {
+      "spectrum": "pos3_40keV_80uA.mca",
+      "supported_unchanged": true,
+      "math_files_unchanged": {
+        "fit_spectrum.csv": true,
+        "fit_components.csv": true,
+        "relative_areal_density.csv": true,
+        "quantification_peaks.csv": true,
+        "quantification_fit.csv": true
+      },
+      "possible_before": [
+        "Cd"
+      ],
+      "possible_after": [
+        "Cd"
+      ]
+    },
+    {
+      "spectrum": "pos4_40keV_80uA.mca",
+      "supported_unchanged": true,
+      "math_files_unchanged": {
+        "fit_spectrum.csv": true,
+        "fit_components.csv": true,
+        "relative_areal_density.csv": true,
+        "quantification_peaks.csv": true,
+        "quantification_fit.csv": true
+      },
+      "possible_before": [
+        "Ni",
+        "Ta"
+      ],
+      "possible_after": [
+        "Ni"
+      ]
+    },
+    {
+      "spectrum": "pos5_40keV_5uA.mca",
+      "supported_unchanged": true,
+      "math_files_unchanged": {
+        "fit_spectrum.csv": true,
+        "fit_components.csv": true,
+        "relative_areal_density.csv": true,
+        "quantification_peaks.csv": true,
+        "quantification_fit.csv": true
+      },
+      "possible_before": [
+        "Ni",
+        "Mo"
+      ],
+      "possible_after": [
+        "Ni"
+      ]
+    },
+    {
+      "spectrum": "shafa1_50kv_20uA.mca",
+      "supported_unchanged": true,
+      "math_files_unchanged": {
+        "fit_spectrum.csv": true,
+        "fit_components.csv": true,
+        "relative_areal_density.csv": true,
+        "quantification_peaks.csv": true,
+        "quantification_fit.csv": true
+      },
+      "possible_before": [
+        "Ni",
+        "Sb"
+      ],
+      "possible_after": [
+        "Ni",
+        "Sb"
+      ]
+    },
+    {
+      "spectrum": "shafa_50kv_20uA.mca",
+      "supported_unchanged": true,
+      "math_files_unchanged": {
+        "fit_spectrum.csv": true,
+        "fit_components.csv": true,
+        "relative_areal_density.csv": true,
+        "quantification_peaks.csv": true,
+        "quantification_fit.csv": true
+      },
+      "possible_before": [
+        "Cr",
+        "Ni",
+        "Cd",
+        "At"
+      ],
+      "possible_after": [
+        "Cr",
+        "Ni",
+        "Cd"
+      ]
+    },
+    {
+      "spectrum": "shou_50keV_20uA_back3mm.mca",
+      "supported_unchanged": true,
+      "math_files_unchanged": {
+        "fit_spectrum.csv": true,
+        "fit_components.csv": true,
+        "relative_areal_density.csv": true,
+        "quantification_peaks.csv": true,
+        "quantification_fit.csv": true
+      },
+      "possible_before": [
+        "Cd",
+        "Sb"
+      ],
+      "possible_after": [
+        "Cd",
+        "Sb"
+      ]
+    },
+    {
+      "spectrum": "shu_50keV_20uA_back3mm.mca",
+      "supported_unchanged": true,
+      "math_files_unchanged": {
+        "fit_spectrum.csv": true,
+        "fit_components.csv": true,
+        "relative_areal_density.csv": true,
+        "quantification_peaks.csv": true,
+        "quantification_fit.csv": true
+      },
+      "possible_before": [
+        "Fe",
+        "Ni"
+      ],
+      "possible_after": [
+        "Fe",
+        "Ni"
+      ]
+    },
+    {
+      "spectrum": "toufa_50keV_20uA_back3mm.mca",
+      "supported_unchanged": true,
+      "math_files_unchanged": {
+        "fit_spectrum.csv": true,
+        "fit_components.csv": true,
+        "relative_areal_density.csv": true,
+        "quantification_peaks.csv": true,
+        "quantification_fit.csv": true
+      },
+      "possible_before": [
+        "Ca",
+        "Ni",
+        "Sb"
+      ],
+      "possible_after": [
+        "Ca",
+        "Ni",
+        "Sb"
+      ]
+    },
+    {
+      "spectrum": "xiongzhen1.mca",
+      "supported_unchanged": true,
+      "math_files_unchanged": {
+        "fit_spectrum.csv": true,
+        "fit_components.csv": true,
+        "relative_areal_density.csv": true,
+        "quantification_peaks.csv": true,
+        "quantification_fit.csv": true
+      },
+      "possible_before": [],
+      "possible_after": []
+    },
+    {
+      "spectrum": "xiongzhen_50keV_20uA_back3mm.mca",
+      "supported_unchanged": true,
+      "math_files_unchanged": {
+        "fit_spectrum.csv": true,
+        "fit_components.csv": true,
+        "relative_areal_density.csv": true,
+        "quantification_peaks.csv": true,
+        "quantification_fit.csv": true
+      },
+      "possible_before": [
+        "Ca",
+        "Ni",
+        "Tc"
+      ],
+      "possible_after": [
+        "Ca",
+        "Ni"
+      ]
+    },
+    {
+      "spectrum": "yifu1_tou_50keV_20uA_back3mm.mca",
+      "supported_unchanged": true,
+      "math_files_unchanged": {
+        "fit_spectrum.csv": true,
+        "fit_components.csv": true,
+        "relative_areal_density.csv": true,
+        "quantification_peaks.csv": true,
+        "quantification_fit.csv": true
+      },
+      "possible_before": [
+        "Cr",
+        "Fe",
+        "Cd"
+      ],
+      "possible_after": [
+        "Cr",
+        "Fe",
+        "Cd"
+      ]
+    },
+    {
+      "spectrum": "yifu2_50kv_20uA.mca",
+      "supported_unchanged": true,
+      "math_files_unchanged": {
+        "fit_spectrum.csv": true,
+        "fit_components.csv": true,
+        "relative_areal_density.csv": true,
+        "quantification_peaks.csv": true,
+        "quantification_fit.csv": true
+      },
+      "possible_before": [
+        "Cr",
+        "Ni"
+      ],
+      "possible_after": [
+        "Cr",
+        "Ni"
+      ]
+    },
+    {
+      "spectrum": "yifu_50keV_20uA_back3mm.mca",
+      "supported_unchanged": true,
+      "math_files_unchanged": {
+        "fit_spectrum.csv": true,
+        "fit_components.csv": true,
+        "relative_areal_density.csv": true,
+        "quantification_peaks.csv": true,
+        "quantification_fit.csv": true
+      },
+      "possible_before": [
+        "Ca",
+        "Cr",
+        "Cd"
+      ],
+      "possible_after": [
+        "Ca",
+        "Cr",
+        "Cd"
+      ]
+    },
+    {
+      "spectrum": "yinzhang_50kv_20uA.mca",
+      "supported_unchanged": true,
+      "math_files_unchanged": {
+        "fit_spectrum.csv": true,
+        "fit_components.csv": true,
+        "relative_areal_density.csv": true,
+        "quantification_peaks.csv": true,
+        "quantification_fit.csv": true
+      },
+      "possible_before": [
+        "Pd",
+        "Cd"
+      ],
+      "possible_after": [
+        "Cd"
+      ]
+    }
+  ]
+}

@@ -10,10 +10,11 @@ import pandas as pd
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--root',default='results/optimization_20261104')
+    parser.add_argument('--batch', help='Completed batch directory (default: ROOT/batch)')
     args=parser.parse_args()
     root=Path(args.root)
     before=json.loads((root/'before.json').read_text())['spectra']
-    batch=root/'batch'
+    batch=Path(args.batch) if args.batch else root/'batch'
     manifest=json.loads((batch/'batch_manifest.json').read_text())
     if not manifest['completed']:
         raise SystemExit('Batch must complete before comparison')

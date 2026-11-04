@@ -1,0 +1,341 @@
+{
+  "scope": "reporting only; same saved likelihoods, statuses, peak areas and density",
+  "manual_reference_used": false,
+  "variants": {
+    "0.0": {
+      "possible_records": 36,
+      "samples": {
+        "pos1_40keV_80uA.mca": [
+          "Ni",
+          "Tc"
+        ],
+        "pos2_40keV_80uA.mca": [
+          "Ca",
+          "Ni",
+          "Cd"
+        ],
+        "pos3_40keV_80uA.mca": [
+          "Cd"
+        ],
+        "pos4_40keV_80uA.mca": [
+          "Ni",
+          "Ta"
+        ],
+        "pos5_40keV_5uA.mca": [
+          "Ni",
+          "Mo"
+        ],
+        "shafa1_50kv_20uA.mca": [
+          "Ni",
+          "Sb"
+        ],
+        "shafa_50kv_20uA.mca": [
+          "Cr",
+          "Ni",
+          "Cd",
+          "At"
+        ],
+        "shou_50keV_20uA_back3mm.mca": [
+          "Cd",
+          "Sb"
+        ],
+        "shu_50keV_20uA_back3mm.mca": [
+          "Fe",
+          "Ni"
+        ],
+        "toufa_50keV_20uA_back3mm.mca": [
+          "Ca",
+          "Ni",
+          "Sb"
+        ],
+        "xiongzhen1.mca": [],
+        "xiongzhen_50keV_20uA_back3mm.mca": [
+          "Ca",
+          "Ni",
+          "Tc"
+        ],
+        "yifu1_tou_50keV_20uA_back3mm.mca": [
+          "Cr",
+          "Fe",
+          "Cd"
+        ],
+        "yifu2_50kv_20uA.mca": [
+          "Cr",
+          "Ni"
+        ],
+        "yifu_50keV_20uA_back3mm.mca": [
+          "Ca",
+          "Cr",
+          "Cd"
+        ],
+        "yinzhang_50kv_20uA.mca": [
+          "Pd",
+          "Cd"
+        ]
+      }
+    },
+    "6.0": {
+      "possible_records": 31,
+      "samples": {
+        "pos1_40keV_80uA.mca": [
+          "Ni"
+        ],
+        "pos2_40keV_80uA.mca": [
+          "Ca",
+          "Ni",
+          "Cd"
+        ],
+        "pos3_40keV_80uA.mca": [
+          "Cd"
+        ],
+        "pos4_40keV_80uA.mca": [
+          "Ni"
+        ],
+        "pos5_40keV_5uA.mca": [
+          "Ni",
+          "Mo"
+        ],
+        "shafa1_50kv_20uA.mca": [
+          "Ni",
+          "Sb"
+        ],
+        "shafa_50kv_20uA.mca": [
+          "Cr",
+          "Ni",
+          "Cd"
+        ],
+        "shou_50keV_20uA_back3mm.mca": [
+          "Cd",
+          "Sb"
+        ],
+        "shu_50keV_20uA_back3mm.mca": [
+          "Fe",
+          "Ni"
+        ],
+        "toufa_50keV_20uA_back3mm.mca": [
+          "Ca",
+          "Ni",
+          "Sb"
+        ],
+        "xiongzhen1.mca": [],
+        "xiongzhen_50keV_20uA_back3mm.mca": [
+          "Ca",
+          "Ni"
+        ],
+        "yifu1_tou_50keV_20uA_back3mm.mca": [
+          "Cr",
+          "Fe",
+          "Cd"
+        ],
+        "yifu2_50kv_20uA.mca": [
+          "Cr",
+          "Ni"
+        ],
+        "yifu_50keV_20uA_back3mm.mca": [
+          "Ca",
+          "Cr",
+          "Cd"
+        ],
+        "yinzhang_50kv_20uA.mca": [
+          "Cd"
+        ]
+      }
+    },
+    "9.0": {
+      "possible_records": 30,
+      "samples": {
+        "pos1_40keV_80uA.mca": [
+          "Ni"
+        ],
+        "pos2_40keV_80uA.mca": [
+          "Ca",
+          "Ni",
+          "Cd"
+        ],
+        "pos3_40keV_80uA.mca": [
+          "Cd"
+        ],
+        "pos4_40keV_80uA.mca": [
+          "Ni"
+        ],
+        "pos5_40keV_5uA.mca": [
+          "Ni"
+        ],
+        "shafa1_50kv_20uA.mca": [
+          "Ni",
+          "Sb"
+        ],
+        "shafa_50kv_20uA.mca": [
+          "Cr",
+          "Ni",
+          "Cd"
+        ],
+        "shou_50keV_20uA_back3mm.mca": [
+          "Cd",
+          "Sb"
+        ],
+        "shu_50keV_20uA_back3mm.mca": [
+          "Fe",
+          "Ni"
+        ],
+        "toufa_50keV_20uA_back3mm.mca": [
+          "Ca",
+          "Ni",
+          "Sb"
+        ],
+        "xiongzhen1.mca": [],
+        "xiongzhen_50keV_20uA_back3mm.mca": [
+          "Ca",
+          "Ni"
+        ],
+        "yifu1_tou_50keV_20uA_back3mm.mca": [
+          "Cr",
+          "Fe",
+          "Cd"
+        ],
+        "yifu2_50kv_20uA.mca": [
+          "Cr",
+          "Ni"
+        ],
+        "yifu_50keV_20uA_back3mm.mca": [
+          "Ca",
+          "Cr",
+          "Cd"
+        ],
+        "yinzhang_50kv_20uA.mca": [
+          "Cd"
+        ]
+      }
+    },
+    "12.0": {
+      "possible_records": 29,
+      "samples": {
+        "pos1_40keV_80uA.mca": [
+          "Ni"
+        ],
+        "pos2_40keV_80uA.mca": [
+          "Ca",
+          "Ni",
+          "Cd"
+        ],
+        "pos3_40keV_80uA.mca": [
+          "Cd"
+        ],
+        "pos4_40keV_80uA.mca": [
+          "Ni"
+        ],
+        "pos5_40keV_5uA.mca": [
+          "Ni"
+        ],
+        "shafa1_50kv_20uA.mca": [
+          "Ni"
+        ],
+        "shafa_50kv_20uA.mca": [
+          "Cr",
+          "Ni",
+          "Cd"
+        ],
+        "shou_50keV_20uA_back3mm.mca": [
+          "Cd",
+          "Sb"
+        ],
+        "shu_50keV_20uA_back3mm.mca": [
+          "Fe",
+          "Ni"
+        ],
+        "toufa_50keV_20uA_back3mm.mca": [
+          "Ca",
+          "Ni",
+          "Sb"
+        ],
+        "xiongzhen1.mca": [],
+        "xiongzhen_50keV_20uA_back3mm.mca": [
+          "Ca",
+          "Ni"
+        ],
+        "yifu1_tou_50keV_20uA_back3mm.mca": [
+          "Cr",
+          "Fe",
+          "Cd"
+        ],
+        "yifu2_50kv_20uA.mca": [
+          "Cr",
+          "Ni"
+        ],
+        "yifu_50keV_20uA_back3mm.mca": [
+          "Ca",
+          "Cr",
+          "Cd"
+        ],
+        "yinzhang_50kv_20uA.mca": [
+          "Cd"
+        ]
+      }
+    },
+    "16.0": {
+      "possible_records": 29,
+      "samples": {
+        "pos1_40keV_80uA.mca": [
+          "Ni"
+        ],
+        "pos2_40keV_80uA.mca": [
+          "Ca",
+          "Ni",
+          "Cd"
+        ],
+        "pos3_40keV_80uA.mca": [
+          "Cd"
+        ],
+        "pos4_40keV_80uA.mca": [
+          "Ni"
+        ],
+        "pos5_40keV_5uA.mca": [
+          "Ni"
+        ],
+        "shafa1_50kv_20uA.mca": [
+          "Ni"
+        ],
+        "shafa_50kv_20uA.mca": [
+          "Cr",
+          "Ni",
+          "Cd"
+        ],
+        "shou_50keV_20uA_back3mm.mca": [
+          "Cd",
+          "Sb"
+        ],
+        "shu_50keV_20uA_back3mm.mca": [
+          "Fe",
+          "Ni"
+        ],
+        "toufa_50keV_20uA_back3mm.mca": [
+          "Ca",
+          "Ni",
+          "Sb"
+        ],
+        "xiongzhen1.mca": [],
+        "xiongzhen_50keV_20uA_back3mm.mca": [
+          "Ca",
+          "Ni"
+        ],
+        "yifu1_tou_50keV_20uA_back3mm.mca": [
+          "Cr",
+          "Fe",
+          "Cd"
+        ],
+        "yifu2_50kv_20uA.mca": [
+          "Cr",
+          "Ni"
+        ],
+        "yifu_50keV_20uA_back3mm.mca": [
+          "Ca",
+          "Cr",
+          "Cd"
+        ],
+        "yinzhang_50kv_20uA.mca": [
+          "Cd"
+        ]
+      }
+    }
+  }
+}

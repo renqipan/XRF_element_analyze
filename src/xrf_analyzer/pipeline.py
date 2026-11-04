@@ -17,7 +17,8 @@ from .response import sigma_kev, gaussian_response, FWHM_FACTOR
 from .baseline import snip_background
 from .peak_detection import detect_peaks
 from .manual_peaks import fit_requested_peaks
-from .element_prior import classification_table, element_class
+from .element_prior import classification_table, element_class, apply_reporting_policy
+from .candidate_reporting import filter_possible_candidates
 from .element_identification import identify_elements
 from .fit_model import fit_spectrum
 from .quantification import compute_relative_areal_density
@@ -155,6 +156,9 @@ def analyze(spectrum, calibration, sensitivity, output_dir=None, config=None, ba
                'Element_Class':element_class(symbol,config.element_prior),'Preferred_By_Prior':False}
         identification.candidates = pd.concat([identification.candidates, pd.DataFrame([row])], ignore_index=True)
     identification.candidates = identification.candidates.sort_values('Z').reset_index(drop=True)
+    identification.candidates = apply_reporting_policy(identification.candidates, config.lanthanide_reporting,
+                                                        config.noble_gas_reporting)
+    identification.candidates = filter_possible_candidates(identification.candidates, identification, peaks, fit_config)
     bootstrap_info = {'requested': config.bootstrap, 'successful': 0, 'method': None}
     if config.bootstrap and fit.success and fit.symbols:
         rng = np.random.default_rng(config.seed)
@@ -254,7 +258,7 @@ def analyze(spectrum, calibration, sensitivity, output_dir=None, config=None, ba
         warnings.append('Zero-count spectrum: no elemental detections or quantitative ratios')
     if not (identification.candidates.Quantification_Status == 'supported').any():
         warnings.append('No quantitatively valid elements; fraction denominator is empty; see separate identification statuses')
-    needs_confirmation=identification.candidates.loc[identification.candidates.Status.isin(['tentative','ambiguous','unidentifiable']) & identification.candidates.q_Fit.notna(),'Element'].tolist()
+    needs_confirmation=identification.candidates.loc[identification.candidates.Status.isin(['tentative','ambiguous','unidentifiable']) & identification.candidates.q_Fit.notna() & identification.candidates.Reportable,'Element'].tolist()
     if needs_confirmation:
         warnings.append('需要进一步确定（待定）的元素: '+', '.join(needs_confirmation)+'；不参与相对面密度计算')
     versions = {}
@@ -277,6 +281,12 @@ def analyze(spectrum, calibration, sensitivity, output_dir=None, config=None, ba
                    normalized_fractions_available=bool(density.Fraction_among_Reported_Elements.notna().any()),
                    quantification_method=config.quantification_method,
                    input_files=files, dependency_versions=versions, parameters=config.to_dict(),
+                   candidate_reporting={'possible_min_delta_deviance':config.possible_min_delta_deviance,
+                       'requires_observed_principal_peak':bool(config.possible_min_delta_deviance),
+                       'evidence_is_conditional_not_a_probability':True,
+                       'suppressed_weak_candidates':identification.candidates.loc[
+                           identification.candidates.Reporting_Reason.str.startswith('possible_requires'), 'Element'].tolist(),
+                       'supported_statuses_and_quantification_unchanged':True},
                    effective_parameters={'background_method': 'snip', 'snip_iterations': iterations, 'delta_E_bound_keV': identification.alignment['effective_fit_delta_bound_keV'],
                                          'excitation_tube_voltage_kV': excitation_voltage,
                                          'excitation_voltage_source': ('configuration' if config.tube_voltage_kv is not None else
@@ -285,7 +295,14 @@ def analyze(spectrum, calibration, sensitivity, output_dir=None, config=None, ba
                                          'energy_edges_keV': [float(edges[0]), float(edges[-1])]},
                    calibration_quality=cal.calibration_quality, sensitivity=table.metadata,
                    line_energy={'source': 'xraylib', 'api': 'xraylib.LineEnergy', 'units': 'keV'},
-                   manual_peaks=manual_response, element_prior={'profile':config.element_prior,'tie_margin':config.prior_tie_margin,'policy':'tie_break_only; data_ambiguity_is_not_confirmation'},
+                   manual_peaks=manual_response, element_prior={'profile':config.element_prior,'tie_margin':config.prior_tie_margin,'policy':'tie_break_only; data_ambiguity_is_not_confirmation',
+                       'lanthanide_reporting':config.lanthanide_reporting,
+                       'noble_gas_reporting':config.noble_gas_reporting,
+                       'suppressed_lanthanide_candidates':identification.candidates.loc[
+                           identification.candidates.Z.between(57,71) & ~identification.candidates.Reportable & identification.candidates.Status.isin(['tentative','ambiguous','unidentifiable']) & identification.candidates.q_Fit.notna(), 'Element'].tolist(),
+                       'suppressed_noble_gas_candidates':identification.candidates.loc[
+                           identification.candidates.Z.isin([2,10,18,36,54,86,118]) & ~identification.candidates.Reportable & identification.candidates.Status.isin(['tentative','ambiguous','unidentifiable']) & identification.candidates.q_Fit.notna(), 'Element'].tolist(),
+                       'reporting_policy_does_not_modify_fit_or_establish_absence':True},
                    elements_need_confirmation=needs_confirmation,
                    excluded_from_density=identification.candidates.loc[identification.candidates.Status!='supported','Element'].tolist(),
                    local_branch_evidence=identification.branch_evidence,

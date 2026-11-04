@@ -1,0 +1,209 @@
+{
+  "revision": "7ff68d64b1b92c581ef4eb295096404ee3c80232",
+  "spectra": {
+    "pos1_40keV_80uA.mca": {
+      "supported": [
+        "Fe",
+        "Pb"
+      ],
+      "tentative": [
+        "Ni",
+        "Tc",
+        "Tb"
+      ],
+      "deviance_per_dof": 12.522557519341763,
+      "sha256": "d1d01e9d2e860e99e4acb2ab998ce0d28b1ce11118dbd5587c866c4e84e3aef7"
+    },
+    "pos2_40keV_80uA.mca": {
+      "supported": [
+        "Fe",
+        "Pb"
+      ],
+      "tentative": [
+        "Ni",
+        "Cd",
+        "Tb"
+      ],
+      "deviance_per_dof": 10.358622329745398,
+      "sha256": "43e52d76655650e4da13f69dc3bab6c807f5a0041b4e5bd9bfacd1217decbd55"
+    },
+    "pos3_40keV_80uA.mca": {
+      "supported": [
+        "Fe",
+        "Ni",
+        "Pb"
+      ],
+      "tentative": [],
+      "deviance_per_dof": 50.31521718399588,
+      "sha256": "ae80aeff32defec2fe7ca17a1bec6d7850788ce68472a1b3cf5ef9b529bed8a4"
+    },
+    "pos4_40keV_80uA.mca": {
+      "supported": [
+        "Ca",
+        "Fe",
+        "Pb"
+      ],
+      "tentative": [
+        "Ni",
+        "La",
+        "Tb",
+        "Tm"
+      ],
+      "deviance_per_dof": 44.43583377977322,
+      "sha256": "15a07fc19106eeb4df4ec60f2f286afc8c303cdc4c25fa56637909f51cdbfd1c"
+    },
+    "pos5_40keV_5uA.mca": {
+      "supported": [
+        "Fe",
+        "Pb"
+      ],
+      "tentative": [
+        "Ni",
+        "Mo"
+      ],
+      "deviance_per_dof": 2.85154119331831,
+      "sha256": "cbe025dc5502ff7e1dd67205e70d519b635d9ba3517fd7783e1c80ca6752e45d"
+    },
+    "shafa1_50kv_20uA.mca": {
+      "supported": [
+        "Ca",
+        "Fe",
+        "Pb"
+      ],
+      "tentative": [
+        "Ni",
+        "Pm",
+        "Hg"
+      ],
+      "deviance_per_dof": 8.165884317579513,
+      "sha256": "687e08173e9ba66cb73d1b7f95d73e746413ecc3aa0a2c1d3ced0846179b6eb4"
+    },
+    "shafa_50kv_20uA.mca": {
+      "supported": [
+        "Ca",
+        "Fe",
+        "Hg",
+        "Pb"
+      ],
+      "tentative": [
+        "Cr",
+        "Ni",
+        "Cd"
+      ],
+      "deviance_per_dof": 7.3308199686590125,
+      "sha256": "93343b763b918656fe1d4e0ef1002a9a9b9c7a77b3f8956142f436622f0e9253"
+    },
+    "shou_50keV_20uA_back3mm.mca": {
+      "supported": [
+        "Fe",
+        "Hg",
+        "Pb"
+      ],
+      "tentative": [
+        "Sb",
+        "Tb",
+        "Lu"
+      ],
+      "deviance_per_dof": 17.842736460743957,
+      "sha256": "3d18ad50d423170bb56d167b81fd697a5040e38ce5d24d92f231b42f3d6c3167"
+    },
+    "shu_50keV_20uA_back3mm.mca": {
+      "supported": [
+        "Fe",
+        "Pb"
+      ],
+      "tentative": [
+        "Ni",
+        "Eu",
+        "Tb"
+      ],
+      "deviance_per_dof": 19.74062960748412,
+      "sha256": "ed2ae549ced33076e6cf911ddc94ef26436d87e15e986f94ff3b49c7c81b7974"
+    },
+    "toufa_50keV_20uA_back3mm.mca": {
+      "supported": [
+        "Fe",
+        "Pb"
+      ],
+      "tentative": [
+        "Ca",
+        "Ni",
+        "Eu"
+      ],
+      "deviance_per_dof": 18.767444999295442,
+      "sha256": "cffebedd97f233572f17bad06cfa73085fec890fcc8da99afdac9c96499a1a1d"
+    },
+    "xiongzhen1.mca": {
+      "supported": [
+        "Fe",
+        "Pb"
+      ],
+      "tentative": [],
+      "deviance_per_dof": 8.807898230836237,
+      "sha256": "26a3d30a72a33136ba060d321008aff40a2ccceb1a97b40c35f98a66033edd96"
+    },
+    "xiongzhen_50keV_20uA_back3mm.mca": {
+      "supported": [
+        "Fe",
+        "Pb"
+      ],
+      "tentative": [
+        "Ca",
+        "Ni",
+        "Tc",
+        "Tb"
+      ],
+      "deviance_per_dof": 16.08859942272656,
+      "sha256": "d3bfbf4bba27843af5e7297c93ab53714ee256be286b60d41558b1232f59be67"
+    },
+    "yifu1_tou_50keV_20uA_back3mm.mca": {
+      "supported": [
+        "Pb"
+      ],
+      "tentative": [
+        "Fe",
+        "Tb"
+      ],
+      "deviance_per_dof": 16.20885681688741,
+      "sha256": "36c390349a71c42ac57530d53f0d6c805d480d340eb973614b809220e606eb19"
+    },
+    "yifu2_50kv_20uA.mca": {
+      "supported": [
+        "Fe",
+        "Pb"
+      ],
+      "tentative": [
+        "Ni",
+        "Pm"
+      ],
+      "deviance_per_dof": 7.724876211689134,
+      "sha256": "c551ce4248d34a2fd2877f47e38b959009335fcfdd61514e80b27a28ca5d515b"
+    },
+    "yifu_50keV_20uA_back3mm.mca": {
+      "supported": [
+        "Fe",
+        "Ni",
+        "Pb"
+      ],
+      "tentative": [
+        "Cr",
+        "Pm"
+      ],
+      "deviance_per_dof": 16.87152938644687,
+      "sha256": "75d7a171c527199363d336bd5d25cdeb73322a7740c6f8baaccb15f6bf6ffdf8"
+    },
+    "yinzhang_50kv_20uA.mca": {
+      "supported": [
+        "Ca",
+        "Fe",
+        "Pb"
+      ],
+      "tentative": [
+        "Pd",
+        "Cd"
+      ],
+      "deviance_per_dof": 8.129473795472512,
+      "sha256": "1fd010730a31022cb96c6bece1057ffafc78c1d597876098bfdc8a9eef1c9a09"
+    }
+  }
+}

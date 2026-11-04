@@ -26,6 +26,12 @@ def build_parser():
     p.add_argument('--find_peaks', '--find-peaks', nargs='+', default=argparse.SUPPRESS, help='User peak centers in keV; default None (automatic); quote bracket/comma lists')
     p.add_argument('--find-peaks-axis', choices=['reference','observed'], default=argparse.SUPPRESS)
     p.add_argument('--element-prior', choices=['general','heritage','archaeology','minerals','none'], default=argparse.SUPPRESS)
+    p.add_argument('--lanthanide-reporting', choices=['supported-only','all-candidates'], default=argparse.SUPPRESS,
+                   help='Report La-Lu only with supported identity (default), or show unresolved candidates too; fits retain all hypotheses')
+    p.add_argument('--noble-gas-reporting', choices=['supported-only','all-candidates'], default=argparse.SUPPRESS,
+                   help='Report group 18 only with supported identity (default), or show unresolved candidates too; fits retain all hypotheses')
+    p.add_argument('--possible-min-delta-deviance', type=float, default=argparse.SUPPRESS,
+                   help='Possible-element reporting evidence floor (default 9); requires an observed principal peak; 0 restores the unfiltered pending list; supported identities and density unchanged')
     p.add_argument('--prior-tie-margin', type=float, default=argparse.SUPPRESS)
     p.add_argument('--energy-range', nargs=2, type=float, default=argparse.SUPPRESS)
     p.add_argument('--elements', default=argparse.SUPPRESS, help='Comma-separated canonical symbols')

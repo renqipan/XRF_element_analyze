@@ -23,6 +23,11 @@
       "Element_Class": "common",
       "Preferred_By_Prior": false,
       "Prior_Alternatives": "",
+      "Reportable": true,
+      "Reporting_Reason": "",
+      "Possible_Reporting_Evidence": null,
+      "Possible_Reporting_Evidence_Source": "",
+      "Principal_Peak_Observed_For_Possibility": false,
       "Global_Quantification_Status": "not_estimable"
     }
   ],

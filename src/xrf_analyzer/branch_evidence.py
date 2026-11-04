@@ -158,7 +158,8 @@ def evaluate_branch_evidence(symbol, lines, energy, edges, counts, fit, config, 
                 branches={l.branch for l in target_lines}
                 neighbours=[g for g in local_groups if not (g['Element']==symbol and
                     any(l.branch in branches for l in g['lines']))]
-                neighbours=[dict(g,confirmed=True) if g['Element']==symbol else g for g in neighbours]
+                neighbours=[dict(g,confirmed=True) if g['Element']==symbol and not g['auxiliary'] else g
+                            for g in neighbours]
                 profiled=_profile(target,[target]+neighbours,counts,energy,edges,config,roi_sigma,
                                   background_scale=getattr(fit,'background_scale',0.) or 0.)
                 gain=profiled.get('DeltaDeviance') if profiled['Success'] else None

@@ -4,112 +4,125 @@
   "formula": "A_i = common_flux_geometry_time * areal_density_i * S_i; ratio=(A_i/S_i)/(A_ref/S_ref)",
   "elements": [
     {
+      "Element": "Ca",
+      "Z": 20,
+      "q_Area": null,
+      "q_Std": null,
+      "q_Stat_Std": null,
+      "Quantification_Status": "local_area_not_estimable",
+      "Failure_Reason": "background_window_unstable",
+      "Notes": "Conditional on supplied common-scale S; local Gaussian/background and candidate set; S/absorption systematics excluded",
+      "Selected_Branches": null,
+      "Area_Counts": null,
+      "Sensitivity_Sum": null,
+      "Background_Window_Relative_Difference": null,
+      "Window_Systematic_q": null,
+      "Local_Overdispersion": null,
+      "Local_Response_At_Boundary": null,
+      "Method": null
+    },
+    {
       "Element": "Pb",
       "Z": 82,
-      "q_Area": 26869.31160238881,
-      "q_Std": 142.36487289667622,
-      "q_Stat_Std": 76.3958123369148,
+      "q_Area": 26862.79522985661,
+      "q_Std": 132.8604673682339,
+      "q_Stat_Std": 76.47620070798386,
       "Quantification_Status": "local_area_estimate",
       "Failure_Reason": "",
       "Notes": "Conditional on supplied common-scale S; local Gaussian/background and candidate set; S/absorption systematics excluded",
       "Selected_Branches": "Lalpha2+Lalpha1",
-      "Area_Counts": 137158.67329493846,
+      "Area_Counts": 137125.4094352446,
       "Sensitivity_Sum": 5.104659,
-      "Background_Window_Relative_Difference": 0.0021704811004640565,
-      "Window_Systematic_q": 58.31933301546451,
-      "Local_Overdispersion": 2.8899395542676403,
+      "Background_Window_Relative_Difference": 0.001929762835683215,
+      "Window_Systematic_q": 51.83882389714563,
+      "Local_Overdispersion": 2.5586664150962046,
       "Local_Response_At_Boundary": false,
       "Method": "local_primary_area_over_common_scale_sensitivity"
     }
   ],
   "covariance_element_order": [
+    "Ca",
     "Pb"
   ],
   "q_area_covariance": [
     [
-      20267.757034886774
+      null,
+      null
+    ],
+    [
+      null,
+      17651.90378930555
     ]
   ],
   "q_area_stat_covariance": [
     [
-      5836.3201426171045
+      null,
+      null
+    ],
+    [
+      null,
+      5848.609274727831
     ]
   ],
   "audit": [
     {
-      "Element": "Pb",
-      "Branches": "M5N6+Malpha1+M5O3",
+      "Element": "Ca",
+      "Branches": "Kalpha2+Kalpha1",
       "Primary_Group_Policy": "unresolved_primary_group",
-      "Sensitivity_Sum": 8.961764886008448,
+      "Sensitivity_Sum": 6.25939,
       "Narrow": {
         "Background_Window_Sigmas": 4.0,
         "Success": true,
-        "Interferent_Anchor_Extensions": [
-          "Ag:L3:Lalpha2+Lalpha1"
-        ],
+        "Interferent_Anchor_Extensions": [],
         "Optimizer_Message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH",
-        "ROI_Start_keV": 2.030769230769231,
-        "ROI_End_keV": 3.3600000000000003,
+        "ROI_Start_keV": 3.433846153846154,
+        "ROI_End_keV": 4.246153846153846,
         "Nuisance_Groups": [
-          "Pb:M5N3",
-          "Ag:L3M1+Lalpha2+Lalpha1+L3N1+Lbeta2+L3N4",
-          "Ag:L2M1+Lbeta1+L2N1+Lgamma1",
-          "Ag:L1M2+L1M3+L1M4+L1M5+L1N2+L1N3"
+          "Ca:Kbeta1+KM2"
         ],
         "Nuisance_Policies": [
-          "supported_resolved_group_area_free",
-          "unconfirmed_same_initial_shell_L3_ratios_retained",
-          "unconfirmed_same_initial_shell_L2_ratios_retained",
-          "unconfirmed_same_initial_shell_L1_ratios_retained"
+          "supported_resolved_group_area_free"
         ],
-        "q_Area": 0.0,
-        "q_Fisher_Std": 0.0027659573414470853,
-        "Area_Counts": 0.0,
-        "Sensitivity_Sum": 8.961764886008448,
-        "Area_Fraction_in_Window": 0.9999999999676853,
-        "DeltaDeviance": 0.0,
-        "Deviance": 7.653369652577273,
-        "Degrees_of_Freedom": 9,
-        "Deviance_per_dof": 0.8503744058419191,
-        "Local_Shift_keV": -0.01422836776573388,
-        "Local_Width_Scale": 0.65,
-        "Response_At_Boundary": true,
-        "Local_Primary_Center_keV": 2.4818787412238295
+        "q_Area": 30.853047669095854,
+        "q_Fisher_Std": 5.882217832107674,
+        "Area_Counts": 193.1212580494619,
+        "Sensitivity_Sum": 6.25939,
+        "Area_Fraction_in_Window": 0.9994275151581952,
+        "DeltaDeviance": 51.15369763092599,
+        "Deviance": 3.012534762326481,
+        "Degrees_of_Freedom": 5,
+        "Deviance_per_dof": 0.6025069524652962,
+        "Local_Shift_keV": 0.007123921927838634,
+        "Local_Width_Scale": 1.106306556428515,
+        "Response_At_Boundary": false,
+        "Local_Primary_Center_keV": 3.8481046816974795
       },
       "Wide": {
         "Background_Window_Sigmas": 6.0,
         "Success": true,
-        "Interferent_Anchor_Extensions": [
-          "Ag:L1:L1M2+L1M3"
-        ],
+        "Interferent_Anchor_Extensions": [],
         "Optimizer_Message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH",
-        "ROI_Start_keV": 1.883076923076923,
-        "ROI_End_keV": 3.581538461538462,
+        "ROI_Start_keV": 3.2123076923076925,
+        "ROI_End_keV": 4.4676923076923085,
         "Nuisance_Groups": [
-          "Pb:M5N3",
-          "Ag:L3M1+Lalpha2+Lalpha1+L3N1+Lbeta2+L3N4",
-          "Ag:L2M1+Lbeta1+L2N1+Lgamma1",
-          "Ag:L1M2+L1M3+L1M4+L1M5+L1N2+L1N3"
+          "Ca:Kbeta1+KM2"
         ],
         "Nuisance_Policies": [
-          "supported_resolved_group_area_free",
-          "unconfirmed_same_initial_shell_L3_ratios_retained",
-          "unconfirmed_same_initial_shell_L2_ratios_retained",
-          "unconfirmed_same_initial_shell_L1_ratios_retained"
+          "supported_resolved_group_area_free"
         ],
-        "q_Area": 0.0,
-        "q_Fisher_Std": 0.011356075668975344,
-        "Area_Counts": 0.0,
-        "Sensitivity_Sum": 8.961764886008448,
-        "Area_Fraction_in_Window": 0.9999999997997552,
-        "DeltaDeviance": 0.0,
-        "Deviance": 22.365273361121517,
-        "Degrees_of_Freedom": 14,
-        "Deviance_per_dof": 1.5975195257943942,
-        "Local_Shift_keV": 0.05491242567252575,
-        "Local_Width_Scale": 1.0059313176821327,
+        "q_Area": 17.17769357430671,
+        "q_Fisher_Std": 3.006019791542693,
+        "Area_Counts": 107.52188338207966,
+        "Sensitivity_Sum": 6.25939,
+        "Area_Fraction_in_Window": 0.9999999999459792,
+        "DeltaDeviance": 53.05589440417066,
+        "Deviance": 10.362450680541745,
+        "Degrees_of_Freedom": 11,
+        "Deviance_per_dof": 0.9420409709583404,
+        "Local_Shift_keV": 0.007741906346079077,
+        "Local_Width_Scale": 0.8962949439430645,
         "Response_At_Boundary": false,
-        "Local_Primary_Center_keV": 2.5510195346620894
+        "Local_Primary_Center_keV": 3.8487226661157203
       },
       "Accepted": false
     },
@@ -127,26 +140,26 @@
         "ROI_End_keV": 11.113846153846154,
         "Nuisance_Groups": [],
         "Nuisance_Policies": [],
-        "q_Area": 26810.992269373346,
-        "q_Fisher_Std": 78.4711657326149,
-        "Area_Counts": 136860.97298678706,
+        "q_Area": 26810.956405959463,
+        "q_Fisher_Std": 78.47141428620088,
+        "Area_Counts": 136860.78991628863,
         "Sensitivity_Sum": 5.104659,
-        "Area_Fraction_in_Window": 0.999965726753917,
-        "DeltaDeviance": 173897.09101819806,
-        "Deviance": 14.378923284570597,
+        "Area_Fraction_in_Window": 0.9999657162766709,
+        "DeltaDeviance": 173897.1259939219,
+        "Deviance": 14.3439475616949,
         "Degrees_of_Freedom": 9,
-        "Deviance_per_dof": 1.5976581427300662,
-        "Local_Shift_keV": 0.0034592888156291615,
-        "Local_Width_Scale": 0.9816112854036099,
+        "Deviance_per_dof": 1.5937719512994333,
+        "Local_Shift_keV": -0.001045888549777939,
+        "Local_Width_Scale": 1.008573059110784,
         "Response_At_Boundary": false,
-        "Local_Primary_Center_keV": 10.623970705894694
+        "Local_Primary_Center_keV": 10.62397247092754
       },
       "Wide": {
         "Background_Window_Sigmas": 6.0,
         "Success": true,
         "Interferent_Anchor_Extensions": [],
         "Optimizer_Message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH",
-        "ROI_Start_keV": 9.784615384615385,
+        "ROI_Start_keV": 9.858461538461539,
         "ROI_End_keV": 11.335384615384616,
         "Nuisance_Groups": [
           "Pb:L2M1"
@@ -154,19 +167,19 @@
         "Nuisance_Policies": [
           "supported_resolved_group_area_free"
         ],
-        "q_Area": 26869.31160238881,
-        "q_Fisher_Std": 76.39581233691497,
-        "Area_Counts": 137158.67329493846,
+        "q_Area": 26862.79522985661,
+        "q_Fisher_Std": 76.47620070798388,
+        "Area_Counts": 137125.4094352446,
         "Sensitivity_Sum": 5.104659,
-        "Area_Fraction_in_Window": 0.9999999979961095,
-        "DeltaDeviance": 264056.97983769514,
-        "Deviance": 43.3490933140146,
-        "Degrees_of_Freedom": 15,
-        "Deviance_per_dof": 2.8899395542676403,
-        "Local_Shift_keV": 0.003230691032910211,
-        "Local_Width_Scale": 0.9845116931703028,
+        "Area_Fraction_in_Window": 0.9999999972018874,
+        "DeltaDeviance": 254959.23595746513,
+        "Deviance": 35.821329811346864,
+        "Degrees_of_Freedom": 14,
+        "Deviance_per_dof": 2.5586664150962046,
+        "Local_Shift_keV": -0.0012138766422700037,
+        "Local_Width_Scale": 1.011210784577386,
         "Response_At_Boundary": false,
-        "Local_Primary_Center_keV": 10.623742108111975
+        "Local_Primary_Center_keV": 10.623804482835048
       },
       "Accepted": true
     }

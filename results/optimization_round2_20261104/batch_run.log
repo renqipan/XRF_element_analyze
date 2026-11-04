@@ -1,0 +1,577 @@
+
+[1/16] pos1_40keV_80uA.mca
+INFO Loaded /home/renqi/Documents/ChatGPT/XRF_element_analyze/XRF_SDD/pos1_40keV_80uA.mca: 501/1024 channels, 3.105e+05 counts, energy 2.991..39.99 keV
+INFO SNIP iterations=13; observed candidate features=15
+INFO Centroid-pattern candidates: ['Cd', 'Fe', 'Ni', 'Pb', 'Ru', 'Tc']; shared shift initial 0.05000 keV
+INFO Disable unanchored auxiliary shells: ['Cd', 'Ru', 'Tc']
+INFO Residual multi-branch evidence adds: ['Tb']
+INFO Centroid-pattern candidates: ['Cd', 'Fe', 'Ni', 'Pb', 'Ru', 'Tb', 'Tc']; shared shift initial 0.13249 keV
+INFO Disable unanchored auxiliary shells: ['Tb']
+INFO Element deletion comparison: Fe (1/7)
+INFO Element deletion comparison: Ni (2/7)
+INFO Element deletion comparison: Tc (3/7)
+INFO Element deletion comparison: Ru (4/7)
+INFO Element deletion comparison: Cd (5/7)
+INFO Element deletion comparison: Tb (6/7)
+INFO Element deletion comparison: Pb (7/7)
+WARNING Non-UTF8 MCA headers decoded using latin-1; DATA remains strict ASCII numeric
+WARNING Accepted instrument origin (0,0); zero energy is allowed only at channel zero
+WARNING Two-point residuals do not estimate calibration statistical uncertainty
+WARNING Sensitivity provenance unverified: missing .metadata.json; source matching is not established
+WARNING Recorded acquisition lower cutoff 2.99077 keV: excluded channels are not treated as measured absence
+WARNING Severe global model mismatch: joint-template q is diagnostic; independently measured primary peak areas are evaluated separately
+WARNING Structured residual / overdispersion: matrix_effect_or_model_mismatch or unmodelled scattering/artifacts
+WARNING branch_ratio_mismatch: regional observed residuals disagree with the fixed branch model
+WARNING Target Ag fluorescence and Rayleigh scattering cannot establish sample Ag; sample target ratios withheld
+WARNING 4 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary
+WARNING 需要进一步确定（待定）的元素: Ni；不参与相对面密度计算
+INFO Completed /home/renqi/Documents/ChatGPT/XRF_element_analyze/XRF_SDD/pos1_40keV_80uA.mca in 13.33s: success
+
+样品：pos1_40keV_80uA.mca
+确定存在（证据支持）：Fe, Pb
+相对面密度比值（表观值）：
+  定量依据：局部净峰面积 / 相对灵敏度
+  Fe / Pb = 0.00303997
+  Pb / Pb = 1
+可能存在（待定，不参与面密度计算）：Ni
+
+[2/16] pos2_40keV_80uA.mca
+INFO Loaded /home/renqi/Documents/ChatGPT/XRF_element_analyze/XRF_SDD/pos2_40keV_80uA.mca: 501/1024 channels, 3.031e+05 counts, energy 2.991..39.99 keV
+INFO SNIP iterations=13; observed candidate features=12
+INFO Centroid-pattern candidates: ['Ca', 'Cd', 'Fe', 'Ni', 'Pb', 'Tb', 'Te']; shared shift initial 0.08500 keV
+INFO Disable unanchored auxiliary shells: ['Cd', 'Tb', 'Te']
+INFO Element deletion comparison: Ca (1/7)
+INFO Element deletion comparison: Fe (2/7)
+INFO Element deletion comparison: Ni (3/7)
+INFO Element deletion comparison: Cd (4/7)
+INFO Element deletion comparison: Te (5/7)
+INFO Element deletion comparison: Tb (6/7)
+INFO Element deletion comparison: Pb (7/7)
+WARNING Non-UTF8 MCA headers decoded using latin-1; DATA remains strict ASCII numeric
+WARNING Accepted instrument origin (0,0); zero energy is allowed only at channel zero
+WARNING Two-point residuals do not estimate calibration statistical uncertainty
+WARNING Sensitivity provenance unverified: missing .metadata.json; source matching is not established
+WARNING Recorded acquisition lower cutoff 2.99077 keV: excluded channels are not treated as measured absence
+WARNING Severe global model mismatch: joint-template q is diagnostic; independently measured primary peak areas are evaluated separately
+WARNING Structured residual / overdispersion: matrix_effect_or_model_mismatch or unmodelled scattering/artifacts
+WARNING branch_ratio_mismatch: regional observed residuals disagree with the fixed branch model
+WARNING Target Ag fluorescence and Rayleigh scattering cannot establish sample Ag; sample target ratios withheld
+WARNING 1 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary
+WARNING 需要进一步确定（待定）的元素: Ca, Ni, Cd；不参与相对面密度计算
+INFO Completed /home/renqi/Documents/ChatGPT/XRF_element_analyze/XRF_SDD/pos2_40keV_80uA.mca in 19.71s: success
+
+样品：pos2_40keV_80uA.mca
+确定存在（证据支持）：Fe, Pb
+相对面密度比值（表观值）：
+  定量依据：局部净峰面积 / 相对灵敏度
+  Fe / Pb = 0.00818902
+  Pb / Pb = 1
+可能存在（待定，不参与面密度计算）：Ca, Ni, Cd
+
+[3/16] pos3_40keV_80uA.mca
+INFO Loaded /home/renqi/Documents/ChatGPT/XRF_element_analyze/XRF_SDD/pos3_40keV_80uA.mca: 501/1024 channels, 1.253e+06 counts, energy 2.991..39.99 keV
+INFO SNIP iterations=13; observed candidate features=16
+INFO Centroid-pattern candidates: ['Cd', 'Fe', 'Ni', 'Pb', 'Te', 'Th', 'U']; shared shift initial 0.09000 keV
+INFO Disable unanchored auxiliary shells: ['Cd', 'Te', 'Th', 'U']
+INFO Element deletion comparison: Fe (1/7)
+INFO Element deletion comparison: Ni (2/7)
+INFO Element deletion comparison: Cd (3/7)
+INFO Element deletion comparison: Te (4/7)
+INFO Element deletion comparison: Pb (5/7)
+INFO Element deletion comparison: Th (6/7)
+INFO Element deletion comparison: U (7/7)
+WARNING Non-UTF8 MCA headers decoded using latin-1; DATA remains strict ASCII numeric
+WARNING Accepted instrument origin (0,0); zero energy is allowed only at channel zero
+WARNING Two-point residuals do not estimate calibration statistical uncertainty
+WARNING Sensitivity provenance unverified: missing .metadata.json; source matching is not established
+WARNING Recorded acquisition lower cutoff 2.99077 keV: excluded channels are not treated as measured absence
+WARNING Severe global model mismatch: joint-template q is diagnostic; independently measured primary peak areas are evaluated separately
+WARNING Structured residual / overdispersion: matrix_effect_or_model_mismatch or unmodelled scattering/artifacts
+WARNING branch_ratio_mismatch: regional observed residuals disagree with the fixed branch model
+WARNING Target Ag fluorescence and Rayleigh scattering cannot establish sample Ag; sample target ratios withheld
+WARNING 6 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary
+WARNING 需要进一步确定（待定）的元素: Cd；不参与相对面密度计算
+INFO Completed /home/renqi/Documents/ChatGPT/XRF_element_analyze/XRF_SDD/pos3_40keV_80uA.mca in 12.05s: success
+
+样品：pos3_40keV_80uA.mca
+确定存在（证据支持）：Fe, Ni, Pb
+相对面密度比值（表观值）：
+  定量依据：局部净峰面积 / 相对灵敏度
+  Fe / Pb = 0.00374684
+  Ni / Pb = 0.00330174
+  Pb / Pb = 1
+可能存在（待定，不参与面密度计算）：Cd
+
+[4/16] pos4_40keV_80uA.mca
+INFO Loaded /home/renqi/Documents/ChatGPT/XRF_element_analyze/XRF_SDD/pos4_40keV_80uA.mca: 501/1024 channels, 1.127e+06 counts, energy 2.991..39.99 keV
+INFO SNIP iterations=13; observed candidate features=19
+INFO Centroid-pattern candidates: ['Ca', 'Fe', 'La', 'Ni', 'Pb', 'Ru', 'Ta', 'Te', 'Tm']; shared shift initial 0.09000 keV
+INFO Disable unanchored auxiliary shells: ['La', 'Ru', 'Ta', 'Te', 'Tm']
+INFO Residual multi-branch evidence adds: ['Hf', 'Tb']
+INFO Centroid-pattern candidates: ['Ca', 'Fe', 'Hf', 'La', 'Ni', 'Pb', 'Ru', 'Ta', 'Tb', 'Te', 'Tm']; shared shift initial 0.15281 keV
+INFO Disable unanchored auxiliary shells: ['Hf', 'Tb']
+INFO Element deletion comparison: Ca (1/11)
+INFO Element deletion comparison: Fe (2/11)
+INFO Element deletion comparison: Ni (3/11)
+INFO Element deletion comparison: Ru (4/11)
+INFO Element deletion comparison: Te (5/11)
+INFO Element deletion comparison: La (6/11)
+INFO Element deletion comparison: Tb (7/11)
+INFO Element deletion comparison: Tm (8/11)
+INFO Element deletion comparison: Hf (9/11)
+INFO Element deletion comparison: Ta (10/11)
+INFO Element deletion comparison: Pb (11/11)
+WARNING Non-UTF8 MCA headers decoded using latin-1; DATA remains strict ASCII numeric
+WARNING Accepted instrument origin (0,0); zero energy is allowed only at channel zero
+WARNING Two-point residuals do not estimate calibration statistical uncertainty
+WARNING Sensitivity provenance unverified: missing .metadata.json; source matching is not established
+WARNING Recorded acquisition lower cutoff 2.99077 keV: excluded channels are not treated as measured absence
+WARNING Severe global model mismatch: joint-template q is diagnostic; independently measured primary peak areas are evaluated separately
+WARNING Structured residual / overdispersion: matrix_effect_or_model_mismatch or unmodelled scattering/artifacts
+WARNING branch_ratio_mismatch: regional observed residuals disagree with the fixed branch model
+WARNING Target Ag fluorescence and Rayleigh scattering cannot establish sample Ag; sample target ratios withheld
+WARNING 6 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary
+WARNING 需要进一步确定（待定）的元素: Ni；不参与相对面密度计算
+INFO Completed /home/renqi/Documents/ChatGPT/XRF_element_analyze/XRF_SDD/pos4_40keV_80uA.mca in 33.14s: success
+
+样品：pos4_40keV_80uA.mca
+确定存在（证据支持）：Ca, Fe, Pb
+相对面密度比值（表观值）：
+  定量依据：局部净峰面积 / 相对灵敏度
+  Ca / Pb = 0.000644348
+  Fe / Pb = 0.0375748
+  Pb / Pb = 1
+可能存在（待定，不参与面密度计算）：Ni
+
+[5/16] pos5_40keV_5uA.mca
+INFO Loaded /home/renqi/Documents/ChatGPT/XRF_element_analyze/XRF_SDD/pos5_40keV_5uA.mca: 501/1024 channels, 5.184e+04 counts, energy 2.991..39.99 keV
+INFO SNIP iterations=13; observed candidate features=14
+INFO Centroid-pattern candidates: ['Fe', 'I', 'Mo', 'Ni', 'Pb']; shared shift initial 0.09500 keV
+INFO Disable unanchored auxiliary shells: ['I', 'Mo']
+INFO Element deletion comparison: Fe (1/5)
+INFO Element deletion comparison: Ni (2/5)
+INFO Element deletion comparison: Mo (3/5)
+INFO Element deletion comparison: I (4/5)
+INFO Element deletion comparison: Pb (5/5)
+WARNING Non-UTF8 MCA headers decoded using latin-1; DATA remains strict ASCII numeric
+WARNING Accepted instrument origin (0,0); zero energy is allowed only at channel zero
+WARNING Two-point residuals do not estimate calibration statistical uncertainty
+WARNING Sensitivity provenance unverified: missing .metadata.json; source matching is not established
+WARNING Recorded acquisition lower cutoff 2.99077 keV: excluded channels are not treated as measured absence
+WARNING Structured residual / overdispersion: matrix_effect_or_model_mismatch or unmodelled scattering/artifacts
+WARNING branch_ratio_mismatch: regional observed residuals disagree with the fixed branch model
+WARNING Target Ag fluorescence and Rayleigh scattering cannot establish sample Ag; sample target ratios withheld
+WARNING 5 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary
+WARNING 需要进一步确定（待定）的元素: Ni；不参与相对面密度计算
+INFO Completed /home/renqi/Documents/ChatGPT/XRF_element_analyze/XRF_SDD/pos5_40keV_5uA.mca in 9.53s: success
+
+样品：pos5_40keV_5uA.mca
+确定存在（证据支持）：Fe, Pb
+相对面密度比值（表观值）：
+  定量依据：局部净峰面积 / 相对灵敏度
+  Fe / Pb = 0.0388192
+  Pb / Pb = 1
+可能存在（待定，不参与面密度计算）：Ni
+
+[6/16] shafa1_50kv_20uA.mca
+INFO Loaded /home/renqi/Documents/ChatGPT/XRF_element_analyze/XRF_SDD/shafa1_50kv_20uA.mca: 501/1024 channels, 1.575e+05 counts, energy 2.991..39.99 keV
+INFO SNIP iterations=13; observed candidate features=18
+INFO Centroid-pattern candidates: ['Ca', 'Cr', 'Fe', 'Hg', 'Ni', 'Pb', 'Pm', 'Re', 'Sb', 'Te']; shared shift initial 0.11500 keV
+INFO Disable unanchored auxiliary shells: ['Pm', 'Re', 'Sb', 'Te']
+INFO Residual multi-branch evidence adds: ['Lu']
+INFO Centroid-pattern candidates: ['Ca', 'Cr', 'Fe', 'Hg', 'Lu', 'Ni', 'Pb', 'Pm', 'Re', 'Sb', 'Te']; shared shift initial 0.16093 keV
+INFO Disable unanchored auxiliary shells: ['Lu']
+INFO Element deletion comparison: Ca (1/11)
+INFO Element deletion comparison: Cr (2/11)
+INFO Element deletion comparison: Fe (3/11)
+INFO Element deletion comparison: Ni (4/11)
+INFO Element deletion comparison: Sb (5/11)
+INFO Element deletion comparison: Te (6/11)
+INFO Element deletion comparison: Pm (7/11)
+INFO Element deletion comparison: Lu (8/11)
+INFO Element deletion comparison: Re (9/11)
+INFO Element deletion comparison: Hg (10/11)
+INFO Element deletion comparison: Pb (11/11)
+WARNING Non-UTF8 MCA headers decoded using latin-1; DATA remains strict ASCII numeric
+WARNING Accepted instrument origin (0,0); zero energy is allowed only at channel zero
+WARNING Two-point residuals do not estimate calibration statistical uncertainty
+WARNING Sensitivity provenance unverified: missing .metadata.json; source matching is not established
+WARNING Recorded acquisition lower cutoff 2.99077 keV: excluded channels are not treated as measured absence
+WARNING Severe global model mismatch: joint-template q is diagnostic; independently measured primary peak areas are evaluated separately
+WARNING Structured residual / overdispersion: matrix_effect_or_model_mismatch or unmodelled scattering/artifacts
+WARNING branch_ratio_mismatch: regional observed residuals disagree with the fixed branch model
+WARNING Target Ag fluorescence and Rayleigh scattering cannot establish sample Ag; sample target ratios withheld
+WARNING 4 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary
+WARNING 需要进一步确定（待定）的元素: Ni, Sb；不参与相对面密度计算
+INFO Completed /home/renqi/Documents/ChatGPT/XRF_element_analyze/XRF_SDD/shafa1_50kv_20uA.mca in 25.38s: success
+
+样品：shafa1_50kv_20uA.mca
+确定存在（证据支持）：Ca, Fe, Hg, Pb
+相对面密度比值（表观值）：
+  定量依据：局部净峰面积 / 相对灵敏度
+  Ca / Pb = 0.00676903
+  Fe / Pb = 0.0660323
+  Hg / Pb = 0.0139549
+  Pb / Pb = 1
+可能存在（待定，不参与面密度计算）：Ni, Sb
+
+[7/16] shafa_50kv_20uA.mca
+INFO Loaded /home/renqi/Documents/ChatGPT/XRF_element_analyze/XRF_SDD/shafa_50kv_20uA.mca: 501/1024 channels, 1.5e+05 counts, energy 2.991..39.99 keV
+INFO SNIP iterations=13; observed candidate features=20
+INFO Centroid-pattern candidates: ['At', 'Ca', 'Cd', 'Cr', 'Fe', 'Hg', 'Ni', 'Pb', 'Pm']; shared shift initial 0.08500 keV
+INFO Disable unanchored auxiliary shells: ['At', 'Cd']
+INFO Element deletion comparison: Ca (1/9)
+INFO Element deletion comparison: Cr (2/9)
+INFO Element deletion comparison: Fe (3/9)
+INFO Element deletion comparison: Ni (4/9)
+INFO Element deletion comparison: Cd (5/9)
+INFO Element deletion comparison: Pm (6/9)
+INFO Element deletion comparison: Hg (7/9)
+INFO Element deletion comparison: Pb (8/9)
+INFO Element deletion comparison: At (9/9)
+WARNING Non-UTF8 MCA headers decoded using latin-1; DATA remains strict ASCII numeric
+WARNING Accepted instrument origin (0,0); zero energy is allowed only at channel zero
+WARNING Two-point residuals do not estimate calibration statistical uncertainty
+WARNING Sensitivity provenance unverified: missing .metadata.json; source matching is not established
+WARNING Recorded acquisition lower cutoff 2.99077 keV: excluded channels are not treated as measured absence
+WARNING Severe global model mismatch: joint-template q is diagnostic; independently measured primary peak areas are evaluated separately
+WARNING Structured residual / overdispersion: matrix_effect_or_model_mismatch or unmodelled scattering/artifacts
+WARNING branch_ratio_mismatch: regional observed residuals disagree with the fixed branch model
+WARNING Target Ag fluorescence and Rayleigh scattering cannot establish sample Ag; sample target ratios withheld
+WARNING 5 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary
+WARNING 需要进一步确定（待定）的元素: Cr, Ni, Cd；不参与相对面密度计算
+INFO Completed /home/renqi/Documents/ChatGPT/XRF_element_analyze/XRF_SDD/shafa_50kv_20uA.mca in 25.30s: success
+
+样品：shafa_50kv_20uA.mca
+确定存在（证据支持）：Ca, Fe, Hg, Pb
+相对面密度比值（表观值）：
+  定量依据：局部净峰面积 / 相对灵敏度
+  Ca / Pb = 0.00848074
+  Fe / Pb = 0.049759
+  Hg / Pb = 0.0354956
+  Pb / Pb = 1
+可能存在（待定，不参与面密度计算）：Cr, Ni, Cd
+
+[8/16] shou_50keV_20uA_back3mm.mca
+INFO Loaded /home/renqi/Documents/ChatGPT/XRF_element_analyze/XRF_SDD/shou_50keV_20uA_back3mm.mca: 501/1024 channels, 3.828e+05 counts, energy 2.991..39.99 keV
+INFO SNIP iterations=13; observed candidate features=20
+INFO Centroid-pattern candidates: ['Ac', 'Ba', 'Cd', 'Fe', 'Hg', 'Ir', 'Pb', 'Sb', 'Tb', 'Tl']; shared shift initial 0.11500 keV
+INFO Disable unanchored auxiliary shells: ['Ac', 'Ba', 'Cd', 'Ir', 'Sb', 'Tb', 'Tl']
+INFO Residual multi-branch evidence adds: ['Lu']
+INFO Centroid-pattern candidates: ['Ac', 'Ba', 'Cd', 'Fe', 'Hg', 'Ir', 'Lu', 'Pb', 'Sb', 'Tb', 'Tl']; shared shift initial 0.18478 keV
+INFO Disable unanchored auxiliary shells: ['Lu']
+INFO Element deletion comparison: Fe (1/11)
+INFO Element deletion comparison: Cd (2/11)
+INFO Element deletion comparison: Sb (3/11)
+INFO Element deletion comparison: Ba (4/11)
+INFO Element deletion comparison: Tb (5/11)
+INFO Element deletion comparison: Lu (6/11)
+INFO Element deletion comparison: Ir (7/11)
+INFO Element deletion comparison: Hg (8/11)
+INFO Element deletion comparison: Tl (9/11)
+INFO Element deletion comparison: Pb (10/11)
+INFO Element deletion comparison: Ac (11/11)
+WARNING Non-UTF8 MCA headers decoded using latin-1; DATA remains strict ASCII numeric
+WARNING Accepted instrument origin (0,0); zero energy is allowed only at channel zero
+WARNING Two-point residuals do not estimate calibration statistical uncertainty
+WARNING Sensitivity provenance unverified: missing .metadata.json; source matching is not established
+WARNING Recorded acquisition lower cutoff 2.99077 keV: excluded channels are not treated as measured absence
+WARNING Severe global model mismatch: joint-template q is diagnostic; independently measured primary peak areas are evaluated separately
+WARNING Structured residual / overdispersion: matrix_effect_or_model_mismatch or unmodelled scattering/artifacts
+WARNING branch_ratio_mismatch: regional observed residuals disagree with the fixed branch model
+WARNING Target Ag fluorescence and Rayleigh scattering cannot establish sample Ag; sample target ratios withheld
+WARNING 4 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary
+WARNING 需要进一步确定（待定）的元素: Cd, Sb；不参与相对面密度计算
+INFO Completed /home/renqi/Documents/ChatGPT/XRF_element_analyze/XRF_SDD/shou_50keV_20uA_back3mm.mca in 40.02s: success
+
+样品：shou_50keV_20uA_back3mm.mca
+确定存在（证据支持）：Fe, Hg, Pb
+相对面密度比值（表观值）：
+  定量依据：局部净峰面积 / 相对灵敏度
+  Fe / Pb = 0.00466344
+  Hg / Pb = 0.0387421
+  Pb / Pb = 1
+可能存在（待定，不参与面密度计算）：Cd, Sb
+
+[9/16] shu_50keV_20uA_back3mm.mca
+INFO Loaded /home/renqi/Documents/ChatGPT/XRF_element_analyze/XRF_SDD/shu_50keV_20uA_back3mm.mca: 501/1024 channels, 3.809e+05 counts, energy 2.991..39.99 keV
+INFO SNIP iterations=13; observed candidate features=17
+INFO Centroid-pattern candidates: ['Cd', 'Eu', 'Fe', 'Nb', 'Ni', 'Pb', 'Ru', 'Sn', 'Tb', 'Th']; shared shift initial 0.09500 keV
+INFO Disable unanchored auxiliary shells: ['Cd', 'Eu', 'Nb', 'Ru', 'Sn', 'Tb', 'Th']
+INFO Element deletion comparison: Fe (1/10)
+INFO Element deletion comparison: Ni (2/10)
+INFO Element deletion comparison: Nb (3/10)
+INFO Element deletion comparison: Ru (4/10)
+INFO Element deletion comparison: Cd (5/10)
+INFO Element deletion comparison: Sn (6/10)
+INFO Element deletion comparison: Eu (7/10)
+INFO Element deletion comparison: Tb (8/10)
+INFO Element deletion comparison: Pb (9/10)
+INFO Element deletion comparison: Th (10/10)
+WARNING Non-UTF8 MCA headers decoded using latin-1; DATA remains strict ASCII numeric
+WARNING Accepted instrument origin (0,0); zero energy is allowed only at channel zero
+WARNING Two-point residuals do not estimate calibration statistical uncertainty
+WARNING Sensitivity provenance unverified: missing .metadata.json; source matching is not established
+WARNING Recorded acquisition lower cutoff 2.99077 keV: excluded channels are not treated as measured absence
+WARNING Severe global model mismatch: joint-template q is diagnostic; independently measured primary peak areas are evaluated separately
+WARNING Structured residual / overdispersion: matrix_effect_or_model_mismatch or unmodelled scattering/artifacts
+WARNING branch_ratio_mismatch: regional observed residuals disagree with the fixed branch model
+WARNING Target Ag fluorescence and Rayleigh scattering cannot establish sample Ag; sample target ratios withheld
+WARNING 8 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary
+WARNING 需要进一步确定（待定）的元素: Fe, Ni；不参与相对面密度计算
+INFO Completed /home/renqi/Documents/ChatGPT/XRF_element_analyze/XRF_SDD/shu_50keV_20uA_back3mm.mca in 24.35s: success
+
+样品：shu_50keV_20uA_back3mm.mca
+确定存在（证据支持）：Pb
+相对面密度比值（表观值）：
+  定量依据：局部净峰面积 / 相对灵敏度
+  Pb / Pb = 1
+可能存在（待定，不参与面密度计算）：Fe, Ni
+
+[10/16] toufa_50keV_20uA_back3mm.mca
+INFO Loaded /home/renqi/Documents/ChatGPT/XRF_element_analyze/XRF_SDD/toufa_50keV_20uA_back3mm.mca: 501/1024 channels, 3.789e+05 counts, energy 2.991..39.99 keV
+INFO SNIP iterations=13; observed candidate features=19
+INFO Centroid-pattern candidates: ['Ca', 'Eu', 'Fe', 'I', 'Mn', 'Ni', 'Pb', 'Sb', 'Sn', 'Te']; shared shift initial 0.09000 keV
+INFO Disable unanchored auxiliary shells: ['Eu', 'I', 'Sb', 'Sn', 'Te']
+INFO Element deletion comparison: Ca (1/10)
+INFO Element deletion comparison: Mn (2/10)
+INFO Element deletion comparison: Fe (3/10)
+INFO Element deletion comparison: Ni (4/10)
+INFO Element deletion comparison: Sn (5/10)
+INFO Element deletion comparison: Sb (6/10)
+INFO Element deletion comparison: Te (7/10)
+INFO Element deletion comparison: I (8/10)
+INFO Element deletion comparison: Eu (9/10)
+INFO Element deletion comparison: Pb (10/10)
+WARNING Non-UTF8 MCA headers decoded using latin-1; DATA remains strict ASCII numeric
+WARNING Accepted instrument origin (0,0); zero energy is allowed only at channel zero
+WARNING Two-point residuals do not estimate calibration statistical uncertainty
+WARNING Sensitivity provenance unverified: missing .metadata.json; source matching is not established
+WARNING Recorded acquisition lower cutoff 2.99077 keV: excluded channels are not treated as measured absence
+WARNING Severe global model mismatch: joint-template q is diagnostic; independently measured primary peak areas are evaluated separately
+WARNING Structured residual / overdispersion: matrix_effect_or_model_mismatch or unmodelled scattering/artifacts
+WARNING branch_ratio_mismatch: regional observed residuals disagree with the fixed branch model
+WARNING Target Ag fluorescence and Rayleigh scattering cannot establish sample Ag; sample target ratios withheld
+WARNING 8 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary
+WARNING 需要进一步确定（待定）的元素: Ca, Ni, Sb；不参与相对面密度计算
+INFO Completed /home/renqi/Documents/ChatGPT/XRF_element_analyze/XRF_SDD/toufa_50keV_20uA_back3mm.mca in 14.55s: success
+
+样品：toufa_50keV_20uA_back3mm.mca
+确定存在（证据支持）：Fe, Pb
+相对面密度比值（表观值）：
+  定量依据：局部净峰面积 / 相对灵敏度
+  Fe：暂不可估计（local_area_not_estimable）
+  Pb / Pb = 1
+可能存在（待定，不参与面密度计算）：Ca, Ni, Sb
+
+[11/16] xiongzhen1.mca
+INFO Loaded /home/renqi/Documents/ChatGPT/XRF_element_analyze/XRF_SDD/xiongzhen1.mca: 501/1024 channels, 1.494e+05 counts, energy 2.991..39.99 keV
+INFO SNIP iterations=13; observed candidate features=13
+INFO Centroid-pattern candidates: ['Ca', 'Cs', 'Eu', 'Fe', 'Mn', 'Pb', 'Ru']; shared shift initial 0.06500 keV
+INFO Disable unanchored auxiliary shells: ['Cs', 'Eu', 'Ru']
+INFO Element deletion comparison: Ca (1/7)
+INFO Element deletion comparison: Mn (2/7)
+INFO Element deletion comparison: Fe (3/7)
+INFO Element deletion comparison: Ru (4/7)
+INFO Element deletion comparison: Cs (5/7)
+INFO Element deletion comparison: Eu (6/7)
+INFO Element deletion comparison: Pb (7/7)
+WARNING Non-UTF8 MCA headers decoded using latin-1; DATA remains strict ASCII numeric
+WARNING Accepted instrument origin (0,0); zero energy is allowed only at channel zero
+WARNING Two-point residuals do not estimate calibration statistical uncertainty
+WARNING Sensitivity provenance unverified: missing .metadata.json; source matching is not established
+WARNING Recorded acquisition lower cutoff 2.99077 keV: excluded channels are not treated as measured absence
+WARNING Severe global model mismatch: joint-template q is diagnostic; independently measured primary peak areas are evaluated separately
+WARNING Structured residual / overdispersion: matrix_effect_or_model_mismatch or unmodelled scattering/artifacts
+WARNING branch_ratio_mismatch: regional observed residuals disagree with the fixed branch model
+WARNING Target Ag fluorescence and Rayleigh scattering cannot establish sample Ag; sample target ratios withheld
+WARNING 3 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary
+INFO Completed /home/renqi/Documents/ChatGPT/XRF_element_analyze/XRF_SDD/xiongzhen1.mca in 10.27s: success
+
+样品：xiongzhen1.mca
+确定存在（证据支持）：Ca, Fe, Pb
+相对面密度比值（表观值）：
+  定量依据：局部净峰面积 / 相对灵敏度
+  Ca / Pb = 0.00907043
+  Fe / Pb = 0.0351418
+  Pb / Pb = 1
+可能存在（待定，不参与面密度计算）：无
+
+[12/16] xiongzhen_50keV_20uA_back3mm.mca
+INFO Loaded /home/renqi/Documents/ChatGPT/XRF_element_analyze/XRF_SDD/xiongzhen_50keV_20uA_back3mm.mca: 501/1024 channels, 3.308e+05 counts, energy 2.991..39.99 keV
+INFO SNIP iterations=13; observed candidate features=15
+INFO Centroid-pattern candidates: ['Ca', 'Cd', 'Fe', 'Ni', 'Pb', 'Tb', 'Tm']; shared shift initial 0.09000 keV
+INFO Disable unanchored auxiliary shells: ['Cd', 'Tb', 'Tm']
+INFO Residual multi-branch evidence adds: ['Tc']
+INFO Centroid-pattern candidates: ['Ca', 'Cd', 'Fe', 'Ni', 'Pb', 'Tb', 'Tc', 'Tm']; shared shift initial 0.18346 keV
+INFO Disable unanchored auxiliary shells: ['Tc']
+INFO Element deletion comparison: Ca (1/8)
+INFO Element deletion comparison: Fe (2/8)
+INFO Element deletion comparison: Ni (3/8)
+INFO Element deletion comparison: Tc (4/8)
+INFO Element deletion comparison: Cd (5/8)
+INFO Element deletion comparison: Tb (6/8)
+INFO Element deletion comparison: Tm (7/8)
+INFO Element deletion comparison: Pb (8/8)
+WARNING Non-UTF8 MCA headers decoded using latin-1; DATA remains strict ASCII numeric
+WARNING Accepted instrument origin (0,0); zero energy is allowed only at channel zero
+WARNING Two-point residuals do not estimate calibration statistical uncertainty
+WARNING Sensitivity provenance unverified: missing .metadata.json; source matching is not established
+WARNING Recorded acquisition lower cutoff 2.99077 keV: excluded channels are not treated as measured absence
+WARNING Severe global model mismatch: joint-template q is diagnostic; independently measured primary peak areas are evaluated separately
+WARNING Structured residual / overdispersion: matrix_effect_or_model_mismatch or unmodelled scattering/artifacts
+WARNING branch_ratio_mismatch: regional observed residuals disagree with the fixed branch model
+WARNING Target Ag fluorescence and Rayleigh scattering cannot establish sample Ag; sample target ratios withheld
+WARNING 3 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary
+WARNING 需要进一步确定（待定）的元素: Ca, Ni；不参与相对面密度计算
+INFO Completed /home/renqi/Documents/ChatGPT/XRF_element_analyze/XRF_SDD/xiongzhen_50keV_20uA_back3mm.mca in 20.22s: success
+
+样品：xiongzhen_50keV_20uA_back3mm.mca
+确定存在（证据支持）：Fe, Pb
+相对面密度比值（表观值）：
+  定量依据：局部净峰面积 / 相对灵敏度
+  Fe / Pb = 0.0377955
+  Pb / Pb = 1
+可能存在（待定，不参与面密度计算）：Ca, Ni
+
+[13/16] yifu1_tou_50keV_20uA_back3mm.mca
+INFO Loaded /home/renqi/Documents/ChatGPT/XRF_element_analyze/XRF_SDD/yifu1_tou_50keV_20uA_back3mm.mca: 501/1024 channels, 3.544e+05 counts, energy 2.991..39.99 keV
+INFO SNIP iterations=13; observed candidate features=17
+INFO Centroid-pattern candidates: ['Ca', 'Cd', 'Cr', 'Fe', 'Pb', 'Tb', 'Te']; shared shift initial 0.09000 keV
+INFO Disable unanchored auxiliary shells: ['Cd', 'Tb', 'Te']
+INFO Element deletion comparison: Ca (1/7)
+INFO Element deletion comparison: Cr (2/7)
+INFO Element deletion comparison: Fe (3/7)
+INFO Element deletion comparison: Cd (4/7)
+INFO Element deletion comparison: Te (5/7)
+INFO Element deletion comparison: Tb (6/7)
+INFO Element deletion comparison: Pb (7/7)
+WARNING Non-UTF8 MCA headers decoded using latin-1; DATA remains strict ASCII numeric
+WARNING Accepted instrument origin (0,0); zero energy is allowed only at channel zero
+WARNING Two-point residuals do not estimate calibration statistical uncertainty
+WARNING Sensitivity provenance unverified: missing .metadata.json; source matching is not established
+WARNING Recorded acquisition lower cutoff 2.99077 keV: excluded channels are not treated as measured absence
+WARNING Severe global model mismatch: joint-template q is diagnostic; independently measured primary peak areas are evaluated separately
+WARNING Structured residual / overdispersion: matrix_effect_or_model_mismatch or unmodelled scattering/artifacts
+WARNING branch_ratio_mismatch: regional observed residuals disagree with the fixed branch model
+WARNING Target Ag fluorescence and Rayleigh scattering cannot establish sample Ag; sample target ratios withheld
+WARNING 5 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary
+WARNING 需要进一步确定（待定）的元素: Cr, Fe, Cd；不参与相对面密度计算
+INFO Completed /home/renqi/Documents/ChatGPT/XRF_element_analyze/XRF_SDD/yifu1_tou_50keV_20uA_back3mm.mca in 11.38s: success
+
+样品：yifu1_tou_50keV_20uA_back3mm.mca
+确定存在（证据支持）：Ca, Pb
+相对面密度比值（表观值）：
+  定量依据：局部净峰面积 / 相对灵敏度
+  Ca：暂不可估计（local_area_not_estimable）
+  Pb / Pb = 1
+可能存在（待定，不参与面密度计算）：Cr, Fe, Cd
+
+[14/16] yifu2_50kv_20uA.mca
+INFO Loaded /home/renqi/Documents/ChatGPT/XRF_element_analyze/XRF_SDD/yifu2_50kv_20uA.mca: 501/1024 channels, 1.474e+05 counts, energy 2.991..39.99 keV
+INFO SNIP iterations=13; observed candidate features=14
+INFO Centroid-pattern candidates: ['Ca', 'Ce', 'Cr', 'Fe', 'Ni', 'Pb', 'Pm']; shared shift initial 0.06500 keV
+INFO Disable unanchored auxiliary shells: ['Ce', 'Pm']
+INFO Element deletion comparison: Ca (1/7)
+INFO Element deletion comparison: Cr (2/7)
+INFO Element deletion comparison: Fe (3/7)
+INFO Element deletion comparison: Ni (4/7)
+INFO Element deletion comparison: Ce (5/7)
+INFO Element deletion comparison: Pm (6/7)
+INFO Element deletion comparison: Pb (7/7)
+WARNING Non-UTF8 MCA headers decoded using latin-1; DATA remains strict ASCII numeric
+WARNING Accepted instrument origin (0,0); zero energy is allowed only at channel zero
+WARNING Two-point residuals do not estimate calibration statistical uncertainty
+WARNING Sensitivity provenance unverified: missing .metadata.json; source matching is not established
+WARNING Recorded acquisition lower cutoff 2.99077 keV: excluded channels are not treated as measured absence
+WARNING Severe global model mismatch: joint-template q is diagnostic; independently measured primary peak areas are evaluated separately
+WARNING Structured residual / overdispersion: matrix_effect_or_model_mismatch or unmodelled scattering/artifacts
+WARNING branch_ratio_mismatch: regional observed residuals disagree with the fixed branch model
+WARNING Target Ag fluorescence and Rayleigh scattering cannot establish sample Ag; sample target ratios withheld
+WARNING 4 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary
+WARNING 需要进一步确定（待定）的元素: Cr, Ni；不参与相对面密度计算
+INFO Completed /home/renqi/Documents/ChatGPT/XRF_element_analyze/XRF_SDD/yifu2_50kv_20uA.mca in 11.67s: success
+
+样品：yifu2_50kv_20uA.mca
+确定存在（证据支持）：Ca, Fe, Pb
+相对面密度比值（表观值）：
+  定量依据：局部净峰面积 / 相对灵敏度
+  Ca / Pb = 0.00668995
+  Fe / Pb = 0.0258769
+  Pb / Pb = 1
+可能存在（待定，不参与面密度计算）：Cr, Ni
+
+[15/16] yifu_50keV_20uA_back3mm.mca
+INFO Loaded /home/renqi/Documents/ChatGPT/XRF_element_analyze/XRF_SDD/yifu_50keV_20uA_back3mm.mca: 501/1024 channels, 3.493e+05 counts, energy 2.991..39.99 keV
+INFO SNIP iterations=13; observed candidate features=15
+INFO Centroid-pattern candidates: ['Cd', 'Cr', 'Fe', 'I', 'Ni', 'Pb', 'Pm']; shared shift initial 0.08000 keV
+INFO Disable unanchored auxiliary shells: ['Cd', 'I']
+INFO Residual multi-branch evidence adds: ['Ca']
+INFO Centroid-pattern candidates: ['Ca', 'Cd', 'Cr', 'Fe', 'I', 'Ni', 'Pb', 'Pm']; shared shift initial 0.17155 keV
+INFO Element deletion comparison: Ca (1/8)
+INFO Element deletion comparison: Cr (2/8)
+INFO Element deletion comparison: Fe (3/8)
+INFO Element deletion comparison: Ni (4/8)
+INFO Element deletion comparison: Cd (5/8)
+INFO Element deletion comparison: I (6/8)
+INFO Element deletion comparison: Pm (7/8)
+INFO Element deletion comparison: Pb (8/8)
+WARNING Non-UTF8 MCA headers decoded using latin-1; DATA remains strict ASCII numeric
+WARNING Accepted instrument origin (0,0); zero energy is allowed only at channel zero
+WARNING Two-point residuals do not estimate calibration statistical uncertainty
+WARNING Sensitivity provenance unverified: missing .metadata.json; source matching is not established
+WARNING Recorded acquisition lower cutoff 2.99077 keV: excluded channels are not treated as measured absence
+WARNING Severe global model mismatch: joint-template q is diagnostic; independently measured primary peak areas are evaluated separately
+WARNING Structured residual / overdispersion: matrix_effect_or_model_mismatch or unmodelled scattering/artifacts
+WARNING branch_ratio_mismatch: regional observed residuals disagree with the fixed branch model
+WARNING Target Ag fluorescence and Rayleigh scattering cannot establish sample Ag; sample target ratios withheld
+WARNING 3 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary
+WARNING 需要进一步确定（待定）的元素: Ca, Cr, Cd；不参与相对面密度计算
+INFO Completed /home/renqi/Documents/ChatGPT/XRF_element_analyze/XRF_SDD/yifu_50keV_20uA_back3mm.mca in 19.44s: success
+
+样品：yifu_50keV_20uA_back3mm.mca
+确定存在（证据支持）：Fe, Ni, Pb
+相对面密度比值（表观值）：
+  定量依据：局部净峰面积 / 相对灵敏度
+  Fe / Pb = 0.00742488
+  Ni / Pb = 0.00240004
+  Pb / Pb = 1
+可能存在（待定，不参与面密度计算）：Ca, Cr, Cd
+
+[16/16] yinzhang_50kv_20uA.mca
+INFO Loaded /home/renqi/Documents/ChatGPT/XRF_element_analyze/XRF_SDD/yinzhang_50kv_20uA.mca: 501/1024 channels, 1.488e+05 counts, energy 2.991..39.99 keV
+INFO SNIP iterations=13; observed candidate features=14
+INFO Centroid-pattern candidates: ['Ar', 'Ca', 'Cd', 'Fe', 'Pb', 'Pd']; shared shift initial 0.13000 keV
+INFO Disable unanchored auxiliary shells: ['Cd', 'Pd']
+INFO Element deletion comparison: Ar (1/6)
+INFO Element deletion comparison: Ca (2/6)
+INFO Element deletion comparison: Fe (3/6)
+INFO Element deletion comparison: Pd (4/6)
+INFO Element deletion comparison: Cd (5/6)
+INFO Element deletion comparison: Pb (6/6)
+WARNING Non-UTF8 MCA headers decoded using latin-1; DATA remains strict ASCII numeric
+WARNING Accepted instrument origin (0,0); zero energy is allowed only at channel zero
+WARNING Two-point residuals do not estimate calibration statistical uncertainty
+WARNING Sensitivity provenance unverified: missing .metadata.json; source matching is not established
+WARNING Recorded acquisition lower cutoff 2.99077 keV: excluded channels are not treated as measured absence
+WARNING Severe global model mismatch: joint-template q is diagnostic; independently measured primary peak areas are evaluated separately
+WARNING Structured residual / overdispersion: matrix_effect_or_model_mismatch or unmodelled scattering/artifacts
+WARNING branch_ratio_mismatch: regional observed residuals disagree with the fixed branch model
+WARNING Target Ag fluorescence and Rayleigh scattering cannot establish sample Ag; sample target ratios withheld
+WARNING 3 observed features remain unassigned; review scattering, artifacts, or incomplete atomic dictionary
+WARNING 需要进一步确定（待定）的元素: Cd；不参与相对面密度计算
+INFO Completed /home/renqi/Documents/ChatGPT/XRF_element_analyze/XRF_SDD/yinzhang_50kv_20uA.mca in 8.32s: success
+
+样品：yinzhang_50kv_20uA.mca
+确定存在（证据支持）：Ca, Fe, Pb
+相对面密度比值（表观值）：
+  定量依据：局部净峰面积 / 相对灵敏度
+  Ca / Pb = 0.00783755
+  Fe / Pb = 0.0353507
+  Pb / Pb = 1
+可能存在（待定，不参与面密度计算）：Cd
+
+批量处理完成：16 个样品，0 个拟合/输入失败。
+统一面密度TXT：/home/renqi/Documents/ChatGPT/XRF_element_analyze/XRF_Analyze_results/relative_areal_density_all.txt
+样品状态TXT：/home/renqi/Documents/ChatGPT/XRF_element_analyze/XRF_Analyze_results/batch_summary.txt
+“暂不可估计”表示未通过定量质量检查，不代表零含量。

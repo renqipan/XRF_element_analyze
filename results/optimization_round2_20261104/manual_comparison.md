@@ -1,0 +1,12 @@
+| 文件 | 人工建议（非真值） | 上一版确定 | 本版确定 | 本版待定 |
+| --- | --- | --- | --- | --- |
+| shafa_50kv_20uA.mca | Pb,Fe,Hg,Ca | Ca,Fe,Hg,Pb | Ca,Fe,Hg,Pb | Cr,Ni,Cd |
+| shafa1_50kv_20uA.mca | Pb,Fe,Hg,Ca | Ca,Fe,Pb | Ca,Fe,Hg,Pb | Ni,Sb |
+| shou_50keV_20uA_back3mm.mca | Pb,Fe,Hg | Fe,Hg,Pb | Fe,Hg,Pb | Cd,Sb |
+| yifu_50keV_20uA_back3mm.mca | Pb,Fe,Cr,Ca | Fe,Ni,Pb | Fe,Ni,Pb | Ca,Cr,Cd |
+| yifu1_tou_50keV_20uA_back3mm.mca | Pb,Fe,Cr,Ca | Pb | Ca,Pb | Cr,Fe,Cd |
+| yifu2_50kv_20uA.mca | Pb,Fe,Cr,Ca | Fe,Pb | Ca,Fe,Pb | Cr,Ni |
+| xiongzhen_50keV_20uA_back3mm.mca | Pb,Fe | Fe,Pb | Fe,Pb | Ca,Ni |
+| xiongzhen1.mca | Pb,Fe,Ca | Fe,Pb | Ca,Fe,Pb | — |
+| yinzhang_50kv_20uA.mca | Pb,Fe,Ca | Ca,Fe,Pb | Ca,Fe,Pb | Cd |
+| toufa_50keV_20uA_back3mm.mca | Pb,Fe,Ca | Fe,Pb | Fe,Pb | Ca,Ni,Sb |

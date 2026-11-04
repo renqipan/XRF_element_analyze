@@ -1,0 +1,110 @@
+{
+  "source": "User manual reading supplied 2026-11-04; reference hypotheses, NOT ground truth; never used by identification",
+  "cases": {
+    "shafa_50kv_20uA.mca": {
+      "suggested_present": [
+        "Pb",
+        "Fe",
+        "Hg",
+        "Ca"
+      ],
+      "suggested_possible": []
+    },
+    "shafa1_50kv_20uA.mca": {
+      "suggested_present": [
+        "Pb",
+        "Fe",
+        "Hg",
+        "Ca"
+      ],
+      "suggested_possible": []
+    },
+    "shou_50keV_20uA_back3mm.mca": {
+      "suggested_present": [
+        "Pb",
+        "Fe",
+        "Hg"
+      ],
+      "suggested_possible": []
+    },
+    "yifu_50keV_20uA_back3mm.mca": {
+      "suggested_present": [
+        "Pb",
+        "Fe",
+        "Cr",
+        "Ca"
+      ],
+      "suggested_possible": [
+        "Cd"
+      ]
+    },
+    "yifu1_tou_50keV_20uA_back3mm.mca": {
+      "suggested_present": [
+        "Pb",
+        "Fe",
+        "Cr",
+        "Ca"
+      ],
+      "suggested_possible": [
+        "Cd"
+      ]
+    },
+    "yifu2_50kv_20uA.mca": {
+      "suggested_present": [
+        "Pb",
+        "Fe",
+        "Cr",
+        "Ca"
+      ],
+      "suggested_possible": []
+    },
+    "xiongzhen_50keV_20uA_back3mm.mca": {
+      "suggested_present": [
+        "Pb",
+        "Fe"
+      ],
+      "suggested_possible": []
+    },
+    "xiongzhen1.mca": {
+      "suggested_present": [
+        "Pb",
+        "Fe",
+        "Ca"
+      ],
+      "suggested_possible": []
+    },
+    "yinzhang_50kv_20uA.mca": {
+      "suggested_present": [
+        "Pb",
+        "Fe",
+        "Ca"
+      ],
+      "suggested_possible": []
+    },
+    "toufa_50keV_20uA_back3mm.mca": {
+      "suggested_present": [
+        "Pb",
+        "Fe",
+        "Ca"
+      ],
+      "suggested_possible": []
+    }
+  },
+  "agreement_without_composition": [
+    "shu_50keV_20uA_back3mm.mca"
+  ],
+  "reporting_preferences": {
+    "scope": "User applications: cultural heritage, archaeology, minerals",
+    "lanthanides_Z57_to_Z71": "Report only supported; hide unresolved candidates from conclusions; retain full diagnostic hypotheses",
+    "group18_Z": [
+      2,
+      10,
+      18,
+      36,
+      54,
+      86,
+      118
+    ],
+    "noble_gases": "Report only supported; hide unresolved candidates from conclusions; retain full diagnostic hypotheses"
+  }
+}

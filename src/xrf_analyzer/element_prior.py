@@ -47,3 +47,21 @@ def classification_table(profile='general'):
                           'Profile': profile, 'Policy': 'tie_break_only; not_evidence_of_presence',
                           **{p+'_class': element_class(symbol, p) for p in PROFILES if p != 'none'}}
                          for z, symbol in enumerate(SYMBOLS, 1)])
+
+
+def apply_reporting_policy(candidates, lanthanide_reporting='supported-only', noble_gas_reporting='supported-only'):
+    """Keep spectral hypotheses intact; gate their display in the application.
+
+    La through Lu and group 18 remain in fits and the full diagnostic table. A suppressed
+    candidate is not an experimentally established absence.
+    """
+    result = candidates.copy()
+    hidden = (result.Z.between(57, 71) & result.Status.ne('supported')
+              if lanthanide_reporting == 'supported-only' else pd.Series(False, index=result.index))
+    gas_hidden = (result.Z.isin([2, 10, 18, 36, 54, 86, 118]) & result.Status.ne('supported')
+                  if noble_gas_reporting == 'supported-only' else pd.Series(False, index=result.index))
+    result['Reportable'] = ~(hidden | gas_hidden)
+    result['Reporting_Reason'] = ''
+    result.loc[hidden, 'Reporting_Reason'] = 'lanthanide_requires_supported_identity; hypothesis_retained_in_diagnostics'
+    result.loc[gas_hidden, 'Reporting_Reason'] = 'noble_gas_requires_supported_identity; hypothesis_retained_in_diagnostics'
+    return result

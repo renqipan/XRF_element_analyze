@@ -68,6 +68,15 @@ def main(root):
                           rtol=1e-11,atol=1e-9),'Element total != sum of exported element components')
         supported = set(candidates.loc[candidates.Status=='supported','Element'])
         possible = set(summary['elements_need_confirmation'])
+        if 'Reportable' in candidates:
+            reportable = set(candidates.loc[candidates.Reportable, 'Element'])
+            check(possible <= reportable, 'Suppressed candidates leaked into possible-elements report')
+            if summary['parameters'].get('lanthanide_reporting') == 'supported-only':
+                lanthanides = set(candidates.loc[candidates.Z.between(57, 71), 'Element'])
+                check(not possible & lanthanides, 'Unconfirmed lanthanide was reported')
+            if summary['parameters'].get('noble_gas_reporting') == 'supported-only':
+                gases = set(candidates.loc[candidates.Z.isin([2,10,18,36,54,86,118]), 'Element'])
+                check(not possible & gases, 'Unconfirmed noble gas was reported')
         check(set(density.Element)==supported, 'Density table contains non-supported/missing supported elements')
         check(set(filter(None,sample.Supported_Elements.split(',')))==supported,
               'Supported elements in sample TXT do not match candidate statuses')

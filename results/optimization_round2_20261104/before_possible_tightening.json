@@ -1,0 +1,229 @@
+{
+  "pos1_40keV_80uA.mca": {
+    "supported": "Fe,Pb",
+    "possible": [
+      "Ni",
+      "Tc"
+    ],
+    "math_file_sha256": {
+      "fit_spectrum.csv": "3a0024e6e3c8e22307f52000806a391e8cd8648e8a452b5a8694d7178cd50b25",
+      "fit_components.csv": "a9486ea0a0410c50839b3ce06a1911712ecd5a88b71eb8ff189fb0d41923ee6d",
+      "relative_areal_density.csv": "ecd6b7e66b936c750a3b265b5a6112d058cb7bb018e035ccbe7a49ee631e5f72",
+      "quantification_peaks.csv": "9c0e41c63ecdce387737da8d8772640f4e5ee748a9d6f910f39a4f1e2e5c1ae5",
+      "quantification_fit.csv": "909ffc9a40780a49b4e0186eb6e370ed85a3bb3cc23c6ed57ab3e77f1fad5798"
+    }
+  },
+  "pos2_40keV_80uA.mca": {
+    "supported": "Fe,Pb",
+    "possible": [
+      "Ca",
+      "Ni",
+      "Cd"
+    ],
+    "math_file_sha256": {
+      "fit_spectrum.csv": "b1e5d5c3b073291310f3f0c1175d3adf2cd811e720e172ad74acbc065ca7ae52",
+      "fit_components.csv": "20fb6158d08e55d7c37c6d79e7d96f9b81ec2783ba1a228ddca3f3e4e7a09bb6",
+      "relative_areal_density.csv": "ddea4ad89ef3aa89703d9da5b2938e7a1a4c90cb292926b0dd7cab3af95b7324",
+      "quantification_peaks.csv": "1127c240b7e9d96cbec569a61dcd7d5178f0d2b3003993bbfd03a8898427a335",
+      "quantification_fit.csv": "e89628c0d8e751988fed9748682f149bd969369fdbf49a962eb38c5a8307a46d"
+    }
+  },
+  "pos3_40keV_80uA.mca": {
+    "supported": "Fe,Ni,Pb",
+    "possible": [
+      "Cd"
+    ],
+    "math_file_sha256": {
+      "fit_spectrum.csv": "e22b90ccb4d6a8e1e113926f48a0b5cd174fe5c9cfcc9ef9279d8aa0396cabeb",
+      "fit_components.csv": "18798f2039874cac124267087c797461a837b57ff7396a10711ec6e9f6f84ba4",
+      "relative_areal_density.csv": "e549c8d71379de692eeae3fd2af94967148f7d08caf6acb0f38616156bd2ad3a",
+      "quantification_peaks.csv": "4265ad27eef3c1d458e6a125954f79d5d2ca9434ada648fcddbc6cfaf2c80074",
+      "quantification_fit.csv": "c00ca03b4ac841ac3282fd921b9ccbbe654c5c1276c2239542a3b2a2281cfda2"
+    }
+  },
+  "pos4_40keV_80uA.mca": {
+    "supported": "Ca,Fe,Pb",
+    "possible": [
+      "Ni",
+      "Ta"
+    ],
+    "math_file_sha256": {
+      "fit_spectrum.csv": "7a5107c3dd8a0c5896c08ab06cdc7e03bdbeeaf8c7fb0ebbf26208227cc62faa",
+      "fit_components.csv": "b709d3e660af5f3f29599ebae581da700488064f2ab619bad32ffee93fb1c67b",
+      "relative_areal_density.csv": "5451d2263bea9979a54abccd480836040260e09a76884cb86b1fd80b2bd40e21",
+      "quantification_peaks.csv": "97d5856b0c5317f6480cdad92b25ad22ebecb6aa1a04331008b0bf8f5cc90397",
+      "quantification_fit.csv": "4f52e5391356b0efb448b3b2b7c481a646ebb47cd91a58d227247358e4123bad"
+    }
+  },
+  "pos5_40keV_5uA.mca": {
+    "supported": "Fe,Pb",
+    "possible": [
+      "Ni",
+      "Mo"
+    ],
+    "math_file_sha256": {
+      "fit_spectrum.csv": "f3d90a257a8de44b9d2e86da61f3b1e33c28ce5a30f980b799887673aac700bb",
+      "fit_components.csv": "2cbc8f335750b1b10c5aae1417d065a058e2f8f537740c01f608da8bee98e637",
+      "relative_areal_density.csv": "ab8356b07add997e90ff3bd9825398f9ba84b45fd4b1075c3175c6eab0d440d7",
+      "quantification_peaks.csv": "c5e6f2d3ccf3737338e74c3da439c8a168ea721acd4803abb0e542c5a5fc870b",
+      "quantification_fit.csv": "09c72ba3e528203d09ef5d4b9afc78f2a8768a5c34d8ad079e4661c57780f2d5"
+    }
+  },
+  "shafa1_50kv_20uA.mca": {
+    "supported": "Ca,Fe,Hg,Pb",
+    "possible": [
+      "Ni",
+      "Sb"
+    ],
+    "math_file_sha256": {
+      "fit_spectrum.csv": "22998a44d5596770d5dfd9ed1bd237eef6e8f69271617d47061c63cc476adeb9",
+      "fit_components.csv": "b1e53a688bd7d30cbd0fdd60bfb8cf4681a9f9007348adb0134a851b2abf3010",
+      "relative_areal_density.csv": "987c202eadc41347691585a543bc9a58e8ea10a344a2fea7fdb855d090c3ec80",
+      "quantification_peaks.csv": "1908a7272c98c97067a162e728fe21cc9874c613261f6511b61af4f795e62266",
+      "quantification_fit.csv": "d673477cbd55cecad616c1b08624e4a74cbe66d4ae525128b961401ba3443314"
+    }
+  },
+  "shafa_50kv_20uA.mca": {
+    "supported": "Ca,Fe,Hg,Pb",
+    "possible": [
+      "Cr",
+      "Ni",
+      "Cd",
+      "At"
+    ],
+    "math_file_sha256": {
+      "fit_spectrum.csv": "b8590bb4643821cec79e14ad5c5803f5d9cbad44bb512bc6b960e6708e0ae6c0",
+      "fit_components.csv": "9b51e00c61b035e7f63d39847463036670dd4f9f777f6d0955fdb99352b2bd31",
+      "relative_areal_density.csv": "ad0ec155abccb5bcc9df18cf0c1df7c004172a516c1a5eff693bbbdd583efb83",
+      "quantification_peaks.csv": "abeeaac4710ebfd8a5d52093845578fd98de99faa657f0e1244ceb64746b3682",
+      "quantification_fit.csv": "fc64241b3c009b90c435c321659cb1ca1eed46564caa8fb10d51bed6d2cc8ebb"
+    }
+  },
+  "shou_50keV_20uA_back3mm.mca": {
+    "supported": "Fe,Hg,Pb",
+    "possible": [
+      "Cd",
+      "Sb"
+    ],
+    "math_file_sha256": {
+      "fit_spectrum.csv": "747da553573723c0a7abdbe506e1b907dd7771b6b295c3f0e1467b9bf96e2d1e",
+      "fit_components.csv": "e6758b865217f7678150360d90ca93906f10839f89afe656b388ad4ca26f5cf6",
+      "relative_areal_density.csv": "1eade43637e93fbaa726b66ecafbbc2cacf74f71e0bf1ca92cc542decc16294f",
+      "quantification_peaks.csv": "f860a7532c1a583d9d7e94733367fa844b220faabba1ad1b5d4ee9ea7a144a5a",
+      "quantification_fit.csv": "df6e01510917c957c1341625fd489b739daeff1b3a7ff8af42439ed93ae4de9d"
+    }
+  },
+  "shu_50keV_20uA_back3mm.mca": {
+    "supported": "Pb",
+    "possible": [
+      "Fe",
+      "Ni"
+    ],
+    "math_file_sha256": {
+      "fit_spectrum.csv": "1a700c9b9a53b97b50eac73a20871c5586fb654f36a8170722b0a2f51d40ca0e",
+      "fit_components.csv": "bfc732ec7a2dc518e69ef45e1477d0e5e0356727d3d7822c345e79159e4a789a",
+      "relative_areal_density.csv": "539cca93251b25e96083a531786ca80a309fd8ada390795529d1e6f383faed7c",
+      "quantification_peaks.csv": "61d19def91e0e49e9d8e72f87f31503ad3d8e0253b23ec45c7ea505fc922bb45",
+      "quantification_fit.csv": "31fc394f7645266ccb956c4c718fe6ba82d18aa7b7fe27a3774a9b4d66c78333"
+    }
+  },
+  "toufa_50keV_20uA_back3mm.mca": {
+    "supported": "Fe,Pb",
+    "possible": [
+      "Ca",
+      "Ni",
+      "Sb"
+    ],
+    "math_file_sha256": {
+      "fit_spectrum.csv": "00d891f248158d9b958bb97d34c6f01894854083fb3abf8c977151075442d10a",
+      "fit_components.csv": "fc1b034b0815a19ac1435f024e1ab4b15b3cde18d2c36a0e2b24a8defdacd7cf",
+      "relative_areal_density.csv": "7068a9596c594c4dc8ee840339d33d6754db22295e0d74512f32503ff34f5399",
+      "quantification_peaks.csv": "8425c67efb285684c1ab410d9a53d2fca216d0b052a37359f64792818bcb6079",
+      "quantification_fit.csv": "b0432b2325ee5e0412bc1b3e09b1e315aa4daeed568758e42ebd9c5f6f756813"
+    }
+  },
+  "xiongzhen1.mca": {
+    "supported": "Ca,Fe,Pb",
+    "possible": [],
+    "math_file_sha256": {
+      "fit_spectrum.csv": "96d940a75f203fd5e023ff39a05d462ef1c325974be84e11bf159cbc722161f6",
+      "fit_components.csv": "74dc07ad6bf404cdf62f23e4fc1d5862479e56a79a45ba78bef1e67aa89eed33",
+      "relative_areal_density.csv": "dc0cc072eea5c2f93a0a731bce4462a343c6b9df072909cad580d178ec435dac",
+      "quantification_peaks.csv": "fa84b70528eb39dccf2434827f2ab5720477522eac2f1f3bad05bfa8fb77c4d6",
+      "quantification_fit.csv": "09161b1e4a09566f3621c46af1217df0a61363c33a5b742812a49394123944d6"
+    }
+  },
+  "xiongzhen_50keV_20uA_back3mm.mca": {
+    "supported": "Fe,Pb",
+    "possible": [
+      "Ca",
+      "Ni",
+      "Tc"
+    ],
+    "math_file_sha256": {
+      "fit_spectrum.csv": "df40e689cfd026c4861fa9a80a08837cad8eda1d68e1e87ef5511d2af9037964",
+      "fit_components.csv": "5c1e81f26e3b4210da5e8ad4eaf05ea338ca3f435f8dd06d34355fd0c9d18677",
+      "relative_areal_density.csv": "c25d423a3787b4885a4b464cd38c1fa85199799bac1e290b077914ee97dccfad",
+      "quantification_peaks.csv": "e1beb6ff12a7c8d6a480ea90dcca7ed0fa73dbc603d70f8cdfef91df81ba97a8",
+      "quantification_fit.csv": "9a694dbeefd4199b7c77a3678d35e6797825f5d5e3956f64608c613ba7dae424"
+    }
+  },
+  "yifu1_tou_50keV_20uA_back3mm.mca": {
+    "supported": "Ca,Pb",
+    "possible": [
+      "Cr",
+      "Fe",
+      "Cd"
+    ],
+    "math_file_sha256": {
+      "fit_spectrum.csv": "79ac5cb9234cdb1e569fa4eadd3c382305eee4c60b9cb73ebd2e6cbdd3bd630e",
+      "fit_components.csv": "6bf805a9b3212ac5135871045157f5aa99574a61115d20d665a9345b372ba09e",
+      "relative_areal_density.csv": "7cb2446f77019739d6ffd4318a31e3c8a93c15a466b96388a48a4952ecab4969",
+      "quantification_peaks.csv": "d189cc9e7d05a83077043ce419656a28157dedc9ec9b8e114dabf8433a31ff86",
+      "quantification_fit.csv": "79d776e350b9413e55ea66d8ec598d46390edf0acaa312358ee3e3481a54d0ca"
+    }
+  },
+  "yifu2_50kv_20uA.mca": {
+    "supported": "Ca,Fe,Pb",
+    "possible": [
+      "Cr",
+      "Ni"
+    ],
+    "math_file_sha256": {
+      "fit_spectrum.csv": "fe239095c94eb0d4dc33d326ac30bc0a68a856351ea62e79e8aaa3f0cd4bd3ab",
+      "fit_components.csv": "52be9fd1139e67b30682dbc5e5f379dcaf8aa7a1b95fa62fc8eee23578001ace",
+      "relative_areal_density.csv": "26a80b884329571acdd8bf7854a62ff6da4a6e3f20f4de4e3263770e53e86dfa",
+      "quantification_peaks.csv": "883e9936f403f0dbbc8c07db8b8dfd41e9a6c78b34fd525b9d341435ed1a3db8",
+      "quantification_fit.csv": "34afd9d12039e4030973a3ca971f0524625e3b831903fb253d95837fba4de155"
+    }
+  },
+  "yifu_50keV_20uA_back3mm.mca": {
+    "supported": "Fe,Ni,Pb",
+    "possible": [
+      "Ca",
+      "Cr",
+      "Cd"
+    ],
+    "math_file_sha256": {
+      "fit_spectrum.csv": "adb7ec4c103fc3a17afbef27fad9b258697cc7761cfbf764131c365d54b07c51",
+      "fit_components.csv": "0f52fcb26a0f6a492e4cd39f1b2bfc8e739610a77c9c659667fa47962e6307c4",
+      "relative_areal_density.csv": "423fc54f271924daec1070b85b5b50d256a70d0e867a2b446514074733c57ccd",
+      "quantification_peaks.csv": "479b4369231860dd1726e745d378f0342f25bf6bd167b074496400a9443bdc77",
+      "quantification_fit.csv": "8503c2b8682a5908bed58b57e749b6811ce6dbabf75c692888b127c6a8549a00"
+    }
+  },
+  "yinzhang_50kv_20uA.mca": {
+    "supported": "Ca,Fe,Pb",
+    "possible": [
+      "Pd",
+      "Cd"
+    ],
+    "math_file_sha256": {
+      "fit_spectrum.csv": "11d6642bdbcc89cf76eaf47693eb4d67669cf8a75974f10b127652bca6a246f8",
+      "fit_components.csv": "ae076f2224930532a4d206f720e63f2501a54eabd668921e386445b002c98f91",
+      "relative_areal_density.csv": "9fc3f472b48d52ed61881cf231521a89aff617d7e7671722f73f1997dcfed69f",
+      "quantification_peaks.csv": "686a7d58ea865fd9c6164d0d0f0064e02871ca2c066e3b4d994a1123ebaaea70",
+      "quantification_fit.csv": "0d33cef93ceae6836b2bc8d396677735bab882a936a409594c230d271e4cdcfe"
+    }
+  }
+}

@@ -106,7 +106,10 @@ def _groups(identification, config, edges):
             group['sigmas'] = np.asarray(group['sigmas'])
             group['center'] = float(group['weights']@group['centers'])
             group['primary'] = not group['auxiliary'] and any(l.branch in PRIMARY_BRANCHES for l in group['lines'])
-            group['confirmed'] = symbol in confirmed
+            # An established element does not establish an independent area
+            # for every line of an unknown-population auxiliary shell. Preserve
+            # its known within-shell radiative ratios in local nuisance fits.
+            group['confirmed'] = symbol in confirmed and not group['auxiliary']
             group['Branches'] = '+'.join(l.branch for l in group['lines'])
             groups.append(group)
     # A resolved alpha doublet still measures one elemental mass coefficient:

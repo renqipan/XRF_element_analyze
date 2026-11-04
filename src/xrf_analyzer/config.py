@@ -11,6 +11,9 @@ class AnalysisConfig:
     find_peaks_axis: str = "reference"
     manual_match_tolerance_kev: float = 0.08
     element_prior: str = "general"
+    lanthanide_reporting: str = "supported-only"
+    noble_gas_reporting: str = "supported-only"
+    possible_min_delta_deviance: float = 9.0
     prior_tie_margin: float = 0.5
     branch_evidence: bool = True
     quantification_method: str = "local-peaks"
@@ -76,6 +79,12 @@ class AnalysisConfig:
             raise ValueError('quantification_method must be local-peaks or global-template')
         if self.element_prior not in PROFILES:
             raise ValueError("Unknown element_prior profile")
+        if self.lanthanide_reporting not in ('supported-only', 'all-candidates'):
+            raise ValueError('lanthanide_reporting must be supported-only or all-candidates')
+        if self.noble_gas_reporting not in ('supported-only', 'all-candidates'):
+            raise ValueError('noble_gas_reporting must be supported-only or all-candidates')
+        if not math.isfinite(self.possible_min_delta_deviance) or self.possible_min_delta_deviance < 0:
+            raise ValueError('possible_min_delta_deviance must be finite and nonnegative')
         if not math.isfinite(self.prior_tie_margin) or not 0 <= self.prior_tie_margin <= 2:
             raise ValueError("prior_tie_margin must be finite and in [0,2]")
         if self.find_peaks_axis not in ("reference", "observed"):

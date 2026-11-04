@@ -1,3 +1,5 @@
 Z,Element,Branches,Centroid_keV,Moment_Equivalent_FWHM_keV,Net_Area,Area_Std_Counts,Notes
-26,Fe,Kalpha1+Kalpha2,6.520084837595478,0.2100713239571276,2414.073984936277,,"Moments of composite distribution; shared q, not independent areas"
-48,Cd,Kalpha1+Kalpha2,23.06142755545978,0.3377122334477838,77.42429258880644,,"Moments of composite distribution; shared q, not independent areas"
+20,Ca,Kalpha1+Kalpha2,3.8134851199505095,0.2480883729151131,0.0,,"Moments of composite distribution; shared q, not independent areas"
+26,Fe,Kalpha1+Kalpha2,6.506106562670822,0.2612277771363233,2419.6411691359344,101.32166889134396,"Moments of composite distribution; shared q, not independent areas"
+28,Ni,Kalpha1+Kalpha2,7.572385955589743,0.2664019982939518,987.8135706767879,75.19694209966885,"Moments of composite distribution; shared q, not independent areas"
+48,Cd,Kalpha1+Kalpha2,23.11342223074952,0.390778092060484,26.657461193931116,5.915071527664454,"Moments of composite distribution; shared q, not independent areas"

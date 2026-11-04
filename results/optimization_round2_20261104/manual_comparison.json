@@ -1,0 +1,128 @@
+{
+  "reference_is_ground_truth": false,
+  "reference_used_by_identification": false,
+  "compared_txt": "/home/renqi/Documents/ChatGPT/XRF_element_analyze/XRF_Analyze_results/relative_areal_density_all.txt",
+  "reference_source": "User manual reading supplied 2026-11-04; reference hypotheses, NOT ground truth; never used by identification",
+  "rows": [
+    {
+      "Spectrum": "shafa_50kv_20uA.mca",
+      "Manual_Suggested": "Pb,Fe,Hg,Ca",
+      "Manual_Uncertain": "",
+      "Before_Supported": "Ca,Fe,Hg,Pb",
+      "Before_Possible": "Cr,Ni,Cd",
+      "After_Supported": "Ca,Fe,Hg,Pb",
+      "After_Possible": "Cr,Ni,Cd",
+      "Suggested_But_Still_Possible": "",
+      "Suggested_But_Not_Reported": "",
+      "Additional_Supported": ""
+    },
+    {
+      "Spectrum": "shafa1_50kv_20uA.mca",
+      "Manual_Suggested": "Pb,Fe,Hg,Ca",
+      "Manual_Uncertain": "",
+      "Before_Supported": "Ca,Fe,Pb",
+      "Before_Possible": "Ni,Pm,Hg",
+      "After_Supported": "Ca,Fe,Hg,Pb",
+      "After_Possible": "Ni,Sb",
+      "Suggested_But_Still_Possible": "",
+      "Suggested_But_Not_Reported": "",
+      "Additional_Supported": ""
+    },
+    {
+      "Spectrum": "shou_50keV_20uA_back3mm.mca",
+      "Manual_Suggested": "Pb,Fe,Hg",
+      "Manual_Uncertain": "",
+      "Before_Supported": "Fe,Hg,Pb",
+      "Before_Possible": "Sb,Tb,Lu",
+      "After_Supported": "Fe,Hg,Pb",
+      "After_Possible": "Cd,Sb",
+      "Suggested_But_Still_Possible": "",
+      "Suggested_But_Not_Reported": "",
+      "Additional_Supported": ""
+    },
+    {
+      "Spectrum": "yifu_50keV_20uA_back3mm.mca",
+      "Manual_Suggested": "Pb,Fe,Cr,Ca",
+      "Manual_Uncertain": "Cd",
+      "Before_Supported": "Fe,Ni,Pb",
+      "Before_Possible": "Cr,Pm",
+      "After_Supported": "Fe,Ni,Pb",
+      "After_Possible": "Ca,Cr,Cd",
+      "Suggested_But_Still_Possible": "Ca,Cr",
+      "Suggested_But_Not_Reported": "",
+      "Additional_Supported": "Ni"
+    },
+    {
+      "Spectrum": "yifu1_tou_50keV_20uA_back3mm.mca",
+      "Manual_Suggested": "Pb,Fe,Cr,Ca",
+      "Manual_Uncertain": "Cd",
+      "Before_Supported": "Pb",
+      "Before_Possible": "Fe,Tb",
+      "After_Supported": "Ca,Pb",
+      "After_Possible": "Cr,Fe,Cd",
+      "Suggested_But_Still_Possible": "Cr,Fe",
+      "Suggested_But_Not_Reported": "",
+      "Additional_Supported": ""
+    },
+    {
+      "Spectrum": "yifu2_50kv_20uA.mca",
+      "Manual_Suggested": "Pb,Fe,Cr,Ca",
+      "Manual_Uncertain": "",
+      "Before_Supported": "Fe,Pb",
+      "Before_Possible": "Ni,Pm",
+      "After_Supported": "Ca,Fe,Pb",
+      "After_Possible": "Cr,Ni",
+      "Suggested_But_Still_Possible": "Cr",
+      "Suggested_But_Not_Reported": "",
+      "Additional_Supported": ""
+    },
+    {
+      "Spectrum": "xiongzhen_50keV_20uA_back3mm.mca",
+      "Manual_Suggested": "Pb,Fe",
+      "Manual_Uncertain": "",
+      "Before_Supported": "Fe,Pb",
+      "Before_Possible": "Ca,Ni,Tc,Tb",
+      "After_Supported": "Fe,Pb",
+      "After_Possible": "Ca,Ni",
+      "Suggested_But_Still_Possible": "",
+      "Suggested_But_Not_Reported": "",
+      "Additional_Supported": ""
+    },
+    {
+      "Spectrum": "xiongzhen1.mca",
+      "Manual_Suggested": "Pb,Fe,Ca",
+      "Manual_Uncertain": "",
+      "Before_Supported": "Fe,Pb",
+      "Before_Possible": "",
+      "After_Supported": "Ca,Fe,Pb",
+      "After_Possible": "",
+      "Suggested_But_Still_Possible": "",
+      "Suggested_But_Not_Reported": "",
+      "Additional_Supported": ""
+    },
+    {
+      "Spectrum": "yinzhang_50kv_20uA.mca",
+      "Manual_Suggested": "Pb,Fe,Ca",
+      "Manual_Uncertain": "",
+      "Before_Supported": "Ca,Fe,Pb",
+      "Before_Possible": "Pd,Cd",
+      "After_Supported": "Ca,Fe,Pb",
+      "After_Possible": "Cd",
+      "Suggested_But_Still_Possible": "",
+      "Suggested_But_Not_Reported": "",
+      "Additional_Supported": ""
+    },
+    {
+      "Spectrum": "toufa_50keV_20uA_back3mm.mca",
+      "Manual_Suggested": "Pb,Fe,Ca",
+      "Manual_Uncertain": "",
+      "Before_Supported": "Fe,Pb",
+      "Before_Possible": "Ca,Ni,Eu",
+      "After_Supported": "Fe,Pb",
+      "After_Possible": "Ca,Ni,Sb",
+      "Suggested_But_Still_Possible": "Ca",
+      "Suggested_But_Not_Reported": "",
+      "Additional_Supported": ""
+    }
+  ]
+}
