@@ -1,0 +1,459 @@
+{
+  "sample": "XRF_SDD/Pb_50keV_20uA_back3mm.mca",
+  "known_sample_identity": "User states this spectrum is pure Pb XRF; same bytes as data/backgroud_spectrum.mca",
+  "review_scope": "read-only evidence audit; one hypothetical Ag-target sensitivity run; no workspace implementation changes",
+  "baseline": {
+    "source": "existing no-background report and independently reproduced before.json",
+    "fit_status": "success",
+    "deviance_per_dof": 256.84877325137177,
+    "gain": -0.01,
+    "gain_at_lower_bound": true,
+    "delta": 0.18322834010207856,
+    "cutoff": null,
+    "candidates": [
+      {
+        "Z": 28,
+        "Element": "Ni",
+        "Status": "supported",
+        "Score": 634.7120574000321,
+        "DeltaDeviance": 647.2502499674447,
+        "NumObservableLines": 7,
+        "NumIndependentEvidenceRegions": 2,
+        "ExpectedMissingStrongLines": "Lalpha1+Lalpha2+Lbeta1",
+        "OverlapFlag": true,
+        "ConfidenceNotes": "Identified energies retained; matrix_effect_or_model_mismatch; branch_ratio_mismatch; Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities; severe_global_model_mismatch: joint-template q is diagnostic only",
+        "MatchedPeakIDs": "4",
+        "OverlapElements": "Eu,Ta",
+        "q_Fit": 67.66646994063187,
+        "q_Std": null,
+        "Upper95_q": null,
+        "Uncertainty_Status": "response_at_boundary",
+        "Quantification_Status": "supported",
+        "PatternScore": -0.1140455754080598,
+        "PatternMissingLinePenalty": 0.0,
+        "Element_Class": "common",
+        "Preferred_By_Prior": false,
+        "Prior_Alternatives": null,
+        "Global_Quantification_Status": "global_model_mismatch"
+      },
+      {
+        "Z": 47,
+        "Element": "Ag",
+        "Status": "supported",
+        "Score": 231.88312823255848,
+        "DeltaDeviance": 244.421320799971,
+        "NumObservableLines": 16,
+        "NumIndependentEvidenceRegions": 2,
+        "ExpectedMissingStrongLines": "L3M1+L2M1+Lalpha2+Lalpha1+Lbeta1+L3N1+Lbeta2+L3N4+L2N1+Lgamma1",
+        "OverlapFlag": true,
+        "ConfidenceNotes": "Identified energies retained; matrix_effect_or_model_mismatch; branch_ratio_mismatch; Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities; severe_global_model_mismatch: joint-template q is diagnostic only",
+        "MatchedPeakIDs": "1,13,15",
+        "OverlapElements": "Cd,Sn",
+        "q_Fit": 55.77694650346291,
+        "q_Std": null,
+        "Upper95_q": null,
+        "Uncertainty_Status": "response_at_boundary",
+        "Quantification_Status": "supported",
+        "PatternScore": 1.283990498615034,
+        "PatternMissingLinePenalty": 0.0,
+        "Element_Class": "common",
+        "Preferred_By_Prior": false,
+        "Prior_Alternatives": null,
+        "Global_Quantification_Status": "global_model_mismatch"
+      },
+      {
+        "Z": 82,
+        "Element": "Pb",
+        "Status": "supported",
+        "Score": 132280.15004958492,
+        "DeltaDeviance": 132292.68824215233,
+        "NumObservableLines": 18,
+        "NumIndependentEvidenceRegions": 7,
+        "ExpectedMissingStrongLines": "M5N3+M5N6+Malpha1+M5O3+L2M1+L2N1+Lgamma1+L2O1+L2O4",
+        "OverlapFlag": true,
+        "ConfidenceNotes": "Identified energies retained; matrix_effect_or_model_mismatch; branch_ratio_mismatch; Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities; severe_global_model_mismatch: joint-template q is diagnostic only",
+        "MatchedPeakIDs": "6,7,8,9,10,11,12",
+        "OverlapElements": "Ta,Zr",
+        "q_Fit": 4086.205377813216,
+        "q_Std": null,
+        "Upper95_q": null,
+        "Uncertainty_Status": "response_at_boundary",
+        "Quantification_Status": "supported",
+        "PatternScore": 24.35104194957414,
+        "PatternMissingLinePenalty": 3.9416391257407417,
+        "Element_Class": "common",
+        "Preferred_By_Prior": false,
+        "Prior_Alternatives": null,
+        "Global_Quantification_Status": "global_model_mismatch"
+      }
+    ]
+  },
+  "observed_peaks": [
+    {
+      "peak_id": 1,
+      "energy_keV": 3.175291600811001,
+      "centroid_std_keV": 0.0238099348990851,
+      "net_area_counts": 54.5418965199166,
+      "estimated_fwhm_keV": 0.2669876552850202
+    },
+    {
+      "peak_id": 4,
+      "energy_keV": 7.557777181735115,
+      "centroid_std_keV": 0.0059318557201932,
+      "net_area_counts": 1762.5383428170362,
+      "estimated_fwhm_keV": 0.321859122971653
+    },
+    {
+      "peak_id": 5,
+      "energy_keV": 8.257660747649297,
+      "centroid_std_keV": 0.0361088748346971,
+      "net_area_counts": 265.8167459762986,
+      "estimated_fwhm_keV": 0.3502362539454091
+    },
+    {
+      "peak_id": 6,
+      "energy_keV": 9.28662417318417,
+      "centroid_std_keV": 0.0039287114883154,
+      "net_area_counts": 1923.1729811985515,
+      "estimated_fwhm_keV": 0.2671929709105098
+    },
+    {
+      "peak_id": 13,
+      "energy_keV": 22.11402937130506,
+      "centroid_std_keV": 0.0124065387935261,
+      "net_area_counts": 444.2115920306313,
+      "estimated_fwhm_keV": 0.4075507558100522
+    },
+    {
+      "peak_id": 15,
+      "energy_keV": 24.932058147489872,
+      "centroid_std_keV": 0.0424694148828475,
+      "net_area_counts": 82.70254100055067,
+      "estimated_fwhm_keV": 0.4529597661684516
+    }
+  ],
+  "branch_evidence": [
+    {
+      "Element": "Ni",
+      "Family": "K",
+      "Branches": "Kalpha2+Kalpha1",
+      "Background_Window_Sigmas": 4.0,
+      "ROI_Start_keV": 7.200000000000001,
+      "ROI_End_keV": 8.750769230769231,
+      "Local_Free_Area_Counts": 1243.496425390629,
+      "Expected_Area_From_Tied_Counts": 1246.3123790518875,
+      "Branch_DeltaDeviance": 567.0375568377058,
+      "Tied_vs_Free_DeltaDeviance": 0.1513141503091901,
+      "Observed_Ratio_to_Strongest_Group": 1.0,
+      "Expected_Ratio_to_Strongest_Group": 1.0,
+      "Group_Observed": true,
+      "Wide_Window_Branch_DeltaDeviance": 855.5553525159266,
+      "Robust_Group_Observed": true,
+      "Ratio_Compatible": true,
+      "Method": "local_Poisson_background_refit_other_elements_fixed; conditional_not_global_p_value"
+    },
+    {
+      "Element": "Ni",
+      "Family": "K",
+      "Branches": "Kbeta1+KM2",
+      "Background_Window_Sigmas": 4.0,
+      "ROI_Start_keV": 7.200000000000001,
+      "ROI_End_keV": 8.750769230769231,
+      "Local_Free_Area_Counts": 183.73298018841624,
+      "Expected_Area_From_Tied_Counts": 169.01922878741166,
+      "Branch_DeltaDeviance": 23.92501978501969,
+      "Tied_vs_Free_DeltaDeviance": 0.1513141503091901,
+      "Observed_Ratio_to_Strongest_Group": 0.1477551333778051,
+      "Expected_Ratio_to_Strongest_Group": 0.1356154617640806,
+      "Group_Observed": true,
+      "Wide_Window_Branch_DeltaDeviance": 19.72474367824907,
+      "Robust_Group_Observed": true,
+      "Ratio_Compatible": true,
+      "Method": "local_Poisson_background_refit_other_elements_fixed; conditional_not_global_p_value"
+    },
+    {
+      "Element": "Ag",
+      "Family": "L",
+      "Branches": "L3M1",
+      "Background_Window_Sigmas": 4.0,
+      "ROI_Start_keV": 2.4000000000000004,
+      "ROI_End_keV": 4.024615384615385,
+      "Local_Free_Area_Counts": 0.0,
+      "Expected_Area_From_Tied_Counts": 1.525974275865932,
+      "Branch_DeltaDeviance": 0.0,
+      "Tied_vs_Free_DeltaDeviance": 3.8365020762212234,
+      "Observed_Ratio_to_Strongest_Group": 0.0,
+      "Expected_Ratio_to_Strongest_Group": 0.0373364276554467,
+      "Group_Observed": false,
+      "Wide_Window_Branch_DeltaDeviance": 0.0,
+      "Robust_Group_Observed": false,
+      "Ratio_Compatible": true,
+      "Method": "local_Poisson_background_refit_other_elements_fixed; conditional_not_global_p_value"
+    },
+    {
+      "Element": "Ag",
+      "Family": "L",
+      "Branches": "L2M1",
+      "Background_Window_Sigmas": 4.0,
+      "ROI_Start_keV": 2.4000000000000004,
+      "ROI_End_keV": 4.024615384615385,
+      "Local_Free_Area_Counts": 0.0,
+      "Expected_Area_From_Tied_Counts": 0.513566906525252,
+      "Branch_DeltaDeviance": 0.0,
+      "Tied_vs_Free_DeltaDeviance": 3.8365020762212234,
+      "Observed_Ratio_to_Strongest_Group": 0.0,
+      "Expected_Ratio_to_Strongest_Group": 0.0125655811863739,
+      "Group_Observed": false,
+      "Wide_Window_Branch_DeltaDeviance": 0.0,
+      "Robust_Group_Observed": false,
+      "Ratio_Compatible": true,
+      "Method": "local_Poisson_background_refit_other_elements_fixed; conditional_not_global_p_value"
+    },
+    {
+      "Element": "Ag",
+      "Family": "L",
+      "Branches": "Lalpha2+Lalpha1",
+      "Background_Window_Sigmas": 4.0,
+      "ROI_Start_keV": 2.4000000000000004,
+      "ROI_End_keV": 4.024615384615385,
+      "Local_Free_Area_Counts": 39.644422345586136,
+      "Expected_Area_From_Tied_Counts": 40.87092343027948,
+      "Branch_DeltaDeviance": 39.282449110651214,
+      "Tied_vs_Free_DeltaDeviance": 3.8365020762212234,
+      "Observed_Ratio_to_Strongest_Group": 1.0,
+      "Expected_Ratio_to_Strongest_Group": 1.0,
+      "Group_Observed": true,
+      "Wide_Window_Branch_DeltaDeviance": 37.08439491812896,
+      "Robust_Group_Observed": true,
+      "Ratio_Compatible": true,
+      "Method": "local_Poisson_background_refit_other_elements_fixed; conditional_not_global_p_value"
+    },
+    {
+      "Element": "Ag",
+      "Family": "L",
+      "Branches": "Lbeta1+L3N1+Lbeta2+L3N4+L2N1+Lgamma1",
+      "Background_Window_Sigmas": 4.0,
+      "ROI_Start_keV": 2.4000000000000004,
+      "ROI_End_keV": 4.024615384615385,
+      "Local_Free_Area_Counts": 28.444882598055024,
+      "Expected_Area_From_Tied_Counts": 23.111969615773017,
+      "Branch_DeltaDeviance": 15.517665808736638,
+      "Tied_vs_Free_DeltaDeviance": 3.8365020762212234,
+      "Observed_Ratio_to_Strongest_Group": 0.7175002412721994,
+      "Expected_Ratio_to_Strongest_Group": 0.5654868467848311,
+      "Group_Observed": true,
+      "Wide_Window_Branch_DeltaDeviance": 13.302773534684093,
+      "Robust_Group_Observed": true,
+      "Ratio_Compatible": true,
+      "Method": "local_Poisson_background_refit_other_elements_fixed; conditional_not_global_p_value"
+    }
+  ],
+  "escape_comparison": {
+    "silicon_Kalpha_keV": 1.74,
+    "pb_parent_branch": "L3M1",
+    "pb_parent_reference_keV": 9.1845,
+    "escape_projected_keV": 7.5532833401020785,
+    "Ni_alpha_observed_keV": 7.557777181735115,
+    "residual_keV": 0.004493841633036233,
+    "observed_child_to_parent_area_ratio": 0.9164741601759582,
+    "interpretation": "Energy coincidence warrants detector escape review but does not explain all Ni evidence: child/parent fitted area about 0.92 and no current Pb single-Si-escape transition near observed 8.2577 keV Ni-beta region. Need calibrated escape efficiency; do not automatically delete Ni."
+  },
+  "cutoff_issue": {
+    "zero_prefix_channels": 41,
+    "first_retained_counts": [
+      13,
+      13,
+      13
+    ],
+    "first_retained_energy_keV": 3.0276923076923077,
+    "automatic_cutoff": null,
+    "reason": "Existing loader preserves but does not interpret DP5 TLLD=40; count-shape fallback misses cutoff due low positive counts. Metadata supplies an explicit acquisition boundary without guessing.",
+    "predicted_Pb_M_area_counts": 39055.57121269024,
+    "declared_DP5_TLLD_channel": 40,
+    "metadata_verified_meaning": "Amptek Programmer Guide RevB4 p210 section5.1.76: TLLD is in MCA channels; events in this channel or lower rejected. Hence TLLD=40 directly declares channels0..40 unmeasured.",
+    "all_current_spectra_TLLD": {
+      "XRF_SDD/shafa_50kv_20uA.mca": [
+        "40"
+      ],
+      "XRF_SDD/yifu2_50kv_20uA.mca": [
+        "40"
+      ],
+      "XRF_SDD/pos2_40keV_80uA.mca": [
+        "40"
+      ],
+      "XRF_SDD/Pb_50keV_20uA_back3mm.mca": [
+        "40"
+      ],
+      "XRF_SDD/pos4_40keV_80uA.mca": [
+        "40"
+      ],
+      "XRF_SDD/shafa1_50kv_20uA.mca": [
+        "40"
+      ],
+      "XRF_SDD/xiongzhen_50keV_20uA_back3mm.mca": [
+        "40"
+      ],
+      "XRF_SDD/shou_50keV_20uA_back3mm.mca": [
+        "40"
+      ],
+      "XRF_SDD/yinzhang_50kv_20uA.mca": [
+        "40"
+      ],
+      "XRF_SDD/toufa_50keV_20uA_back3mm.mca": [
+        "40"
+      ],
+      "XRF_SDD/pos5_40keV_5uA.mca": [
+        "40"
+      ],
+      "XRF_SDD/yifu_50keV_20uA_back3mm.mca": [
+        "40"
+      ],
+      "XRF_SDD/pos1_40keV_80uA.mca": [
+        "40"
+      ],
+      "XRF_SDD/xiongzhen1.mca": [
+        "40"
+      ],
+      "XRF_SDD/yifu1_tou_50keV_20uA_back3mm.mca": [
+        "40"
+      ],
+      "XRF_SDD/shu_50keV_20uA_back3mm.mca": [
+        "40"
+      ],
+      "XRF_SDD/pos3_40keV_80uA.mca": [
+        "40"
+      ]
+    }
+  },
+  "hypothetical_Ag_target": {
+    "sensitivity_assumption": "Ag tube target is hypothetical, not inferred real instrument identity",
+    "fit_status": "success",
+    "deviance_per_dof": 255.46949119904593,
+    "supported": [
+      "Ni",
+      "Pb"
+    ],
+    "pending": [
+      "Fe",
+      "Cd",
+      "Sn",
+      "Eu"
+    ],
+    "delta": 0.1830669429206758,
+    "gain": -0.01,
+    "cutoff": null,
+    "nuisance_peaks": [
+      "Ag_Rayleigh_Kalpha",
+      "Ag_Rayleigh_Kbeta",
+      "Cd_L1_unscaled",
+      "Eu_L1_unscaled",
+      "Fe_L1_unscaled",
+      "Ni_L1_unscaled",
+      "Pb_L1_unscaled"
+    ],
+    "candidates": [
+      {
+        "Z": 28,
+        "Element": "Ni",
+        "Status": "supported",
+        "Score": 607.4023091644078,
+        "DeltaDeviance": 619.9405017318204,
+        "NumObservableLines": 7,
+        "NumIndependentEvidenceRegions": 2,
+        "ExpectedMissingStrongLines": "Lalpha1+Lalpha2+Lbeta1",
+        "OverlapFlag": true,
+        "ConfidenceNotes": "Identified energies retained; matrix_effect_or_model_mismatch; branch_ratio_mismatch; Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities; severe_global_model_mismatch: joint-template q is diagnostic only",
+        "MatchedPeakIDs": "4",
+        "OverlapElements": "Eu",
+        "q_Fit": 65.72855486585244,
+        "q_Std": null,
+        "Upper95_q": null,
+        "Uncertainty_Status": "response_at_boundary",
+        "Quantification_Status": "supported",
+        "PatternScore": -0.10172719851333234,
+        "PatternMissingLinePenalty": 0.0,
+        "Element_Class": "common",
+        "Preferred_By_Prior": false,
+        "Prior_Alternatives": "",
+        "Global_Quantification_Status": "global_model_mismatch"
+      },
+      {
+        "Z": 47,
+        "Element": "Ag",
+        "Status": "ambiguous",
+        "Score": 1.2690710439878004,
+        "DeltaDeviance": null,
+        "NumObservableLines": 16,
+        "NumIndependentEvidenceRegions": 3,
+        "ExpectedMissingStrongLines": "",
+        "OverlapFlag": true,
+        "ConfidenceNotes": "target_scattering_confounded",
+        "MatchedPeakIDs": "1,13,15",
+        "OverlapElements": "",
+        "q_Fit": null,
+        "q_Std": null,
+        "Upper95_q": null,
+        "Uncertainty_Status": "not_estimable",
+        "Quantification_Status": "not_estimable",
+        "PatternScore": 1.2690710439878004,
+        "PatternMissingLinePenalty": 0.0,
+        "Element_Class": "common",
+        "Preferred_By_Prior": false,
+        "Prior_Alternatives": "",
+        "Global_Quantification_Status": "not_estimable"
+      },
+      {
+        "Z": 82,
+        "Element": "Pb",
+        "Status": "supported",
+        "Score": 132248.48215255374,
+        "DeltaDeviance": 132261.02034512116,
+        "NumObservableLines": 18,
+        "NumIndependentEvidenceRegions": 7,
+        "ExpectedMissingStrongLines": "M5N3+M5N6+Malpha1+M5O3+L2M1+L2N1+Lgamma1+L2O1+L2O4",
+        "OverlapFlag": true,
+        "ConfidenceNotes": "Identified energies retained; matrix_effect_or_model_mismatch; branch_ratio_mismatch; Centroid/branch-pattern identification precedes fitting; fixed quantitative S with same-shell completion; scores are not probabilities; severe_global_model_mismatch: joint-template q is diagnostic only",
+        "MatchedPeakIDs": "6,7,8,9,10,11,12",
+        "OverlapElements": "Zr",
+        "q_Fit": 4084.1571583619693,
+        "q_Std": null,
+        "Upper95_q": null,
+        "Uncertainty_Status": "response_at_boundary",
+        "Quantification_Status": "supported",
+        "PatternScore": 24.300949551172835,
+        "PatternMissingLinePenalty": 3.9416391257407417,
+        "Element_Class": "common",
+        "Preferred_By_Prior": false,
+        "Prior_Alternatives": "",
+        "Global_Quantification_Status": "global_model_mismatch"
+      }
+    ],
+    "elapsed": 14.98008146400025
+  },
+  "conclusions": [
+    "Ag source scattering is a plausible competing explanation for observed ~22.114 and 24.932 keV features. Setting tube_target=Ag changes Ag supported to target-confounded ambiguous by explicit model policy; this does not establish actual anode identity.",
+    "Ni two-branch conditional evidence persists under hypothetical Ag target; cannot attribute source to sample versus apparatus without instrument details and appropriate blank/standards.",
+    "Global deviance/dof remains >255 with gain at boundary; current pure-Pb identity evidence demonstrates unresolved instrument/response/model confounding. Reported supported state is not validated sample composition.",
+    "A pure Pb material is not an environmental blank, and a spectrum identical to sample cannot be an independent ON/OFF reference."
+  ],
+  "needed_instrument_information": [
+    "Actual tube anode material, voltage/current, primary filters and filter thicknesses",
+    "Collimator/housing/sample-holder and substrate materials, especially possible Ni/Ag components",
+    "Detector silicon thickness/window/dead layer, escape response calibration and verified low-energy acquisition threshold",
+    "Sample/tube/detector geometry and scattering angle, blank and standard spectra under matched acquisition settings"
+  ],
+  "sources": [
+    {
+      "title": "Amptek XRF overview: spectrum processing, escape peaks",
+      "url": "https://www.amptek.com/-/media/ametekamptek/documents/resources/tutorials/6-amptek-intro-to-analysis-software.pdf?la=en&revision=8d02032a-58d5-4248-af74-61ca98d33e83"
+    },
+    {
+      "title": "Getty handheld XRF cultural heritage: Ni system fluorescence and detector artifacts",
+      "url": "https://www.getty.edu/conservation/publications_resources/pdf_publications/pdf/handheld-xrf-cultural-heritage.pdf"
+    },
+    {
+      "title": "Amptek Digital Products Programmer Guide RevB4 p210 TLLD definition",
+      "url": "https://www.amptek.com/-/media/ametekamptek/documents/resources/products/user-manuals/amptek-digital-products-programmers-guide-b3.pdf?hash=A94AE3AA759CA497018281C0A89848F7&la=en&revision=1c16e5f8-448a-4fbb-a619-888600356971"
+    }
+  ]
+}

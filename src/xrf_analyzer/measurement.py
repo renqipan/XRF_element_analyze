@@ -5,6 +5,14 @@ from .response import FWHM_FACTOR
 
 
 def infer_hard_lower_cutoff(spectrum, calibration, config):
+    recorded = spectrum.metadata.get('hardware_lower_cutoff')
+    if recorded is not None:
+        first = recorded['first_retained_index']
+        channel = recorded['first_retained_channel']
+        return dict(recorded, energy_keV=float(calibration.energy(channel-.5)),
+                    zero_prefix_channels=first,
+                    first_counts=float(spectrum.counts[first]) if first < len(spectrum.counts) else None,
+                    inferred=False, reason='recorded_Amptek_DP5_TLLD')
     positive = np.flatnonzero(spectrum.counts > 0)
     if not config.infer_low_energy_cutoff or not len(positive):
         return None

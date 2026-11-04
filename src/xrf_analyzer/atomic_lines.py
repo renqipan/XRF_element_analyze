@@ -5,12 +5,26 @@ import json
 import logging
 import re
 import numpy as np
-import pandas as pd
 import xraylib
+from .csv_input import read_csv_unique_headers
 
 LINE_MAP = dict(Kalpha1='KA1_LINE', Kalpha2='KA2_LINE', Kbeta1='KB1_LINE',
                 Lalpha1='LA1_LINE', Lalpha2='LA2_LINE', Lbeta1='LB1_LINE',
                 Lbeta2='LB2_LINE', Lgamma1='LG1_LINE', Malpha1='MA1_LINE')
+LINE_SHELL = dict(Kalpha1='K', Kalpha2='K', Kbeta1='K',
+                  Lalpha1='L3', Lalpha2='L3', Lbeta1='L2',
+                  Lbeta2='L3', Lgamma1='L2', Malpha1='M5')
+
+
+def excitation_edge_kev(line):
+    """Minimum incident energy needed to create this line's initial vacancy.
+
+    A fluorescence photon lies below its absorption edge. Testing emission
+    energy against the tube endpoint alone admits physically impossible lines.
+    Completed and auxiliary transitions carry their initial shell explicitly.
+    """
+    shell = line.parent_shell or LINE_SHELL[line.branch]
+    return float(xraylib.EdgeEnergy(line.Z, getattr(xraylib, shell+'_SHELL')))
 
 
 @dataclass(frozen=True)
@@ -45,7 +59,7 @@ def validate_symbol(symbol):
 def load_sensitivity(path):
     """Read common-scale S and resolve positive branches with xraylib (native keV)."""
     path = Path(path)
-    df = pd.read_csv(path, encoding='utf-8-sig', keep_default_na=False)
+    df = read_csv_unique_headers(path, encoding='utf-8-sig', keep_default_na=False)
     if df.columns.duplicated().any() or not {'Element', *LINE_MAP} <= set(df):
         raise ValueError('Sensitivity table requires Element and all nine branch columns')
     lines, states, warnings, seen = [], [], [], set()

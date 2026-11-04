@@ -33,6 +33,16 @@ def test_background_defaults_to_none(monkeypatch, tmp_path):
     assert _run_cli(monkeypatch, tmp_path).background_spectrum is None
 
 
+@pytest.mark.parametrize('settings,extra,expected', [
+    (None, (), 'Ag'),
+    ({'tube_target': 'Mo'}, (), 'Mo'),
+    ({'tube_target': 'Mo'}, ('--tube-target', 'Cu'), 'Cu'),
+    ({'tube_target': None}, (), None),
+])
+def test_single_cli_target_default_and_overrides(monkeypatch, tmp_path, settings, extra, expected):
+    assert _run_cli(monkeypatch, tmp_path, extra, settings).tube_target == expected
+
+
 @pytest.mark.parametrize('option', ['--background_spectrum', '--background-spectrum',
                                     '--backgroud_spectrum', '--backgroud-spectrum',
                                     '--background'])

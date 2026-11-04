@@ -10,7 +10,7 @@ import pandas as pd
 from .config import AnalysisConfig
 from .calibration import fit_linear_calibration
 from .io_spectrum import load_spectrum
-from .atomic_lines import load_sensitivity, validate_symbol
+from .atomic_lines import load_sensitivity, validate_symbol, excitation_edge_kev
 from .atomic_completion import complete_transitions
 from .measurement import infer_hard_lower_cutoff, initialize_resolution
 from .response import sigma_kev, gaussian_response, FWHM_FACTOR
@@ -57,7 +57,8 @@ def analyze(spectrum, calibration, sensitivity, output_dir=None, config=None, ba
         mask &= (energy_all >= config.energy_range[0]) & (energy_all <= config.energy_range[1])
     if cutoff is not None:
         mask &= energy_all >= cutoff['energy_keV']
-        warnings.append('Inferred acquisition lower cutoff %.5f keV: zero-prefix channels excluded, not treated as measured absence' % cutoff['energy_keV'])
+        label = 'Inferred' if cutoff['inferred'] else 'Recorded'
+        warnings.append('%s acquisition lower cutoff %.5f keV: excluded channels are not treated as measured absence' % (label, cutoff['energy_keV']))
     if mask.sum() < max(config.background_degree+5, 8):
         raise ValueError('Fewer than required channels in requested energy range')
     channel, counts, energy = spec.channel[mask], spec.counts[mask], energy_all[mask]
@@ -70,7 +71,7 @@ def analyze(spectrum, calibration, sensitivity, output_dir=None, config=None, ba
     background_info={'enabled':False,'path':None}
     if config.background_spectrum is not None:
         from .background_input import load_background
-        measured_counts,background_info=load_background(config.background_spectrum,channel,cal,spec,config)
+        measured_counts,background_info=load_background(config.background_spectrum,channel,cal,spec,config,sample_path=spectrum)
         b0=np.maximum(b0-background_info['scale_initial']*snip_background(measured_counts,iterations),.1)
         warnings.extend(background_info['warnings'])
         warnings.append('Measured background enabled with fitted global scale; acquisition/shape matching is not verified')
@@ -100,14 +101,19 @@ def analyze(spectrum, calibration, sensitivity, output_dir=None, config=None, ba
     lines, exclusions = [], []
     fit_config._background_counts=measured_counts
     fit_config._background_scale_initial=config._background_scale_initial
+    # Use declared measurement metadata when no voltage is configured; never
+    # infer excitation from a filename or from an emission peak energy.
+    excitation_voltage = (config.tube_voltage_kv if config.tube_voltage_kv is not None
+                          else spec.metadata.get('tube_voltage_kV'))
+    fit_config._excitation_voltage_kv = excitation_voltage
     for line in atomic_lines:
         reason = None
         if config.elements and line.symbol not in config.elements:
             reason = 'not_whitelisted'
         elif line.symbol in config.exclude_elements:
             reason = 'blacklisted'
-        elif config.tube_voltage_kv is not None and line.energy_keV >= config.tube_voltage_kv:
-            reason = 'above_tube_voltage'
+        elif excitation_voltage is not None and excitation_edge_kev(line) >= excitation_voltage:
+            reason = 'initial_shell_not_excitable_at_tube_voltage'
         elif gaussian_response(edges, line.energy_keV, float(sigma_kev(line.energy_keV, config))).sum() < 1e-6:
             reason = 'outside_measurable_energy_range'
         if reason:
@@ -115,13 +121,21 @@ def analyze(spectrum, calibration, sensitivity, output_dir=None, config=None, ba
         else:
             lines.append(line)
     delta_bound = config.delta_max_kev or max(.5*cal.b_keV_per_channel, cal.rms_keV, .02)
-    auxiliary_lines = [l for l in auxiliary_lines if gaussian_response(edges, l.energy_keV, float(sigma_kev(l.energy_keV, fit_config))).sum() >= 1e-6]
+    observable_auxiliary = []
+    for line in auxiliary_lines:
+        if excitation_voltage is not None and excitation_edge_kev(line) >= excitation_voltage:
+            exclusions.append({'Element': line.symbol, 'Branch': line.branch,
+                               'reason': 'initial_shell_not_excitable_at_tube_voltage'})
+        elif gaussian_response(edges, line.energy_keV, float(sigma_kev(line.energy_keV, fit_config))).sum() >= 1e-6:
+            observable_auxiliary.append(line)
+    auxiliary_lines = observable_auxiliary
     identification = identify_elements(counts, energy, edges, b0, lines, peaks, fit_config, delta_bound, cal.rms_keV, auxiliary_lines=auxiliary_lines, manual_response=manual_response)
     fit = identification.fit
     fit_config._background_scale=getattr(fit,'background_scale',None) or 0.
     fit_config._background_scale_std=getattr(fit,'background_scale_std',None)
     if measured_counts is not None:
         background_info.update(scale=fit.background_scale,scale_std=fit.background_scale_std,
+                               scale_uncertainty_status=fit.background_scale_uncertainty_status,
                                sample_deviance=fit.sample_deviance,joint_deviance=fit.joint_deviance)
     # Keep all rows in the sensitivity table, even when there are no usable branches.
     for symbol in sorted({s['Element'] for s in table.states} - set(identification.candidates.Element)):
@@ -185,11 +199,22 @@ def analyze(spectrum, calibration, sensitivity, output_dir=None, config=None, ba
         density['Quality_Flags'] += '; global_template_mismatch; joint_q_diagnostic_only'
     declared = table.metadata.get('declared', {})
     source_mismatch = False
-    for key, actual in [('tube_target', config.tube_target), ('tube_voltage_kV', config.tube_voltage_kv)]:
-        if key in declared and actual is not None and declared[key] != actual:
+    # An explicit voltage stored with the sample is evidence even when the user
+    # did not repeat it in the CLI/config. Never infer conditions from filenames.
+    sample_voltage = spec.metadata.get('tube_voltage_kV')
+    actual_voltage = config.tube_voltage_kv if config.tube_voltage_kv is not None else sample_voltage
+    for key, actual in [('tube_target', config.tube_target), ('tube_voltage_kV', actual_voltage)]:
+        if key not in declared or actual is None:
+            continue
+        try:
+            compatible = (bool(np.isclose(float(declared[key]), actual))
+                          if key == 'tube_voltage_kV' else declared[key] == actual)
+        except (TypeError, ValueError):
+            compatible = False
+        if not compatible:
             source_mismatch = True
             warnings.append('Sensitivity excitation metadata mismatch: ' + key + '; quantitative ratios withheld')
-    if 'tube_voltage_kV' in spec.metadata and config.tube_voltage_kv is not None and not np.isclose(spec.metadata['tube_voltage_kV'], config.tube_voltage_kv):
+    if sample_voltage is not None and config.tube_voltage_kv is not None and not np.isclose(sample_voltage, config.tube_voltage_kv):
         source_mismatch = True
         warnings.append('Sample tube voltage conflicts with configured excitation; quantitative ratios withheld')
     if source_mismatch:
@@ -247,6 +272,9 @@ def analyze(spectrum, calibration, sensitivity, output_dir=None, config=None, ba
                    quantification_method=config.quantification_method,
                    input_files=files, dependency_versions=versions, parameters=config.to_dict(),
                    effective_parameters={'background_method': 'snip', 'snip_iterations': iterations, 'delta_E_bound_keV': identification.alignment['effective_fit_delta_bound_keV'],
+                                         'excitation_tube_voltage_kV': excitation_voltage,
+                                         'excitation_voltage_source': ('configuration' if config.tube_voltage_kv is not None else
+                                                                       'sample_metadata' if excitation_voltage is not None else 'unknown'),
                                          'effective_fwhm_ref_kev': fit_config.fwhm_ref_kev,
                                          'energy_edges_keV': [float(edges[0]), float(edges[-1])]},
                    calibration_quality=cal.calibration_quality, sensitivity=table.metadata,

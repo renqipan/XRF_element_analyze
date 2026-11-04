@@ -66,6 +66,11 @@ def instrument_lines(config, edges):
     specs = []
     if config.tube_target:
         z = xraylib.SymbolToAtomicNumber(config.tube_target)
+        # A tube voltage above the emitted line but below the K edge cannot
+        # create target K fluorescence (and hence its scattered replicas).
+        voltage = getattr(config, '_excitation_voltage_kv', config.tube_voltage_kv)
+        if voltage is not None and xraylib.EdgeEnergy(z, xraylib.K_SHELL) >= voltage:
+            return specs
         for name, const in [('Kalpha', xraylib.KA1_LINE), ('Kbeta', xraylib.KB1_LINE)]:
             try:
                 e = xraylib.LineEnergy(z, const)
@@ -143,7 +148,7 @@ def fit_spectrum(counts, energy, edges, background0, lines, config, delta_bound=
         d[:,fixed_centers]=0.
         return p @ weights, d @ weights, w @ weights, (d*centers[None, :]) @ weights
 
-    def evaluate(x, want_jac=False):
+    def evaluate(x):
         response_start = n_amp+h.shape[1]
         delta, scale = x[response_start:response_start+2] if config.fit_response else (0., 1.)
         gain = x[response_start+2] if gain_fitted else 0.
@@ -154,8 +159,6 @@ def fit_spectrum(counts, energy, edges, background0, lines, config, delta_bound=
         profile = profile_background(y, signal, x[alpha_index], reference) if measured else None
         mu = profile['model'] if measured else signal
         bg = smooth_bg+x[alpha_index]*profile['latent_background'] if measured else smooth_bg
-        if not want_jac:
-            return mu, bg, matrix
         parts = [matrix*amp_scale, smooth_bg[:, None]*h]
         if config.fit_response:
             parts += [(dm @ amplitudes)[:, None], (wm @ amplitudes)[:, None]]
@@ -165,16 +168,14 @@ def fit_spectrum(counts, energy, edges, background0, lines, config, delta_bound=
             # Envelope gradient holds latent b fixed. Its uncertainty enters
             # the profiled information weights, not an exact-template error.
             parts += [profile['latent_background'][:, None]]
-        return mu, bg, matrix, np.column_stack(parts)
+        return mu, bg, matrix, np.column_stack(parts), profile
 
     def objective(x):
-        mu, _, _, jac = evaluate(x, True)
+        mu, _, _, jac, profile = evaluate(x)
         beta = x[beta_slice]
         reg = config.background_regularization
         # Deviance/2 is the original-count Poisson NLL up to a constant and is numerically stable.
         if measured:
-            smooth_bg = b0*np.exp(h @ x[beta_slice])
-            profile = profile_background(y, smooth_bg+evaluate(x)[2]@(x[:n_amp]*amp_scale), x[alpha_index], reference)
             value = profile['deviance']/2 + 0.5*reg*(beta @ beta)
         else:
             value = poisson_deviance(y, mu)/2 + 0.5*reg*(beta @ beta)
@@ -224,7 +225,7 @@ def fit_spectrum(counts, energy, edges, background0, lines, config, delta_bound=
             break
     valid = [o for o in solutions if o.success and np.isfinite(o.fun)]
     opt = min(valid or solutions, key=lambda o: o.fun if np.isfinite(o.fun) else np.inf)
-    mu, bg, mat, jac = evaluate(opt.x, True)
+    mu, bg, mat, jac, profile = evaluate(opt.x)
     t = opt.x[:n]*amp_scale
     components = mat[:, :n]*t[None, :]
     scatter = mat[:, n:n+len(extras)] @ (opt.x[n:n+len(extras)]*amp_scale)
@@ -249,7 +250,6 @@ def fit_spectrum(counts, energy, edges, background0, lines, config, delta_bound=
     result.sample_deviance = poisson_deviance(y, mu)
     if measured:
         alpha = float(opt.x[alpha_index])
-        profile = profile_background(y, result.smooth_background+mat@(opt.x[:n_amp]*amp_scale), alpha, reference)
         result.background_scale = alpha
         result.background_scale_index = alpha_index
         result.background_observed_counts = reference.copy()

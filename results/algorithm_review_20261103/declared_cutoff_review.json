@@ -1,0 +1,286 @@
+[
+  {
+    "sample": "Pb_50keV_20uA_back3mm.mca",
+    "old_cutoff": null,
+    "TLLD": [
+      "40"
+    ],
+    "MCAS": [
+      "NORM"
+    ],
+    "MCAC": [
+      "1024"
+    ]
+  },
+  {
+    "sample": "pos1_40keV_80uA.mca",
+    "old_cutoff": null,
+    "TLLD": [
+      "40"
+    ],
+    "MCAS": [
+      "NORM"
+    ],
+    "MCAC": [
+      "1024"
+    ]
+  },
+  {
+    "sample": "pos2_40keV_80uA.mca",
+    "old_cutoff": null,
+    "TLLD": [
+      "40"
+    ],
+    "MCAS": [
+      "NORM"
+    ],
+    "MCAC": [
+      "1024"
+    ]
+  },
+  {
+    "sample": "pos3_40keV_80uA.mca",
+    "old_cutoff": {
+      "energy_keV": 2.990769230769231,
+      "first_retained_channel": 41,
+      "zero_prefix_channels": 41,
+      "first_counts": 53.0,
+      "inferred": true,
+      "reason": "long_exact_zero_prefix_followed_by_abrupt_high_counts",
+      "limitation": "Acquisition threshold inferred from data; instrument confirmation required",
+      "background_edge_initialization": "lower_quartile_of_adjacent_SNIP_background"
+    },
+    "TLLD": [
+      "40"
+    ],
+    "MCAS": [
+      "NORM"
+    ],
+    "MCAC": [
+      "1024"
+    ]
+  },
+  {
+    "sample": "pos4_40keV_80uA.mca",
+    "old_cutoff": {
+      "energy_keV": 2.990769230769231,
+      "first_retained_channel": 41,
+      "zero_prefix_channels": 41,
+      "first_counts": 54.0,
+      "inferred": true,
+      "reason": "long_exact_zero_prefix_followed_by_abrupt_high_counts",
+      "limitation": "Acquisition threshold inferred from data; instrument confirmation required",
+      "background_edge_initialization": "lower_quartile_of_adjacent_SNIP_background"
+    },
+    "TLLD": [
+      "40"
+    ],
+    "MCAS": [
+      "NORM"
+    ],
+    "MCAC": [
+      "1024"
+    ]
+  },
+  {
+    "sample": "pos5_40keV_5uA.mca",
+    "old_cutoff": null,
+    "TLLD": [
+      "40"
+    ],
+    "MCAS": [
+      "NORM"
+    ],
+    "MCAC": [
+      "1024"
+    ]
+  },
+  {
+    "sample": "shafa1_50kv_20uA.mca",
+    "old_cutoff": {
+      "energy_keV": 2.990769230769231,
+      "first_retained_channel": 41,
+      "zero_prefix_channels": 41,
+      "first_counts": 121.0,
+      "inferred": true,
+      "reason": "long_exact_zero_prefix_followed_by_abrupt_high_counts",
+      "limitation": "Acquisition threshold inferred from data; instrument confirmation required",
+      "background_edge_initialization": "lower_quartile_of_adjacent_SNIP_background"
+    },
+    "TLLD": [
+      "40"
+    ],
+    "MCAS": [
+      "NORM"
+    ],
+    "MCAC": [
+      "1024"
+    ]
+  },
+  {
+    "sample": "shafa_50kv_20uA.mca",
+    "old_cutoff": {
+      "energy_keV": 2.990769230769231,
+      "first_retained_channel": 41,
+      "zero_prefix_channels": 41,
+      "first_counts": 142.0,
+      "inferred": true,
+      "reason": "long_exact_zero_prefix_followed_by_abrupt_high_counts",
+      "limitation": "Acquisition threshold inferred from data; instrument confirmation required",
+      "background_edge_initialization": "lower_quartile_of_adjacent_SNIP_background"
+    },
+    "TLLD": [
+      "40"
+    ],
+    "MCAS": [
+      "NORM"
+    ],
+    "MCAC": [
+      "1024"
+    ]
+  },
+  {
+    "sample": "shou_50keV_20uA_back3mm.mca",
+    "old_cutoff": null,
+    "TLLD": [
+      "40"
+    ],
+    "MCAS": [
+      "NORM"
+    ],
+    "MCAC": [
+      "1024"
+    ]
+  },
+  {
+    "sample": "shu_50keV_20uA_back3mm.mca",
+    "old_cutoff": null,
+    "TLLD": [
+      "40"
+    ],
+    "MCAS": [
+      "NORM"
+    ],
+    "MCAC": [
+      "1024"
+    ]
+  },
+  {
+    "sample": "toufa_50keV_20uA_back3mm.mca",
+    "old_cutoff": null,
+    "TLLD": [
+      "40"
+    ],
+    "MCAS": [
+      "NORM"
+    ],
+    "MCAC": [
+      "1024"
+    ]
+  },
+  {
+    "sample": "xiongzhen1.mca",
+    "old_cutoff": {
+      "energy_keV": 2.990769230769231,
+      "first_retained_channel": 41,
+      "zero_prefix_channels": 41,
+      "first_counts": 167.0,
+      "inferred": true,
+      "reason": "long_exact_zero_prefix_followed_by_abrupt_high_counts",
+      "limitation": "Acquisition threshold inferred from data; instrument confirmation required",
+      "background_edge_initialization": "lower_quartile_of_adjacent_SNIP_background"
+    },
+    "TLLD": [
+      "40"
+    ],
+    "MCAS": [
+      "NORM"
+    ],
+    "MCAC": [
+      "1024"
+    ]
+  },
+  {
+    "sample": "xiongzhen_50keV_20uA_back3mm.mca",
+    "old_cutoff": null,
+    "TLLD": [
+      "40"
+    ],
+    "MCAS": [
+      "NORM"
+    ],
+    "MCAC": [
+      "1024"
+    ]
+  },
+  {
+    "sample": "yifu1_tou_50keV_20uA_back3mm.mca",
+    "old_cutoff": null,
+    "TLLD": [
+      "40"
+    ],
+    "MCAS": [
+      "NORM"
+    ],
+    "MCAC": [
+      "1024"
+    ]
+  },
+  {
+    "sample": "yifu2_50kv_20uA.mca",
+    "old_cutoff": {
+      "energy_keV": 2.990769230769231,
+      "first_retained_channel": 41,
+      "zero_prefix_channels": 41,
+      "first_counts": 144.0,
+      "inferred": true,
+      "reason": "long_exact_zero_prefix_followed_by_abrupt_high_counts",
+      "limitation": "Acquisition threshold inferred from data; instrument confirmation required",
+      "background_edge_initialization": "lower_quartile_of_adjacent_SNIP_background"
+    },
+    "TLLD": [
+      "40"
+    ],
+    "MCAS": [
+      "NORM"
+    ],
+    "MCAC": [
+      "1024"
+    ]
+  },
+  {
+    "sample": "yifu_50keV_20uA_back3mm.mca",
+    "old_cutoff": null,
+    "TLLD": [
+      "40"
+    ],
+    "MCAS": [
+      "NORM"
+    ],
+    "MCAC": [
+      "1024"
+    ]
+  },
+  {
+    "sample": "yinzhang_50kv_20uA.mca",
+    "old_cutoff": {
+      "energy_keV": 2.990769230769231,
+      "first_retained_channel": 41,
+      "zero_prefix_channels": 41,
+      "first_counts": 101.0,
+      "inferred": true,
+      "reason": "long_exact_zero_prefix_followed_by_abrupt_high_counts",
+      "limitation": "Acquisition threshold inferred from data; instrument confirmation required",
+      "background_edge_initialization": "lower_quartile_of_adjacent_SNIP_background"
+    },
+    "TLLD": [
+      "40"
+    ],
+    "MCAS": [
+      "NORM"
+    ],
+    "MCAC": [
+      "1024"
+    ]
+  }
+]

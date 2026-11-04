@@ -10,6 +10,9 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def test_shafa_cr_remains_possible_under_pm_template_competition():
     settings=json.loads((ROOT/'configs/shafa.json').read_text())
+    # This historical suppression scenario predates the known Ag target. Keep
+    # its original model explicit rather than inheriting the instrument preset.
+    settings['tube_target']=None
     result=analyze(ROOT/'SDD_Spectrum/shafa_50kv_20uA.mca', ROOT/'data/calibration.csv',
                    ROOT/'data/xrf_relative_sensitivity.csv', config=AnalysisConfig(**settings))
     candidates=result['identification'].candidates.set_index('Element')

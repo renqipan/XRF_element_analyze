@@ -7,6 +7,7 @@ with per-channel influence functions, including overlapping measurement windows.
 """
 import numpy as np
 import pandas as pd
+from types import SimpleNamespace
 from scipy.optimize import minimize, nnls
 from scipy.special import xlogy
 from .response import (sigma_kev, FWHM_FACTOR, line_model_center,
@@ -62,7 +63,7 @@ def _tie_unconfirmed_nuisance(groups, allowed=None):
     return result
 
 
-def _groups(identification, config):
+def _groups(identification, config, edges):
     fit = identification.fit
     confirmed = set(identification.candidates.loc[identification.candidates.Status == 'supported', 'Element'])
     groups = []
@@ -135,6 +136,23 @@ def _groups(identification, config):
         anchor['center'] = float(anchor['weights']@anchor['centers'])
         anchor['Branches'] = '+'.join(l.branch for l in anchor['lines'])
         anchor['Primary_Group_Policy'] = 'same_alpha_doublet_common_area_over_summed_sensitivity'
+    # The global model's target Rayleigh/Compton peaks are non-quantitative
+    # interferents too. Omitting them here would assign their counts to an
+    # otherwise supported element's primary area.
+    from .fit_model import instrument_lines
+    for j, (name, center, width) in enumerate(instrument_lines(config, edges)):
+        index = len(fit.symbols)+j
+        parameters = getattr(fit, 'parameters', ())
+        expected = float(parameters[index]*fit.amplitude_scale) if index < len(parameters) else 0.
+        merged.append({'Element': name, 'Z': 0, 'auxiliary': True,
+            'confirmed': True, 'instrument': True, 'primary': False,
+            'lines': [SimpleNamespace(branch=name)], 'weights': np.ones(1), 'S': 1.,
+            # Instrument peaks always follow the shared affine response, even
+            # when user-specified elemental centers are on the observed axis.
+            'centers': np.array([center*(1+fit.energy_gain)+fit.delta]),
+            'sigmas': np.array([width*fit.resolution_scale]),
+            'expected': max(0., expected), 'Branches': name,
+            'Nuisance_Policy': 'instrument_scattering_free_area_nonquantitative'})
     return merged
 
 
@@ -155,7 +173,8 @@ def _profile(target, groups, counts, energy, edges, config, radius, background_s
                 continue
             fraction = float((response_with_derivatives(local_edges, group['centers'], group['sigmas'])[0]
                               @group['weights']).sum())
-            if group['expected']*fraction >= max(2., .001*max(target['expected'], 1.)):
+            if ((group.get('instrument', False) and fraction >= 1e-4) or
+                    group['expected']*fraction >= max(2., .001*max(target['expected'], 1.))):
                 selected.append(group)
         return selected
     initial_nuisance = selected_nuisance(low, high)
@@ -333,7 +352,12 @@ def fit_local_quantification(identification, counts, energy, edges, config):
     if alpha_std is not None:
         alpha_std=float(alpha_std)
         if not np.isfinite(alpha_std) or alpha_std<0:alpha_std=None
-    groups = _groups(identification, config)
+    scale_status=getattr(identification.fit,'background_scale_uncertainty_status',None)
+    if has_measured and scale_status is None:
+        scale_status='provided_scale_standard_error' if alpha_std is not None else 'not_estimable'
+    unresolved_scale=has_measured and (alpha_std is None or scale_status not in (
+        'fisher_interior','fixed_parameter','provided_scale_standard_error'))
+    groups = _groups(identification, config, edges)
     candidates = identification.candidates
     supported = candidates.loc[(candidates.Status == 'supported') &
                                candidates.Element.isin(identification.fit.symbols)]
@@ -396,8 +420,18 @@ def fit_local_quantification(identification, counts, energy, edges, config):
             if has_measured:
                 row.update(Measured_Background_Scale=alpha,Measured_Background_Scale_Std=alpha_std,
                            dq_dBackground_Scale=scale_sensitivity,
-                           Background_Scale_Uncertainty_Status='propagated' if alpha_std is not None else 'conditional_scale_uncertainty_unavailable')
-            item['Accepted'] = True
+                           Background_Scale_Uncertainty_Status=scale_status)
+            if unresolved_scale:
+                # Keep the reviewable area conditional on the fitted scale,
+                # but do not turn an unknown scale variance into zero error in
+                # a reported mass ratio. A zero fitted scale is a boundary,
+                # whereas an explicitly fixed zero scale is known exactly.
+                reason=('background_scale_boundary_profile_required' if scale_status=='nonnegative_boundary'
+                        else 'background_scale_uncertainty_not_estimable')
+                row.update(Quantification_Status=reason, Failure_Reason=reason)
+                row['Notes']+='; area and q_Std are conditional on unresolved measured-background scale; no quantitative ratio'
+                item.update(Conditional_Area_Estimate=True, Failure=reason)
+            item['Accepted'] = not unresolved_scale
             successful = (wide, phi, difference)
             break
         records.append(row)
@@ -424,6 +458,8 @@ def fit_local_quantification(identification, counts, energy, edges, config):
     mean = mean_sum/np.maximum(mean_n, 1.)
     latent_mean=latent_sum/np.maximum(mean_n,1.)
     covariance_method='shared_channel_influence_Poisson_covariance; local_overdispersion_plus_window_difference'
+    if unresolved_scale:
+        covariance_method+='; conditional_on_unresolved_background_scale'
     global_y=getattr(identification.fit,'background_scale_influence_sample',None)
     global_b=getattr(identification.fit,'background_scale_influence_reference',None)
     global_influence_available=(has_measured and global_y is not None and global_b is not None

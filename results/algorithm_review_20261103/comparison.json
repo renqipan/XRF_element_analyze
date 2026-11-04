@@ -1,0 +1,3050 @@
+{
+  "before_source": "/tmp/xrf_algorithm_review_baseline/src/xrf_analyzer/pipeline.py",
+  "after_source": "/home/renqi/Documents/ChatGPT/XRF_element_analyze/src/xrf_analyzer/pipeline.py",
+  "parameters": {
+    "energy_range": [
+      1,
+      40
+    ],
+    "reference_element": "Fe",
+    "voltage_policy": "unknown; no filename inference"
+  },
+  "interpretation": "User confirmed reference is pure-Pb sample XRF, not an independent blank; with_background is model sensitivity only and does not establish reliable quantification.",
+  "before_elapsed_seconds": 272.3283369169985,
+  "after_elapsed_seconds": 246.51552242299658,
+  "cases": [
+    {
+      "sample": "Pb_50keV_20uA_back3mm.mca",
+      "mode": "without_background",
+      "supported_before": [
+        "Ni",
+        "Ag",
+        "Pb"
+      ],
+      "supported_after": [
+        "Ag",
+        "Pb"
+      ],
+      "supported_added": [],
+      "supported_removed": [
+        "Ni"
+      ],
+      "before_error": null,
+      "after_error": null,
+      "fit_status_before": "success",
+      "fit_status_after": "success",
+      "deviance_per_dof_before": 256.84877325137177,
+      "deviance_per_dof_after": 11.727273480882904,
+      "density_comparisons": [
+        {
+          "Element": "Ag",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Kalpha2+Kalpha1",
+          "branches_after": "Kalpha2+Kalpha1",
+          "q_Area": {
+            "before": 205.21407240137327,
+            "after": 197.7649897303037,
+            "difference": -7.4490826710695615,
+            "relative_change": -0.036299083117945635
+          },
+          "Relative_to_Reference": {
+            "before": null,
+            "after": null
+          },
+          "q_Std": {
+            "before": 24.38842523012692,
+            "after": 33.986642187917894,
+            "difference": 9.598216957790974,
+            "relative_change": 0.39355624101282016
+          },
+          "Uncertainty_percent": {
+            "before": null,
+            "after": null
+          }
+        },
+        {
+          "Element": "Ni",
+          "status_before": "supported",
+          "status_after": null,
+          "branches_before": "Kalpha2+Kalpha1",
+          "branches_after": null,
+          "q_Area": {
+            "before": 106.41552752731583,
+            "after": null
+          },
+          "Relative_to_Reference": {
+            "before": null,
+            "after": null
+          },
+          "q_Std": {
+            "before": 12.900139413337802,
+            "after": null
+          },
+          "Uncertainty_percent": {
+            "before": null,
+            "after": null
+          }
+        },
+        {
+          "Element": "Pb",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Lalpha2+Lalpha1",
+          "branches_after": "Lalpha2+Lalpha1",
+          "q_Area": {
+            "before": 9605.815840391286,
+            "after": 9620.20736586835,
+            "difference": 14.391525477063624,
+            "relative_change": 0.0014982095967891673
+          },
+          "Relative_to_Reference": {
+            "before": null,
+            "after": null
+          },
+          "q_Std": {
+            "before": 50.61205223431204,
+            "after": 48.6538918349689,
+            "difference": -1.9581603993431358,
+            "relative_change": -0.038689606781359014
+          },
+          "Uncertainty_percent": {
+            "before": null,
+            "after": null
+          }
+        }
+      ]
+    },
+    {
+      "sample": "pos1_40keV_80uA.mca",
+      "mode": "without_background",
+      "supported_before": [
+        "Fe",
+        "Ag",
+        "Pb"
+      ],
+      "supported_after": [
+        "Fe",
+        "Ag",
+        "Pb"
+      ],
+      "supported_added": [],
+      "supported_removed": [],
+      "before_error": null,
+      "after_error": null,
+      "fit_status_before": "success",
+      "fit_status_after": "success",
+      "deviance_per_dof_before": 700.5589896527088,
+      "deviance_per_dof_after": 13.300903846878391,
+      "density_comparisons": [
+        {
+          "Element": "Ag",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Kalpha2+Kalpha1",
+          "branches_after": "Kalpha2+Kalpha1",
+          "q_Area": {
+            "before": 328.1249967929099,
+            "after": 325.69244348519123,
+            "difference": -2.432553307718649,
+            "relative_change": -0.0074134958674115
+          },
+          "Relative_to_Reference": {
+            "before": 3.936210131253766,
+            "after": 5.063669376223561,
+            "difference": 1.1274592449697947,
+            "relative_change": 0.2864326871214762
+          },
+          "q_Std": {
+            "before": 31.32142639951578,
+            "after": 29.72051731134208,
+            "difference": -1.600909088173701,
+            "relative_change": -0.051112266336581995
+          },
+          "Uncertainty_percent": {
+            "before": 63.33138822768301,
+            "after": 44.83479330736488,
+            "difference": -18.496594920318124,
+            "relative_change": -0.2920604685597751
+          }
+        },
+        {
+          "Element": "Fe",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Kalpha2+Kalpha1",
+          "branches_after": "Kalpha2+Kalpha1",
+          "q_Area": {
+            "before": 83.36064027364188,
+            "after": 64.31945280915828,
+            "difference": -19.0411874644836,
+            "relative_change": -0.22841940035463362
+          },
+          "Relative_to_Reference": {
+            "before": 1.0,
+            "after": 1.0,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "q_Std": {
+            "before": 52.19032992159176,
+            "after": 28.233873517573276,
+            "difference": -23.956456404018486,
+            "relative_change": -0.45902098032354866
+          },
+          "Uncertainty_percent": {
+            "before": 0.0,
+            "after": 0.0,
+            "difference": 0.0,
+            "relative_change": null
+          }
+        },
+        {
+          "Element": "Pb",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Lalpha2+Lalpha1",
+          "branches_after": "Lalpha2+Lalpha1",
+          "q_Area": {
+            "before": 23824.576376966812,
+            "after": 23846.568889603015,
+            "difference": 21.992512636203173,
+            "relative_change": 0.0009231019384447546
+          },
+          "Relative_to_Reference": {
+            "before": 285.80126422685356,
+            "after": 370.7520485343365,
+            "difference": 84.95078430748293,
+            "relative_change": 0.2972372586849497
+          },
+          "q_Std": {
+            "before": 156.53422361708263,
+            "after": 171.55998024836774,
+            "difference": 15.025756631285105,
+            "relative_change": 0.09599023321597348
+          },
+          "Uncertainty_percent": {
+            "before": 62.61132779456237,
+            "after": 43.90221619641643,
+            "difference": -18.709111598145938,
+            "relative_change": -0.29881352555776297
+          }
+        }
+      ]
+    },
+    {
+      "sample": "pos2_40keV_80uA.mca",
+      "mode": "without_background",
+      "supported_before": [
+        "Pb"
+      ],
+      "supported_after": [
+        "Pb"
+      ],
+      "supported_added": [],
+      "supported_removed": [],
+      "before_error": null,
+      "after_error": null,
+      "fit_status_before": "success",
+      "fit_status_after": "success",
+      "deviance_per_dof_before": 502.38191268355274,
+      "deviance_per_dof_after": 10.2997412962069,
+      "density_comparisons": [
+        {
+          "Element": "Pb",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Lalpha2+Lalpha1",
+          "branches_after": "Lalpha2+Lalpha1",
+          "q_Area": {
+            "before": 23354.986735815597,
+            "after": 23370.877983760605,
+            "difference": 15.891247945008217,
+            "relative_change": 0.0006804220496789448
+          },
+          "Relative_to_Reference": {
+            "before": null,
+            "after": null
+          },
+          "q_Std": {
+            "before": 135.24131704179032,
+            "after": 127.11265727510857,
+            "difference": -8.12865976668175,
+            "relative_change": -0.06010485511738952
+          },
+          "Uncertainty_percent": {
+            "before": null,
+            "after": null
+          }
+        }
+      ]
+    },
+    {
+      "sample": "pos3_40keV_80uA.mca",
+      "mode": "without_background",
+      "supported_before": [
+        "Fe",
+        "Ni",
+        "Pb"
+      ],
+      "supported_after": [
+        "Fe",
+        "Ni",
+        "Pb"
+      ],
+      "supported_added": [],
+      "supported_removed": [],
+      "before_error": null,
+      "after_error": null,
+      "fit_status_before": "success",
+      "fit_status_after": "success",
+      "deviance_per_dof_before": 53.08416002831474,
+      "deviance_per_dof_after": 53.08416002831474,
+      "density_comparisons": [
+        {
+          "Element": "Fe",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Kalpha2+Kalpha1",
+          "branches_after": "Kalpha2+Kalpha1",
+          "q_Area": {
+            "before": 358.03001266781365,
+            "after": 358.03001266781365,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Relative_to_Reference": {
+            "before": 1.0,
+            "after": 1.0,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "q_Std": {
+            "before": 13.070354757362276,
+            "after": 13.070354757362276,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Uncertainty_percent": {
+            "before": 0.0,
+            "after": 0.0,
+            "difference": 0.0,
+            "relative_change": null
+          }
+        },
+        {
+          "Element": "Ni",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Kalpha2+Kalpha1",
+          "branches_after": "Kalpha2+Kalpha1",
+          "q_Area": {
+            "before": 315.50884517403045,
+            "after": 315.50884517403045,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Relative_to_Reference": {
+            "before": 0.8812357456377964,
+            "after": 0.8812357456377964,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "q_Std": {
+            "before": 56.9865873393927,
+            "after": 56.9865873393927,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Uncertainty_percent": {
+            "before": 18.3075470285544,
+            "after": 18.3075470285544,
+            "difference": 0.0,
+            "relative_change": 0.0
+          }
+        },
+        {
+          "Element": "Pb",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Lalpha2+Lalpha1",
+          "branches_after": "Lalpha2+Lalpha1",
+          "q_Area": {
+            "before": 95555.56698981985,
+            "after": 95555.56698981985,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Relative_to_Reference": {
+            "before": 266.89261684460496,
+            "after": 266.89261684460496,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "q_Std": {
+            "before": 416.2793696654327,
+            "after": 416.2793696654327,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Uncertainty_percent": {
+            "before": 3.676532356002914,
+            "after": 3.676532356002914,
+            "difference": 0.0,
+            "relative_change": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "sample": "pos4_40keV_80uA.mca",
+      "mode": "without_background",
+      "supported_before": [
+        "Ca",
+        "Fe",
+        "Pb"
+      ],
+      "supported_after": [
+        "Ca",
+        "Fe",
+        "Pb"
+      ],
+      "supported_added": [],
+      "supported_removed": [],
+      "before_error": null,
+      "after_error": null,
+      "fit_status_before": "success",
+      "fit_status_after": "success",
+      "deviance_per_dof_before": 46.7578518525919,
+      "deviance_per_dof_after": 46.7578518525919,
+      "density_comparisons": [
+        {
+          "Element": "Ca",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Kalpha2+Kalpha1",
+          "branches_after": "Kalpha2+Kalpha1",
+          "q_Area": {
+            "before": 51.14262083134522,
+            "after": 51.14262083134522,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Relative_to_Reference": {
+            "before": 0.01716312199342505,
+            "after": 0.01716312199342505,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "q_Std": {
+            "before": 6.043884827322428,
+            "after": 6.043884827322428,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Uncertainty_percent": {
+            "before": 12.157587167302822,
+            "after": 12.157587167302822,
+            "difference": 0.0,
+            "relative_change": 0.0
+          }
+        },
+        {
+          "Element": "Fe",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Kalpha2+Kalpha1",
+          "branches_after": "Kalpha2+Kalpha1",
+          "q_Area": {
+            "before": 2979.7970818442723,
+            "after": 2979.7970818442723,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Relative_to_Reference": {
+            "before": 1.0,
+            "after": 1.0,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "q_Std": {
+            "before": 85.06127497803354,
+            "after": 85.06127497803354,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Uncertainty_percent": {
+            "before": 0.0,
+            "after": 0.0,
+            "difference": 0.0,
+            "relative_change": null
+          }
+        },
+        {
+          "Element": "Pb",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Lalpha2+Lalpha1",
+          "branches_after": "Lalpha2+Lalpha1",
+          "q_Area": {
+            "before": 79291.1367438764,
+            "after": 79291.1367438764,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Relative_to_Reference": {
+            "before": 26.609575942936722,
+            "after": 26.609575942936722,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "q_Std": {
+            "before": 452.36320484675434,
+            "after": 452.36320484675434,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Uncertainty_percent": {
+            "before": 2.911051265843783,
+            "after": 2.911051265843783,
+            "difference": 0.0,
+            "relative_change": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "sample": "pos5_40keV_5uA.mca",
+      "mode": "without_background",
+      "supported_before": [
+        "Fe",
+        "Pb"
+      ],
+      "supported_after": [
+        "Fe",
+        "Pb"
+      ],
+      "supported_added": [],
+      "supported_removed": [],
+      "before_error": null,
+      "after_error": null,
+      "fit_status_before": "success",
+      "fit_status_after": "success",
+      "deviance_per_dof_before": 95.61431880973647,
+      "deviance_per_dof_after": 3.0100644034771085,
+      "density_comparisons": [
+        {
+          "Element": "Fe",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Kalpha2+Kalpha1",
+          "branches_after": "Kalpha2+Kalpha1",
+          "q_Area": {
+            "before": 145.20840335326778,
+            "after": 143.9475678463041,
+            "difference": -1.260835506963673,
+            "relative_change": -0.008682937611374121
+          },
+          "Relative_to_Reference": {
+            "before": 1.0,
+            "after": 1.0,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "q_Std": {
+            "before": 5.148408079435933,
+            "after": 4.650030569860431,
+            "difference": -0.4983775095755023,
+            "relative_change": -0.09680225457771119
+          },
+          "Uncertainty_percent": {
+            "before": 0.0,
+            "after": 0.0,
+            "difference": 0.0,
+            "relative_change": null
+          }
+        },
+        {
+          "Element": "Pb",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Lalpha2+Lalpha1",
+          "branches_after": "Lalpha2+Lalpha1",
+          "q_Area": {
+            "before": 3702.629219392753,
+            "after": 3708.4422159059736,
+            "difference": 5.812996513220696,
+            "relative_change": 0.0015699645221765016
+          },
+          "Relative_to_Reference": {
+            "before": 25.49872551373542,
+            "after": 25.762451366080438,
+            "difference": 0.26372585234501855,
+            "relative_change": 0.010342707215031478
+          },
+          "q_Std": {
+            "before": 40.583582554090654,
+            "after": 35.14448140055973,
+            "difference": -5.4391011535309275,
+            "relative_change": -0.1340222033449506
+          },
+          "Uncertainty_percent": {
+            "before": 3.7110868446047167,
+            "after": 3.366506472750497,
+            "difference": -0.3445803718542195,
+            "relative_change": -0.09285160554924234
+          }
+        }
+      ]
+    },
+    {
+      "sample": "shafa1_50kv_20uA.mca",
+      "mode": "without_background",
+      "supported_before": [
+        "Fe",
+        "Sb",
+        "Pb"
+      ],
+      "supported_after": [
+        "Fe",
+        "Sb",
+        "Pb"
+      ],
+      "supported_added": [],
+      "supported_removed": [],
+      "before_error": null,
+      "after_error": null,
+      "fit_status_before": "success",
+      "fit_status_after": "success",
+      "deviance_per_dof_before": 7.885503149765462,
+      "deviance_per_dof_after": 7.885503149765462,
+      "density_comparisons": [
+        {
+          "Element": "Fe",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Kalpha2+Kalpha1",
+          "branches_after": "Kalpha2+Kalpha1",
+          "q_Area": {
+            "before": 708.7912094533177,
+            "after": 708.7912094533177,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Relative_to_Reference": {
+            "before": 1.0,
+            "after": 1.0,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "q_Std": {
+            "before": 10.55755277485335,
+            "after": 10.55755277485335,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Uncertainty_percent": {
+            "before": 0.0,
+            "after": 0.0,
+            "difference": 0.0,
+            "relative_change": null
+          }
+        },
+        {
+          "Element": "Pb",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Lalpha2+Lalpha1",
+          "branches_after": "Lalpha2+Lalpha1",
+          "q_Area": {
+            "before": 10734.256026437326,
+            "after": 10734.256026437326,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Relative_to_Reference": {
+            "before": 15.144454224702548,
+            "after": 15.144454224702548,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "q_Std": {
+            "before": 59.45720071926497,
+            "after": 59.45720071926497,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Uncertainty_percent": {
+            "before": 1.589170332609697,
+            "after": 1.589170332609697,
+            "difference": 0.0,
+            "relative_change": 0.0
+          }
+        },
+        {
+          "Element": "Sb",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Kalpha2+Kalpha1",
+          "branches_after": "Kalpha2+Kalpha1",
+          "q_Area": {
+            "before": 126.3730661950083,
+            "after": 126.3730661950083,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Relative_to_Reference": {
+            "before": 0.17829378314733665,
+            "after": 0.17829378314733665,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "q_Std": {
+            "before": 55.04676359617367,
+            "after": 55.04676359617367,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Uncertainty_percent": {
+            "before": 43.58439629430213,
+            "after": 43.58439629430213,
+            "difference": 0.0,
+            "relative_change": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "sample": "shafa_50kv_20uA.mca",
+      "mode": "without_background",
+      "supported_before": [
+        "Ca",
+        "Fe",
+        "Hg",
+        "Pb"
+      ],
+      "supported_after": [
+        "Ca",
+        "Fe",
+        "Hg",
+        "Pb"
+      ],
+      "supported_added": [],
+      "supported_removed": [],
+      "before_error": null,
+      "after_error": null,
+      "fit_status_before": "success",
+      "fit_status_after": "success",
+      "deviance_per_dof_before": 7.018321310969157,
+      "deviance_per_dof_after": 7.018321310969157,
+      "density_comparisons": [
+        {
+          "Element": "Ca",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Kalpha2+Kalpha1",
+          "branches_after": "Kalpha2+Kalpha1",
+          "q_Area": {
+            "before": 79.79822926587003,
+            "after": 79.79822926587003,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Relative_to_Reference": {
+            "before": 0.1545846510807016,
+            "after": 0.1545846510807016,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "q_Std": {
+            "before": 8.75095689508681,
+            "after": 8.75095689508681,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Uncertainty_percent": {
+            "before": 11.10375644432246,
+            "after": 11.10375644432246,
+            "difference": 0.0,
+            "relative_change": 0.0
+          }
+        },
+        {
+          "Element": "Fe",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Kalpha2+Kalpha1",
+          "branches_after": "Kalpha2+Kalpha1",
+          "q_Area": {
+            "before": 516.2105597677419,
+            "after": 516.2105597677419,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Relative_to_Reference": {
+            "before": 1.0,
+            "after": 1.0,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "q_Std": {
+            "before": 8.989286239158911,
+            "after": 8.989286239158911,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Uncertainty_percent": {
+            "before": 0.0,
+            "after": 0.0,
+            "difference": 0.0,
+            "relative_change": null
+          }
+        },
+        {
+          "Element": "Hg",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Lalpha2+Lalpha1",
+          "branches_after": "Lalpha2+Lalpha1",
+          "q_Area": {
+            "before": 379.0331768701389,
+            "after": 379.0331768701389,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Relative_to_Reference": {
+            "before": 0.7342607966808679,
+            "after": 0.7342607966808679,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "q_Std": {
+            "before": 58.37241697242012,
+            "after": 58.37241697242012,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Uncertainty_percent": {
+            "before": 15.498486946992104,
+            "after": 15.498486946992104,
+            "difference": 0.0,
+            "relative_change": 0.0
+          }
+        },
+        {
+          "Element": "Pb",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Lalpha2+Lalpha1",
+          "branches_after": "Lalpha2+Lalpha1",
+          "q_Area": {
+            "before": 10427.74182689743,
+            "after": 10427.74182689743,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Relative_to_Reference": {
+            "before": 20.200558918417272,
+            "after": 20.200558918417272,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "q_Std": {
+            "before": 89.04238028142498,
+            "after": 89.04238028142498,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Uncertainty_percent": {
+            "before": 1.9394881833251112,
+            "after": 1.9394881833251112,
+            "difference": 0.0,
+            "relative_change": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "sample": "shou_50keV_20uA_back3mm.mca",
+      "mode": "without_background",
+      "supported_before": [
+        "Fe",
+        "Ag",
+        "Pb"
+      ],
+      "supported_after": [
+        "Fe",
+        "Tb",
+        "Hg",
+        "Pb"
+      ],
+      "supported_added": [
+        "Hg",
+        "Tb"
+      ],
+      "supported_removed": [
+        "Ag"
+      ],
+      "before_error": null,
+      "after_error": null,
+      "fit_status_before": "success",
+      "fit_status_after": "success",
+      "deviance_per_dof_before": 727.008269198259,
+      "deviance_per_dof_after": 18.21576247457187,
+      "density_comparisons": [
+        {
+          "Element": "Ag",
+          "status_before": "supported",
+          "status_after": null,
+          "branches_before": "Kalpha2+Kalpha1",
+          "branches_after": null,
+          "q_Area": {
+            "before": 455.8546611628438,
+            "after": null
+          },
+          "Relative_to_Reference": {
+            "before": 1.2389534809368326,
+            "after": null
+          },
+          "q_Std": {
+            "before": 40.79360492739434,
+            "after": null
+          },
+          "Uncertainty_percent": {
+            "before": 9.245581374489229,
+            "after": null
+          }
+        },
+        {
+          "Element": "Fe",
+          "status_before": "supported",
+          "status_after": "local_area_not_estimable",
+          "branches_before": "Kalpha2+Kalpha1",
+          "branches_after": null,
+          "q_Area": {
+            "before": 367.9352519500168,
+            "after": null
+          },
+          "Relative_to_Reference": {
+            "before": 1.0,
+            "after": null
+          },
+          "q_Std": {
+            "before": 8.549589458653282,
+            "after": null
+          },
+          "Uncertainty_percent": {
+            "before": 0.0,
+            "after": null
+          }
+        },
+        {
+          "Element": "Hg",
+          "status_before": null,
+          "status_after": "supported",
+          "branches_before": null,
+          "branches_after": "Lalpha2+Lalpha1",
+          "q_Area": {
+            "before": null,
+            "after": 1109.6288596607667
+          },
+          "Relative_to_Reference": {
+            "before": null,
+            "after": null
+          },
+          "q_Std": {
+            "before": null,
+            "after": 73.71403154260317
+          },
+          "Uncertainty_percent": {
+            "before": null,
+            "after": null
+          }
+        },
+        {
+          "Element": "Pb",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Lalpha2+Lalpha1",
+          "branches_after": "Lalpha2+Lalpha1",
+          "q_Area": {
+            "before": 27233.903411889634,
+            "after": 28041.92433021236,
+            "difference": 808.0209183227271,
+            "relative_change": 0.02966966967981408
+          },
+          "Relative_to_Reference": {
+            "before": 74.01819550465173,
+            "after": null
+          },
+          "q_Std": {
+            "before": 415.8593727961907,
+            "after": 145.03824473199737,
+            "difference": -270.8211280641933,
+            "relative_change": -0.6512324737163506
+          },
+          "Uncertainty_percent": {
+            "before": 2.780491044719304,
+            "after": null
+          }
+        },
+        {
+          "Element": "Tb",
+          "status_before": null,
+          "status_after": "local_area_not_estimable",
+          "branches_before": null,
+          "branches_after": null,
+          "q_Area": {
+            "before": null,
+            "after": null
+          },
+          "Relative_to_Reference": {
+            "before": null,
+            "after": null
+          },
+          "q_Std": {
+            "before": null,
+            "after": null
+          },
+          "Uncertainty_percent": {
+            "before": null,
+            "after": null
+          }
+        }
+      ]
+    },
+    {
+      "sample": "shu_50keV_20uA_back3mm.mca",
+      "mode": "without_background",
+      "supported_before": [
+        "Ag",
+        "Pb"
+      ],
+      "supported_after": [
+        "Fe",
+        "Tb",
+        "Pb"
+      ],
+      "supported_added": [
+        "Fe",
+        "Tb"
+      ],
+      "supported_removed": [
+        "Ag"
+      ],
+      "before_error": null,
+      "after_error": null,
+      "fit_status_before": "success",
+      "fit_status_after": "success",
+      "deviance_per_dof_before": 744.6808338810953,
+      "deviance_per_dof_after": 21.195479660681762,
+      "density_comparisons": [
+        {
+          "Element": "Ag",
+          "status_before": "supported",
+          "status_after": null,
+          "branches_before": "Kalpha2+Kalpha1",
+          "branches_after": null,
+          "q_Area": {
+            "before": 500.5326721456429,
+            "after": null
+          },
+          "Relative_to_Reference": {
+            "before": null,
+            "after": null
+          },
+          "q_Std": {
+            "before": 36.71317118702224,
+            "after": null
+          },
+          "Uncertainty_percent": {
+            "before": null,
+            "after": null
+          }
+        },
+        {
+          "Element": "Fe",
+          "status_before": null,
+          "status_after": "local_area_not_estimable",
+          "branches_before": null,
+          "branches_after": null,
+          "q_Area": {
+            "before": null,
+            "after": null
+          },
+          "Relative_to_Reference": {
+            "before": null,
+            "after": null
+          },
+          "q_Std": {
+            "before": null,
+            "after": null
+          },
+          "Uncertainty_percent": {
+            "before": null,
+            "after": null
+          }
+        },
+        {
+          "Element": "Pb",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Lalpha2+Lalpha1",
+          "branches_after": "Lalpha2+Lalpha1",
+          "q_Area": {
+            "before": 28469.57244188273,
+            "after": 28531.68282202291,
+            "difference": 62.110380140180496,
+            "relative_change": 0.0021816407769021293
+          },
+          "Relative_to_Reference": {
+            "before": null,
+            "after": null
+          },
+          "q_Std": {
+            "before": 169.9291749521989,
+            "after": 263.9585475879353,
+            "difference": 94.0293726357364,
+            "relative_change": 0.553344489915795
+          },
+          "Uncertainty_percent": {
+            "before": null,
+            "after": null
+          }
+        },
+        {
+          "Element": "Tb",
+          "status_before": null,
+          "status_after": "local_area_not_estimable",
+          "branches_before": null,
+          "branches_after": null,
+          "q_Area": {
+            "before": null,
+            "after": null
+          },
+          "Relative_to_Reference": {
+            "before": null,
+            "after": null
+          },
+          "q_Std": {
+            "before": null,
+            "after": null
+          },
+          "Uncertainty_percent": {
+            "before": null,
+            "after": null
+          }
+        }
+      ]
+    },
+    {
+      "sample": "toufa_50keV_20uA_back3mm.mca",
+      "mode": "without_background",
+      "supported_before": [
+        "Fe",
+        "Pb"
+      ],
+      "supported_after": [
+        "Fe",
+        "Pb"
+      ],
+      "supported_added": [],
+      "supported_removed": [],
+      "before_error": null,
+      "after_error": null,
+      "fit_status_before": "success",
+      "fit_status_after": "success",
+      "deviance_per_dof_before": 735.777547502247,
+      "deviance_per_dof_after": 20.662646264007765,
+      "density_comparisons": [
+        {
+          "Element": "Fe",
+          "status_before": "supported",
+          "status_after": "local_area_not_estimable",
+          "branches_before": "Kalpha2+Kalpha1",
+          "branches_after": null,
+          "q_Area": {
+            "before": 361.2220344715292,
+            "after": null
+          },
+          "Relative_to_Reference": {
+            "before": 1.0,
+            "after": null
+          },
+          "q_Std": {
+            "before": 7.876674365795954,
+            "after": null
+          },
+          "Uncertainty_percent": {
+            "before": 0.0,
+            "after": null
+          }
+        },
+        {
+          "Element": "Pb",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Lalpha2+Lalpha1",
+          "branches_after": "Lalpha2+Lalpha1",
+          "q_Area": {
+            "before": 28156.25899244466,
+            "after": 28198.946572591725,
+            "difference": 42.68758014706691,
+            "relative_change": 0.0015160955920501204
+          },
+          "Relative_to_Reference": {
+            "before": 77.94723551025201,
+            "after": null
+          },
+          "q_Std": {
+            "before": 147.34105779645347,
+            "after": 161.33055832586044,
+            "difference": 13.989500529406968,
+            "relative_change": 0.09494638316451463
+          },
+          "Uncertainty_percent": {
+            "before": 2.2424753936443835,
+            "after": null
+          }
+        }
+      ]
+    },
+    {
+      "sample": "xiongzhen1.mca",
+      "mode": "without_background",
+      "supported_before": [
+        "Fe",
+        "Pb"
+      ],
+      "supported_after": [
+        "Fe",
+        "Pb"
+      ],
+      "supported_added": [],
+      "supported_removed": [],
+      "before_error": null,
+      "after_error": null,
+      "fit_status_before": "success",
+      "fit_status_after": "success",
+      "deviance_per_dof_before": 8.4662224687595,
+      "deviance_per_dof_after": 8.4662224687595,
+      "density_comparisons": [
+        {
+          "Element": "Fe",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Kalpha2+Kalpha1",
+          "branches_after": "Kalpha2+Kalpha1",
+          "q_Area": {
+            "before": 381.56143723729576,
+            "after": 381.56143723729576,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Relative_to_Reference": {
+            "before": 1.0,
+            "after": 1.0,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "q_Std": {
+            "before": 7.087792417742408,
+            "after": 7.087792417742408,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Uncertainty_percent": {
+            "before": 0.0,
+            "after": 0.0,
+            "difference": 0.0,
+            "relative_change": null
+          }
+        },
+        {
+          "Element": "Pb",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Lalpha2+Lalpha1",
+          "branches_after": "Lalpha2+Lalpha1",
+          "q_Area": {
+            "before": 10858.202207369855,
+            "after": 10858.202207369855,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Relative_to_Reference": {
+            "before": 28.45728406410489,
+            "after": 28.45728406410489,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "q_Std": {
+            "before": 108.23028263992472,
+            "after": 108.23028263992472,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Uncertainty_percent": {
+            "before": 2.1081079380887413,
+            "after": 2.1081079380887413,
+            "difference": 0.0,
+            "relative_change": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "sample": "xiongzhen_50keV_20uA_back3mm.mca",
+      "mode": "without_background",
+      "supported_before": [
+        "Fe",
+        "Ag",
+        "Pb"
+      ],
+      "supported_after": [
+        "Fe",
+        "Pb"
+      ],
+      "supported_added": [],
+      "supported_removed": [
+        "Ag"
+      ],
+      "before_error": null,
+      "after_error": null,
+      "fit_status_before": "success",
+      "fit_status_after": "success",
+      "deviance_per_dof_before": 628.9390085171345,
+      "deviance_per_dof_after": 17.46461836661152,
+      "density_comparisons": [
+        {
+          "Element": "Ag",
+          "status_before": "supported",
+          "status_after": null,
+          "branches_before": "Kalpha2+Kalpha1",
+          "branches_after": null,
+          "q_Area": {
+            "before": 442.0603925138071,
+            "after": null
+          },
+          "Relative_to_Reference": {
+            "before": 0.4825199058617963,
+            "after": null
+          },
+          "q_Std": {
+            "before": 31.13576022687523,
+            "after": null
+          },
+          "Uncertainty_percent": {
+            "before": 7.154329209091451,
+            "after": null
+          }
+        },
+        {
+          "Element": "Fe",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Kalpha2+Kalpha1",
+          "branches_after": "Kalpha2+Kalpha1",
+          "q_Area": {
+            "before": 916.1495456322631,
+            "after": 892.0279492506005,
+            "difference": -24.121596381662584,
+            "relative_change": -0.02632932199405887
+          },
+          "Relative_to_Reference": {
+            "before": 1.0,
+            "after": 1.0,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "q_Std": {
+            "before": 11.501115446673705,
+            "after": 34.49693977769496,
+            "difference": 22.995824331021257,
+            "relative_change": 1.9994429616539493
+          },
+          "Uncertainty_percent": {
+            "before": 0.0,
+            "after": 0.0,
+            "difference": 0.0,
+            "relative_change": null
+          }
+        },
+        {
+          "Element": "Pb",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Lalpha2+Lalpha1",
+          "branches_after": "Lalpha2+Lalpha1",
+          "q_Area": {
+            "before": 23709.550484234514,
+            "after": 23744.967473786543,
+            "difference": 35.4169895520281,
+            "relative_change": 0.0014937857879498118
+          },
+          "Relative_to_Reference": {
+            "before": 25.879563655594918,
+            "after": 26.619084630402973,
+            "difference": 0.7395209748080553,
+            "relative_change": 0.02857548081759013
+          },
+          "q_Std": {
+            "before": 94.9099635353186,
+            "after": 122.55270301072481,
+            "difference": 27.642739475406216,
+            "relative_change": 0.2912522399728833
+          },
+          "Uncertainty_percent": {
+            "before": 1.3176530135951978,
+            "after": 3.90153733422082,
+            "difference": 2.5838843206256223,
+            "relative_change": 1.9609747740609875
+          }
+        }
+      ]
+    },
+    {
+      "sample": "yifu1_tou_50keV_20uA_back3mm.mca",
+      "mode": "without_background",
+      "supported_before": [
+        "Pb"
+      ],
+      "supported_after": [
+        "Tb",
+        "Pb"
+      ],
+      "supported_added": [
+        "Tb"
+      ],
+      "supported_removed": [],
+      "before_error": null,
+      "after_error": null,
+      "fit_status_before": "success",
+      "fit_status_after": "success",
+      "deviance_per_dof_before": 795.7938911400869,
+      "deviance_per_dof_after": 17.792983317038463,
+      "density_comparisons": [
+        {
+          "Element": "Pb",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Lalpha2+Lalpha1",
+          "branches_after": "Lalpha2+Lalpha1",
+          "q_Area": {
+            "before": 26869.31160238881,
+            "after": 26862.733699310917,
+            "difference": -6.577903077894007,
+            "relative_change": -0.00024481100131010426
+          },
+          "Relative_to_Reference": {
+            "before": null,
+            "after": null
+          },
+          "q_Std": {
+            "before": 142.36487289667622,
+            "after": 132.82867417106132,
+            "difference": -9.536198725614895,
+            "relative_change": -0.06698421128459095
+          },
+          "Uncertainty_percent": {
+            "before": null,
+            "after": null
+          }
+        },
+        {
+          "Element": "Tb",
+          "status_before": null,
+          "status_after": "local_area_not_estimable",
+          "branches_before": null,
+          "branches_after": null,
+          "q_Area": {
+            "before": null,
+            "after": null
+          },
+          "Relative_to_Reference": {
+            "before": null,
+            "after": null
+          },
+          "q_Std": {
+            "before": null,
+            "after": null
+          },
+          "Uncertainty_percent": {
+            "before": null,
+            "after": null
+          }
+        }
+      ]
+    },
+    {
+      "sample": "yifu2_50kv_20uA.mca",
+      "mode": "without_background",
+      "supported_before": [
+        "Fe",
+        "Ag",
+        "Pb"
+      ],
+      "supported_after": [
+        "Fe",
+        "Ag",
+        "Pb"
+      ],
+      "supported_added": [],
+      "supported_removed": [],
+      "before_error": null,
+      "after_error": null,
+      "fit_status_before": "success",
+      "fit_status_after": "success",
+      "deviance_per_dof_before": 7.391252219036001,
+      "deviance_per_dof_after": 7.391252219036001,
+      "density_comparisons": [
+        {
+          "Element": "Ag",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Kalpha2+Kalpha1",
+          "branches_after": "Kalpha2+Kalpha1",
+          "q_Area": {
+            "before": 165.80962782164357,
+            "after": 165.80962782164357,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Relative_to_Reference": {
+            "before": 0.5801073467045889,
+            "after": 0.5801073467045889,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "q_Std": {
+            "before": 16.808095500652122,
+            "after": 16.808095500652122,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Uncertainty_percent": {
+            "before": 10.540894040034553,
+            "after": 10.540894040034553,
+            "difference": 0.0,
+            "relative_change": 0.0
+          }
+        },
+        {
+          "Element": "Fe",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Kalpha2+Kalpha1",
+          "branches_after": "Kalpha2+Kalpha1",
+          "q_Area": {
+            "before": 285.8257678747856,
+            "after": 285.8257678747856,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Relative_to_Reference": {
+            "before": 1.0,
+            "after": 1.0,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "q_Std": {
+            "before": 8.260316149949265,
+            "after": 8.260316149949265,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Uncertainty_percent": {
+            "before": 0.0,
+            "after": 0.0,
+            "difference": 0.0,
+            "relative_change": null
+          }
+        },
+        {
+          "Element": "Pb",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Lalpha2+Lalpha1",
+          "branches_after": "Lalpha2+Lalpha1",
+          "q_Area": {
+            "before": 11046.260717243586,
+            "after": 11046.260717243586,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Relative_to_Reference": {
+            "before": 38.64683299681618,
+            "after": 38.64683299681618,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "q_Std": {
+            "before": 115.18202016767466,
+            "after": 115.18202016767466,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Uncertainty_percent": {
+            "before": 3.0723403686393875,
+            "after": 3.0723403686393875,
+            "difference": 0.0,
+            "relative_change": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "sample": "yifu_50keV_20uA_back3mm.mca",
+      "mode": "without_background",
+      "supported_before": [
+        "Ag",
+        "Pm",
+        "Pb"
+      ],
+      "supported_after": [
+        "Fe",
+        "Ni",
+        "Pm",
+        "Pb"
+      ],
+      "supported_added": [
+        "Fe",
+        "Ni"
+      ],
+      "supported_removed": [
+        "Ag"
+      ],
+      "before_error": null,
+      "after_error": null,
+      "fit_status_before": "success",
+      "fit_status_after": "success",
+      "deviance_per_dof_before": 689.65517517949,
+      "deviance_per_dof_after": 18.350227788740884,
+      "density_comparisons": [
+        {
+          "Element": "Ag",
+          "status_before": "supported",
+          "status_after": null,
+          "branches_before": "Kalpha2+Kalpha1",
+          "branches_after": null,
+          "q_Area": {
+            "before": 468.31356688885387,
+            "after": null
+          },
+          "Relative_to_Reference": {
+            "before": null,
+            "after": null
+          },
+          "q_Std": {
+            "before": 36.19968630821655,
+            "after": null
+          },
+          "Uncertainty_percent": {
+            "before": null,
+            "after": null
+          }
+        },
+        {
+          "Element": "Fe",
+          "status_before": null,
+          "status_after": "local_area_not_estimable",
+          "branches_before": null,
+          "branches_after": null,
+          "q_Area": {
+            "before": null,
+            "after": null
+          },
+          "Relative_to_Reference": {
+            "before": null,
+            "after": null
+          },
+          "q_Std": {
+            "before": null,
+            "after": null
+          },
+          "Uncertainty_percent": {
+            "before": null,
+            "after": null
+          }
+        },
+        {
+          "Element": "Ni",
+          "status_before": null,
+          "status_after": "local_area_not_estimable",
+          "branches_before": null,
+          "branches_after": null,
+          "q_Area": {
+            "before": null,
+            "after": null
+          },
+          "Relative_to_Reference": {
+            "before": null,
+            "after": null
+          },
+          "q_Std": {
+            "before": null,
+            "after": null
+          },
+          "Uncertainty_percent": {
+            "before": null,
+            "after": null
+          }
+        },
+        {
+          "Element": "Pb",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Lalpha2+Lalpha1",
+          "branches_after": "Lalpha2+Lalpha1",
+          "q_Area": {
+            "before": 26296.08701954752,
+            "after": 26339.22500306092,
+            "difference": 43.13798351339938,
+            "relative_change": 0.001640471583522378
+          },
+          "Relative_to_Reference": {
+            "before": null,
+            "after": null
+          },
+          "q_Std": {
+            "before": 130.08142135007148,
+            "after": 119.10483934182398,
+            "difference": -10.976582008247505,
+            "relative_change": -0.08438239599725493
+          },
+          "Uncertainty_percent": {
+            "before": null,
+            "after": null
+          }
+        },
+        {
+          "Element": "Pm",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "L2M1+Lalpha2+Lalpha1",
+          "branches_after": "L2M1+Lalpha2+Lalpha1",
+          "q_Area": {
+            "before": 108.75933345142471,
+            "after": 109.69715084520811,
+            "difference": 0.9378173937834049,
+            "relative_change": 0.008622868162411671
+          },
+          "Relative_to_Reference": {
+            "before": null,
+            "after": null
+          },
+          "q_Std": {
+            "before": 21.28682121361844,
+            "after": 26.711599273462845,
+            "difference": 5.424778059844407,
+            "relative_change": 0.2548420924573677
+          },
+          "Uncertainty_percent": {
+            "before": null,
+            "after": null
+          }
+        }
+      ]
+    },
+    {
+      "sample": "yinzhang_50kv_20uA.mca",
+      "mode": "without_background",
+      "supported_before": [
+        "Fe",
+        "Pb"
+      ],
+      "supported_after": [
+        "Fe",
+        "Pb"
+      ],
+      "supported_added": [],
+      "supported_removed": [],
+      "before_error": null,
+      "after_error": null,
+      "fit_status_before": "success",
+      "fit_status_after": "success",
+      "deviance_per_dof_before": 9.34056305083631,
+      "deviance_per_dof_after": 9.34056305083631,
+      "density_comparisons": [
+        {
+          "Element": "Fe",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Kalpha2+Kalpha1",
+          "branches_after": "Kalpha2+Kalpha1",
+          "q_Area": {
+            "before": 348.80970188642436,
+            "after": 348.80970188642436,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Relative_to_Reference": {
+            "before": 1.0,
+            "after": 1.0,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "q_Std": {
+            "before": 8.912062520280328,
+            "after": 8.912062520280328,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Uncertainty_percent": {
+            "before": 0.0,
+            "after": 0.0,
+            "difference": 0.0,
+            "relative_change": null
+          }
+        },
+        {
+          "Element": "Pb",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Lalpha2+Lalpha1",
+          "branches_after": "Lalpha2+Lalpha1",
+          "q_Area": {
+            "before": 9869.913309763298,
+            "after": 9869.913309763298,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Relative_to_Reference": {
+            "before": 28.295982756170677,
+            "after": 28.295982756170677,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "q_Std": {
+            "before": 61.0654097494217,
+            "after": 61.0654097494217,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Uncertainty_percent": {
+            "before": 2.628836386047976,
+            "after": 2.628836386047976,
+            "difference": 0.0,
+            "relative_change": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "sample": "Pb_50keV_20uA_back3mm.mca",
+      "mode": "with_background",
+      "supported_before": [],
+      "supported_after": [],
+      "supported_added": [],
+      "supported_removed": [],
+      "before_error": null,
+      "after_error": "ValueError('The same sample file (including byte-for-byte copies) cannot be used as an independent background measurement')",
+      "fit_status_before": "success",
+      "fit_status_after": null,
+      "deviance_per_dof_before": 0.0008186969802662088,
+      "deviance_per_dof_after": null,
+      "density_comparisons": []
+    },
+    {
+      "sample": "pos1_40keV_80uA.mca",
+      "mode": "with_background",
+      "supported_before": [],
+      "supported_after": [
+        "Fe",
+        "Pb"
+      ],
+      "supported_added": [
+        "Fe",
+        "Pb"
+      ],
+      "supported_removed": [],
+      "before_error": null,
+      "after_error": null,
+      "fit_status_before": "success",
+      "fit_status_after": "success",
+      "deviance_per_dof_before": 15.405476432968038,
+      "deviance_per_dof_after": 3.83204975845033,
+      "density_comparisons": [
+        {
+          "Element": "Fe",
+          "status_before": null,
+          "status_after": "supported",
+          "branches_before": null,
+          "branches_after": "Kalpha2+Kalpha1",
+          "q_Area": {
+            "before": null,
+            "after": 32.51146758033727
+          },
+          "Relative_to_Reference": {
+            "before": null,
+            "after": 1.0
+          },
+          "q_Std": {
+            "before": null,
+            "after": 11.68655563139305
+          },
+          "Uncertainty_percent": {
+            "before": null,
+            "after": 0.0
+          }
+        },
+        {
+          "Element": "Pb",
+          "status_before": null,
+          "status_after": "supported",
+          "branches_before": null,
+          "branches_after": "Lalpha2+Lalpha1",
+          "q_Area": {
+            "before": null,
+            "after": 12680.134530658885
+          },
+          "Relative_to_Reference": {
+            "before": null,
+            "after": 390.02036740807574
+          },
+          "q_Std": {
+            "before": null,
+            "after": 892.1190098194178
+          },
+          "Uncertainty_percent": {
+            "before": null,
+            "after": 34.56452331440045
+          }
+        }
+      ]
+    },
+    {
+      "sample": "pos2_40keV_80uA.mca",
+      "mode": "with_background",
+      "supported_before": [
+        "Fe"
+      ],
+      "supported_after": [
+        "Mn"
+      ],
+      "supported_added": [
+        "Mn"
+      ],
+      "supported_removed": [
+        "Fe"
+      ],
+      "before_error": null,
+      "after_error": null,
+      "fit_status_before": "success",
+      "fit_status_after": "success",
+      "deviance_per_dof_before": 20.13231266156136,
+      "deviance_per_dof_after": 19.6520712755101,
+      "density_comparisons": [
+        {
+          "Element": "Fe",
+          "status_before": "supported",
+          "status_after": null,
+          "branches_before": "Kalpha2+Kalpha1",
+          "branches_after": null,
+          "q_Area": {
+            "before": 118.18116804737811,
+            "after": null
+          },
+          "Relative_to_Reference": {
+            "before": 1.0,
+            "after": null
+          },
+          "q_Std": {
+            "before": 11.673696005125107,
+            "after": null
+          },
+          "Uncertainty_percent": {
+            "before": 0.0,
+            "after": null
+          }
+        },
+        {
+          "Element": "Mn",
+          "status_before": null,
+          "status_after": "local_area_not_estimable",
+          "branches_before": null,
+          "branches_after": null,
+          "q_Area": {
+            "before": null,
+            "after": null
+          },
+          "Relative_to_Reference": {
+            "before": null,
+            "after": null
+          },
+          "q_Std": {
+            "before": null,
+            "after": null
+          },
+          "Uncertainty_percent": {
+            "before": null,
+            "after": null
+          }
+        }
+      ]
+    },
+    {
+      "sample": "pos3_40keV_80uA.mca",
+      "mode": "with_background",
+      "supported_before": [
+        "Pb"
+      ],
+      "supported_after": [
+        "Pb"
+      ],
+      "supported_added": [],
+      "supported_removed": [],
+      "before_error": null,
+      "after_error": null,
+      "fit_status_before": "success",
+      "fit_status_after": "success",
+      "deviance_per_dof_before": 3.447313482713413,
+      "deviance_per_dof_after": 3.447313482713413,
+      "density_comparisons": [
+        {
+          "Element": "Pb",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Lalpha2+Lalpha1",
+          "branches_after": "Lalpha2+Lalpha1",
+          "q_Area": {
+            "before": 33736.21434771662,
+            "after": 33736.21434771662,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Relative_to_Reference": {
+            "before": null,
+            "after": null
+          },
+          "q_Std": {
+            "before": 1318.0137828363556,
+            "after": 1318.0137828363556,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Uncertainty_percent": {
+            "before": null,
+            "after": null
+          }
+        }
+      ]
+    },
+    {
+      "sample": "pos4_40keV_80uA.mca",
+      "mode": "with_background",
+      "supported_before": [
+        "Fe"
+      ],
+      "supported_after": [
+        "Fe"
+      ],
+      "supported_added": [],
+      "supported_removed": [],
+      "before_error": null,
+      "after_error": null,
+      "fit_status_before": "success",
+      "fit_status_after": "success",
+      "deviance_per_dof_before": 3.7713039174608034,
+      "deviance_per_dof_after": 3.7713039174608034,
+      "density_comparisons": [
+        {
+          "Element": "Fe",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Kalpha2+Kalpha1",
+          "branches_after": "Kalpha2+Kalpha1",
+          "q_Area": {
+            "before": 2607.9624962526686,
+            "after": 2607.9624962526686,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Relative_to_Reference": {
+            "before": 1.0,
+            "after": 1.0,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "q_Std": {
+            "before": 93.84457861187323,
+            "after": 93.84457861187323,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Uncertainty_percent": {
+            "before": 0.0,
+            "after": 0.0,
+            "difference": 0.0,
+            "relative_change": null
+          }
+        }
+      ]
+    },
+    {
+      "sample": "pos5_40keV_5uA.mca",
+      "mode": "with_background",
+      "supported_before": [],
+      "supported_after": [],
+      "supported_added": [],
+      "supported_removed": [],
+      "before_error": null,
+      "after_error": null,
+      "fit_status_before": "success",
+      "fit_status_after": "success",
+      "deviance_per_dof_before": 4.75413605580168,
+      "deviance_per_dof_after": 5.0088540090375835,
+      "density_comparisons": []
+    },
+    {
+      "sample": "shafa1_50kv_20uA.mca",
+      "mode": "with_background",
+      "supported_before": [
+        "Ca",
+        "Fe",
+        "Hg"
+      ],
+      "supported_after": [
+        "Ca",
+        "Fe",
+        "Hg"
+      ],
+      "supported_added": [],
+      "supported_removed": [],
+      "before_error": null,
+      "after_error": null,
+      "fit_status_before": "success",
+      "fit_status_after": "success",
+      "deviance_per_dof_before": 6.559151019075192,
+      "deviance_per_dof_after": 6.559151019075192,
+      "density_comparisons": [
+        {
+          "Element": "Ca",
+          "status_before": "local_area_not_estimable",
+          "status_after": "local_area_not_estimable",
+          "branches_before": null,
+          "branches_after": null,
+          "q_Area": {
+            "before": null,
+            "after": null
+          },
+          "Relative_to_Reference": {
+            "before": null,
+            "after": null
+          },
+          "q_Std": {
+            "before": null,
+            "after": null
+          },
+          "Uncertainty_percent": {
+            "before": null,
+            "after": null
+          }
+        },
+        {
+          "Element": "Fe",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Kalpha2+Kalpha1",
+          "branches_after": "Kalpha2+Kalpha1",
+          "q_Area": {
+            "before": 639.669819010262,
+            "after": 639.669819010262,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Relative_to_Reference": {
+            "before": 1.0,
+            "after": 1.0,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "q_Std": {
+            "before": 19.847691693383943,
+            "after": 19.847691693383943,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Uncertainty_percent": {
+            "before": 0.0,
+            "after": 0.0,
+            "difference": 0.0,
+            "relative_change": null
+          }
+        },
+        {
+          "Element": "Hg",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Lalpha2+Lalpha1",
+          "branches_after": "Lalpha2+Lalpha1",
+          "q_Area": {
+            "before": 105.00558013140684,
+            "after": 105.00558013140684,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Relative_to_Reference": {
+            "before": 0.16415590826823467,
+            "after": 0.16415590826823467,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "q_Std": {
+            "before": 37.43160873129367,
+            "after": 37.43160873129367,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Uncertainty_percent": {
+            "before": 35.752632567965016,
+            "after": 35.752632567965016,
+            "difference": 0.0,
+            "relative_change": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "sample": "shafa_50kv_20uA.mca",
+      "mode": "with_background",
+      "supported_before": [
+        "Fe",
+        "Hg"
+      ],
+      "supported_after": [
+        "Fe",
+        "Hg"
+      ],
+      "supported_added": [],
+      "supported_removed": [],
+      "before_error": null,
+      "after_error": null,
+      "fit_status_before": "success",
+      "fit_status_after": "success",
+      "deviance_per_dof_before": 3.8238550286558937,
+      "deviance_per_dof_after": 3.8238550286558937,
+      "density_comparisons": [
+        {
+          "Element": "Fe",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Kalpha2+Kalpha1",
+          "branches_after": "Kalpha2+Kalpha1",
+          "q_Area": {
+            "before": 455.5368060129877,
+            "after": 455.5368060129877,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Relative_to_Reference": {
+            "before": 1.0,
+            "after": 1.0,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "q_Std": {
+            "before": 16.808780748254495,
+            "after": 16.808780748254495,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Uncertainty_percent": {
+            "before": 0.0,
+            "after": 0.0,
+            "difference": 0.0,
+            "relative_change": null
+          }
+        },
+        {
+          "Element": "Hg",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Lalpha2+Lalpha1",
+          "branches_after": "Lalpha2+Lalpha1",
+          "q_Area": {
+            "before": 345.4238811706751,
+            "after": 345.4238811706751,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Relative_to_Reference": {
+            "before": 0.7582787529155807,
+            "after": 0.7582787529155807,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "q_Std": {
+            "before": 69.33968906188697,
+            "after": 69.33968906188697,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Uncertainty_percent": {
+            "before": 20.348032717789273,
+            "after": 20.348032717789273,
+            "difference": 0.0,
+            "relative_change": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "sample": "shou_50keV_20uA_back3mm.mca",
+      "mode": "with_background",
+      "supported_before": [],
+      "supported_after": [],
+      "supported_added": [],
+      "supported_removed": [],
+      "before_error": null,
+      "after_error": null,
+      "fit_status_before": "success",
+      "fit_status_after": "failed",
+      "deviance_per_dof_before": 9.851833042611759,
+      "deviance_per_dof_after": 3.1323147481552653,
+      "density_comparisons": []
+    },
+    {
+      "sample": "shu_50keV_20uA_back3mm.mca",
+      "mode": "with_background",
+      "supported_before": [],
+      "supported_after": [],
+      "supported_added": [],
+      "supported_removed": [],
+      "before_error": null,
+      "after_error": null,
+      "fit_status_before": "success",
+      "fit_status_after": "success",
+      "deviance_per_dof_before": 6.299079289682778,
+      "deviance_per_dof_after": 6.215494914398018,
+      "density_comparisons": []
+    },
+    {
+      "sample": "toufa_50keV_20uA_back3mm.mca",
+      "mode": "with_background",
+      "supported_before": [],
+      "supported_after": [],
+      "supported_added": [],
+      "supported_removed": [],
+      "before_error": null,
+      "after_error": null,
+      "fit_status_before": "success",
+      "fit_status_after": "success",
+      "deviance_per_dof_before": 5.875242448994781,
+      "deviance_per_dof_after": 5.761139716427016,
+      "density_comparisons": []
+    },
+    {
+      "sample": "xiongzhen1.mca",
+      "mode": "with_background",
+      "supported_before": [
+        "Pb"
+      ],
+      "supported_after": [
+        "Pb"
+      ],
+      "supported_added": [],
+      "supported_removed": [],
+      "before_error": null,
+      "after_error": null,
+      "fit_status_before": "success",
+      "fit_status_after": "success",
+      "deviance_per_dof_before": 9.157846665404573,
+      "deviance_per_dof_after": 9.157846665404573,
+      "density_comparisons": [
+        {
+          "Element": "Pb",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Lalpha2+Lalpha1",
+          "branches_after": "Lalpha2+Lalpha1",
+          "q_Area": {
+            "before": 1464.524029334108,
+            "after": 1464.524029334108,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Relative_to_Reference": {
+            "before": null,
+            "after": null
+          },
+          "q_Std": {
+            "before": 314.4164244931151,
+            "after": 314.4164244931151,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Uncertainty_percent": {
+            "before": null,
+            "after": null
+          }
+        }
+      ]
+    },
+    {
+      "sample": "xiongzhen_50keV_20uA_back3mm.mca",
+      "mode": "with_background",
+      "supported_before": [
+        "Fe"
+      ],
+      "supported_after": [
+        "Fe",
+        "Pb"
+      ],
+      "supported_added": [
+        "Pb"
+      ],
+      "supported_removed": [],
+      "before_error": null,
+      "after_error": null,
+      "fit_status_before": "success",
+      "fit_status_after": "success",
+      "deviance_per_dof_before": 4.358158764490131,
+      "deviance_per_dof_after": 3.0603296893780945,
+      "density_comparisons": [
+        {
+          "Element": "Fe",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Kalpha2+Kalpha1",
+          "branches_after": "Kalpha2+Kalpha1",
+          "q_Area": {
+            "before": 733.4639571723775,
+            "after": 817.3426910908095,
+            "difference": 83.87873391843198,
+            "relative_change": 0.1143597215625947
+          },
+          "Relative_to_Reference": {
+            "before": 1.0,
+            "after": 1.0,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "q_Std": {
+            "before": 50.79979622385855,
+            "after": 22.65749077679706,
+            "difference": -28.14230544706149,
+            "relative_change": -0.5539846129115813
+          },
+          "Uncertainty_percent": {
+            "before": 0.0,
+            "after": 0.0,
+            "difference": 0.0,
+            "relative_change": null
+          }
+        },
+        {
+          "Element": "Pb",
+          "status_before": null,
+          "status_after": "supported",
+          "branches_before": null,
+          "branches_after": "Lalpha2+Lalpha1",
+          "q_Area": {
+            "before": null,
+            "after": 7197.65739710293
+          },
+          "Relative_to_Reference": {
+            "before": null,
+            "after": 8.806168423060196
+          },
+          "q_Std": {
+            "before": null,
+            "after": 384.61675423159676
+          },
+          "Uncertainty_percent": {
+            "before": null,
+            "after": 5.127477063816588
+          }
+        }
+      ]
+    },
+    {
+      "sample": "yifu1_tou_50keV_20uA_back3mm.mca",
+      "mode": "with_background",
+      "supported_before": [],
+      "supported_after": [
+        "Fe",
+        "Pb"
+      ],
+      "supported_added": [
+        "Fe",
+        "Pb"
+      ],
+      "supported_removed": [],
+      "before_error": null,
+      "after_error": null,
+      "fit_status_before": "success",
+      "fit_status_after": "success",
+      "deviance_per_dof_before": 5.05198084128971,
+      "deviance_per_dof_after": 2.8723910407690068,
+      "density_comparisons": [
+        {
+          "Element": "Fe",
+          "status_before": null,
+          "status_after": "supported",
+          "branches_before": null,
+          "branches_after": "Kalpha2+Kalpha1",
+          "q_Area": {
+            "before": null,
+            "after": 107.97003550291143
+          },
+          "Relative_to_Reference": {
+            "before": null,
+            "after": 1.0
+          },
+          "q_Std": {
+            "before": null,
+            "after": 17.657796734384988
+          },
+          "Uncertainty_percent": {
+            "before": null,
+            "after": 0.0
+          }
+        },
+        {
+          "Element": "Pb",
+          "status_before": null,
+          "status_after": "supported",
+          "branches_before": null,
+          "branches_after": "Lalpha2+Lalpha1",
+          "q_Area": {
+            "before": null,
+            "after": 10265.290731059511
+          },
+          "Relative_to_Reference": {
+            "before": null,
+            "after": 95.07536682047962
+          },
+          "q_Std": {
+            "before": null,
+            "after": 423.65799647583896
+          },
+          "Uncertainty_percent": {
+            "before": null,
+            "after": 15.1578320516635
+          }
+        }
+      ]
+    },
+    {
+      "sample": "yifu2_50kv_20uA.mca",
+      "mode": "with_background",
+      "supported_before": [
+        "Pb"
+      ],
+      "supported_after": [
+        "Pb"
+      ],
+      "supported_added": [],
+      "supported_removed": [],
+      "before_error": null,
+      "after_error": null,
+      "fit_status_before": "success",
+      "fit_status_after": "success",
+      "deviance_per_dof_before": 7.194447429790176,
+      "deviance_per_dof_after": 7.194447429790176,
+      "density_comparisons": [
+        {
+          "Element": "Pb",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Lalpha2+Lalpha1",
+          "branches_after": "Lalpha2+Lalpha1",
+          "q_Area": {
+            "before": 1936.0255284054779,
+            "after": 1936.0255284054779,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Relative_to_Reference": {
+            "before": null,
+            "after": null
+          },
+          "q_Std": {
+            "before": 235.94515960252394,
+            "after": 235.94515960252394,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Uncertainty_percent": {
+            "before": null,
+            "after": null
+          }
+        }
+      ]
+    },
+    {
+      "sample": "yifu_50keV_20uA_back3mm.mca",
+      "mode": "with_background",
+      "supported_before": [],
+      "supported_after": [
+        "Pb"
+      ],
+      "supported_added": [
+        "Pb"
+      ],
+      "supported_removed": [],
+      "before_error": null,
+      "after_error": null,
+      "fit_status_before": "success",
+      "fit_status_after": "success",
+      "deviance_per_dof_before": 5.019761596212434,
+      "deviance_per_dof_after": 3.134784062476977,
+      "density_comparisons": [
+        {
+          "Element": "Pb",
+          "status_before": null,
+          "status_after": "supported",
+          "branches_before": null,
+          "branches_after": "Lalpha2+Lalpha1",
+          "q_Area": {
+            "before": null,
+            "after": 9147.45164098828
+          },
+          "Relative_to_Reference": {
+            "before": null,
+            "after": null
+          },
+          "q_Std": {
+            "before": null,
+            "after": 334.76279761867266
+          },
+          "Uncertainty_percent": {
+            "before": null,
+            "after": null
+          }
+        }
+      ]
+    },
+    {
+      "sample": "yinzhang_50kv_20uA.mca",
+      "mode": "with_background",
+      "supported_before": [
+        "Fe",
+        "Pb"
+      ],
+      "supported_after": [
+        "Fe",
+        "Pb"
+      ],
+      "supported_added": [],
+      "supported_removed": [],
+      "before_error": null,
+      "after_error": null,
+      "fit_status_before": "success",
+      "fit_status_after": "success",
+      "deviance_per_dof_before": 5.555084161538029,
+      "deviance_per_dof_after": 5.555084161538029,
+      "density_comparisons": [
+        {
+          "Element": "Fe",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Kalpha2+Kalpha1",
+          "branches_after": "Kalpha2+Kalpha1",
+          "q_Area": {
+            "before": 327.64505471106213,
+            "after": 327.64505471106213,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Relative_to_Reference": {
+            "before": 1.0,
+            "after": 1.0,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "q_Std": {
+            "before": 15.29967948562693,
+            "after": 15.29967948562693,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Uncertainty_percent": {
+            "before": 0.0,
+            "after": 0.0,
+            "difference": 0.0,
+            "relative_change": null
+          }
+        },
+        {
+          "Element": "Pb",
+          "status_before": "supported",
+          "status_after": "supported",
+          "branches_before": "Lalpha2+Lalpha1",
+          "branches_after": "Lalpha2+Lalpha1",
+          "q_Area": {
+            "before": 4206.109880342933,
+            "after": 4206.109880342933,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Relative_to_Reference": {
+            "before": 12.83739772618312,
+            "after": 12.83739772618312,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "q_Std": {
+            "before": 131.54506994609918,
+            "after": 131.54506994609918,
+            "difference": 0.0,
+            "relative_change": 0.0
+          },
+          "Uncertainty_percent": {
+            "before": 5.385345915050261,
+            "after": 5.385345915050261,
+            "difference": 0.0,
+            "relative_change": 0.0
+          }
+        }
+      ]
+    }
+  ],
+  "mode_summaries": {
+    "without_background": {
+      "cases": 17,
+      "errors_before": 0,
+      "errors_after": 0,
+      "successful_fits_after": 17,
+      "supported_total_before": 43,
+      "supported_total_after": 45,
+      "supported_sets_changed": 6,
+      "ratios_before": 33,
+      "ratios_after": 27,
+      "q_Area": {
+        "comparable_rows": 36,
+        "changed_rows": 16,
+        "maximum_absolute_difference": 808.0209183227271,
+        "maximum_absolute_relative_change": 0.22841940035463362,
+        "largest_relative_changes": [
+          [
+            "pos1_40keV_80uA.mca",
+            "Fe",
+            {
+              "before": 83.36064027364188,
+              "after": 64.31945280915828,
+              "difference": -19.0411874644836,
+              "relative_change": -0.22841940035463362
+            }
+          ],
+          [
+            "Pb_50keV_20uA_back3mm.mca",
+            "Ag",
+            {
+              "before": 205.21407240137327,
+              "after": 197.7649897303037,
+              "difference": -7.4490826710695615,
+              "relative_change": -0.036299083117945635
+            }
+          ],
+          [
+            "shou_50keV_20uA_back3mm.mca",
+            "Pb",
+            {
+              "before": 27233.903411889634,
+              "after": 28041.92433021236,
+              "difference": 808.0209183227271,
+              "relative_change": 0.02966966967981408
+            }
+          ],
+          [
+            "xiongzhen_50keV_20uA_back3mm.mca",
+            "Fe",
+            {
+              "before": 916.1495456322631,
+              "after": 892.0279492506005,
+              "difference": -24.121596381662584,
+              "relative_change": -0.02632932199405887
+            }
+          ],
+          [
+            "pos5_40keV_5uA.mca",
+            "Fe",
+            {
+              "before": 145.20840335326778,
+              "after": 143.9475678463041,
+              "difference": -1.260835506963673,
+              "relative_change": -0.008682937611374121
+            }
+          ],
+          [
+            "yifu_50keV_20uA_back3mm.mca",
+            "Pm",
+            {
+              "before": 108.75933345142471,
+              "after": 109.69715084520811,
+              "difference": 0.9378173937834049,
+              "relative_change": 0.008622868162411671
+            }
+          ],
+          [
+            "pos1_40keV_80uA.mca",
+            "Ag",
+            {
+              "before": 328.1249967929099,
+              "after": 325.69244348519123,
+              "difference": -2.432553307718649,
+              "relative_change": -0.0074134958674115
+            }
+          ],
+          [
+            "shu_50keV_20uA_back3mm.mca",
+            "Pb",
+            {
+              "before": 28469.57244188273,
+              "after": 28531.68282202291,
+              "difference": 62.110380140180496,
+              "relative_change": 0.0021816407769021293
+            }
+          ]
+        ]
+      },
+      "Relative_to_Reference": {
+        "comparable_rows": 27,
+        "changed_rows": 4,
+        "maximum_absolute_difference": 84.95078430748293,
+        "maximum_absolute_relative_change": 0.2972372586849497,
+        "largest_relative_changes": [
+          [
+            "pos1_40keV_80uA.mca",
+            "Pb",
+            {
+              "before": 285.80126422685356,
+              "after": 370.7520485343365,
+              "difference": 84.95078430748293,
+              "relative_change": 0.2972372586849497
+            }
+          ],
+          [
+            "pos1_40keV_80uA.mca",
+            "Ag",
+            {
+              "before": 3.936210131253766,
+              "after": 5.063669376223561,
+              "difference": 1.1274592449697947,
+              "relative_change": 0.2864326871214762
+            }
+          ],
+          [
+            "xiongzhen_50keV_20uA_back3mm.mca",
+            "Pb",
+            {
+              "before": 25.879563655594918,
+              "after": 26.619084630402973,
+              "difference": 0.7395209748080553,
+              "relative_change": 0.02857548081759013
+            }
+          ],
+          [
+            "pos5_40keV_5uA.mca",
+            "Pb",
+            {
+              "before": 25.49872551373542,
+              "after": 25.762451366080438,
+              "difference": 0.26372585234501855,
+              "relative_change": 0.010342707215031478
+            }
+          ]
+        ]
+      },
+      "q_Std": {
+        "comparable_rows": 36,
+        "changed_rows": 16,
+        "maximum_absolute_difference": 270.8211280641933,
+        "maximum_absolute_relative_change": 1.9994429616539493,
+        "largest_relative_changes": [
+          [
+            "xiongzhen_50keV_20uA_back3mm.mca",
+            "Fe",
+            {
+              "before": 11.501115446673705,
+              "after": 34.49693977769496,
+              "difference": 22.995824331021257,
+              "relative_change": 1.9994429616539493
+            }
+          ],
+          [
+            "shou_50keV_20uA_back3mm.mca",
+            "Pb",
+            {
+              "before": 415.8593727961907,
+              "after": 145.03824473199737,
+              "difference": -270.8211280641933,
+              "relative_change": -0.6512324737163506
+            }
+          ],
+          [
+            "shu_50keV_20uA_back3mm.mca",
+            "Pb",
+            {
+              "before": 169.9291749521989,
+              "after": 263.9585475879353,
+              "difference": 94.0293726357364,
+              "relative_change": 0.553344489915795
+            }
+          ],
+          [
+            "pos1_40keV_80uA.mca",
+            "Fe",
+            {
+              "before": 52.19032992159176,
+              "after": 28.233873517573276,
+              "difference": -23.956456404018486,
+              "relative_change": -0.45902098032354866
+            }
+          ],
+          [
+            "Pb_50keV_20uA_back3mm.mca",
+            "Ag",
+            {
+              "before": 24.38842523012692,
+              "after": 33.986642187917894,
+              "difference": 9.598216957790974,
+              "relative_change": 0.39355624101282016
+            }
+          ],
+          [
+            "xiongzhen_50keV_20uA_back3mm.mca",
+            "Pb",
+            {
+              "before": 94.9099635353186,
+              "after": 122.55270301072481,
+              "difference": 27.642739475406216,
+              "relative_change": 0.2912522399728833
+            }
+          ],
+          [
+            "yifu_50keV_20uA_back3mm.mca",
+            "Pm",
+            {
+              "before": 21.28682121361844,
+              "after": 26.711599273462845,
+              "difference": 5.424778059844407,
+              "relative_change": 0.2548420924573677
+            }
+          ],
+          [
+            "pos5_40keV_5uA.mca",
+            "Pb",
+            {
+              "before": 40.583582554090654,
+              "after": 35.14448140055973,
+              "difference": -5.4391011535309275,
+              "relative_change": -0.1340222033449506
+            }
+          ]
+        ]
+      },
+      "Uncertainty_percent": {
+        "comparable_rows": 27,
+        "changed_rows": 4,
+        "maximum_absolute_difference": 18.709111598145938,
+        "maximum_absolute_relative_change": 1.9609747740609875,
+        "largest_relative_changes": [
+          [
+            "xiongzhen_50keV_20uA_back3mm.mca",
+            "Pb",
+            {
+              "before": 1.3176530135951978,
+              "after": 3.90153733422082,
+              "difference": 2.5838843206256223,
+              "relative_change": 1.9609747740609875
+            }
+          ],
+          [
+            "pos1_40keV_80uA.mca",
+            "Pb",
+            {
+              "before": 62.61132779456237,
+              "after": 43.90221619641643,
+              "difference": -18.709111598145938,
+              "relative_change": -0.29881352555776297
+            }
+          ],
+          [
+            "pos1_40keV_80uA.mca",
+            "Ag",
+            {
+              "before": 63.33138822768301,
+              "after": 44.83479330736488,
+              "difference": -18.496594920318124,
+              "relative_change": -0.2920604685597751
+            }
+          ],
+          [
+            "pos5_40keV_5uA.mca",
+            "Pb",
+            {
+              "before": 3.7110868446047167,
+              "after": 3.366506472750497,
+              "difference": -0.3445803718542195,
+              "relative_change": -0.09285160554924234
+            }
+          ]
+        ]
+      }
+    },
+    "with_background": {
+      "cases": 17,
+      "errors_before": 0,
+      "errors_after": 1,
+      "successful_fits_after": 15,
+      "supported_total_before": 13,
+      "supported_total_after": 19,
+      "supported_sets_changed": 5,
+      "ratios_before": 9,
+      "ratios_after": 13,
+      "q_Area": {
+        "comparable_rows": 11,
+        "changed_rows": 1,
+        "maximum_absolute_difference": 83.87873391843198,
+        "maximum_absolute_relative_change": 0.1143597215625947,
+        "largest_relative_changes": [
+          [
+            "xiongzhen_50keV_20uA_back3mm.mca",
+            "Fe",
+            {
+              "before": 733.4639571723775,
+              "after": 817.3426910908095,
+              "difference": 83.87873391843198,
+              "relative_change": 0.1143597215625947
+            }
+          ]
+        ]
+      },
+      "Relative_to_Reference": {
+        "comparable_rows": 8,
+        "changed_rows": 0,
+        "maximum_absolute_difference": 0.0,
+        "maximum_absolute_relative_change": 0.0,
+        "largest_relative_changes": []
+      },
+      "q_Std": {
+        "comparable_rows": 11,
+        "changed_rows": 1,
+        "maximum_absolute_difference": 28.14230544706149,
+        "maximum_absolute_relative_change": 0.5539846129115813,
+        "largest_relative_changes": [
+          [
+            "xiongzhen_50keV_20uA_back3mm.mca",
+            "Fe",
+            {
+              "before": 50.79979622385855,
+              "after": 22.65749077679706,
+              "difference": -28.14230544706149,
+              "relative_change": -0.5539846129115813
+            }
+          ]
+        ]
+      },
+      "Uncertainty_percent": {
+        "comparable_rows": 8,
+        "changed_rows": 0,
+        "maximum_absolute_difference": 0.0,
+        "maximum_absolute_relative_change": 0.0,
+        "largest_relative_changes": []
+      }
+    }
+  }
+}

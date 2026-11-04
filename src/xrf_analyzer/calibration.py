@@ -2,6 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, asdict
 import numpy as np
 import pandas as pd
+from .csv_input import read_csv_unique_headers
 
 
 @dataclass
@@ -28,7 +29,7 @@ class Calibration:
 
 
 def fit_linear_calibration(path, fwhm_at_6kev=0.135, strict=False):
-    df = pd.read_csv(path, encoding='utf-8-sig')
+    df = read_csv_unique_headers(path, encoding='utf-8-sig')
     aliases = {'Channel': 'channel', 'Energy': 'energy_keV', 'energy': 'energy_keV',
                'energy(keV)': 'energy_keV'}
     df = df.rename(columns=aliases)

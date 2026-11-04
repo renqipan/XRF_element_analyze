@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 import pytest
 from xrf_analyzer.config import AnalysisConfig
-from xrf_analyzer.manual_peaks import parse_peak_energies, requested_peak_groups
+from xrf_analyzer.manual_peaks import parse_peak_energies, requested_peak_groups, fit_requested_peaks
 from xrf_analyzer.element_prior import SYMBOLS, classification_table, choose_by_evidence, element_class
 from xrf_analyzer.pipeline import analyze
 from xrf_analyzer.cli import main
@@ -90,6 +90,42 @@ def test_manual_observed_coordinates_are_not_shifted(synthetic):
     for line in result['identification'].fit_lines:
         if (line.symbol,line.branch) in fit.line_centers:
             assert line_model_center(line,fit) in cfg.find_peaks
+
+
+@pytest.mark.parametrize('axis', ['reference', 'observed'])
+@pytest.mark.parametrize('measured_background', [False, True])
+def test_requested_response_keeps_axis_independent_of_background(axis, measured_background):
+    # Two well separated peaks distinguish an affine gain from a common offset.
+    # Background data must not replace the boolean selecting the energy axis.
+    centers=np.array([6.4,12.6]);shift=.12;gain=-.004
+    observed=centers*(1+gain)+shift
+    cfg=AnalysisConfig(find_peaks=tuple(centers if axis=='reference' else observed),
+                       find_peaks_axis=axis)
+    edges=np.arange(4.,15.0001,.02);energy=(edges[:-1]+edges[1:])/2
+    rng=np.random.default_rng(78)
+    background=np.full(len(energy),8.)
+    continuum=np.full(len(energy),5.)
+    expected=continuum.copy()
+    if measured_background:
+        cfg._background_counts=rng.poisson(background)
+        cfg._background_scale=1.3
+        expected+=1.3*background
+    for center,position in zip(centers,observed):
+        expected+=20000*gaussian_response(edges,position,sigma_kev(center,cfg)*1.1)
+    counts=rng.poisson(expected)
+    detection_background=continuum+(1.3*cfg._background_counts if measured_background else 0.)
+    peaks,response=fit_requested_peaks(np.arange(len(energy)),energy,edges,counts,
+                                      detection_background,cfg)
+    if axis=='reference':
+        assert response['energy_gain']==pytest.approx(gain,abs=.0008)
+        assert response['delta_E_keV']==pytest.approx(shift,abs=.006)
+        assert peaks.observed_energy_keV.to_numpy()==pytest.approx(observed,abs=.004)
+    else:
+        assert response['energy_gain']==0.
+        assert response['delta_E_keV']==0.
+        assert peaks.observed_energy_keV.to_numpy()==pytest.approx(observed,abs=1e-12)
+    assert np.isfinite(peaks.approx_significance).all()
+    assert (peaks.approx_significance>5).all()
 
 
 def test_absent_manual_hints_are_not_element_evidence(synthetic):

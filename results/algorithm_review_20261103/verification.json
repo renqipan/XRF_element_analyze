@@ -1,0 +1,457 @@
+{
+  "date": "2026-11-04",
+  "timezone": "Asia/Shanghai",
+  "baseline_git_head": "e28929efcee61f3bb05b21bfb95ef1447731a361",
+  "python": "3.8.10",
+  "dependencies": {
+    "numpy": "1.24.3",
+    "scipy": "1.10.1",
+    "pandas": "2.0.3",
+    "matplotlib": "3.5.1",
+    "xraylib": "4.2.0",
+    "pytest": "8.3.5"
+  },
+  "tests": {
+    "command": "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 .venv/bin/python -m pytest -q",
+    "before_passed": 145,
+    "after_passed": 210,
+    "before_elapsed_s": 96.25,
+    "after_elapsed_s": 119.1,
+    "warnings": "2 existing xraylib SWIG DeprecationWarnings"
+  },
+  "other_checks": {
+    "git_diff_check": "passed",
+    "shell_syntax": "passed",
+    "cli_help": "passed",
+    "wheel_build": "passed",
+    "new_csv_input_module_in_wheel": true,
+    "all_17_raw_hashes_unchanged": true
+  },
+  "wheel": {
+    "name": "xrf_spectrum_analyzer-0.5.0-py3-none-any.whl",
+    "sha256": "811bba71cb72e3d0f4164787e516f6f4c2c53b734e7798a304533da5109f1c48"
+  },
+  "historical_artifact_audits": {
+    "existing_without_reference_artifact_audit.json": {
+      "samples": 17,
+      "errors": 0
+    },
+    "existing_with_pb_reference_artifact_audit.json": {
+      "samples": 17,
+      "errors": 0
+    }
+  },
+  "source_and_test_sha256": {
+    "analyze_all_spectrums.sh": "6a4c4bf864c43baf6916776c5f204d4978e5ebb947330ff2f8d0c8e58b921e6f",
+    "configs/default.json": "6b1bfd12ef1696428ab46609d8b51ee28755ec4acb0b7f1fd7fc5d4947a9ac15",
+    "configs/sensitivity.metadata.example.json": "799ad7b74a8746a03f00ed476d1dcb75818a38f25cf600d9723443bf9b094e91",
+    "configs/shafa.json": "303869378701e57f0ce8a3448ed8211baccbde27c15b0b13584fccd95866ef3e",
+    "configs/shafa_manual_reference.json": "a2cad60b838084e0adc0451a701ae1ac40ed8e1524e1fcfc08d4ae276dde5585",
+    "pyproject.toml": "c52fb2d2d4d7de7b789a31ac420bf9d6a3a27155e6f47d5120cda9b6697a0a66",
+    "scripts/audit_batch_results.py": "1405b41a7e84e76c1be6d41f14e42a15bdb44a637049d8ac5f9f8fa84a273005",
+    "scripts/verify.sh": "74bc23324db39f460fb6f388ac59854197d9ff00b909161396cd8e46d894fa28",
+    "setup.py": "0f0e395bcf72f5b3db7a8bf4ca015b001930afb7b0204e538ef07799093b1425",
+    "src/xrf_analyzer/__init__.py": "f4f6d41dde19d4028d3871795adee67e448905b3e284d8ae014a803572c52c24",
+    "src/xrf_analyzer/__main__.py": "79ee6f134c5c5193377cf9b189cbdcc3e2095e49ba9cec310114441c15a917c4",
+    "src/xrf_analyzer/atomic_completion.py": "d8bfacbcd8165f065fd98dfde97630927b3c27e8e449deb5f8a2553928045d0c",
+    "src/xrf_analyzer/atomic_lines.py": "4e5a6dbd47c16a04a3f28ebdb72b832d46c8d56c465a6ce800192ebcbfc5e13c",
+    "src/xrf_analyzer/background_input.py": "17c1de00d365faf703664b06f9f582e8ed903a923c6341b43008fe6a399f3204",
+    "src/xrf_analyzer/baseline.py": "1cbb6cfd5ffa219c71861cdd40896545cf556cbe3a141a64bea94af69bc5facb",
+    "src/xrf_analyzer/batch.py": "f93feca81a9df2808f2e22d0eae250c93705b1f6735b0c792f8416b7cbe7f743",
+    "src/xrf_analyzer/branch_evidence.py": "7c76b752417fb5e344b96fe5e303826df104e490916775534757fedc50b39254",
+    "src/xrf_analyzer/calibration.py": "b830e5a6b94244b0a4467353ca1254c9c619e80ffef74996a5ac4a8a371f4619",
+    "src/xrf_analyzer/cli.py": "2c18005e2e169ff55e83a66078e147172add6c95d514c8aeac32d34b9149f2af",
+    "src/xrf_analyzer/config.py": "c21e864e2bec5891e9b671468e757fbe794a70b970dc21206b2aaaf1b9057ca8",
+    "src/xrf_analyzer/console.py": "39a22103e13f2b5c9a329ce74fbc044e9d7f43a44496d09ae43b1286dc63614b",
+    "src/xrf_analyzer/csv_input.py": "d26c71681c34c9c83c2d6b67e7a47af9093435b4edd30ef7925ebe4a441df579",
+    "src/xrf_analyzer/element_identification.py": "7a99b1af77a57f00d78cb05270d4a48f32bcb7f960c379b354eea6d551b1e6c3",
+    "src/xrf_analyzer/element_prior.py": "1d8b4f82d7a40d50a83d4bca0335a35a77cff06a9e1770297b84188770c10ddc",
+    "src/xrf_analyzer/fit_model.py": "ae44392ad7498b147cbfeb9b2d9638683ed5706dad51125b54a84a463cbaa69c",
+    "src/xrf_analyzer/io_spectrum.py": "02863ce9b05ce92117e9936f4c57bfb590ed7f8952e6091c683b06ef5746b36f",
+    "src/xrf_analyzer/local_quantification.py": "9d6e17369b13d8498fc52ab2ea260b97f1b4bde0dd476fb77ab6a73c1cb3ebec",
+    "src/xrf_analyzer/low_z.py": "ae49998b81e98eeecdf1b35ca6e850a63dcea01895faf59f95f8d64bc108c988",
+    "src/xrf_analyzer/manual_peaks.py": "c032480518157da4a62dd27fd60c70ba1effadbed7a7f0c0cb6a84ec54a19695",
+    "src/xrf_analyzer/measured_background.py": "a51c5487590532e47a4fdd137b83501772b43f2f522cc20916188e290bf7d448",
+    "src/xrf_analyzer/measurement.py": "0756c0ba3395234a73b85ff551e27aad5e591a5ac737e48e5bac008fb3344004",
+    "src/xrf_analyzer/pattern_matching.py": "fa2dc66ef916c8c6bf5b4043a03b4a44b4c8ea6e3c9dd329e50ccd2750f98cd7",
+    "src/xrf_analyzer/peak_detection.py": "956de7f040cfc8a043f866dc8d8b0a058b0f8fe57d2436649d863809fcfdcabd",
+    "src/xrf_analyzer/pipeline.py": "9c1b20dad0d2e7ce50a4ad74c4e7478a95f7adb8089f6a13882a7c63e6cc723e",
+    "src/xrf_analyzer/quantification.py": "002bfce9cd1ea50e3ddecc7923cbd738ed371164db5d51c666cfc34cadafe37d",
+    "src/xrf_analyzer/reporting.py": "6441c96b23efe66c9134131b13346b47ab390c347a4659ec2f3fbedd818816ac",
+    "src/xrf_analyzer/response.py": "0dfd1e5a0455a694ab77576d56c30b01cac566d0d8e0c20252de4894b4307da0",
+    "src/xrf_analyzer/uncertainty.py": "119b3c01760166e794f3413ebcbf7bcf805bbfcbf10263d804b7c2b452af140e",
+    "src/xrf_analyzer/visualization.py": "f7e4a68dfadd1723856e43eeb486ccfbad0032e3e4bbf0067788f7a485d91a2f",
+    "tests/conftest.py": "00f9a50c7407948f66f416439850e01fa95ca1abadb03e9c50a84773054a1e78",
+    "tests/test_analysis.py": "e1c10cb9630562fe551683b2c4c447c17da2536e5d8d3cdbd015eeecbbca3306",
+    "tests/test_atomic_lines.py": "d2f75cd096f40c357d508c7e19117f9b143fc7bca8c84a3eb34c4b5e2f8a2178",
+    "tests/test_background_cli.py": "340ad6757c21802a8b08696ef92770475641d5cfae2de2d96afcfb1df1f8e286",
+    "tests/test_background_independence.py": "7be126c781409d3d87dc53966873f4d711f2694b782f82259b618900a50aee03",
+    "tests/test_batch_directory.py": "78f406a4eae7ed37b6a429711d4b3f06c39daec070641807f22ba8811ffddb1e",
+    "tests/test_centroid_workflow.py": "92fb4c16e5646bbb23297d0ecc4c71082493f2ba26b49c1c25b7b4d2c07cdf3d",
+    "tests/test_cli.py": "eb876236a1d5f7a426f2c913a623ddf12ccef0a4e55f5086b7a9703901e569b5",
+    "tests/test_console_summary.py": "b32dec898b2a16e251f7df946eeebad7925e24521d3ce498ec9bd69bc02b9cf9",
+    "tests/test_counterfactual_overlap.py": "29e7fa77a4cb914683f8faa3dcbae8dfb17dae21513208b9a4b3ed0b554b4955",
+    "tests/test_csv_headers.py": "4bbfde8fd9dece7bd7dcbb0104b4b3af64c874503c9d6af2ae684c33e3364ea2",
+    "tests/test_elements_outputs.py": "37cde05e6a32cdcc5d0ac318bd89fcfffd9a896dbf10a7ad035669a482de3d0b",
+    "tests/test_excitation_edges.py": "366da6f2cb99c5cf5d8c0aa20810292c1da08dc20c45caca1fd4d2b2d45eab80",
+    "tests/test_excitation_metadata.py": "a8df594bb8292fc0b6a718e6d78cb2a64e4ad7eb1c06b546e39016a282207bd9",
+    "tests/test_hardware_acquisition_domain.py": "135ebe9d13aee6c2ae065c111b53e190448d374a2676faa18286aac6f17259a1",
+    "tests/test_inputs.py": "d6589b07b967c00039c24e512a6c7eb8fc82b5194a108fed6b756fd29d829f2f",
+    "tests/test_local_quantification.py": "7164b19f57cf6858e8196bac77a7fb746e4cd75bcd06bd2c85764da8f0c9b388",
+    "tests/test_local_scattering.py": "584d94ec91f5c051cbc89e0e2c93f83bb134d0479c8bb7d66b1630c94afe0ada",
+    "tests/test_low_z_kalpha.py": "45d89ddf17bebe0847531878c0546a39242a92418f3e443b97c312bfc9d4a8bb",
+    "tests/test_measured_background.py": "fa3b4560c70e06c358b4af0ac9481ff95ba5aeb9412ecdbcde83346a539108b9",
+    "tests/test_output_integrity.py": "87316945432feeea71a429c00ccbd920271d0dfc6154d2f41aa920e9c7564905",
+    "tests/test_peak_area_density.py": "966d0516dcab06e2b581d02d3c2fb4a26610ca784a18347232950a86aa1887fc",
+    "tests/test_physics.py": "de053e267a187c4d1bb857256a3d90c181db045f3071f512e47d837ca6b6f855",
+    "tests/test_requested_peaks_and_priors.py": "acc3dcd6ea310232d602dcd04a8e013506a3f8d827d2b136932c9663ba860436",
+    "tests/test_uncertainty_information.py": "1a03ca7a8303126b2a5ae7d501551a027dc00b7b8c33eafbc45abe5157f21c4e"
+  },
+  "interpretation": "Pure-Pb XRF reference confirmed by user; not a generic independent blank. with_background runs are sensitivity checks only. Absolute areal density and composition truth not validated.",
+  "final_numerical_summaries": {
+    "without_background": {
+      "cases": 17,
+      "errors_before": 0,
+      "errors_after": 0,
+      "successful_fits_after": 17,
+      "supported_total_before": 43,
+      "supported_total_after": 45,
+      "supported_sets_changed": 6,
+      "ratios_before": 33,
+      "ratios_after": 27,
+      "q_Area": {
+        "comparable_rows": 36,
+        "changed_rows": 16,
+        "maximum_absolute_difference": 808.0209183227271,
+        "maximum_absolute_relative_change": 0.22841940035463362,
+        "largest_relative_changes": [
+          [
+            "pos1_40keV_80uA.mca",
+            "Fe",
+            {
+              "before": 83.36064027364188,
+              "after": 64.31945280915828,
+              "difference": -19.0411874644836,
+              "relative_change": -0.22841940035463362
+            }
+          ],
+          [
+            "Pb_50keV_20uA_back3mm.mca",
+            "Ag",
+            {
+              "before": 205.21407240137327,
+              "after": 197.7649897303037,
+              "difference": -7.4490826710695615,
+              "relative_change": -0.036299083117945635
+            }
+          ],
+          [
+            "shou_50keV_20uA_back3mm.mca",
+            "Pb",
+            {
+              "before": 27233.903411889634,
+              "after": 28041.92433021236,
+              "difference": 808.0209183227271,
+              "relative_change": 0.02966966967981408
+            }
+          ],
+          [
+            "xiongzhen_50keV_20uA_back3mm.mca",
+            "Fe",
+            {
+              "before": 916.1495456322631,
+              "after": 892.0279492506005,
+              "difference": -24.121596381662584,
+              "relative_change": -0.02632932199405887
+            }
+          ],
+          [
+            "pos5_40keV_5uA.mca",
+            "Fe",
+            {
+              "before": 145.20840335326778,
+              "after": 143.9475678463041,
+              "difference": -1.260835506963673,
+              "relative_change": -0.008682937611374121
+            }
+          ],
+          [
+            "yifu_50keV_20uA_back3mm.mca",
+            "Pm",
+            {
+              "before": 108.75933345142471,
+              "after": 109.69715084520811,
+              "difference": 0.9378173937834049,
+              "relative_change": 0.008622868162411671
+            }
+          ],
+          [
+            "pos1_40keV_80uA.mca",
+            "Ag",
+            {
+              "before": 328.1249967929099,
+              "after": 325.69244348519123,
+              "difference": -2.432553307718649,
+              "relative_change": -0.0074134958674115
+            }
+          ],
+          [
+            "shu_50keV_20uA_back3mm.mca",
+            "Pb",
+            {
+              "before": 28469.57244188273,
+              "after": 28531.68282202291,
+              "difference": 62.110380140180496,
+              "relative_change": 0.0021816407769021293
+            }
+          ]
+        ]
+      },
+      "Relative_to_Reference": {
+        "comparable_rows": 27,
+        "changed_rows": 4,
+        "maximum_absolute_difference": 84.95078430748293,
+        "maximum_absolute_relative_change": 0.2972372586849497,
+        "largest_relative_changes": [
+          [
+            "pos1_40keV_80uA.mca",
+            "Pb",
+            {
+              "before": 285.80126422685356,
+              "after": 370.7520485343365,
+              "difference": 84.95078430748293,
+              "relative_change": 0.2972372586849497
+            }
+          ],
+          [
+            "pos1_40keV_80uA.mca",
+            "Ag",
+            {
+              "before": 3.936210131253766,
+              "after": 5.063669376223561,
+              "difference": 1.1274592449697947,
+              "relative_change": 0.2864326871214762
+            }
+          ],
+          [
+            "xiongzhen_50keV_20uA_back3mm.mca",
+            "Pb",
+            {
+              "before": 25.879563655594918,
+              "after": 26.619084630402973,
+              "difference": 0.7395209748080553,
+              "relative_change": 0.02857548081759013
+            }
+          ],
+          [
+            "pos5_40keV_5uA.mca",
+            "Pb",
+            {
+              "before": 25.49872551373542,
+              "after": 25.762451366080438,
+              "difference": 0.26372585234501855,
+              "relative_change": 0.010342707215031478
+            }
+          ]
+        ]
+      },
+      "q_Std": {
+        "comparable_rows": 36,
+        "changed_rows": 16,
+        "maximum_absolute_difference": 270.8211280641933,
+        "maximum_absolute_relative_change": 1.9994429616539493,
+        "largest_relative_changes": [
+          [
+            "xiongzhen_50keV_20uA_back3mm.mca",
+            "Fe",
+            {
+              "before": 11.501115446673705,
+              "after": 34.49693977769496,
+              "difference": 22.995824331021257,
+              "relative_change": 1.9994429616539493
+            }
+          ],
+          [
+            "shou_50keV_20uA_back3mm.mca",
+            "Pb",
+            {
+              "before": 415.8593727961907,
+              "after": 145.03824473199737,
+              "difference": -270.8211280641933,
+              "relative_change": -0.6512324737163506
+            }
+          ],
+          [
+            "shu_50keV_20uA_back3mm.mca",
+            "Pb",
+            {
+              "before": 169.9291749521989,
+              "after": 263.9585475879353,
+              "difference": 94.0293726357364,
+              "relative_change": 0.553344489915795
+            }
+          ],
+          [
+            "pos1_40keV_80uA.mca",
+            "Fe",
+            {
+              "before": 52.19032992159176,
+              "after": 28.233873517573276,
+              "difference": -23.956456404018486,
+              "relative_change": -0.45902098032354866
+            }
+          ],
+          [
+            "Pb_50keV_20uA_back3mm.mca",
+            "Ag",
+            {
+              "before": 24.38842523012692,
+              "after": 33.986642187917894,
+              "difference": 9.598216957790974,
+              "relative_change": 0.39355624101282016
+            }
+          ],
+          [
+            "xiongzhen_50keV_20uA_back3mm.mca",
+            "Pb",
+            {
+              "before": 94.9099635353186,
+              "after": 122.55270301072481,
+              "difference": 27.642739475406216,
+              "relative_change": 0.2912522399728833
+            }
+          ],
+          [
+            "yifu_50keV_20uA_back3mm.mca",
+            "Pm",
+            {
+              "before": 21.28682121361844,
+              "after": 26.711599273462845,
+              "difference": 5.424778059844407,
+              "relative_change": 0.2548420924573677
+            }
+          ],
+          [
+            "pos5_40keV_5uA.mca",
+            "Pb",
+            {
+              "before": 40.583582554090654,
+              "after": 35.14448140055973,
+              "difference": -5.4391011535309275,
+              "relative_change": -0.1340222033449506
+            }
+          ]
+        ]
+      },
+      "Uncertainty_percent": {
+        "comparable_rows": 27,
+        "changed_rows": 4,
+        "maximum_absolute_difference": 18.709111598145938,
+        "maximum_absolute_relative_change": 1.9609747740609875,
+        "largest_relative_changes": [
+          [
+            "xiongzhen_50keV_20uA_back3mm.mca",
+            "Pb",
+            {
+              "before": 1.3176530135951978,
+              "after": 3.90153733422082,
+              "difference": 2.5838843206256223,
+              "relative_change": 1.9609747740609875
+            }
+          ],
+          [
+            "pos1_40keV_80uA.mca",
+            "Pb",
+            {
+              "before": 62.61132779456237,
+              "after": 43.90221619641643,
+              "difference": -18.709111598145938,
+              "relative_change": -0.29881352555776297
+            }
+          ],
+          [
+            "pos1_40keV_80uA.mca",
+            "Ag",
+            {
+              "before": 63.33138822768301,
+              "after": 44.83479330736488,
+              "difference": -18.496594920318124,
+              "relative_change": -0.2920604685597751
+            }
+          ],
+          [
+            "pos5_40keV_5uA.mca",
+            "Pb",
+            {
+              "before": 3.7110868446047167,
+              "after": 3.366506472750497,
+              "difference": -0.3445803718542195,
+              "relative_change": -0.09285160554924234
+            }
+          ]
+        ]
+      }
+    },
+    "with_background": {
+      "cases": 17,
+      "errors_before": 0,
+      "errors_after": 1,
+      "successful_fits_after": 15,
+      "supported_total_before": 13,
+      "supported_total_after": 19,
+      "supported_sets_changed": 5,
+      "ratios_before": 9,
+      "ratios_after": 13,
+      "q_Area": {
+        "comparable_rows": 11,
+        "changed_rows": 1,
+        "maximum_absolute_difference": 83.87873391843198,
+        "maximum_absolute_relative_change": 0.1143597215625947,
+        "largest_relative_changes": [
+          [
+            "xiongzhen_50keV_20uA_back3mm.mca",
+            "Fe",
+            {
+              "before": 733.4639571723775,
+              "after": 817.3426910908095,
+              "difference": 83.87873391843198,
+              "relative_change": 0.1143597215625947
+            }
+          ]
+        ]
+      },
+      "Relative_to_Reference": {
+        "comparable_rows": 8,
+        "changed_rows": 0,
+        "maximum_absolute_difference": 0.0,
+        "maximum_absolute_relative_change": 0.0,
+        "largest_relative_changes": []
+      },
+      "q_Std": {
+        "comparable_rows": 11,
+        "changed_rows": 1,
+        "maximum_absolute_difference": 28.14230544706149,
+        "maximum_absolute_relative_change": 0.5539846129115813,
+        "largest_relative_changes": [
+          [
+            "xiongzhen_50keV_20uA_back3mm.mca",
+            "Fe",
+            {
+              "before": 50.79979622385855,
+              "after": 22.65749077679706,
+              "difference": -28.14230544706149,
+              "relative_change": -0.5539846129115813
+            }
+          ]
+        ]
+      },
+      "Uncertainty_percent": {
+        "comparable_rows": 8,
+        "changed_rows": 0,
+        "maximum_absolute_difference": 0.0,
+        "maximum_absolute_relative_change": 0.0,
+        "largest_relative_changes": []
+      }
+    }
+  }
+}

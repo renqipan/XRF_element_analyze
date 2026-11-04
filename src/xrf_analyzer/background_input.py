@@ -4,8 +4,16 @@ import numpy as np
 from .io_spectrum import load_spectrum
 
 
-def load_background(path, channels, calibration, sample, config):
+def load_background(path, channels, calibration, sample, config, sample_path=None):
+    if sample_path is not None:
+        reference_path, original_path = Path(path), Path(sample_path)
+        if (reference_path.resolve() == original_path.resolve()
+                or reference_path.read_bytes() == original_path.read_bytes()):
+            raise ValueError('The same sample file (including byte-for-byte copies) cannot be used as an independent background measurement')
     background=load_spectrum(path,config.channel_start,False)
+    acquisition = background.metadata.get('hardware_lower_cutoff')
+    if acquisition is not None and np.any(np.asarray(channels) < acquisition['first_retained_channel']):
+        raise ValueError('Background acquisition domain does not cover analyzed sample channels below its recorded TLLD')
     energy=calibration.energy(background.channel)
     tolerance=max(1e-6,.1*calibration.b_keV_per_channel)
     supplied=background.metadata.get('supplied_energy_keV')

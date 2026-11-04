@@ -92,12 +92,13 @@ def run_batch(input_dir, output_dir, calibration, sensitivity, config=None):
     Returns a manifest. A parse/optimization failure is recorded and later samples
     still run. Optimizer success with model mismatch is not quantitative success.
     """
-    cfg = (config or AnalysisConfig(energy_range=(1., 40.))).validate()
+    cfg = (config or AnalysisConfig(energy_range=(1., 40.), tube_target='Ag')).validate()
     source, out = Path(input_dir).resolve(), Path(output_dir).resolve()
     if source == out:
         raise ValueError('Input and output directories must differ')
     files = discover_spectra(source)
     stems=[p.stem.casefold() for p in files]
+    image_keys=[(p.stem.casefold(),p.suffix.lower()) for p in files]
     calibration, sensitivity = Path(calibration).resolve(), Path(sensitivity).resolve()
     for label, path in [('calibration', calibration), ('sensitivity', sensitivity)]:
         if not path.is_file():
@@ -127,6 +128,10 @@ def run_batch(input_dir, output_dir, calibration, sensitivity, config=None):
         destination = out/'spectra'/sample_id
         destination.mkdir(parents=True, exist_ok=True)
         image_dir=out if stems.count(spectrum.stem.casefold())==1 else out/('elements_'+spectrum.suffix[1:].lower())
+        if image_keys.count((spectrum.stem.casefold(),spectrum.suffix.lower())) > 1:
+            # .csv/.CSV can coexist on case-sensitive systems. Give each its own
+            # directory, also keeping exported paths distinct after case folding.
+            image_dir=image_dir/('sample_%04d' % index)
         image_dir.mkdir(parents=True,exist_ok=True)
         image_path = image_dir/(spectrum.stem+'_elements.png')
         (out/(sample_id+'.spectrum_fit.png')).unlink(missing_ok=True)
@@ -227,7 +232,7 @@ def _configuration_from_analysis_cli(calibration, sensitivity, output_dir, confi
     if config_path:
         argv += ['--config', str(config_path)]
     args = vars(build_analysis_parser().parse_args(argv+forwarded))
-    settings = {'energy_range': (1., 40.)}
+    settings = {'energy_range': (1., 40.), 'tube_target': 'Ag'}
     if args['config']:
         settings.update(json.loads(Path(args['config']).read_text(encoding='utf-8-sig')))
     for key in ('command', 'spectrum', 'calibration', 'sensitivity', 'output_dir', 'config', 'background_method'):
@@ -243,7 +248,7 @@ def _configuration_from_analysis_cli(calibration, sensitivity, output_dir, confi
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description='Analyze a directory of raw MCA/CSV sample spectra sequentially.',
-                                     epilog='Other analysis options are forwarded to xrf_analyzer analyze, e.g. --elements Fe,Ca,Pb.')
+                                     epilog='Tube target defaults to Ag; override with --tube-target Cu. Other analysis options are forwarded to xrf_analyzer analyze.')
     parser.add_argument('--input-dir', default='XRF_SDD')
     parser.add_argument('--output-dir', default='XRF_Analyze_results')
     parser.add_argument('--calibration', default='data/calibration.csv')

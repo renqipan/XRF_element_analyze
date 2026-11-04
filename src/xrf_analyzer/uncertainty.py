@@ -9,8 +9,11 @@ def estimate_covariance(fit):
     """
     n = len(fit.symbols)
     active = np.ones(len(fit.parameters), dtype=bool)
+    fixed = np.array([lo is not None and hi is not None and lo == hi
+                      for lo, hi in fit.bounds], dtype=bool)
+    active &= ~fixed
     n_amp = n + len(fit.nuisance_names)
-    active[:n_amp] = fit.parameters[:n_amp]*fit.amplitude_scale > 1e-5
+    active[:n_amp] &= fit.parameters[:n_amp]*fit.amplitude_scale > 1e-5
     idx = np.flatnonzero(active)
     weights=getattr(fit,'information_weights',None)
     weights=1/fit.model if weights is None else weights
@@ -24,22 +27,45 @@ def estimate_covariance(fit):
     cov_active = cov_scaled / safe_norms[:, None] / safe_norms[None, :]
     cov = np.full((len(fit.parameters), len(fit.parameters)), np.nan)
     cov[np.ix_(idx, idx)] = cov_active
-    alpha_index=getattr(fit,'background_scale_index',None)
-    if alpha_index is not None and np.isfinite(cov[alpha_index,alpha_index]):
-        fit.background_scale_std=float(np.sqrt(max(0.,cov[alpha_index,alpha_index])))
-        influence=cov[alpha_index,idx]@fit.jacobian[:,idx].T*weights
-        fit.background_scale_influence_sample=influence
-        fit.background_scale_influence_reference=-fit.background_scale*influence
     null_part = np.sum(vt[~good]**2, axis=0) if (~good).any() else np.zeros(len(idx))
     bad = set(idx[(null_part > 1e-5) | (norms <= 1e-15)].tolist())
     if len(singular) < len(idx):
         bad.update(idx.tolist())
+    alpha_index=getattr(fit,'background_scale_index',None)
+    if alpha_index is not None:
+        # Clear stale results when this function is called again. A Moore-
+        # Penrose inverse has finite entries even in an unidentifiable scale
+        # direction; those entries are not symmetric standard errors.
+        fit.background_scale_std=None
+        fit.background_scale_influence_sample=None
+        fit.background_scale_influence_reference=None
+        if not fit.success:
+            alpha_status='fit_failed'
+        elif fixed[alpha_index]:
+            alpha_status='fixed_parameter'
+            fit.background_scale_std=0.
+            fit.background_scale_influence_sample=np.zeros(len(fit.model))
+            fit.background_scale_influence_reference=np.zeros(len(fit.model))
+        elif fit.parameters[alpha_index] <= 1e-8:
+            alpha_status='nonnegative_boundary'
+        elif (alpha_index in bad or not np.isfinite(cov[alpha_index,alpha_index])
+                or cov[alpha_index,alpha_index] <= 0):
+            alpha_status='not_estimable'
+        else:
+            alpha_status='fisher_interior'
+            fit.background_scale_std=float(np.sqrt(cov[alpha_index,alpha_index]))
+            influence=cov[alpha_index,idx]@fit.jacobian[:,idx].T*weights
+            fit.background_scale_influence_sample=influence
+            fit.background_scale_influence_reference=-fit.background_scale*influence
+        fit.background_scale_uncertainty_status=alpha_status
     transform = fit.amplitude_scale / fit.sensitivity_sums
     qcov = cov[:n, :n] * transform[:, None] * transform[None, :]
     statuses = []
     for i in range(n):
         if not fit.success:
             status = 'fit_failed'
+        elif fixed[i]:
+            status = 'fixed_parameter'
         elif not active[i]:
             status = 'nonnegative_boundary'
         elif i in bad or not np.isfinite(qcov[i, i]) or qcov[i, i] <= 0:

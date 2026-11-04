@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # Analyze top-level MCA/CSV spectra; save element plots and four-line TXT blocks (last line blank).
+# Tube target defaults to Ag in batch configuration; override with --tube-target Cu.
 set -euo pipefail
 XRF_PROJECT_DIR="$(CDPATH= cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 if [[ -z "${PYTHON_BIN:-}" ]]; then

@@ -209,6 +209,9 @@ def export_analysis(result, output_dir):
     if result['config'].save_intermediate:
         pd.DataFrame(result['sensitivity'].states).to_csv(out/'sensitivity_states.csv', index=False)
         pd.DataFrame({'energy_keV': result['energy'], 'snip_counts': result['background0']}).to_csv(out/'background_initial.csv', index=False)
+    else:
+        for name in ('sensitivity_states.csv', 'background_initial.csv'):
+            (out/name).unlink(missing_ok=True)
     calcium=ident.candidates.loc[ident.candidates.Element=='Ca']
     write_json(out/'calcium_analysis.json',{'candidate':calcium.to_dict('records'),
                'branch_evidence':[row for row in ident.branch_evidence if row['Element']=='Ca'],

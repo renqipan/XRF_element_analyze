@@ -38,8 +38,8 @@ def requested_peak_groups(config):
 def fit_requested_peaks(channel, energy, edges, counts, background, config):
     groups=requested_peak_groups(config)
     centers=np.array([np.mean(g) for g in groups]); sigmas=sigma_kev(centers,config)
-    reference=config.find_peaks_axis=='reference'
-    bound=config.alignment_max_shift_kev if reference else 0.
+    reference_axis=config.find_peaks_axis=='reference'
+    bound=config.alignment_max_shift_kev if reference_axis else 0.
     if any(c+bound+4*s < edges[0] or c-bound-4*s > edges[-1] for c,s in zip(centers,sigmas)):
         raise ValueError('A find_peaks center is outside the measured energy range')
     mask=np.any(abs(energy[:,None]-centers[None,:]) < (bound+4*sigmas)[None,:],axis=1)
@@ -50,7 +50,7 @@ def fit_requested_peaks(channel, energy, edges, counts, background, config):
     if reference is not None:b0=np.maximum(b0-alpha*reference,.1)
     x=(energy[mask]-np.mean(energy[mask]))/max(np.ptp(energy[mask]),1e-9)
     h=np.column_stack([np.ones(len(y)),x]); n=len(centers); scale=max(y.sum()/10,10.)
-    gain_free=reference and config.fit_energy_gain and np.ptp(centers)>1
+    gain_free=reference_axis and config.fit_energy_gain and np.ptp(centers)>1
     def evaluate(v):
         delta,gain,width=v[n+2:]
         p,d,w=response_with_derivatives(edges,centers*(1+gain),sigmas,delta,width)
@@ -68,7 +68,7 @@ def fit_requested_peaks(channel, energy, edges, counts, background, config):
     bounds=[(0,None)]*n+[(-3,3),(-3,3),(-bound,bound),
             (-config.energy_gain_bound,config.energy_gain_bound) if gain_free else (0.,0.),(.5,3.)]
     starts=[]
-    for delta in (np.linspace(-bound,bound,11) if reference else [0.]):
+    for delta in (np.linspace(-bound,bound,11) if reference_axis else [0.]):
         p=response_with_derivatives(edges,centers,sigmas,delta,1.5)[0][mask]
         try:a=nnls(p/np.sqrt(b0+1)[:,None],np.maximum(y-b0,0)/np.sqrt(b0+1))[0]
         except RuntimeError:a=np.full(n,max(y.sum()/n,1.))

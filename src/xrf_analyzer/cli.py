@@ -14,8 +14,10 @@ def build_parser():
     sub = parser.add_subparsers(dest='command', required=True)
     p = sub.add_parser('analyze', help='Analyze raw sample CSV / Amptek ASCII MCA; supports batches')
     p.add_argument('--spectrum', nargs='+', required=True, help='Sample spectra, NOT the incident excitation spectrum')
-    p.add_argument('--calibration', required=True)
-    p.add_argument('--sensitivity', required=True, help='Nine-branch common-scale S CSV, never row-normalized')
+    p.add_argument('--calibration', default='data/calibration.csv',
+                   help='Calibration CSV (default: %(default)s, relative to working directory)')
+    p.add_argument('--sensitivity', default='data/xrf_relative_sensitivity.csv',
+                   help='Nine-branch common-scale S CSV, never row-normalized (default: %(default)s, relative to working directory)')
     p.add_argument('--output-dir', required=True)
     p.add_argument('--config', help='JSON overrides of AnalysisConfig; CLI overrides JSON')
     p.add_argument('--background_spectrum','--backgroud_spectrum','--background-spectrum',
@@ -31,7 +33,8 @@ def build_parser():
     p.add_argument('--reference-element', default=argparse.SUPPRESS)
     p.add_argument('--quantification-method', choices=['local-peaks','global-template'],
                    default=argparse.SUPPRESS, help='Primary peak area / sensitivity (default) or strict global fixed-branch templates')
-    p.add_argument('--tube-target', default=argparse.SUPPRESS)
+    p.add_argument('--tube-target', default=argparse.SUPPRESS,
+                   help='X-ray tube anode element symbol (default Ag; e.g. Cu, Mo); overrides JSON')
     p.add_argument('--tube-voltage-kv', type=float, default=argparse.SUPPRESS)
     p.add_argument('--scatter-angle-deg', type=float, default=argparse.SUPPRESS)
     p.add_argument('--channel-start', type=int, choices=[0, 1], default=argparse.SUPPRESS)
@@ -56,7 +59,8 @@ def build_parser():
     p.add_argument('--save-intermediate', action='store_true', default=argparse.SUPPRESS)
     p.add_argument('--no-low-z-kalpha',dest='low_z_kalpha',action='store_false',default=argparse.SUPPRESS,help='Use the stricter two-region identification rule also for Z<=24')
     p.add_argument('--no-atomic-completion', dest='complete_atomic_lines', action='store_false', default=argparse.SUPPRESS)
-    p.add_argument('--no-infer-cutoff', dest='infer_low_energy_cutoff', action='store_false', default=argparse.SUPPRESS)
+    p.add_argument('--no-infer-cutoff', dest='infer_low_energy_cutoff', action='store_false', default=argparse.SUPPRESS,
+                   help='Disable count-shape cutoff inference; recorded hardware acquisition thresholds still apply')
     p.add_argument('--no-estimate-resolution', dest='estimate_resolution_from_peaks', action='store_false', default=argparse.SUPPRESS)
     p.add_argument('--no-fit-gain', dest='fit_energy_gain', action='store_false', default=argparse.SUPPRESS)
     p.add_argument('--alignment-max-shift-kev', type=float, default=argparse.SUPPRESS)
@@ -74,7 +78,9 @@ def main(argv=None):
     args.pop('command')
     args.pop('background_method')
     try:
-        settings = json.loads(Path(config_path).read_text(encoding='utf-8-sig')) if config_path else {}
+        settings = {'tube_target': 'Ag'}
+        if config_path:
+            settings.update(json.loads(Path(config_path).read_text(encoding='utf-8-sig')))
         if 'find_peaks' in args:
             args['find_peaks']=parse_peak_energies(args['find_peaks'])
         settings.update(args)

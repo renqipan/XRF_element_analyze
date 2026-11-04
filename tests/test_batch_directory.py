@@ -104,7 +104,8 @@ def test_no_supported_rows_still_records_each_sample(synthetic, tmp_path):
     assert (out/'empty_elements.png').is_file()
 
 
-def test_shell_runs_from_other_directory_and_forwards_options(synthetic, tmp_path):
+@pytest.mark.parametrize('target', [None, 'Cu'])
+def test_shell_runs_from_other_directory_and_forwards_options(synthetic, tmp_path, target):
     spectrum, calibration, sensitivity, _, _, _ = synthetic({'Fe': 500.})
     source = tmp_path/'with spaces'
     source.mkdir()
@@ -117,11 +118,12 @@ def test_shell_runs_from_other_directory_and_forwards_options(synthetic, tmp_pat
     result = subprocess.run(['bash', str(ROOT/'analyze_all_spectrums.sh'), '--input-dir', str(source),
                              '--output-dir', str(output), '--calibration', str(calibration),
                              '--sensitivity', str(sensitivity), '--config', str(config),
-                             '--find_peaks', '[6.4039, 7.058]'],
+                             '--find_peaks', '[6.4039, 7.058]'] + (['--tube-target', target] if target else []),
                             cwd=str(tmp_path), env=env, text=True, capture_output=True)
     assert result.returncode == 0, result.stdout+result.stderr
     s = json.loads((output/'spectra/a sample.csv/fit_summary.json').read_text())
     assert s['parameters']['find_peaks'] == [6.4039, 7.058]
+    assert s['parameters']['tube_target'] == (target or 'Ag')
     assert (output/'a sample_elements.png').exists()
     assert '批量处理完成' in result.stdout
     assert '统一面密度TXT' in result.stdout

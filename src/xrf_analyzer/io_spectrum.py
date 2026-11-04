@@ -4,6 +4,7 @@ from pathlib import Path
 import re
 import numpy as np
 import pandas as pd
+from .csv_input import read_csv_unique_headers
 
 
 @dataclass
@@ -42,7 +43,7 @@ def load_spectrum(path, channel_start=0, fill_missing_channels=False):
         return _load_mca(path, channel_start, fill_missing_channels)
     if path.suffix.lower() != '.csv':
         raise ValueError('Unknown spectrum format; provide CSV or documented ASCII MCA')
-    df = pd.read_csv(path, encoding='utf-8-sig')
+    df = read_csv_unique_headers(path, encoding='utf-8-sig')
     if df.columns.duplicated().any() or 'counts' not in df:
         raise ValueError('Sample CSV requires a counts header')
     counts = pd.to_numeric(df.counts, errors='raise').to_numpy(float)
@@ -65,6 +66,77 @@ def load_spectrum(path, channel_start=0, fill_missing_channels=False):
             raise ValueError('Nonfinite supplied CSV energy')
         meta['supplied_energy_keV'] = energies.tolist()
     return Spectrum(channel, counts, meta.get('live_time_s'), meta)
+
+
+def _record_dp5_acquisition_domain(lines, data_end, counts, channel_start, meta):
+    """Interpret only the documented modern, normal-spectrum DP5 channel LLD.
+
+    Amptek Programmer's Guide Rev B4 sections 1.33, 5.1.33/35/76:
+    FW >= 6.06 uses zero-based TLLD and rejects device channels <= TLLD.
+    DATA array indices stay separate from the user's 0/1-based channel labels.
+    """
+    begin, finish = '<<DP5 CONFIGURATION>>', '<<DP5 CONFIGURATION END>>'
+    if lines.count(begin) != 1 or lines.count(finish) != 1:
+        return
+    a, b = lines.index(begin), lines.index(finish)
+    if not data_end < a < b:
+        return
+    configuration = {}
+    for key in ('MCAS', 'MCAC', 'SOFF', 'TLLD'):
+        values = [m.group(1).strip() for line in lines[a+1:b]
+                  for m in [re.fullmatch(key+r'\s*=\s*([^;]+);.*', line)] if m]
+        if len(values) > 1:
+            raise ValueError('Ambiguous DP5 configuration: duplicate '+key)
+        if values:
+            configuration[key] = values[0]
+    meta['mca_configuration'] = configuration
+    if configuration.get('MCAS') != 'NORM' or 'TLLD' not in configuration:
+        return
+    if configuration['TLLD'].upper() in ('OF', 'OFF'):
+        return
+    if (configuration.get('MCAC') not in tuple(str(n) for n in (256, 512, 1024, 2048, 4096, 8192))
+            or int(configuration['MCAC']) != len(counts)):
+        meta['warnings'].append('Recorded TLLD not applied: normal-spectrum MCAC mapping is not verified')
+        return
+    # Older firmware used one-based command values; do not silently reinterpret it.
+    status_begin, status_end = '<<DPP STATUS>>', '<<DPP STATUS END>>'
+    firmware = []
+    if lines.count(status_begin) == lines.count(status_end) == 1:
+        s, t = lines.index(status_begin), lines.index(status_end)
+        if b < s < t:
+            firmware = [m.groups() for line in lines[s+1:t]
+                        for m in [re.fullmatch(r'Firmware:\s*(\d+)\.(\d+)(?:\s+Build:\s*\d+)?', line)] if m]
+    if len(firmware) != 1 or tuple(map(int, firmware[0])) < (6, 6):
+        meta['warnings'].append('Recorded TLLD not applied: firmware >=6.06 zero-based channel convention is not verified')
+        return
+    configuration['firmware_version'] = '.'.join(firmware[0])
+    if 'SOFF' not in configuration:
+        meta['warnings'].append('Recorded TLLD not applied: spectrum offset mapping is not verified')
+        return
+    offset = configuration['SOFF']
+    if offset.upper() not in ('OF', 'OFF'):
+        try:
+            unshifted = float(offset) == 0.
+        except ValueError:
+            unshifted = False
+        if not unshifted:
+            meta['warnings'].append('Recorded TLLD not applied: nonzero spectrum offset mapping is not verified')
+            return
+    try:
+        threshold = float(configuration['TLLD'])
+    except ValueError as exc:
+        raise ValueError('MCA TLLD must be OFF or a finite integer channel') from exc
+    if not np.isfinite(threshold) or not threshold.is_integer() or not 0 <= threshold < len(counts):
+        raise ValueError('MCA TLLD must be OFF or an integer channel in 0..MCAC-1; fractional thresholds are not defined')
+    first = int(threshold)+1
+    if np.any(counts[:first] != 0):
+        raise ValueError('MCA TLLD metadata conflicts with nonzero counts in hardware-rejected channels')
+    meta['hardware_lower_cutoff'] = {
+        'source': 'Amptek_DP5_TLLD', 'threshold_device_channel': int(threshold),
+        'first_retained_index': first, 'first_retained_channel': first+channel_start,
+        'firmware_version': configuration['firmware_version'],
+        'channel_convention': 'zero_based_device_indices; user_channel_origin_applied_separately',
+        'limitation': 'Recorded channel LLD only; other trigger/acceptance effects are not inferred'}
 
 
 def _load_mca(path, channel_start, fill):
@@ -113,4 +185,5 @@ def _load_mca(path, channel_start, fill):
                     pass
         meta['embedded_calibration_points'] = points
     channel, counts, _ = _validate(np.arange(len(data)) + channel_start, [float(s) for s in data], fill)
+    _record_dp5_acquisition_domain(lines, end, counts, channel_start, meta)
     return Spectrum(channel, counts, meta.get('live_time_s'), meta)
