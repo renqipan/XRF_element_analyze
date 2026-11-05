@@ -38,7 +38,7 @@ PYTHON_BIN=.venv/bin/python bash scripts/verify.sh
 | 输入 | 要求 | 项目示例 |
 |---|---|---|
 | 样品谱 | Amptek PMCA ASCII MCA，或含`counts`列的CSV；原始计数为非负整数 | `SDD_Spectrum/shafa_50kv_20uA.mca` |
-| 标定CSV | 至少两个不同道号的线性标定点，能量单位keV | `data/calibration.csv` |
+| 能量标定CSV | 至少两个不同道号的线性标定点，能量单位keV | `data/calibration.csv` |
 | 灵敏度CSV | 跨元素共同尺度的九分支S表，不逐行归一化 | `data/xrf_relative_sensitivity.csv` |
 | 独立背景，可选 | 原始计数；通道和标定匹配，覆盖分析域；默认不使用 | 自行提供条件适配的空白谱 |
 
@@ -53,7 +53,7 @@ channel,counts
 
 省略`channel`时默认从0起，可用`--channel-start 1`改为从1起。显式道号须连续递增；缺道默认报错，只有`--fill-missing-channels`才补零并记录。重复CSV列名、负数、非整数和非有限计数会报错。可选`live_time_s`、`real_time_s`、`tube_voltage_kV`列须在整份谱中保持一致。
 
-标定CSV示例：
+能量标定CSV示例：
 
 ```csv
 channel,energy_keV
