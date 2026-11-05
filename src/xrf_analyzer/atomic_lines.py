@@ -93,7 +93,7 @@ def load_sensitivity(path):
             except ValueError as exc:
                 state['State'] = 'database_unavailable'
                 warnings.append('Removed %s %s: %s' % (symbol, branch, exc))
-                logging.warning(warnings[-1])
+                logging.warning(warnings[-1], extra={'analysis_diagnostic': True})
                 continue
             lines.append(LineCandidate(z, symbol, branch, energy, s))
     sidecar = path.with_suffix('.metadata.json')

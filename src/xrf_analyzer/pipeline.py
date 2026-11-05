@@ -354,7 +354,7 @@ def analyze(spectrum, calibration, sensitivity, output_dir=None, config=None, ba
     if output_dir:
         export_analysis(result, output_dir)
     for warning in warnings:
-        logging.warning(warning)
+        logging.warning(warning, extra={'analysis_diagnostic': True})
     logging.info('Completed %s in %.2fs: %s', spectrum, time.monotonic()-start, summary['fit_status'])
     print_run_summary(result)
     return result

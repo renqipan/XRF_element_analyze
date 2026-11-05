@@ -255,7 +255,11 @@ def main(argv=None):
     parser.add_argument('--sensitivity', default='data/xrf_relative_sensitivity.csv')
     parser.add_argument('--config', default=None)
     args, forwarded = parser.parse_known_args(argv)
-    logging.basicConfig(level=logging.INFO, format='%(levelname)s %(message)s')
+    # Keep analysis diagnostics in saved reports without repeating them on screen.
+    console = logging.StreamHandler()
+    console.addFilter(lambda record: record.levelno != logging.WARNING
+                      or not getattr(record, 'analysis_diagnostic', False))
+    logging.basicConfig(level=logging.INFO, format='%(levelname)s %(message)s', handlers=[console])
     try:
         config = _configuration_from_analysis_cli(args.calibration, args.sensitivity, args.output_dir,
                                                    args.config, forwarded)

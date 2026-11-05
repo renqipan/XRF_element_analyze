@@ -208,6 +208,8 @@ PY
 
 脚本默认遍历`XRF_SDD/`第一层的MCA/CSV（扩展名大小写不敏感），加载`configs/default.json`，使用`data/calibration.csv`与`data/xrf_relative_sensitivity.csv`，输出至`XRF_Analyze_results/`。
 
+批处理屏幕显示进度、分析结论和运行错误；编码、标定、模型失配、待定元素等分析诊断WARNING保存在逐谱`fit_summary.json`及批次汇总的`Warnings`字段中，不在屏幕重复打印。
+
 自定义输入、输出和靶材：
 
 ```bash
