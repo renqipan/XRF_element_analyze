@@ -4,14 +4,6 @@
 
 当前版本为0.5.0。单谱命令默认分析参数与`configs/shafa.json`一致：**Ag靶、50kV、1–40keV、自动寻峰并保存中间文件**，不固定Fe参考，参考元素自动选择。参数仍可覆盖。批处理默认Ag靶；额外背景参考默认关闭。
 
-第一轮漏识别审查与修复见 [算法审查报告](ALGORITHM_REVIEW_20261104.md)，当时的独立复算保存在 `results/optimization_20261104/batch/`。批处理/单谱入口使用候选阈值3.5、身份支持阈值ΔD=25、Kα主导范围Z≤26和最大迭代4000。支持状态仍是软件证据，密度仍为给定S下的表观相对值。
-
-第二轮依据用户人工判读线索继续审查，见 [第二轮原理与结果报告](ALGORITHM_REVIEW_ROUND2_20261104.md) 和 [人工判读对照表](results/optimization_round2_20261104/manual_comparison.md)。更新了标定后弱Kα候选召回、局部干扰的主分支约束、未知辅助壳层的分支比及Kβ缺失判据。默认命令 `./analyze_all_spectrums.sh` 的最新结果写入 `XRF_Analyze_results/`；人工建议没有作为识别输入或真值标签。
-
-按用户的文物、考古、矿物应用偏好，La–Lu和第18族元素只有身份达到`supported`时才报告；证据不足的镧系/稀有气体候选保留在完整CSV/拟合诊断中，不进入“可能存在”名单。此规则不改变其拟合竞争，也不证明其物理不存在。需要显示全部候选时使用 `--lanthanide-reporting all-candidates --noble-gas-reporting all-candidates`，或在JSON分别设置`"lanthanide_reporting"`和`"noble_gas_reporting"`；两个默认值均为`"supported-only"`，可独立覆盖。
-
-“可能存在”名单进一步要求实测主特征峰线索及至少ΔD=9的有效证据；可使用全谱删除、双窗口主组或受限反事实证据，完全共线的已观测主峰保留为待定组。此显示门槛不改变确定元素、拟合或面密度。可用`--possible-min-delta-deviance 12`更严格筛选；设为`0`关闭这层普通候选过滤，镧系/第18族规则仍独立生效。完整候选CSV保留被隐藏的解释和原因。
-
 ## 1. 安装和查看帮助
 
 以下命令在项目根目录执行。项目要求Python ≥3.8；依赖NumPy、SciPy、pandas、Matplotlib和xraylib，版本范围见[pyproject.toml](pyproject.toml)。
@@ -327,7 +319,10 @@ q_Area_i = 净主线组面积 A_i / 该组灵敏度合计 S_i
 
 结果依赖共同尺度S、实际激发条件及薄样品近似。自吸收、分层、几何、效率、仪器信号和元素选择可能影响识别及比例；当前误差不涵盖全部系统误差。软件`supported`表示谱线证据支持，不等于材料成分已独立确证。
 
-## 10. 文件导航
+## 10 镧系元素和稀有气体元素
+按用户的文物、考古、矿物应用偏好，La–Lu和第18族元素只有身份达到`supported`时才报告；证据不足的镧系/稀有气体候选保留在完整CSV/拟合诊断中，不进入“可能存在”名单。此规则不改变其拟合竞争，也不证明其物理不存在。需要显示全部候选时使用 `--lanthanide-reporting all-candidates --noble-gas-reporting all-candidates`，或在JSON分别设置`"lanthanide_reporting"`和`"noble_gas_reporting"`；两个默认值均为`"supported-only"`，可独立覆盖。
+
+## 11. 文件导航
 
 - [src/xrf_analyzer/](src/xrf_analyzer/)：程序实现和默认配置类。
 - [configs/](configs/)：JSON配置；[data/](data/)：标定、灵敏度和输入说明。
