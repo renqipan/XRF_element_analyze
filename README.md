@@ -2,7 +2,7 @@
 
 本程序分析SDD测量的XRF原始计数谱，完成自动寻峰、元素识别、谱峰拟合，并对身份获得支持且通过定量检查的元素计算**表观相对质量面密度**。支持单谱、多个指定谱和整个目录的批量分析。
 
-当前版本为0.5.0。单谱命令默认分析参数与`configs/shafa.json`一致：**Ag靶、50kV、1–40keV、自动寻峰并保存中间文件**，不固定Fe参考，参考元素自动选择。参数仍可覆盖。批处理默认Ag靶；额外背景参考默认关闭。
+当前版本为0.5.0。单谱命令默认分析参数与`configs/shafa.json`一致：**Ag靶、50kV、1–40keV、自动寻峰并保存中间文件**，参考元素自动选择。参数仍可覆盖。批处理默认Ag靶；额外背景参考默认关闭。
 
 ## 1. 安装和查看帮助
 
@@ -112,7 +112,7 @@ Element,Kalpha1,Kalpha2,Kbeta1,Lalpha1,Lalpha2,Lbeta1,Lbeta2,Lgamma1,Malpha1
 
 ## 4. 靶材和默认配置
 
-指定靶材使用`--tube-target`加规范元素符号，例如向完整单谱命令追加`--tube-target Cu`。靶材与定量参考元素`--reference-element Fe`是两个不同参数。
+指定靶材使用`--tube-target`加规范元素符号，例如向完整单谱命令追加`--tube-target W`。靶材与定量参考元素`--reference-element Fe`是两个不同参数。
 
 JSON使用下划线字段名，例如：
 
@@ -208,7 +208,7 @@ PY
 
 脚本默认遍历`XRF_SDD/`第一层的MCA/CSV（扩展名大小写不敏感），加载`configs/default.json`，使用`data/calibration.csv`与`data/xrf_relative_sensitivity.csv`，输出至`XRF_Analyze_results/`。
 
-批处理屏幕显示进度、分析结论和运行错误；编码、标定、模型失配、待定元素等分析诊断WARNING保存在逐谱`fit_summary.json`及批次汇总的`Warnings`字段中，不在屏幕重复打印。
+批处理屏幕显示进度、分析结论和运行错误；编码、标定、模型失配、待定元素等分析诊断WARNING保存在逐谱`fit_summary.json`。
 
 自定义输入、输出和靶材：
 
@@ -220,7 +220,7 @@ PY
   --reference-element Fe
 
 # 改用其它靶材：
-./analyze_all_spectrums.sh --tube-target Cu
+./analyze_all_spectrums.sh --tube-target W
 ```
 
 只有各样品确实共享采集条件时，才为整批指定`--tube-voltage-kv 50`或同一专用配置；不同条件应分组运行。
@@ -292,14 +292,6 @@ Ca诊断另有`calcium_analysis.json`及适用时的`calcium_region.png`。其�
 - `density_details.json`：机器可读数值、误差、方法与失败原因。
 - `batch_summary.txt`：每样品一行的摘要。
 - `batch_manifest.json`：输入哈希、参数、进度及逐样品结果。
-
-复核已有成功批次的产物一致性：
-
-```bash
-.venv/bin/python scripts/audit_batch_results.py XRF_Analyze_results_ag
-```
-
-该工具检查表格、模型分量、图片、哈希等一致性，不能验证未知样品成分真值。
 
 ## 9. 定量含义和常见问题
 
